@@ -1,0 +1,8 @@
+.tmp
+.sass-cache
+*.keystore
+*.sw*
+platforms/^.*
+www/dist
+www/vendor
+node_modules

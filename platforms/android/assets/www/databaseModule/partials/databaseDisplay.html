@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+        <h2>DatabaseModule</h2>
+                
+        <p> Result to the databaseConnection.hello() function using HTTP POST</p>
+        {{hello}}
+        <br>
+        <hr>
+        
+        
+        <p> Result to the databaseConnection.query() function (as a raw JSON), internally same as hello function, but uses HTTP GET.</p>
+        {{queryResult}}
+        <br>
+        <hr>
+        
+        
+        <p>This is a test login function.</p>
+        {{login}}
+        <br>
+        login.data unfortunately treated as string, but should not be a problem with actual WebService/API.
+        <br>
+        {{login.data}}
+        <br>
+        Workaround to access the login.data sub-elements
+        <br>
+        {{loginData.userName}}
+        <br>
+        {{loginData.passWord}}
+        <br>
+        <hr>
+    </div>
+  </div>
+</div>
