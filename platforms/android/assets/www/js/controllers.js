@@ -22,9 +22,10 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'databaseConnection', '$r
     };
   }]);
 
-vmaControllerModule.controller('menuCtrl', ['$scope',
-  function($scope) {
+vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
+  function($scope, $state) {
     $scope.goBack = function() {
-        window.history.back();
+        //window.history.back();
+        $state.go('^');
     };
   }]);

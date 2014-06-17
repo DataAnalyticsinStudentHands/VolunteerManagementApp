@@ -29,8 +29,9 @@ volunteerManagementApp.config(
           }
       }).
       state('login.help', {
-          url: "/lHelp",
-          templateUrl: "partials/login.help.html"
+          url: ":msg",
+          templateUrl: "partials/login.help.html",
+          controller: 'lHelpCtrl'
       }).
       state('register', {
           url: "/register",
@@ -40,7 +41,7 @@ volunteerManagementApp.config(
           }
       }).
       state('register.help', {
-          url: "/rHelp",
+          url: "",
           templateUrl: "partials/register.help.html"
       }).
       state('home', {
