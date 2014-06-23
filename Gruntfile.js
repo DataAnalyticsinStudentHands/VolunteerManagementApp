@@ -336,12 +336,10 @@ module.exports = function (grunt) {
 
         if (device.platform === 'all') {
             // Build all platforms
-            cordova.run();
+            cordova.run(done);
         } else {
             cordova.run(device.platform);
         }
-
-        done();
     });
 
     grunt.registerTask('cordova-emulate', 'Cordova emulation tasks', function () {
