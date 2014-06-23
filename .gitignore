@@ -6,3 +6,4 @@ platforms/^.*
 www/dist
 www/vendor
 node_modules
+www/bower_components
