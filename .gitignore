@@ -7,3 +7,5 @@ www/dist
 www/vendor
 node_modules
 www/bower_components
+platforms/android/local.properties
+platforms/android/CordovaLib/local.properties
