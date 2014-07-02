@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Volunteer Management App</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/app.css">
+<!--  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
+  <!--<link rel="stylesheet" href="css/app.css">-->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -13,15 +13,24 @@
   <script src="bower_components/lodash/dist/lodash.underscore.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
 
-  <!-- linking to the database module-related js files in the main app's index file -->
+    <!--<link rel="stylesheet" href="css/bottomMenu.css"/>-->
+<!--    <link rel="stylesheet" href="css/app.css"/>-->
+    <!--<link rel="stylesheet" href="css/home.css"/>-->
+    <!--<link rel="stylesheet" href="../css/menuBar.css">-->
+<!--    <link rel="stylesheet" href="css/login.css"/>-->
+    
+   <!--linking to the database module-related js files in the main app's index file-->
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="modules/dbServices.js"></script>
   <script src="js/services.js"></script>
+    <link rel="stylesheet" href="../css/Main.css">
 </head>
 <body>
-    <div ui-view="menuBar" style="background-color: #7aef79"></div>
+    
+    <div id="menuBar" ui-view="menuBar"></div>    
     <div ui-view="app"></div>
+<<<<<<< HEAD
     <div ui-view="bottomMenu" style="background-color: #ef7979"></div>
 
     <!--    Below code is for forcing a browser (Chrome) to display a full error message instead of truncating it.-->
@@ -46,5 +55,8 @@
 <!--    <div id="error"></div>-->
 
     
+=======
+    <div id="b_menu" ui-view="bottomMenu"></div>
+>>>>>>> b4bd2c3c1db6cc8922ef29c2e3666f0d98514d06
 </body>
 </html>
