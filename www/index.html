@@ -24,17 +24,17 @@
   <script src="js/controllers.js"></script>
   <script src="modules/dbServices.js"></script>
   <script src="js/services.js"></script>
-    <link rel="stylesheet" href="../css/Main.css">
+    <link rel="stylesheet" href="css/Main.css">
 </head>
 <body>
     
-    <div id="menuBar" ui-view="menuBar"></div>    
+    <div ui-view="menuBar" id="menuBar"></div>    
     <div ui-view="app"></div>
-<<<<<<< HEAD
-    <div ui-view="bottomMenu" style="background-color: #ef7979"></div>
+    <div ui-view="bottomMenu" id="b_menu"></div>
 
     <!--    Below code is for forcing a browser (Chrome) to display a full error message instead of truncating it.-->
     
+<!--
 <script type="text/javascript">
 
     //Chrome passes the error object (5th param) which we must use since it now truncates the Msg (1st param).
@@ -51,12 +51,8 @@
         document.write(errMsg);
     }
 </script>
+-->
 
 <!--    <div id="error"></div>-->
-
-    
-=======
-    <div id="b_menu" ui-view="bottomMenu"></div>
->>>>>>> b4bd2c3c1db6cc8922ef29c2e3666f0d98514d06
 </body>
 </html>

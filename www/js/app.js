@@ -38,9 +38,7 @@ volunteerManagementApp.config(
       state('register', {
           url: "/register",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/register.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+            "app": { templateUrl: "partials/register.html"}
           }
       }).
       state('register.help', {
@@ -143,7 +141,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
-        return Auth.hasCredentials();
+//        return Auth.hasCredentials();
+        return true;
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
