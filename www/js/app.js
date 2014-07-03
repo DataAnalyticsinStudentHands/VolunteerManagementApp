@@ -19,7 +19,7 @@ volunteerManagementApp.config(
           url: "/home",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/communityFeed.html"},
+            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeedController'},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
@@ -45,20 +45,20 @@ volunteerManagementApp.config(
           url: "",
           templateUrl: "partials/register.help.html"
       }).
-      state('communityFeed', {
-          url: "/communityFeed",
-          views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/communityFeed.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
-          },
-          authenticate: true
-      }).
       state('groupMessages', {
           url: "/groupMessages",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/groupMessages.html"},
+            "app": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+          },
+          authenticate: true
+      }).
+      state('message', {
+          url: "/message:id",
+          views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
@@ -67,7 +67,25 @@ volunteerManagementApp.config(
           url: "/groupFeed",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/groupFeed.html"},
+            "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+          },
+          authenticate: true
+      }).
+      state('group', {
+          url: "/group:id",
+          views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "partials/efforts.group.html", controller: 'group'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+          },
+          authenticate: true
+      }).
+      state('task', {
+          url: "/task:id",
+          views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "partials/efforts.task.html", controller: 'task'},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
@@ -76,7 +94,7 @@ volunteerManagementApp.config(
           url: "/efforts",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/efforts.html"},
+            "app": { templateUrl: "partials/efforts.html", controller: 'efforts'},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
