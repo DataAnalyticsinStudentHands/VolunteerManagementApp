@@ -1,35 +1,12 @@
 <!--CHANGE THE CLASSES-->
 <div id="wrapper">
-    <div id="scrollablePosts">
-        <div id="post">
-            <div class="asdfaoisd"> IMG ICON </div>
-            <div class="asdfaoisd"> TEXT MESSAGE + CONTENT </div>
-            <div class="asdfaoisd"> INFO ABOUT CONTENT </div>
-        </div>
-        <div id="post">
-            <div> IMG ICON </div>
-            <div> TEXT MESSAGE + CONTENT </div>
-            <div> INFO ABOUT CONTENT </div>
-        </div>
-        <div id="post">
-            <div> IMG ICON </div>
-            <div> TEXT MESSAGE + CONTENT </div>
-            <div> INFO ABOUT CONTENT </div>
-        </div>
-        <div id="post">
-            <div> IMG ICON </div>
-            <div> TEXT MESSAGE + CONTENT </div>
-            <div> INFO ABOUT CONTENT </div>
-        </div>
-        <div id="post">
-            <div> IMG ICON </div>
-            <div> TEXT MESSAGE + CONTENT </div>
-            <div> INFO ABOUT CONTENT </div>
-        </div>
-        <div id="post">
-            <div> IMG ICON </div>
-            <div> TEXT MESSAGE + CONTENT </div>
-            <div> INFO ABOUT CONTENT </div>
+    <div id="scrollable">
+        <div id="message" ng-repeat="message in messages">
+            <a ui-sref="message({id:{{message.id}}})">
+                <div><img src="{{message.img}}" width="20" height="20"/></div>
+                <div> {{message.task}} </div>
+                <div> {{message.preview_author}}: {{message.preview_content}} </div>
+            </a>
         </div>
     </div>
 </div>

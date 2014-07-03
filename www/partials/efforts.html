@@ -1,43 +1,24 @@
 <div id="wrapper">
     <div>
-        <div id="groups">
-            <div>AVATAR</div>
-            <div>CONTENT</div>
-        </div>
-        <div id="groups">
-            <div>AVATAR</div>
-            <div>CONTENT</div>
-        </div>
-        <div id="groups">
-            <div>AVATAR</div>
-            <div>CONTENT</div>
+        <div id="scrollable">
+            <div id="groups" ng-repeat="group in groups">
+                <a ui-sref="group({id:{{group.id}}})">
+                    <div>Group Icon: <img src="{{group.icon}}" width="20" height="20"/></div>
+                    <div>Group: {{group.group_name}} </div>
+                </a>
+            </div>
         </div>
     </div>
+    <hr>
     <div>
-        <div id="scrollableInvites">
-            <div id="invite">
-                <div> IMG ICON </div>
-                <div> TITLE </div>
-                <div> TIME </div>
-                <div> APPROVAL </div>
-            </div>
-            <div id="invite">
-                <div> IMG ICON </div>
-                <div> TITLE </div>
-                <div> TIME </div>
-                <div> APPROVAL </div>
-            </div>
-            <div id="invite">
-                <div> IMG ICON </div>
-                <div> TITLE </div>
-                <div> TIME </div>
-                <div> APPROVAL </div>
-            </div>
-            <div id="invite">
-                <div> IMG ICON </div>
-                <div> TITLE </div>
-                <div> TIME </div>
-                <div> APPROVAL </div>
+        <div id="scrollable">
+            <div id="invite" ng-repeat="invite in invites">
+                <a href="">
+                    <div>Group Icon: <img src="{{invite.icon}}" width="20" height="20"/></div>
+                    <div>Name of Task/Group: {{invite.name}} </div>
+                    <div>Data/Time: {{invite.time}} </div>                    
+                </a>
+                <div><input type="checkbox" name="approval-{{invite.id}}"><label name="approval-{{invite.id}}"></label></div>
             </div>
         </div>
     </div>
