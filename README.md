@@ -12,7 +12,7 @@ Pending Description
 **NOTE** Certain cordova specific features will not work in a browser.
 Open module in Brackets and use the live-preview feature or alternatively ```` npm start ````
 
-### Pending
+### Pending (TEST COMMIT)
 - Add necessary modules
 - Proper state handling and back button implementation
 - Lots of other stuff
