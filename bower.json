@@ -6,7 +6,6 @@
     "angular": "1.2.10",
     "ionic": "latest",
     "angular-resource": "1.2.10",
-	"angular-carousel": "latest",
 	"angular-touch": "latest",
     "angular-cookies": "1.2.10",
     "angular-bootstrap": "latest",

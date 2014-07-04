@@ -89,14 +89,12 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
 }]);
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', function($scope, $state) {
-    $scope.posts = [
-        {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'2', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'5', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"}
-    ];
+    $scope.isCollapsed = false;
+    
+    $scope.displayPosts = function(click_id) {
+        $scope.isCollapsed = !$scope.isCollapsed;
+        $state.go('groupFeed.post', {id:click_id}, {reload: false});
+    }
     
     
     $scope.groups = [
@@ -106,6 +104,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', function($scope
         {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
+    ];
+}]);
+
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+    $scope.id = $stateParams.id;
+    $scope.posts = [
+        {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'2', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'5', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"}
     ];
 }]);
 
@@ -140,7 +150,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', f
         {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
     ];
 }]);
-
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
     $scope.title = "TITLE OF GROUP/EFFORT";
     $scope.effort = {description: "WE HAVE TO DO THINGS"};

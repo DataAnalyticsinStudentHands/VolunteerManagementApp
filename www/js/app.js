@@ -73,6 +73,13 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
+      state('groupFeed.post', {
+          url: "/groupFeed/post:id",
+          views: {
+            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
+          },
+          authenticate: true
+      }).
       state('group', {
           url: "/group:id",
           views: {

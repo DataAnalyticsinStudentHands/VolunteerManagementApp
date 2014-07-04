@@ -1,28 +1,20 @@
 <div id="wrapper">
-    <div>
-        <div id="scrollable">
-            <div id="groupPost" ng-repeat="post in posts">
-                <a href="">
-                    <div>Avatar IMG: <img src="{{post.avatar_img}}" width="20" height="20"/></div>
-                    <!--Below should only display if present-->
-                    <div>Post IMG: <img src="{{post.img}}" width="20" height="20"/></div>
-                    <div> Author: {{post.author}} </div>
-                    <div> Content: {{post.content}} </div>
-                    <div> Likes: {{post.likes}} </div>
-                    <div> Time: {{post.time}} </div>
-                    <div> Comment Count: {{post.comment_count}} </div>
-                </a>
-            </div>
-    </div>
-    <hr>
-    <div>
+    
+    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+
+	<div collapse="isCollapsed">
         <div id="scrollable">
             <div id="groups" ng-repeat="group in groups">
-                <a href="">
+                <a ng-click="displayPosts(group.id)">
+<!--                Known issue WorkAround: https://github.com/angular/angular.js/issues/6001-->
+<!--                <a ui-sref="groupFeed.post({id:{{group.id}}})" ng-click="isCollapsed = !isCollapsed">-->
                     <div>Group Icon: <img src="{{group.icon}}" width="20" height="20"/></div>
                     <div>Group: {{group.group_name}} </div>
                 </a>
             </div>
         </div>
-    </div>
-</div>
+	</div>
+    <hr class="box3" ng-click="isCollapsed = !isCollapsed">
+	<div collapse="!isCollapsed">
+            <div ui-view="post">Click on a Effort Above to View Posts Here</div>
+	</div>
