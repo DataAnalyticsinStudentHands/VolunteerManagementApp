@@ -1,3 +1,21 @@
-<div class="container-fluid">
-    <h1>COMMUNITY FEED</h1>
+<link rel="stylesheet" href="../css/communityFeed.css">
+
+<div id="wrapper">
+    <div id="avatar">
+        <span class="communityFeed"> <img src="img/avatar.icon.png"></span>
+        <div id="place">     
+            <span class="communityFeed"> <img src="img/image13.png">
+            </span>
+        </div>
+    </div>
+    <div id="scrollable">
+        <div id="post" ng-repeat="post in posts">
+            <a href="">
+                <div> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
+                <div> Avatar <img src="{{post.img}}" width="20" height="20"/></div>
+                <div> Content: {{post.content}} </div>
+                <div> Likes: {{post.likes}} Followers:{{post.followers}} </div>
+            </a>
+        </div>
+    </div>
 </div>

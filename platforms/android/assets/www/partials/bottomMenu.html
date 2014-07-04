@@ -1,7 +1,13 @@
-<div ng-controller="menuCtrl">
-    <!--<a class="nav-header" ng-click="goBack()">< Back</a>-->
-    <img src="img/temp_icon.png" ui-sref="awards" width="20px"/>
-    <img src="img/temp_icon.png" ui-sref="settings" width="20px"/>
-    <img src="img/temp_icon.png" ui-sref="calendar" width="20px"/>
-    <img src="img/temp_icon.png" ui-sref="hours" width="20px"/>
+<link rel="stylesheet" href="../css/bottomMenu.css">
+
+<div id="wrapper">
+    <div id="b_menu">
+        <span class="b_menu"> <a ui-sref="awards"> <img src="img/fade_award.icon.png"> </a> </span>
+
+        <span class="b_menu"> <a ui-sref="settings"> <img src="img/fade_setting.icon.png"> </a> </span>
+
+        <span class="b_menu"> <a ui-sref="calendar"> <img src="img/fade_calender.icon.png"> </a> </span>
+
+        <span class="b_menu"> <a ui-sref="hours"> <img src="img/fade_clock.icon.png"> </a> </span>
+    </div>
 </div>

@@ -52,6 +52,29 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
         {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
         {id:'6', content:"POST 6", time:"4:05", img: "img/temp_icon.png", author: "me", group: "postGroup", likes:"8", followers: "319"}
     ];
+    
+    $scope.carousel_images = [
+        {id:'1', caption: "GROUP 1", image: "img/temp_icon.png"},
+        {id:'2', caption: "GROUP 2", image: "img/temp_icon.png"},
+        {id:'3', caption: "GROUP 3", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'5', caption: "GROUP 5", image: "img/temp_icon.png"},
+        {id:'6', caption: "GROUP 6", image: "img/temp_icon.png"}
+    ];
+    
+      var slides = $scope.slides = [];
+      $scope.addSlide = function() {
+        var newWidth = 600 + slides.length;
+        slides.push({
+          image: 'img/image13.png',
+          text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+            ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+        });
+      };
+      for (var i=0; i<4; i++) {
+        $scope.addSlide();
+      }
+    
 }]);
 
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($scope, $state) {

@@ -1,15 +1,17 @@
-<div class="container-fluid">
-    <h1>Login</h1>
-    <form ng-submit="submit()">
-        <input type="text" ng-model="userName" name="userName">
-        <br>
-        <input type="password" ng-model="passWord" name="passWord">
-        <br>
-        <input type="submit" value="Submit" id="submit">
-    </form>
-    <br>
-    <p>{{loginMsg}}</p>
-    <p>{{loginResult}}</p>
-    <br>
-    <div ui-view> <a ui-sref="login.help">Login Help</a> </div>
+<link rel="stylesheet" href="../css/login.css"> 
+
+<img class="logo" src="img/login_logo.png"/>
+
+<div id="wrapper">
+    <div id="log-in">
+        <form class="submit" ng-submit="submit()">
+            <input class="log" type="text" ng-model="userName" name="userName" placeholder="USERNAME">
+            <br>
+            <input class="log" type="password" ng-model="passWord" name="passWord" placeholder="PASSWORD">
+            <br>
+            <input class="log" type="submit" value="Submit" id="submit">
+            
+            <p><a ui-sref="register">REGISTER HERE</a></p>
+        </form>
+    </div>
 </div>

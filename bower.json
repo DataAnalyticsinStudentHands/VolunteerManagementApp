@@ -6,12 +6,25 @@
     "angular": "1.2.10",
     "ionic": "latest",
     "angular-resource": "1.2.10",
+	"angular-carousel": "latest",
+	"angular-touch": "latest",
     "angular-cookies": "1.2.10",
+    "angular-bootstrap": "latest",
     "angular-sanitize": "1.2.10",
-    "angular-ui-router": "0.2.7"
+    "angular-ui-router": "0.2.7",
+    "angular-animate": "latest",
+    "angular-route": "latest",
+    "restangular": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "lodash": "latest"
   },
   "devDependencies": {
     "angular-mocks": "1.2.10",
     "angular-scenario": "1.2.10"
+  },
+  "resolutions": {
+    "angular": "1.2.19",
+    "angular-sanitize": "1.2.12"
   }
 }
