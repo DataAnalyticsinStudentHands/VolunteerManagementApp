@@ -1,0 +1,15 @@
+<div id="scrollable">
+    <p>For testing purposes: {{id}}</p>
+    <div id="groupPost" ng-repeat="post in posts">
+        <a href="">
+            <div>Avatar IMG: <img src="{{post.avatar_img}}" width="20" height="20"/></div>
+            <!--Below should only display if present-->
+            <div>Post IMG: <img src="{{post.img}}" width="20" height="20"/></div>
+            <div> Author: {{post.author}} </div>
+            <div> Content: {{post.content}} </div>
+            <div> Likes: {{post.likes}} </div>
+            <div> Time: {{post.time}} </div>
+            <div> Comment Count: {{post.comment_count}} </div>
+        </a>
+    </div>
+</div>

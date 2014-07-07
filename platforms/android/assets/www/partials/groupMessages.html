@@ -1,3 +1,12 @@
-<div class="container-fluid">
-    <h1>GROUP MESSAGES</h1>
+<!--CHANGE THE CLASSES-->
+<div id="wrapper">
+    <div id="scrollable">
+        <div id="message" ng-repeat="message in messages">
+            <a ui-sref="message({id:{{message.id}}})">
+                <div><img src="{{message.img}}" width="20" height="20"/></div>
+                <div> {{message.task}} </div>
+                <div> {{message.preview_author}}: {{message.preview_content}} </div>
+            </a>
+        </div>
+    </div>
 </div>

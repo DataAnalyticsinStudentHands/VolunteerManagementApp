@@ -1,0 +1,96 @@
+/* app css stylesheet */
+
+body {
+    padding-top:20px;
+    height: 1136px;
+    width: 640px;
+}
+
+.phones {
+    list-style: none;
+}
+
+.thumb {
+    float: left;
+    margin: -0.5em 1em 1.5em 0;
+    padding-bottom: 1em;
+    height: 100px;
+    width: 100px;
+}
+
+.phones li {
+    clear: both;
+    height: 115px;
+    padding-top: 15px;
+}
+
+.clock{position: absolute;
+    top:1000px; 
+    left:0px;
+}
+
+
+/*meun bar at the top ************** **************************************************/
+#wrapper{min-width:640px; 
+
+}  
+
+#menuBar{position: relative;
+    top: 100%;    
+    padding:0px 0px 0px 0px;
+    width:100%;
+    z-index:10;
+    background:black;
+    margin:0px 0px 0px 0px;}
+
+.menuBar{padding: 0px 0px 0px 0px;
+    margin: 0px 50px 0px 10px;
+    display: inline-block;
+}
+
+/*bottom menu ****************************
+**************************************************/
+
+#wrapper{min-width:640px;
+
+
+}  
+
+#b_menu{position: relative;
+    top: 100%;    
+    padding:0px 0px 0px 0px;
+    width:100%;
+    z-index:10;}
+
+.b_menu{padding: 0px 0px 0px 0px;
+    margin: 0px 50px 0px 10px;
+    display: inline-block;}
+
+
+/*loging page*************
+*******************************************/
+
+#wrapper{min-width:640px;
+
+}  
+body{position: relative;
+    height:100% ;
+    max-width: 100%;
+    padding:0;
+    margin: 0;
+    background:#9CD4E5;
+}
+
+.logo{position: relative;
+    max-width: 100%;
+    margin: 0px 0px 0px 80px;  
+}
+
+
+.log{border-radius: 5px;
+    height:05%;
+    width:50%;
+    background-color:#0BA1F4;
+    margin: auto;
+    max-width:100%;
+}

@@ -7,6 +7,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'vmaControllerModule',
   'databaseServicesModule',
   'ui.router',
+  'ui.bootstrap',
   'restangular'
 ]);
 
@@ -69,6 +70,13 @@ volunteerManagementApp.config(
             "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+          },
+          authenticate: true
+      }).
+      state('groupFeed.post', {
+          url: "/groupFeed/post:id",
+          views: {
+            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
           },
           authenticate: true
       }).
