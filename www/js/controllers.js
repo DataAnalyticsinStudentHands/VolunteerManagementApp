@@ -88,14 +88,31 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
     ];
 }]);
 
-vmaControllerModule.controller('groupFeed', ['$scope', '$state', function($scope, $state) {
+vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', function($scope, $state, $modal) {
     $scope.isCollapsed = false;
     
     $scope.displayPosts = function(click_id) {
         $scope.isCollapsed = !$scope.isCollapsed;
         $state.go('groupFeed.post', {id:click_id}, {reload: false});
+    }    
+    $scope.addGroup = function() {
+        $scope.open();
     }
     
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addGroup.html',
+          controller: ModalInstanceCtrl,
+          size: size
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
     
     $scope.groups = [
         {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
@@ -105,6 +122,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', function($scope
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
     ];
+    
+    
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+        $scope.ok = function () {
+        $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+        };
+    };
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
@@ -178,6 +207,7 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
 //Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
     function($scope, $state) {
+        console.log("HI");
         $scope.goBack = function() {
             window.history.back();
         };
