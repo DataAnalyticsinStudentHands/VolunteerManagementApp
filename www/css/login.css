@@ -1,24 +1,45 @@
-#wrapper{min-width:640px;
-     
+#wrapper{position: relative;
+    min-width:640px;
+    min-height: 900px;
+    height:100%;
+    width: 100%;
+    padding:0px 0px 0px 0px;     
        }  
- body{position: relative;
+ <!--body{position: relative;
     height:100% ;
     max-width: 100%;
     padding:0;
     margin: 0;
-    background:#9CD4E5;
+    background:#9CD4E5;-->
 }
 
 .logo{position: relative;
     max-width: 100%;
-    margin: 0px 0px 0px 80px;  
+    margin: 0px 0px 0px 80px;
+    float: right;
+    padding: 10px 40px 0px 0px;
+    max-height:100%;
+    max-width: 100%;
+    right:50px;
+    top:50PX;
+    
 }
 
 
-.log{border-radius: 5px;
+.log{position:relative;
+border-radius:5px;                  
 height:05%;
 width:50%;
 background-color:#0BA1F4;
 margin: auto;
 max-width:100%;
+left:150px;
+top:100px;
+margin:5px;    
 }
+
+
+.logopattern{position:absolute;
+    width:100%;
+z-index:-1;
+background-size: cover;}
