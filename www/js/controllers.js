@@ -95,7 +95,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     $scope.displayPosts = function(click_id) {
         $scope.isCollapsed = !$scope.isCollapsed;
         $state.go('groupFeed.post', {id:click_id}, {reload: false});
-    }    
+    }   
+    
+    $rootscope.groups = [
+        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
+        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
+    ];
+    
+     
     $scope.addGroup = function() {
         $scope.open();
     }
@@ -114,16 +125,6 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-    
-    $rootscope.groups = [
-        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
-        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
-    ];
-    
     
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
@@ -235,15 +236,53 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
         {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
 }]);
 
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    $scope.entries = [
-        {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4 Hours", badge_type: "1", approved: true},    
-        {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2 Hours", badge_type: "3", approved: false},
-        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1 Hours", badge_type: "1", approved: false},
-        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6 Hours", badge_type: "2", approved: true},
-        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3 Hours", badge_type: "1", approved: true},
-        {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5 Hours", badge_type: "4", approved: false}
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+    $scope.entries = $rootScope.entries = [
+        {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
+        {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
+        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
+        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
+        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
+        {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
     ];
+    
+    
+         
+    $scope.addEntry = function() {
+        $scope.open();
+    }
+    
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addHoursEntry.html',
+          controller: ModalInstanceCtrl,
+          size: size
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+        $scope.ok = function () {
+            console.log($scope.name);
+            console.log($scope.duration);
+            $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
+            $modalInstance.close();
+//            console.log($rootscope.groups);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+    
+    
 }]);
 
 

@@ -18,9 +18,10 @@
     <hr>
 
 	<div collapse="isCollapsed">
-        <div ui-view="grouptasks">Tasks from group will be shown here</div>
+        <div ui-view="">Tasks from group will be shown here</div>
 	</div>
     <hr class="box3" ng-click="isCollapsed = !isCollapsed">
 	<div collapse="!isCollapsed">
             <div ui-view="post">Click on a Effort Above to View Posts Here</div>
 	</div>
+</div>
