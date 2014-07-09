@@ -1,19 +1,24 @@
 <div id="wrapper">
     
     <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-    <button class="btn btn-default" ng-click="addGroup()">Add</button>
+    <button class="btn btn-default" ng-click="swipe = !swipe">Toggle swipe collapse</button>
 
-	<div collapse="isCollapsed">
-        <div id="scrollable">
+    <hr>
+        <div collapse="swipe">
+            <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
             <div id="groups" ng-repeat="group in groups">
                 <a ng-click="displayPosts(group.id)">
-<!--                Known issue WorkAround: https://github.com/angular/angular.js/issues/6001-->
-<!--                <a ui-sref="groupFeed.post({id:{{group.id}}})" ng-click="isCollapsed = !isCollapsed">-->
+                    <!--Known issue WorkAround: https://github.com/angular/angular.js/issues/6001-->
+                    <!--<a ui-sref="groupFeed.post({id:{{group.id}}})" ng-click="isCollapsed = !isCollapsed">-->
                     <div>Group Icon: <img ng-src="{{group.icon}}" width="20" height="20"/></div>
                     <div>Group: {{group.group_name}} </div>
                 </a>
             </div>
         </div>
+    <hr>
+
+	<div collapse="isCollapsed">
+        <div ui-view="grouptasks">Tasks from group will be shown here</div>
 	</div>
     <hr class="box3" ng-click="isCollapsed = !isCollapsed">
 	<div collapse="!isCollapsed">

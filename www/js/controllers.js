@@ -89,6 +89,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
 }]);
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', function($scope, $state, $modal, $rootscope) {
+    $scope.swipe = false;
     $scope.isCollapsed = false;
     
     $scope.displayPosts = function(click_id) {
@@ -172,9 +173,8 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
         $scope.ok = function () {
+            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: $scope.content});
             $modalInstance.close();
-//            console.log($rootScope.posts);
-            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"});
         };
 
         $scope.cancel = function () {
@@ -184,13 +184,13 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 }]);
 
 vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, $state) {
-    $scope.groups = [
-        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
-        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
+    $scope.tasks = [
+        {id:'1', task_name: "SIGNED UP TASK 1", icon: "img/temp_icon.png"},
+        {id:'2', task_name: "SIGNED UP TASK 2", icon: "img/temp_icon.png"},
+        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
+        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
+        {id:'5', task_name: "SIGNED UP TASK 5", icon: "img/temp_icon.png"},
+        {id:'6', task_name: "SIGNED UP TASK 6", icon: "img/temp_icon.png"}
     ];
     $scope.invites = [
         {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
@@ -214,6 +214,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', f
         {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
     ];
 }]);
+
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
     $scope.title = "TITLE OF GROUP/EFFORT";
     $scope.effort = {description: "WE HAVE TO DO THINGS"};
@@ -229,13 +230,20 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+    $scope.id = $stateParams.id;
     $scope.task =
         {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
 }]);
 
 vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    $scope.hours =
-        {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
+    $scope.entries = [
+        {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4 Hours", badge_type: "1", approved: true},    
+        {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2 Hours", badge_type: "3", approved: false},
+        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1 Hours", badge_type: "1", approved: false},
+        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6 Hours", badge_type: "2", approved: true},
+        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3 Hours", badge_type: "1", approved: true},
+        {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5 Hours", badge_type: "4", approved: false}
+    ];
 }]);
 
 

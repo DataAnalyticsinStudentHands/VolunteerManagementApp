@@ -138,7 +138,7 @@ volunteerManagementApp.config(
           url: "/hours",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/hours.html"},
+            "app": { templateUrl: "partials/hours.html", controller: 'hours'},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
