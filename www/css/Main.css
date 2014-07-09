@@ -214,8 +214,7 @@ height:30px;
 #backgroundc{position:absolute;
 z-index:-1;     
 width:100%;     
-left: 0px;
-background-repeat: repeat-x;    
+left: 0px;    
     
 }
 
@@ -254,7 +253,6 @@ bottom:0px;
 left:0px;
 right:0px;
 height:80px;    
-
 }
 
 #groupname{
@@ -264,8 +262,11 @@ bottom:0px;
 left:0px;
 height:20px;
 margin:0px 0px 20px 0px;    
-background-color:#9CD4E5;    
+font-family:sans-serif;
+font-size: 12pt;
+    
 }
+
 
 #groupcon{
 position:relative;
@@ -275,4 +276,30 @@ bottom:0px;
 left:0px;
 top:00px;
 background-color:#EEEEEE;    
+}
+
+
+.btn btn-default{}
+
+/****group feed post****/
+#groupPost{position: relative;
+background:#9CD4E5;
+border-radius: 0px 15px 15px 0px;    
+padding:10px 0px 10px 10px;
+margin:10px 10px 10px 10px;
+    top: 10px;
+    
+}
+
+#contentgf{}
+
+/**** Efforts******/
+
+wrapperE{}
+
+#Egroups{position: relative;}
+
+
+#invite{position: relative;
+    
 }
