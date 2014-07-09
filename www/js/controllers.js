@@ -88,7 +88,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
     ];
 }]);
 
-vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', function($scope, $state, $modal) {
+vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', function($scope, $state, $modal, $rootscope) {
     $scope.isCollapsed = false;
     
     $scope.displayPosts = function(click_id) {
@@ -107,14 +107,14 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', funct
         });
 
         modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
+//          $scope.selected = selectedItem;
         }, function () {
 //          What to do on dismiss
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
     
-    $scope.groups = [
+    $rootscope.groups = [
         {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
         {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
         {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
@@ -127,16 +127,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', funct
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
         $scope.ok = function () {
-        $modalInstance.close();
+            $rootscope.groups.push({id:'7', group_name:$scope.name, icon: "img/temp_icon.png"});
+            $modalInstance.close();
+//            console.log($rootscope.groups);
         };
 
         $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+            $modalInstance.dismiss('cancel');
         };
     };
 }]);
 
-vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
     $scope.id = $stateParams.id;
     $scope.posts = [
         {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
@@ -146,6 +148,39 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         {id:'5', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"}
     ];
+    
+    $rootScope.posts = $scope.posts;
+    
+    $scope.addPost = function() {
+        $scope.open();
+    }
+    
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addPost.html',
+          controller: ModalInstanceCtrl,
+          size: size
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+        $scope.ok = function () {
+            $modalInstance.close();
+//            console.log($rootScope.posts);
+            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"});
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
 }]);
 
 vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, $state) {
@@ -168,8 +203,8 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, 
 }]);
 
 vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    console.log("hi");
-    console.log($stateParams);
+//    console.log("hi");
+//    console.log($stateParams);
     $scope.groupMSGs = [
         {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
         {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
@@ -194,12 +229,13 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    $scope.task = 
-        {title: "TITLE",
-        date: "4/21 4:22PM",
-        location: "39410 BLAH RD",
-        description: "THIS IS A DESCRIPTION"};
-    console.log($scope.task.title);
+    $scope.task =
+        {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
+}]);
+
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+    $scope.hours =
+        {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
 }]);
 
 
@@ -207,7 +243,7 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
 //Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
     function($scope, $state) {
-        console.log("HI");
+//        console.log("HI");
         $scope.goBack = function() {
             window.history.back();
         };

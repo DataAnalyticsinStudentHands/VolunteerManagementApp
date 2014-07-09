@@ -1,5 +1,8 @@
 <div id="wrapper">
-    <div>
+   
+    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+    
+    <div collapse="isCollapsed">
         <div id="scrollable">
             <div id="groups" ng-repeat="group in groups">
                 <a ui-sref="group({id:{{group.id}}})">
@@ -8,9 +11,9 @@
                 </a>
             </div>
         </div>
-    </div>
-    <hr>
-    <div>
+	</div>
+    <hr class="box3" ng-click="isCollapsed = !isCollapsed">
+	<div collapse="!isCollapsed">
         <div id="scrollable">
             <div id="invite" ng-repeat="invite in invites">
                 <a href="">
@@ -18,8 +21,8 @@
                     <div>Name of Task/Group: {{invite.name}} </div>
                     <div>Data/Time: {{invite.time}} </div>                    
                 </a>
-                <div><input type="checkbox" name="approval-{{invite.id}}"><label name="approval-{{invite.id}}"></label></div>
+                <div><label><input type="checkbox" name="approval">Approve</label></div>
             </div>
         </div>
-    </div>
+	</div>
 </div>
