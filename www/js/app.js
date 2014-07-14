@@ -6,9 +6,11 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'ngRoute',
   'vmaControllerModule',
   'databaseServicesModule',
+  'ngTouch',
   'ui.router',
   'ui.bootstrap',
-  'restangular'
+  'restangular',
+  'snap'
 ]);
 
 volunteerManagementApp.config(
@@ -20,7 +22,7 @@ volunteerManagementApp.config(
           url: "/home",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeedController'},
+            "app": { templateUrl: "partials/home.html"},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
@@ -46,7 +48,14 @@ volunteerManagementApp.config(
           url: "",
           templateUrl: "partials/register.help.html"
       }).
-      state('groupMessages', {
+      state('home.cfeed', {
+          url: "/cfeed",
+          views: {
+            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeedController'}
+          },
+          authenticate: true
+      }).
+      state('home.groupMessages', {
           url: "/groupMessages",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -55,7 +64,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('message', {
+      state('home.message', {
           url: "/message:id",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -64,7 +73,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('groupFeed', {
+      state('home.groupFeed', {
           url: "/groupFeed",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -80,7 +89,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('group', {
+      state('home.group', {
           url: "/group:id",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -89,7 +98,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('task', {
+      state('home.task', {
           url: "/task:id",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -98,7 +107,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('efforts', {
+      state('home.efforts', {
           url: "/efforts",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -107,7 +116,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('awards', {
+      state('home.awards', {
           url: "/awards",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -116,7 +125,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('settings', {
+      state('home.settings', {
           url: "/settings",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -125,7 +134,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('calendar', {
+      state('home.calendar', {
           url: "/calendar",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -134,7 +143,7 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('hours', {
+      state('home.hours', {
           url: "/hours",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
@@ -167,8 +176,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
-        return Auth.hasCredentials();
-//        return true;
+//        return Auth.hasCredentials();
+        return true;
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
