@@ -8,7 +8,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
  function($scope, Auth, $state) {
      if($scope.isAuthenticated() === true) {
          //Point 'em to logged in page of app
-         $state.go('home');
+         $state.go('home.cfeed');
      }
      
      //we need to put the salt on server + client side and it needs to be static
@@ -24,7 +24,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
              $scope.loginResultPromise.then(function(result) {
                 $scope.loginResult = result;
                 $scope.loginMsg = "You have logged in successfully! Status 200OK technomumbojumbo";
-                $state.go('home');
+                $state.go('home.cfeed');
              }, function(error) {
                 $scope.loginMsg = "Arghhh, matey! Check your username or password.";
                 Auth.clearCredentials();
@@ -94,7 +94,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     
     $scope.displayPosts = function(click_id) {
         $scope.isCollapsed = !$scope.isCollapsed;
-        $state.go('groupFeed.post', {id:click_id}, {reload: false});
+        $state.go('home.groupFeed.post', {id:click_id}, {reload: false});
     }   
     
     $rootscope.groups = [

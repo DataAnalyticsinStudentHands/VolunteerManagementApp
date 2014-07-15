@@ -15,11 +15,10 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
 
 volunteerManagementApp.config(
   function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/cfeed");
 
     $stateProvider.
       state('home', {
-          url: "/home",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/home.html"},
@@ -58,31 +57,24 @@ volunteerManagementApp.config(
       state('home.groupMessages', {
           url: "/groupMessages",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+            "app": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
           },
           authenticate: true
       }).
       state('home.message', {
           url: "/message:id",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
-            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
-          },
+            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}},
           authenticate: true
       }).
       state('home.groupFeed', {
           url: "/groupFeed",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
-      state('groupFeed.post', {
+      state('home.groupFeed.post', {
           url: "/groupFeed/post:id",
           views: {
             "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
@@ -92,63 +84,49 @@ volunteerManagementApp.config(
       state('home.group', {
           url: "/group:id",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/efforts.group.html", controller: 'group'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('home.task', {
           url: "/task:id",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/efforts.task.html", controller: 'task'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('home.efforts', {
           url: "/efforts",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/efforts.html", controller: 'efforts'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('home.awards', {
           url: "/awards",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/awards.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('home.settings', {
           url: "/settings",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/settings.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('home.calendar', {
           url: "/calendar",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/calendar.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('home.hours', {
           url: "/hours",
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/hours.html", controller: 'hours'},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       });
@@ -176,8 +154,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
-//        return Auth.hasCredentials();
-        return true;
+        return Auth.hasCredentials();
+//        return true;
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
