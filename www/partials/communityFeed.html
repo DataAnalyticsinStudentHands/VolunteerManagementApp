@@ -1,19 +1,11 @@
-<link rel="stylesheet" href="../css/Main.css">
-
-<div id="wrapper_c">
+<!--<link rel="stylesheet" href="../css/Main.css">-->
     <div id="avatar">
-        <span class="communityFeed"> <img class="avatar" src="img/avatar.icon.png">
-                <span class="communityFeed">
-        <img id="backgroundc" src="img/02.jpg">    
-            </span>
+<!--        <span class="communityFeed">-->
+            <img class="avatar" src="img/avatar.icon.png">
+              
 
-        </span>
-<!--
-        <div id="place">     
-            <span class="communityFeed"> <img src="img/image13.png">
-            </span>
-        </div>
--->
+<!--        </span>-->
+
           <div id="slide">
             <carousel interval="5000">
               <slide ng-repeat="slide in slides" active="slide.active">
@@ -26,7 +18,6 @@
             </carousel>
           </div>
     </div>
-    <div id="scrollable">
         <div id="post" ng-repeat="post in posts">
             <a ui-sref="group({id:{{post.id}}})">
                 <div id="author"> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
@@ -35,5 +26,3 @@
                 <div id="likeicon"> Likes: {{post.likes}} Followers:{{post.followers}} </div>
             </a>
         </div>
-    </div>
-</div>
