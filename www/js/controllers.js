@@ -89,11 +89,10 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
 }]);
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', function($scope, $state, $modal, $rootscope) {
-    $scope.swipe = false;
-    $scope.isCollapsed = false;
     
     $scope.displayPosts = function(click_id) {
-        $scope.isCollapsed = !$scope.isCollapsed;
+//        $scope.pActiv = true;
+//        $scope.tActiv = false;
         $state.go('home.groupFeed.post', {id:click_id}, {reload: false});
     }   
     
@@ -142,6 +141,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
     $scope.id = $stateParams.id;
+    $scope.$parent.pActiv = true;
     $scope.posts = [
         {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'2', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},

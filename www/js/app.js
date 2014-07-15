@@ -75,7 +75,7 @@ volunteerManagementApp.config(
           authenticate: true
       }).
       state('home.groupFeed.post', {
-          url: "/groupFeed/post:id",
+          url: "/post:id",
           views: {
             "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
           },
@@ -154,8 +154,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
-        return Auth.hasCredentials();
-//        return true;
+//        return Auth.hasCredentials();
+        return true;
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");

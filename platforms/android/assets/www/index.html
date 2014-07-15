@@ -2,13 +2,20 @@
 <html lang="en" ng-app="volunteerManagementApp">
 <head>
     <meta charset="utf-8">
+<!--
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+-->
+    
     <title>Volunteer Management App</title>
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-snap/angular-snap.css"></link>
     <!--<link rel="stylesheet" href="css/app.css">-->
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <!--<script src="bower_components/angular-animate/angular-animate.js"></script>-->
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
@@ -16,20 +23,23 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/lodash/dist/lodash.underscore.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/angular-snap/angular-snap.js"></script>
+    <script src="bower_components/snapjs/snap.js"></script>
 
     <!--linking to the database module-related js files in the main app's index file-->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="modules/dbServices.js"></script>
     <script src="js/services.js"></script>
-    <link rel="stylesheet" href="css/main.css">
+<!--    <link rel="stylesheet" href="css/main.css">-->
 </head>
 <body>
     
-    <div ui-view="menuBar" id="menuBar"></div>    
-    <div ui-view="app"></div>
+    <div ui-view="menuBar" id="menuBar"></div>
+    <div ui-view="app" id="wrapper"></div>
     <div ui-view="bottomMenu" id="b_menu"></div>
 
+    <input type="text">
 <!--    Below code is for forcing a browser (Chrome) to display a full error message instead of truncating it.-->
     
 <script type="text/javascript">
