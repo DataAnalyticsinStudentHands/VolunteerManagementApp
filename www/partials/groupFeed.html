@@ -5,11 +5,11 @@
 <!--                Known issue WorkAround: https://github.com/angular/angular.js/issues/6001-->
 <!--                <a ui-sref="groupFeed.post({id:{{group.id}}})" ng-click="isCollapsed = !isCollapsed">-->
            <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-            <div id="groupname">Group: {{group.group_name}} </div>
+            <div id="groupname">{{group.group_name}}</div>
         </a>
     </div>
 </snap-drawer>
-<snap-content style="background-color: pink">
+<snap-content style="background-color: pink" snap-options="settings">
     <tabset>
         <tab heading="Posts" active="pActiv">
             <div ui-view="post">Click on a Effort Above to View Posts Here</div>
