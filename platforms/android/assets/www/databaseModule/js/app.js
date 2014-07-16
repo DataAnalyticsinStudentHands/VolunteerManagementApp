@@ -1,6 +1,7 @@
 'use strict';
 
 /* App Module */
+//Why is there both a routecontroller and a statecontroller one directory level higher?
 
 var databaseModule = angular.module('databaseModule', ['ngRoute', 'databaseControllerModule', 'databaseServicesModule']);
 

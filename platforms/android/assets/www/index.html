@@ -5,6 +5,7 @@
   <title>Volunteer Management App</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
+      <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -16,11 +17,14 @@
   <script src="js/controllers.js"></script>
   <script src="databaseModule/js/services.js"></script>
   <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
 </head>
 <body>
+    <!--<p sa-drag>Index.html at top/upper level under www</p>-->
 
     <div ui-view="menuBar" style="background-color: #7aef79"></div>
     <div ui-view="app"></div>
+    <span ng-click="alert('fuckme')">Fuckme</span>
 
 </body>
 </html>

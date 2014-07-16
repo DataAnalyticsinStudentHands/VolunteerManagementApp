@@ -1,6 +1,7 @@
 'use strict';
-angular.module('volunteerManagementApp').directive('saDrag', ['$document', function($document) {
+angular.module('layoutModule').directive('saDragTest', ['$document', function($document) {
     //this version uses jQuery
+    //not working down at this level of tree
     return {
         restrict: 'AE',  //restricts to element and attribute only 
         scope: {

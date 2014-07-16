@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en" ng-app="layoutModule">
+
+<head>
+  <meta charset="utf-8">
+  <title>Layout Module</title>
+<!--  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">-->
+<!--  <link rel="stylesheet" href="css/app.css">-->
+
+<!-- Order matters below! -->
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-route/angular-route.js"></script>
+  <script src="../bower_components/angular-resource/angular-resource.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+
+</head>
+
+<body>
+    index.html under layoutModule
+  <div ng-view></div>
+
+<!--    Below code is for forcing a browser (Chrome) to display a full error message instead of truncating it.-->
+    <!--
+<script type="text/javascript">
+
+    //Chrome passes the error object (5th param) which we must use since it now truncates the Msg (1st param).
+    window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObject) {
+        var errMsg;
+        //check the errorObject as IE and FF don't pass it through (yet)
+        if (errorObject && errorObject !== undefined) {
+                errMsg = errorObject.message;
+            }
+            else {
+                errMsg = errorMsg;
+            }
+        alert('Error: ' + errMsg);
+        document.write(errMsg);
+    }
+
+    var throwError = function () {
+        throw new Error(
+        'Something went wrong. Something went wrong. Something went wrong. Something went wrong. ' +
+        'Something went wrong. Something went wrong. Something went wrong. Something went wrong. ' + 
+        'Something went wrong. Something went wrong. Something went wrong. Something went wrong. ' + 
+        'Text does not get truncated! :-)');
+    }
+
+    </script>
+-->
+<!--    <div id="error"></div>-->
+
+</body>
+</html>

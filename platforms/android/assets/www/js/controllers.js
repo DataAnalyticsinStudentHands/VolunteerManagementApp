@@ -3,6 +3,25 @@
 /* Controllers */
 
 var vmaControllerModule = angular.module('vmaControllerModule', []);
+var positions = 'tere';
+//var testData = {'1','2'};
+//var testData = { layoutObjects : {objectType: 'extline,etc.'},
+//                        {objPositions: {startPos: {x:'110',y:'220'},endPos: {x:'330',y:'440'},curvePos: {x:'550',y:'300'}}},
+//                        {color: 'blue'},
+//                        {order: 'if need load order'}
+//                        },
+//                        { questions : 
+//                            {questionMeta:
+//                                {questionVersion: '.01',questionStyles: 'changable'}},
+//                            {questionObjects:
+//                                {questionId: 'only thing that normally passes'}
+//                                {questionType: 'check, radio, etc.'},
+//                                {questionTheme: 'hazard, etc.'},
+//                                {questionOrder: 'number within theme'},
+//                                {questionText: ''},
+//                                {answerValue: ''}
+//                            }
+//                        };
 
 vmaControllerModule.controller('loginCtrl', ['$scope', 'databaseConnection', '$state', '$routeParams', 
  function($scope, databaseConnection, $state, $routeParams) {
@@ -24,8 +43,27 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'databaseConnection', '$s
              $scope.loginMsg = "Please enter your password!";
              $scope.loginResult = "";
          }
-     };
- }]);
+         };
+     
+
+                 //need this to not put databaseConnection here, but have the datamodel for layout here
+        
+                                                        
+        $scope.data = $scope.hello(testData);
+                                                        
+        $scope.alert = function(text){
+            alert(text);
+        };
+//        
+//        $scope.alertPosition = function(positions){
+//            alert('position:' + positions);
+//        };
+//                                                        
+//        $scope.recordPositions = function(positions){
+//            $scope.hello(positions); //should just be an echo
+//        };
+     
+       }]);                                      
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
     function($scope, $state) {
@@ -38,3 +76,5 @@ vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',
  function($scope, $state, $stateParams) {
      $scope.msg = $stateParams.msg;
  }]);
+
+  

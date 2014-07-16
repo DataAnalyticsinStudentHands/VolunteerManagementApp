@@ -44,6 +44,13 @@ volunteerManagementApp.config(
           url: "",
           templateUrl: "partials/register.help.html"
       }).
+      state('layout', {
+          url: "layout",
+          views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "../layoutModule/index.html"}
+          }
+      }).
       state('home', {
           url: "/home",
           views: {
