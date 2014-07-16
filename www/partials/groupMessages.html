@@ -1,14 +1,10 @@
-<!--CHANGE THE CLASSES-->
-
-<div id="wrapper">
-    <div> <img id="messageicon" src="img/group_message.icon.png"/>
-    <div id="scrollable_g">
-        <div id="message" ng-repeat="message in messages">
-            <a ui-sref="message({id:{{message.id}}})">
-                <div><img src="img/group_feed_small.icon.png"/></div>
-                <div> {{message.task}} </div>
-                <div> {{message.preview_author}}: {{message.preview_content}} </div>
-            </a>
-        </div>
+<div> <img id="messageicon" src="img/group_message.icon.png"/>
+<div id="scrollable_g">
+    <div id="message" ng-repeat="message in messages">
+        <a ui-sref="home.message({id:{{message.id}}})">
+            <div><img src="img/group_feed_small.icon.png"/></div>
+            <div> {{message.task}} </div>
+            <div> {{message.preview_author}}: {{message.preview_content}} </div>
+        </a>
     </div>
 </div>

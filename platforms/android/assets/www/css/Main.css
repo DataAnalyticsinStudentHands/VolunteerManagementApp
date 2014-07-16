@@ -67,8 +67,7 @@ body {
     display: inline-block;}
 
 
-/*loging page*************
-*******************************************/
+/*loging page********************************************************/
 
 #wrapper{min-width:640px;
 
@@ -93,4 +92,14 @@ body{position: relative;
     background-color:#0BA1F4;
     margin: auto;
     max-width:100%;
+}
+
+/***** HR FORMAT *****/
+.box3 {
+    z-index: 100;
+    border: none;
+    padding: 10px 0 0 0;    
+    background-image: url("http://test.mark-design.co.uk/4ik4e7ic.png"), url('http://test.mark-design.co.uk/line.png');
+    background-position: 50% -1px, left top;
+    background-repeat: no-repeat, repeat-x;
 }

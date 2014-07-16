@@ -1,11 +1,9 @@
-<link rel="stylesheet" href="../css/Main.css">
-
 <div id="scrollable_g">
     <p>For testing purposes: {{id}}</p>
     <div id="groupPost" ng-repeat="post in posts">
 <!--        <div id="{{post.type}}">-->
             <a href="">
-                <div>Avatar IMG: <img src="img/avatar.icon.png" width="50" height="50"/></div>
+                <div><img src="img/avatar.icon.png" width="50" height="50"/></div>
                 <!--Below should only display if present-->
                 <div>Post IMG: <img src="{{post.img}}" width="20" height="20"/></div>
                 <div> Author: {{post.author}} </div>

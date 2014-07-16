@@ -6,7 +6,7 @@
     "angular": "1.2.10",
     "ionic": "latest",
     "angular-resource": "1.2.10",
-	"angular-touch": "latest",
+    "angular-touch": "latest",
     "angular-cookies": "1.2.10",
     "angular-bootstrap": "latest",
     "angular-sanitize": "1.2.10",
@@ -16,6 +16,7 @@
     "restangular": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
+    "angular-snap": "latest",
     "lodash": "latest"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
   },
   "resolutions": {
     "angular": "1.2.19",
-    "angular-sanitize": "1.2.12"
+    "angular-sanitize": "1.2.12",
+    "angular-animate": "~1.2.19"
   }
 }

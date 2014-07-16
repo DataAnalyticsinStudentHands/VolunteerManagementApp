@@ -1,3 +1,10 @@
-<div class="container-fluid">
-    <h1>HOURS</h1>
+<button class="btn btn-default" ng-click="open()">Add Entry</button>
+
+<div id="entry" ng-repeat="entry in entries">
+    <a href=""> <!-- Link this to modal window from in depth -->
+        <div> {{entry.title}} </div>
+        <div> {{entry.duration}} Hours </div>
+        <div ng-show={{entry.approved}}>Approved</div>
+        <div ng-show=!{{entry.approved}}>Pending</div>
+    </a>
 </div>

@@ -3,7 +3,7 @@
     <div id="scrollable">
         <div id="message" ng-repeat="groupMSG in groupMSGs">
             <a href="">
-                <div><img src="{{groupMSG.img}}" width="20" height="20"/></div>
+                <div><img ng-src="{{groupMSG.img}}" width="20" height="20"/></div>
                 <div> {{groupMSG.author}} </div>
                 <div> {{groupMSG.content}}</div>
                 <div> {{groupMSG.time}}</div>

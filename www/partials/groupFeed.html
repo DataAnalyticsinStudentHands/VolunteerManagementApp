@@ -1,23 +1,21 @@
-<link rel="stylesheet" href="../css/Main.css">
-
-<div id="wrapper">
-    
-    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-    <button class="btn btn-default" ng-click="addGroup()">Add</button>
-
-	<div collapse="isCollapsed">
-        <div id="scrollable_g">
-            <div id="groups" ng-repeat="group in groups">
-                <a ng-click="displayPosts(group.id)">
+<snap-drawer>
+    <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
+    <div id="groups" ng-repeat="group in groups">
+        <a ng-click="displayPosts(group.id)">
 <!--                Known issue WorkAround: https://github.com/angular/angular.js/issues/6001-->
 <!--                <a ui-sref="groupFeed.post({id:{{group.id}}})" ng-click="isCollapsed = !isCollapsed">-->
-                   <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-                    <div id="groupname">Group: {{group.group_name}} </div>
-                </a>
-            </div>
-        </div>
-	</div>
-    <hr class="box3" ng-click="isCollapsed = !isCollapsed">
-	<div collapse="!isCollapsed">
+           <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+            <div id="groupname">Group: {{group.group_name}} </div>
+        </a>
+    </div>
+</snap-drawer>
+<snap-content style="background-color: pink">
+    <tabset>
+        <tab heading="Posts" active="pActiv">
             <div ui-view="post">Click on a Effort Above to View Posts Here</div>
-	</div>
+        </tab>
+        <tab heading="Tasks" active="tActiv">
+            <div ui-view>Tasks from group will be shown here</div>
+        </tab>
+    </tabset>
+</snap-content>

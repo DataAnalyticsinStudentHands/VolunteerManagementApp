@@ -1,12 +1,6 @@
-
 <div id="wrapper">
     <div id="avatar">
-<!--        <span class="communityFeed">-->
-            <img class="avatar" src="img/avatar.icon.png">
-              
-
-<!--        </span>-->
-
+          <img class="avatar" src="img/avatar.icon.png">
           <div id="slide">
             <carousel interval="5000">
               <slide ng-repeat="slide in slides" active="slide.active">
@@ -19,12 +13,12 @@
             </carousel>
           </div>
     </div>
-        <div id="post" ng-repeat="post in posts">
-            <a ui-sref="group({id:{{post.id}}})">
-                <div id="author"> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
-                <div id="boxicon"> Avatar <img src="img/effort_task.icon.png"/></div>
-                <div id="contentbox"> Content: {{post.content}} </div>
-                <div id="likeicon"> Likes: {{post.likes}} Followers:{{post.followers}} </div>
-            </a>
-        </div>
+    <div id="post" ng-repeat="post in posts">
+        <a ui-sref="group({id:{{post.id}}})">
+            <div id="author"> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
+            <div id="boxicon"><img src="img/effort_task.icon.png"/></div>
+            <div id="contentbox"> Content: {{post.content}} </div>
+            <div id="likeicon"> Likes: {{post.likes}} Followers:{{post.followers}} </div>
+        </a>
     </div>
+</div>
