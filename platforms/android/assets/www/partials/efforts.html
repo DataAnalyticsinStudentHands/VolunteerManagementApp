@@ -1,28 +1,20 @@
-<div id="wrapper">
-   
-    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-    
-    <div collapse="isCollapsed">
-        <div id="scrollable">
-            <div id="groups" ng-repeat="group in groups">
-                <a ui-sref="group({id:{{group.id}}})">
-                    <div>Group Icon: <img src="{{group.icon}}" width="20" height="20"/></div>
-                    <div>Group: {{group.group_name}} </div>
-                </a>
-            </div>
+<tabset>
+    <tab heading="Tasks">
+        <div id="groups" ng-repeat="task in tasks">
+            <a ui-sref="home.task({id:{{task.id}}})">
+                <div>Group Icon: <img ng-src="{{task.icon}}" width="20" height="20"/></div>
+                <div>Group: {{task.task_name}} </div>
+            </a>
         </div>
-	</div>
-    <hr class="box3" ng-click="isCollapsed = !isCollapsed">
-	<div collapse="!isCollapsed">
-        <div id="scrollable">
-            <div id="invite" ng-repeat="invite in invites">
-                <a href="">
-                    <div>Group Icon: <img src="{{invite.icon}}" width="20" height="20"/></div>
-                    <div>Name of Task/Group: {{invite.name}} </div>
-                    <div>Data/Time: {{invite.time}} </div>                    
-                </a>
-                <div><label><input type="checkbox" name="approval">Approve</label></div>
-            </div>
+    </tab>
+    <tab heading="Invites">
+        <div id="invite" ng-repeat="invite in invites">
+            <a href="">
+                <div>Group Icon: <img ng-src="{{invite.icon}}" width="20" height="20"/></div>
+                <div>Name of Task/Group: {{invite.name}} </div>
+                <div>Data/Time: {{invite.time}} </div>
+            </a>
+            <div><label><input type="checkbox" name="approval">Approve</label></div>
         </div>
-	</div>
-</div>
+    </tab>
+</tabset>
