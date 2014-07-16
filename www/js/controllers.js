@@ -8,7 +8,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
  function($scope, Auth, $state) {
      if($scope.isAuthenticated() === true) {
          //Point 'em to logged in page of app
-         $state.go('home.cfeed');
+         $state.go('home');
      }
      
      //we need to put the salt on server + client side and it needs to be static
@@ -24,7 +24,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
              $scope.loginResultPromise.then(function(result) {
                 $scope.loginResult = result;
                 $scope.loginMsg = "You have logged in successfully! Status 200OK technomumbojumbo";
-                $state.go('home.cfeed');
+                $state.go('home');
              }, function(error) {
                 $scope.loginMsg = "Arghhh, matey! Check your username or password.";
                 Auth.clearCredentials();
@@ -89,11 +89,12 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
 }]);
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', function($scope, $state, $modal, $rootscope) {
+    $scope.swipe = false;
+    $scope.isCollapsed = false;
     
     $scope.displayPosts = function(click_id) {
-//        $scope.pActiv = true;
-//        $scope.tActiv = false;
-        $state.go('home.groupFeed.post', {id:click_id}, {reload: false});
+        $scope.isCollapsed = !$scope.isCollapsed;
+        $state.go('groupFeed.post', {id:click_id}, {reload: false});
     }   
     
     $rootscope.groups = [
@@ -141,7 +142,6 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
     $scope.id = $stateParams.id;
-    $scope.$parent.pActiv = true;
     $scope.posts = [
         {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'2', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
@@ -237,144 +237,53 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
 }]);
 
 vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
-//    $scope.entries = $rootScope.entries = [
-//        {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
-//        {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
-//        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
-//        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
-//        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
-//        {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
-//    ];
-//    
+    $scope.entries = $rootScope.entries = [
+        {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
+        {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
+        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
+        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
+        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
+        {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
+    ];
+    
     
          
     $scope.addEntry = function() {
         $scope.open();
     }
-
     
-//    
-//  $scope.items = ['item1', 'item2', 'item3'];
-//    
-////    $scope.open = function (size) {
-////        var modalInstance = $modal.open({
-////          templateUrl: 'partials/addHoursEntry.html',
-////          controller: ModalInstanceCtrl,
-////          size: size
-////        });
-////
-////        modalInstance.result.then(function (selectedItem) {
-//////          $scope.selected = selectedItem;
-////        }, function () {
-//////          What to do on dismiss
-//////          $log.info('Modal dismissed at: ' + new Date());
-////        });
-////    };
-////    
-////    
-//    
-//    
-//    
-//  $scope.open = function () {
-//
-//    var modalInstance = $modal.open({
-//      templateUrl: 'partials/addHoursEntry.html',
-//      controller: ModalInstanceCtrl,
-//      resolve: {
-//        items: function () {
-//          return $scope.items;
-//        }
-//      }
-//    });
-//  };
-//
-//
-//// Please note that $modalInstance represents a modal window (instance) dependency.
-//// It is not the same as the $modal service used above.
-//
-//var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
-//        $scope.ok = function () {
-//            console.log($scope.name);
-//            console.log($scope.duration);
-//            $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
-//            $modalInstance.close();
-////            console.log($rootscope.groups);
-//        };
-//
-//        $scope.cancel = function () {
-//            $modalInstance.dismiss('cancel');
-//        };
-//};
-//    
-//    
-//    
-//    
-//    
-//    //Controller for the Modal PopUp
-////    var ModalInstanceCtrl = function ($scope, $modalInstance) {
-////        $scope.ok = function () {
-////            console.log($scope.name);
-////            console.log($scope.duration);
-////            $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
-////            $modalInstance.close();
-//////            console.log($rootscope.groups);
-////        };
-////
-////        $scope.cancel = function () {
-////            $modalInstance.dismiss('cancel');
-////        };
-////    };
-//    
-//    
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addHoursEntry.html',
+          controller: ModalInstanceCtrl,
+          size: size
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
     
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+        $scope.ok = function () {
+            console.log($scope.name);
+            console.log($scope.duration);
+            $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
+            $modalInstance.close();
+//            console.log($rootscope.groups);
+        };
 
-
-    
-var ModalInstanceCtrlss = function ($scope, $modalInstance, items) {
-
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
-
-  $scope.items = ['item1', 'item2', 'item3'];
-
-  $scope.open = function (size) {
-
-    var modalInstance = $modal.open({
-      templateUrl: 'partials/addHoursEntry.html',
-      controller: ModalInstanceCtrlss,
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
     
     
 }]);
-
-
-
-
-
 
 
 

@@ -1,30 +1,34 @@
-<div id="avatar">
-    <span class="communityFeed"> <img src="img/avatar.icon.png"></span>
+<!--<link rel="stylesheet" href="../css/communityFeed.css">-->
+
+<div id="wrapper">
+    <div id="avatar">
+        <span class="communityFeed"> <img src="img/avatar.icon.png"></span>
 <!--
-    <div id="place">     
-        <span class="communityFeed"> <img src="img/image13.png">
-        </span>
-    </div>
+        <div id="place">     
+            <span class="communityFeed"> <img src="img/image13.png">
+            </span>
+        </div>
 -->
-      <div>
-        <carousel interval="5000">
-          <slide ng-repeat="slide in slides" active="slide.active">
-            <img ng-src="{{slide.image}}" style="margin:auto;">
-            <div class="carousel-caption">
-              <h4>Slide {{$index}}</h4>
-              <p>{{slide.text}}</p>
-            </div>
-          </slide>
-        </carousel>
-      </div>
-</div>
-<div id="scrollable">
-    <div id="post" ng-repeat="post in posts">
-        <a ui-sref="home.group({id:{{post.id}}})">
-            <div> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
-            <div> Avatar <img ng-src="{{post.img}}" width="20" height="20"/></div>
-            <div> Content: {{post.content}} </div>
-            <div> Likes: {{post.likes}} Followers:{{post.followers}} </div>
-        </a>
+          <div>
+            <carousel interval="5000">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index}}</h4>
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+    </div>
+    <div id="scrollable">
+        <div id="post" ng-repeat="post in posts">
+            <a ui-sref="group({id:{{post.id}}})">
+                <div> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
+                <div> Avatar <img ng-src="{{post.img}}" width="20" height="20"/></div>
+                <div> Content: {{post.content}} </div>
+                <div> Likes: {{post.likes}} Followers:{{post.followers}} </div>
+            </a>
+        </div>
     </div>
 </div>

@@ -13,10 +13,11 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
 
 volunteerManagementApp.config(
   function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/cfeed");
+    $urlRouterProvider.otherwise("/home");
 
     $stateProvider.
       state('home', {
+          url: "/home",
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeedController'},
@@ -48,25 +49,32 @@ volunteerManagementApp.config(
       state('groupMessages', {
           url: "/groupMessages",
           views: {
-            "app": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('message', {
           url: "/message:id",
           views: {
-            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}},
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+          },
           authenticate: true
       }).
       state('groupFeed', {
           url: "/groupFeed",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
-      state('home.groupFeed.post', {
-          url: "/post:id",
+      state('groupFeed.post', {
+          url: "/groupFeed/post:id",
           views: {
             "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
           },
@@ -75,51 +83,65 @@ volunteerManagementApp.config(
       state('group', {
           url: "/group:id",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/efforts.group.html", controller: 'group'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('task', {
           url: "/task:id",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/efforts.task.html", controller: 'task'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('efforts', {
           url: "/efforts",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/efforts.html", controller: 'efforts'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('awards', {
           url: "/awards",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/awards.html"},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('settings', {
           url: "/settings",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/settings.html"},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('calendar', {
           url: "/calendar",
           views: {
+            "menuBar": { templateUrl: "partials/menuBar.html"},
             "app": { templateUrl: "partials/calendar.html"},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
           authenticate: true
       }).
       state('hours', {
           url: "/hours",
           views: {
-            "app": { templateUrl: "partials/hours.html"},
+            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "app": { templateUrl: "partials/hours.html", controller: 'hours'},
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
-          authenticate: false
+          authenticate: true
       });
   });
 
@@ -145,8 +167,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
-        return Auth.hasCredentials();
-//        return true;
+//        return Auth.hasCredentials();
+        return true;
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");

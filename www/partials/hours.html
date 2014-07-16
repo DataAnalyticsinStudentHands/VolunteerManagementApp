@@ -1,23 +1,12 @@
-<div id="wrapper" ng-controller="hours">
+<div id="wrapper">
 <!--    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>-->
-    
-    
-    <script type="text/ng-template" id="myModalContent.html">
-      <input type="text">
-    </script>
-    
-    
-    <button class="btn btn-default" ng-click="open('lg')">Add Entry</button>
-    
-    <input>
-<!--
+    <button class="btn btn-default" ng-click="addEntry()">Add Entry</button>
     <div id="entry" ng-repeat="entry in entries">
-        <a href="#">  Link this to modal window from in depth 
+        <!--<a href="#">  Link this to modal window from in depth -->
         <div> {{entry.title}} </div>
         <div> {{entry.duration}} Hours </div>
         <div ng-show={{entry.approved}}>Approved</div>
         <div ng-show=!{{entry.approved}}>Pending</div>
-        </a>
+        <!--</a>-->
     </div>
--->
 </div>
