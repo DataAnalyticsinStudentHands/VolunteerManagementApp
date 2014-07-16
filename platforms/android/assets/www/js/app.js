@@ -6,7 +6,6 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'ngRoute',
   'vmaControllerModule',
   'databaseServicesModule',
-  'ngTouch',
   'ui.router',
   'ui.bootstrap',
   'restangular',
@@ -126,9 +125,9 @@ volunteerManagementApp.config(
       state('home.hours', {
           url: "/hours",
           views: {
-            "app": { templateUrl: "partials/hours.html", controller: 'hours'},
+            "app": { templateUrl: "partials/hours.html"},
           },
-          authenticate: true
+          authenticate: false
       });
   });
 

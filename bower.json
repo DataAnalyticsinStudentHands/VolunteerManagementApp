@@ -16,6 +16,7 @@
     "restangular": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
+    "angular-snap": "latest",
     "lodash": "latest"
   },
   "devDependencies": {

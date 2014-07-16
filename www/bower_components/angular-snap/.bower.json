@@ -20,7 +20,6 @@
     "commit": "53adb8a62aad09600de66eb74f2d94df24b7ee67"
   },
   "_source": "git://github.com/jtrussell/angular-snap.js-bower.git",
-  "_target": "~1.5.4",
-  "_originalSource": "angular-snap",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "angular-snap"
 }
