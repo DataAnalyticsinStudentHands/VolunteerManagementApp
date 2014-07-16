@@ -4,7 +4,9 @@
 
 .avatar{position:relative;
      top:80px; 
-    left:0;}
+    left:0; 
+     background:;
+}
 
 
 .place{position: absolute;
@@ -14,9 +16,70 @@
 }
 
 
-.b_menu{position: relative;
-    top:666px;
-    width: 100%;
-    padding:30px;
-    margin: 10px 10px 10px 10px;
+.wrapper{position: absolute;
+    background: white;
 }
+
+
+.carousel-caption{
+position: absolute;
+  right: 15%;
+  top: 20px;    
+  left: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+/*** community feed post box and content ****************************************************************************/
+
+
+#scrollable{position:absolute;
+     background:#EEEEEE; 
+    margin:0px;
+    height:150px;
+    min-width: 640px;
+}
+
+
+#boxicon{position:relative;
+    left:0; 
+    top:0;
+    background:#9CD4E5;
+    padding: 0px 0px 0px 0px;
+    width:150px;
+    border:none; 
+    border-radius:0px;
+    align-content: center;
+}
+
+
+#author{position: relative;
+background:#9CD4E5;
+height:30px; 
+}
+
+
+
+#contentbox{position:relative;
+    left:150px;
+    top:-100px;
+    height: 100px;
+    width:450px;
+    margin: 0px 0px 0px 15px;
+}
+
+
+#likeicon{position: relative;
+      background:#0BA1F4;
+      top:-100px;
+      height: 30px;
+}
+
+
+    
+    
+    
+

@@ -2,19 +2,19 @@
     <tab heading="Tasks">
         <div id="groups" ng-repeat="task in tasks">
             <a ui-sref="home.task({id:{{task.id}}})">
-                <div>Group Icon: <img ng-src="{{task.icon}}" width="20" height="20"/></div>
-                <div>Group: {{task.task_name}} </div>
+                <div><img src="img/effort_group.icon.png" width="70" height="50"/></div>
+                <div>{{task.task_name}} </div>
             </a>
         </div>
     </tab>
     <tab heading="Invites">
         <div id="invite" ng-repeat="invite in invites">
-            <a href="">
-                <div>Group Icon: <img ng-src="{{invite.icon}}" width="20" height="20"/></div>
-                <div>Name of Task/Group: {{invite.name}} </div>
-                <div>Data/Time: {{invite.time}} </div>
-            </a>
-            <div><label><input type="checkbox" name="approval">Approve</label></div>
-        </div>
+                <a href="">
+                    <div>Group Icon: <img src="img/effort_invite_g.com.png" width="70" height="60"/></div>
+                    <div>Name of Task/Group: {{invite.name}} </div>
+                    <div>Data/Time: {{invite.time}} </div>                    
+                </a>
+                <div><label><input type="checkbox" name="approval">Approve</label></div>
+            </div>
     </tab>
 </tabset>

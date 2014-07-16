@@ -1,8 +1,4 @@
-#wrapper{min-width:640px;
-     
-       }  
-
-#b_menu{position: relative;
+#b_menu{position: fixed;
 top: 100%;    
 padding:0px 0px 0px 0px;
 width:100%;
@@ -11,6 +7,6 @@ z-index:10;}
 .b_menu{padding: 0px 0px 0px 0px;
     margin: 0px 50px 0px 10px;
     display: inline-block;
-
+}
 
 
