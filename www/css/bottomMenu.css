@@ -1,8 +1,4 @@
-#wrapper{min-width:640px;
-     
-       }  
-
-#b_menu{position: relative;
+#b_menu{position: fixed;
 top: 100%;    
 padding:0px 0px 0px 0px;
 width:100%;

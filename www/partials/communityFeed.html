@@ -1,4 +1,5 @@
-<!--<link rel="stylesheet" href="../css/Main.css">-->
+
+<div id="wrapper">
     <div id="avatar">
 <!--        <span class="communityFeed">-->
             <img class="avatar" src="img/avatar.icon.png">
@@ -9,7 +10,7 @@
           <div id="slide">
             <carousel interval="5000">
               <slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <img class="slide_image" ng-src="{{slide.image}}" >
                 <div class="carousel-caption">
                   <h4>Slide {{$index}}</h4>
                   <p>{{slide.text}}</p>
@@ -26,3 +27,4 @@
                 <div id="likeicon"> Likes: {{post.likes}} Followers:{{post.followers}} </div>
             </a>
         </div>
+    </div>
