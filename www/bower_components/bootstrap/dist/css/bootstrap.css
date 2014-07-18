@@ -83,7 +83,7 @@ sup {
 sub {
   bottom: -.25em;
 }
-img {
+/*img {*/
   border: 0;
 }
 svg:not(:root) {
