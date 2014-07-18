@@ -68,13 +68,9 @@ body {
 }
 
 
-.menuBar:hover, .menuBar:active, .menuBar:visited{
-    background:#dd5d05 ;
-    color: #64bb5d;
-    
+.menuBar{
     
 }
-
 
 @keyframes spinAround {
     from {
@@ -321,9 +317,21 @@ border-radius: 0px 15px 15px 0px;
 padding:10px 0px 10px 10px;
 margin:10px 10px 10px 10px;
     top: 10px;
-    
+        
 }
 
+
+#snap_page{
+background-color: #eeeeee;    
+}
+
+#groupfeed_post{
+width:50%;    
+}
+
+#groupfeed_tasks{
+    width: 50%;
+}
 
 /**** Efforts******/
 
