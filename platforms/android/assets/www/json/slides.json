@@ -1,8 +1,0 @@
-[
-    {id:'1', caption: "GROUP 1", image: "img/temp_icon.png"},
-    {id:'2', caption: "GROUP 2", image: "img/temp_icon.png"},
-    {id:'3', caption: "GROUP 3", image: "img/temp_icon.png"},
-    {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
-    {id:'5', caption: "GROUP 5", image: "img/temp_icon.png"},
-    {id:'6', caption: "GROUP 6", image: "img/temp_icon.png"}
-];

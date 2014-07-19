@@ -69,7 +69,7 @@ volunteerManagementApp.config(
       state('home.groupFeed', {
           url: "/groupFeed",
           views: {
-            "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
+            "app-nowrap": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
           },
           authenticate: true
       }).

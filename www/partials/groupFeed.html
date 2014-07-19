@@ -1,21 +1,21 @@
-<snap-drawer>
-    <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
-    <div id="groups" ng-repeat="group in groups">
-        <a ng-click="displayPosts(group.id)">
-<!--                Known issue WorkAround: https://github.com/angular/angular.js/issues/6001-->
-<!--                <a ui-sref="groupFeed.post({id:{{group.id}}})" ng-click="isCollapsed = !isCollapsed">-->
-           <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-            <div id="groupname">Group: {{group.group_name}} </div>
-        </a>
-    </div>
-</snap-drawer>
-<snap-content id="snap_page">
-    <tabset>
-        <tab heading="Posts" active="pActiv" id="groupfeed_post">
-            <div ui-view="post">Click on a Effort Above to View Posts Here</div>
-        </tab>
-        <tab heading="Tasks" active="tActiv" id="groupfeed_tasks">
-            <div ui-view>Tasks from group will be shown here</div>
-        </tab>
-    </tabset>
-</snap-content>
+<div id="snap">
+    <snap-drawer id="snap_drawer">
+        <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
+        <div id="groups" ng-repeat="group in groups">
+            <a ng-click="displayPosts(group.id)">
+                <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+                <div id="groupname">Group: {{group.group_name}} </div>
+            </a>
+        </div>
+    </snap-drawer>
+    <snap-content id="snap_page" snap-options="settings">
+        <tabset>
+            <tab heading="Posts" active="pActiv" id="groupfeed_post">
+                <div ui-view="post">Click on a Effort Above to View Posts Here</div>
+            </tab>
+            <tab heading="Tasks" active="tActiv" id="groupfeed_tasks">
+                <div ui-view>Tasks from group will be shown here</div>
+            </tab>
+        </tabset>
+    </snap-content>
+</div>
