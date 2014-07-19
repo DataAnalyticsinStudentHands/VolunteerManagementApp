@@ -1,0 +1,344 @@
+/* app css stylesheet */
+body {
+/*   overflow-x: hidden;*/
+}
+
+.phones {
+    list-style: none;
+}
+.thumb {
+    float: left;
+    margin: -0.5em 1em 1.5em 0;
+    padding-bottom: 1em;
+    height: 100px;
+    width: 100px;
+}
+.phones li {
+    clear: both;
+    height: 115px;
+    padding-top: 15px;
+}
+.clock{position: absolute;
+    top:1000px; 
+    left:0px;
+}
+
+/*****meun bar at the top**********/
+#background{
+    background:url(../img/background_grid3.png) fixed;
+}
+
+#wrapper{
+    position:relative;
+    top: 60px;
+    width: 100%;
+    padding: 2%; 
+    height: 1166px;
+    z-index:0;
+/*    background:url(../img/background_grid3.png) no-repeat center center fixed; */
+/*  -webkit-background-size: cover;*/
+/*  -moz-background-size: cover;*/
+/*  -o-background-size: cover;*/
+/*  background-size: cover;*/
+ 
+}  
+
+#menuBar{position:fixed;
+    top: 0%;
+    width:100%;
+    height:65px;
+    z-index:1;
+    background:#f96806;
+
+}
+
+.menuBar{position:relative;
+    height:65px;
+     width:20%; 
+    padding:10px 0px 10px 0px;
+/*    margin-right:;*/
+    margin-left:3.3%;
+    display: inline-block;
+    text-align: center;
+    z-index: 1;
+/*    box-shadow: 0 0 0 4px rgba(255,255,255,1);*/
+/*    transition: background 0.2s, color 0.2s;    */
+    
+}
+
+
+.menuBar{
+    
+}
+
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/********bottom menu************/
+
+
+
+#b_menu{position:fixed;
+    top:91%; 
+    padding:0px;
+    width:100%;
+    z-index: 30;
+    
+    }
+
+.b_menu{
+    
+    position:relative;
+    width:10%;
+    padding:0px 0px 0px 0px;
+    margin-right:7%;
+    margin-left:7%;
+    display: inline-block;
+    text-align: center;
+}
+
+/*********loging page**********/
+
+
+.logo{position: relative;
+    max-width: 100%;
+    margin: 0px 0px 0px 80px;  
+}
+
+.log{border-radius: 5px;
+    height:05%;
+    width:50%;
+    background-color:#0BA1F4;
+    margin: auto;
+    max-width:100%;
+}
+
+/**** Community Feed****/
+
+
+#avatar-container{
+    position:relative;
+    width: 100%;
+    padding-top: 80px;
+    margin-bottom: -25px;
+    z-index: 30;
+}
+/*
+
+#avatar-img{
+    position: absolute;
+    bottom: 0;
+    top:100px;
+    width: 90px; 
+    height: 100%;
+}
+*/
+
+    
+#post{
+    position:relative;
+    width:100%;    
+    bottom:80px;
+    height:0%;
+    margin-bottom:5%;
+    padding: 0% 2% 0% 2%;
+}
+
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 20px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+
+
+.carousel{
+  position:relative;
+    width: 100%;
+    height: 100%;
+  z-index: 10;
+  bottom:80px;     
+}
+
+#author{position:relative;    
+height:30px;
+width: 100%;    
+padding:0% 15% 0% 15%;
+margin: 10% 0% 10% 0%;    
+text-align: center;
+font-family: roboto medium;
+background-color: #e0e0e0;
+z-index: -1;    
+}
+
+
+
+#contentbox{position:absolute; 
+    background-color:#EEEEEE;
+    top:20px;
+    width: 96%;
+    height: 100%;
+    z-index: -1;
+    padding-left:40%;
+    border-radius: 0px 0px 0px 0px;
+    overflow: auto;
+}
+
+
+#likeicon{position:relative;
+      background:#f96806;
+      top:20px;
+      bottom:100px;
+    color: white;
+      width:100%;
+      border-radius:0px 0px 0px 0px;
+    text-align:left;
+      -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 0px 6px -6px black;
+	        box-shadow: 0 5px 10px -7px black;   
+    
+}
+
+
+.slide_image{
+    width: 100%;
+}
+/***group message******/
+
+#messageicon{position: relative;
+    top:20px;
+    height: 80px;
+}
+
+#gmessageicon{
+    position: relative;
+
+    
+}
+
+#group_content{
+    position: relative;
+    padding:5px;
+    bottom:40px;
+    height: 40px;
+    margin:0% 30% 0% 30%;
+}
+
+#scrollable_g{position:relative;
+padding: 10% 0% 10% 0%;
+    top: 20px;
+    width: 100%;
+    
+    
+}
+
+#message{position:relative;    
+top:0px;
+margin:15px;
+height: 100px;    
+background-color:#ffffff;     
+border-radius:15px 0px 15px 0px;
+border: 1px solid #EEEEEE;
+-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 0px 6px -6px black;
+	        box-shadow: 0 5px 10px -7px black;
+    
+}
+
+#groupmsg{
+    position: relative;
+    text-align: center;
+    bottom: 40px;
+    font-family:roboto black;
+    font-size: 12pt;
+    text-decoration: underline;
+    
+}
+/***groupfeed****/
+
+
+#groupfeed{position: relative;    
+top:0px;
+bottom:0px;
+left:0px;
+right:0px;
+height:60px;    
+}
+
+#groupname{
+position:relative;
+top:0px;     
+bottom:0px;     
+left:0px;
+height:20px;
+margin:0px 0px 20px 0px;    
+font-family:sans-serif;
+font-size: 12pt;
+    
+}
+
+
+#groupcon{
+position:relative;
+padding:0px 0px 0px 0px;
+margin:0px;    
+bottom:0px;
+left:0px;
+top:00px;
+background-color:#ffffff;
+border-radius: 0px 0px 25px 0px;    
+-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 0px 6px -6px black;
+	        box-shadow: 0 5px 10px -7px black;
+}
+
+
+.btn btn-default{}
+
+/****group feed post****/
+#groupPost{position: relative;
+background:#9CD4E5;
+border-radius: 0px 15px 15px 0px;    
+padding:10px 0px 10px 10px;
+margin:10px 10px 10px 10px;
+    top: 10px;
+        
+}
+
+
+#snap_page{
+background-color: #eeeeee;    
+}
+
+#groupfeed_post{
+width:50%;    
+}
+
+#groupfeed_tasks{
+    width: 50%;
+}
+
+/**** Efforts******/
+
+
+#Egroups{position: relative;}
+
+
+#invite{position: relative;
+    
+}
+

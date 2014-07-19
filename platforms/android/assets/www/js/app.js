@@ -125,7 +125,7 @@ volunteerManagementApp.config(
       state('home.hours', {
           url: "/hours",
           views: {
-            "app": { templateUrl: "partials/hours.html"},
+            "app": { templateUrl: "partials/hours.html", controller: "hours"},
           },
           authenticate: false
       });

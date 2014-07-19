@@ -88,12 +88,13 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
     ];
 }]);
 
-vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', function($scope, $state, $modal, $rootscope) {
+vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     
     $scope.displayPosts = function(click_id) {
 //        $scope.pActiv = true;
 //        $scope.tActiv = false;
         $state.go('home.groupFeed.post', {id:click_id}, {reload: false});
+        snapRemote.close();
     }   
     
     $rootscope.groups = [
@@ -137,6 +138,32 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             $modalInstance.dismiss('cancel');
         };
     };
+    
+    $scope.settings = {
+//        element: null,
+//        dragger: null,
+        disable: 'right',
+        addBodyClasses: true,
+        hyperextensible: false,
+        resistance: 0.5,
+        flickThreshold: 50,
+        transitionSpeed: 0.3,
+        easing: 'ease',
+//        maxPosition: 266,
+//        minPosition: -266,
+        tapToClose: true,
+        touchToDrag: true,
+        slideIntent: 40,
+        minDragDistance: 5
+    }
+    
+    var snapper = new Snap({
+      element: document.getElementById('content')
+    });
+    
+    snapRemote.getSnapper().then(function(snapper) {
+        snapper.open('left');
+    });
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {

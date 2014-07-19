@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en" ng-app="volunteerManagementApp">
 <head>
+    
+    
     <meta charset="utf-8">
 <!--
     <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -30,13 +32,14 @@
     <script src="js/controllers.js"></script>
     <script src="modules/dbServices.js"></script>
     <script src="js/services.js"></script>
-<!--    <link rel="stylesheet" href="css/main.css">-->
+    <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body id="background">
     
     <div ui-view="menuBar" id="menuBar"></div>
     <div ui-view="app" id="wrapper"></div>
     <div ui-view="bottomMenu" id="b_menu"></div>
+    
     
 <!--    Below code is for forcing a browser (Chrome) to display a full error message instead of truncating it.-->
     
