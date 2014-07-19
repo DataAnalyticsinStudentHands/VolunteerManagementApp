@@ -1,6 +1,6 @@
 /* app css stylesheet */
 body {
-   overflow-x: hidden;
+/*   overflow-x: hidden;*/
 }
 
 .phones {
@@ -24,35 +24,62 @@ body {
 }
 
 /*****meun bar at the top**********/
+#background{
+    background:url(../img/background_grid3.png) fixed;
+}
+
 #wrapper{
-    position: absolute;
+    position:relative;
     top: 60px;
     width: 100%;
-    height: 300px;
-    background:#eee; 
-    z-index:0;
+    padding: 2%; 
     height: 1166px;
-    overflow: hidden;
+
+    z-index:0;
+/*    background:url(../img/background_grid3.png) no-repeat center center fixed; */
+/*  -webkit-background-size: cover;*/
+/*  -moz-background-size: cover;*/
+/*  -o-background-size: cover;*/
+/*  background-size: cover;*/
+ 
 }  
 
 #menuBar{position:fixed;
     top: 0%;
     width:100%;
     height:65px;
-    z-index:10;
-    background:black;    
+    z-index:1;
+    background:#f96806;
+
 }
 
 .menuBar{position:relative;
     height:65px;
-     width:10%; 
-    padding:10px 5px 10px 5px;
-    margin-right:6.3%;
-    margin-left:6.3%;
+     width:20%; 
+    padding:10px 0px 10px 0px;
+/*    margin-right:;*/
+    margin-left:3.3%;
     display: inline-block;
     text-align: center;
+    z-index: 1;
+/*    box-shadow: 0 0 0 4px rgba(255,255,255,1);*/
+/*    transition: background 0.2s, color 0.2s;    */
+    
 }
 
+
+.menuBar{
+    
+}
+
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 
 /********bottom menu************/
@@ -60,9 +87,10 @@ body {
 
 
 #b_menu{position:fixed;
-    top:92%; 
+    top:91%; 
     padding:0px;
     width:100%;
+    z-index: 30;
     
     }
 
@@ -106,29 +134,21 @@ body {
 /**** Community Feed****/
 
 
-
-
-/**#avatar{position:relative;
-    top:45px;
-    height:250px;
-    width: 100%;
-    padding: 0% 0% 0% 0%;
-    margin: 0px;
-}**/
-
-
 .avatar{position:relative;
-    top:190px;
+    top:100px;
     width: 90px;  
     z-index: 30;
+    height: 100%;
 }    
 
     
 #post{
     position:relative;
     width:100%;    
-    top:40px;
-    height:170px;
+    bottom:80px;
+    height:0%;
+    margin-bottom:5%;
+    padding: 0% 2% 0% 2%;
 }
 
 
@@ -149,37 +169,44 @@ body {
 .carousel{
   position:relative;
     width: 100%;
-    height: 280px;
+    height: 100%;
   z-index: 10;
   bottom:80px;     
 }
 
-#author{position:relative;
-height:30px; 
+#author{position:relative;    
+height:30px;
+width: 100%;    
+padding:0% 15% 0% 15%;
+margin: 10% 0% 10% 0%;    
+text-align: center;
+font-family: roboto medium;
+background-color: #e0e0e0;
+z-index: -1;    
 }
 
 
 
-#contentbox{position:absolute;
-    right:50px;
-    left:135px;
-    top:30px;
-    bottom:30px;
-    height:105px;
-    width:490px;
-    margin: 0px 0px 0px 15px;
-    padding:0px 0px 0px 10px; 
+#contentbox{position:absolute; 
     background-color:#EEEEEE;
+    top:20px;
+    width: 96%;
+    height: 100%;
+    z-index: -1;
+    padding-left:40%;
+    border-radius: 0px 0px 0px 0px;
+    overflow: auto;
 }
 
 
 #likeicon{position:relative;
-      background:#0BA1F4;
-      top:0px;
+      background:#f96806;
+      top:20px;
       bottom:100px;
-      height:30px;
+    color: white;
       width:100%;
-      border-radius:0px 0px 10px 10px;
+      border-radius:0px 0px 0px 0px;
+    text-align:left;
       -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
 	        box-shadow: 0 5px 10px -7px black;   
@@ -189,28 +216,43 @@ height:30px;
 
 .slide_image{
     width: 100%;
-    height: 0px;
+    height:0px;
 }
 /***group message******/
 
 #messageicon{position: relative;
-    top:60px;
+    top:20px;
     height: 80px;
-    background:;
 }
 
+#gmessageicon{
+    position: relative;
 
-#scrollable_g{position:relative;
-padding: 10px 20px 30px 0px;
-    top: 40px;
     
 }
 
-#message{position:relative;
+#group_content{
+    position: relative;
+    padding:5px;
+    bottom:40px;
+    height: 40px;
+    margin:0% 30% 0% 30%;
+}
+
+#scrollable_g{position:relative;
+padding: 10% 0% 10% 0%;
+    top: 20px;
+    width: 100%;
+    
+    
+}
+
+#message{position:relative;    
 top:0px;
 margin:15px;
+height: 100px;    
 background-color:#ffffff;     
-border-radius:5px;
+border-radius:15px 0px 15px 0px;
 border: 1px solid #EEEEEE;
 -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
@@ -218,6 +260,15 @@ border: 1px solid #EEEEEE;
     
 }
 
+#groupmsg{
+    position: relative;
+    text-align: center;
+    bottom: 40px;
+    font-family:roboto black;
+    font-size: 12pt;
+    text-decoration: underline;
+    
+}
 /***groupfeed****/
 
 
@@ -253,7 +304,7 @@ background-color:#ffffff;
 border-radius: 0px 0px 25px 0px;    
 -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
-	        box-shadow: 0 5px 10px -7px black;     
+	        box-shadow: 0 5px 10px -7px black;
 }
 
 
@@ -266,9 +317,21 @@ border-radius: 0px 15px 15px 0px;
 padding:10px 0px 10px 10px;
 margin:10px 10px 10px 10px;
     top: 10px;
-    
+        
 }
 
+
+#snap_page{
+background-color: #eeeeee;    
+}
+
+#groupfeed_post{
+width:50%;    
+}
+
+#groupfeed_tasks{
+    width: 50%;
+}
 
 /**** Efforts******/
 

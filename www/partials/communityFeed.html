@@ -1,4 +1,4 @@
-<div id="wrapper">
+
     <div id="avatar">
           <img class="avatar" src="img/avatar.icon.png">
           <div id="slide">
@@ -13,12 +13,11 @@
             </carousel>
           </div>
     </div>
-    <div id="post" ng-repeat="post in posts">
+    <div id="post" ng-repeat="post in posts">    
         <a ui-sref="group({id:{{post.id}}})">
             <div id="author"> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
-            <div id="boxicon"><img src="img/effort_task.icon.png"/></div>
+            <div id="boxicon"><img src="img/effort_task.icon.png" width="15%" /></div>
             <div id="contentbox"> Content: {{post.content}} </div>
             <div id="likeicon"> Likes: {{post.likes}} Followers:{{post.followers}} </div>
         </a>
     </div>
-</div>
