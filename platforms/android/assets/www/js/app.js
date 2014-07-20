@@ -9,7 +9,8 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'ui.router',
   'ui.bootstrap',
   'restangular',
-  'snap'
+  'snap',
+  'highcharts-ng'
 ]);
 
 volunteerManagementApp.config(
@@ -104,7 +105,7 @@ volunteerManagementApp.config(
       state('home.awards', {
           url: "/awards",
           views: {
-            "app": { templateUrl: "partials/awards.html"},
+            "app": { templateUrl: "partials/awards.html", controller: 'awards'},
           },
           authenticate: true
       }).

@@ -57,14 +57,14 @@ volunteerManagementApp.config(
       state('home.groupMessages', {
           url: "/groupMessages",
           views: {
-            "app": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
+            "app-nowrap": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
           },
           authenticate: true
       }).
-      state('home.message', {
-          url: "/message:id",
+      state('home.groupMessages.message', {
+          url: ":id",
           views: {
-            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}},
+            "app-snap-msg": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}},
           authenticate: true
       }).
       state('home.groupFeed', {
@@ -75,7 +75,7 @@ volunteerManagementApp.config(
           authenticate: true
       }).
       state('home.groupFeed.post', {
-          url: "/post:id",
+          url: ":id",
           views: {
             "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
           },
