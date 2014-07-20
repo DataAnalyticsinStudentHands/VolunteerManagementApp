@@ -304,84 +304,69 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-var ModalInstanceCtrl = function ($scope, $modalInstance) {
-        $scope.ok = function () {
-            console.log($scope.name);
-            console.log($scope.duration);
-            $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
-            $modalInstance.close();
-//            console.log($rootscope.groups);
-        };
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+            $scope.ok = function () {
+                console.log($scope.name);
+                console.log($scope.duration);
+                $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
+                $modalInstance.close();
+    //            console.log($rootscope.groups);
+            };
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-};
-    
-    
-    
-    
-    
-    //Controller for the Modal PopUp
-//    var ModalInstanceCtrl = function ($scope, $modalInstance) {
-//        $scope.ok = function () {
-//            console.log($scope.name);
-//            console.log($scope.duration);
-//            $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
-//            $modalInstance.close();
-////            console.log($rootscope.groups);
-//        };
-//
-//        $scope.cancel = function () {
-//            $modalInstance.dismiss('cancel');
-//        };
-//    };
-    
-    
-    
-//
-//
-//    
-//var ModalInstanceCtrlss = function ($scope, $modalInstance, items) {
-//
-//  $scope.items = items;
-//  $scope.selected = {
-//    item: $scope.items[0]
-//  };
-//
-//  $scope.ok = function () {
-//    $modalInstance.close($scope.selected.item);
-//  };
-//
-//  $scope.cancel = function () {
-//    $modalInstance.dismiss('cancel');
-//  };
-//};
-//
-//  $scope.items = ['item1', 'item2', 'item3'];
-//
-//  $scope.open = function (size) {
-//
-//    var modalInstance = $modal.open({
-//      templateUrl: 'partials/addHoursEntry.html',
-//      controller: ModalInstanceCtrlss,
-//      size: size,
-//      resolve: {
-//        items: function () {
-//          return $scope.items;
-//        }
-//      }
-//    });
-//
-//    modalInstance.result.then(function (selectedItem) {
-//      $scope.selected = selectedItem;
-//    }, function () {
-//      $log.info('Modal dismissed at: ' + new Date());
-//    });
-//  };
-//    
-//    
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
+    };
 }]);
+
+vmaControllerModule.controller('awards', function ($scope) {
+
+    $scope.badges = [
+        ["Badge1", 42],
+        ["Badge2", 35],
+        ["Badge3", 32],
+        ["Badge4", 12],
+        ["Badge5", 21]
+    ];
+    
+    $scope.total_hours = 42 + 35 + 32 + 12 + 21;
+//    console.log($scope.badges[0][1]);
+    $scope.badge1_percent = Math.round($scope.badges[0][1]/$scope.total_hours * 100);
+    $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
+    $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
+    $scope.badge4_percent = Math.round($scope.badges[3][1]/$scope.total_hours * 100);
+    $scope.badge5_percent = Math.round($scope.badges[4][1]/$scope.total_hours * 100);
+
+    $scope.chartConfig = {
+        options: {
+            chart: {
+                type: 'pie',
+                 plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+
+            },
+            title: {
+                text: ''
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            data: $scope.badges
+        }],
+
+        loading: false
+    }
+
+});
 
 //Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state',

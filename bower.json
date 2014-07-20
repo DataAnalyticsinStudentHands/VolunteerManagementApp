@@ -17,6 +17,7 @@
     "jquery": "latest",
     "bootstrap": "latest",
     "angular-snap": "latest",
+    "highcharts-ng": "latest",
     "lodash": "latest"
   },
   "devDependencies": {

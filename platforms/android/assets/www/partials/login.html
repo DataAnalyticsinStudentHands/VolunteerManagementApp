@@ -1,0 +1,21 @@
+<!--<link rel="stylesheet" href="../css/login.css"> -->
+
+
+<div id="wrapper">
+
+<img class="logo" src="img/logo.icon.png"/>
+<img class="logopattern" src="img/background_grid3.png"/>
+
+<!--<div id="wrapper">-->
+    <div id="log-in">
+        <form class="submit" ng-submit="submit()">
+            <input class="log" type="text" ng-model="userName" name="userName" placeholder="USERNAME">
+            <br>
+            <input class="log" type="password" ng-model="passWord" name="passWord" placeholder="PASSWORD">
+            <br>
+            <input class="log" type="submit" value="Submit" id="submit">
+            
+            <p><a ui-sref="register">REGISTER HERE</a></p>
+        </form>
+    </div>
+</div>
