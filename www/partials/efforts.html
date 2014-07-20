@@ -1,5 +1,5 @@
 <tabset>
-    <tab heading="Tasks">
+    <tab heading="Tasks" style="width:50%">
         <div id="groups" ng-repeat="task in tasks">
             <a ui-sref="home.task({id:{{task.id}}})">
                 <div><img src="img/effort_group.icon.png" width="70" height="50"/></div>
@@ -7,7 +7,7 @@
             </a>
         </div>
     </tab>
-    <tab heading="Invites">
+    <tab heading="Invites" style="width:50%">
         <div id="invite" ng-repeat="invite in invites">
                 <a href="">
                     <div>Group Icon: <img src="img/effort_invite_g.com.png" width="70" height="60"/></div>
