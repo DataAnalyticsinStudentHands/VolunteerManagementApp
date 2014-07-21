@@ -77,7 +77,7 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
     
 }]);
 
-vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($scope, $state) {
+vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', function($scope, $state, $rootscope, snapRemote) {
     $scope.messages = [
         {id:'1', task: "TASK 1", preview_content:"Hi!", img: "img/temp_icon.png", preview_author: "you"},
         {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
@@ -86,13 +86,62 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', function($s
         {id:'5', task: "TASK 5", preview_content:"msg content", img: "img/temp_icon.png", preview_author: "you"},
         {id:'6', task: "TASK 6", preview_content:"More stuff", img: "img/temp_icon.png", preview_author: "me"}
     ];
+    
+        $scope.displayMessages = function(click_id) {
+//            $scope.pActiv = true;
+//            $scope.tActiv = false;
+            console.log(click_id);
+            $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
+            snapRemote.close();
+        }
+        
+        
+        $scope.settings = {
+    //        element: null,
+    //        dragger: null,
+            disable: 'right',
+            addBodyClasses: true,
+            hyperextensible: false,
+            resistance: 0.5,
+            flickThreshold: 50,
+            transitionSpeed: 0.3,
+            easing: 'ease',
+    //        maxPosition: 266,
+    //        minPosition: -266,
+            tapToClose: true,
+            touchToDrag: true,
+            slideIntent: 40,
+            minDragDistance: 5
+        }
+
+        var snapper = new Snap({
+          element: document.getElementById('content')
+        });
+
+        snapRemote.getSnapper().then(function(snapper) {
+            snapper.open('left');
+        });
 }]);
+
+
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+//    console.log("hi");
+    console.log($stateParams);
+    $scope.id = $stateParams.id;
+    $scope.groupMSGs = [
+        {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+        {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+        {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+        {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+        {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+        {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
+    ];
+}]);
+
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     
     $scope.displayPosts = function(click_id) {
-//        $scope.pActiv = true;
-//        $scope.tActiv = false;
         $state.go('home.groupFeed.post', {id:click_id}, {reload: false});
         snapRemote.close();
     }   
@@ -167,6 +216,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.$parent.pActiv = true;
     $scope.posts = [
@@ -227,19 +277,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, 
         {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
-    ];
-}]);
-
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-//    console.log("hi");
-//    console.log($stateParams);
-    $scope.groupMSGs = [
-        {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
     ];
 }]);
 
