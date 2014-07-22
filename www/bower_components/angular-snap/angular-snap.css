@@ -25,7 +25,7 @@ snap-drawers,
 .x-snap-drawers,
 .snap-drawers,
 .snap-content {
-  position: absolute;
+  position: fixed;
   height: auto;
   width: auto;
   top: 0;
