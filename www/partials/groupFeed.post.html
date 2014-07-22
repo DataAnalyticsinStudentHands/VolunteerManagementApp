@@ -2,16 +2,18 @@
     <p>For testing purposes: {{id}}</p>
     <div id="groupPost" ng-repeat="post in posts">
 <!--        <div id="{{post.type}}">-->
-            <a href="">
-                <div><img src="img/avatar.icon.png" width="50" height="50"/></div>
+<!--            <a href="">-->
+                <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
                 <!--Below should only display if present-->
-                <div>Post IMG: <img ng-src="{{post.img}}" width="20" height="20"/></div>
-                <div> Author: {{post.author}} </div>
-                <div id="contentgf"> Content: {{post.content}} </div>
-                <div> Likes: {{post.likes}} </div>
-                <div> Time: {{post.time}} </div>
-                <div> Comment Count: {{post.comment_count}} </div>
-            </a>
+                <div id="groupPost_content">
+                    <div>Post IMG: <img ng-src="{{post.img}}" width="20" height="20"/></div>
+                    <div> Author: {{post.author}} </div>
+                    <div> Content: {{post.content}} </div>
+                    <div> Likes: {{post.likes}} </div>
+                    <div> Time: {{post.time}} </div>
+                    <div> Comment Count: {{post.comment_count}} </div>
+                </div>    
+<!--            </a>-->
 <!--        </div>-->
     </div>
 </div>
