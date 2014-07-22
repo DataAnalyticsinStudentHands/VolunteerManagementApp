@@ -40,7 +40,7 @@ volunteerManagementApp.config(
       state('register', {
           url: "/register",
           views: {
-            "app": { templateUrl: "partials/register.html"}
+            "app": { templateUrl: "partials/register.html", controller: 'registerCtrl'}
           }
       }).
       state('register.help', {

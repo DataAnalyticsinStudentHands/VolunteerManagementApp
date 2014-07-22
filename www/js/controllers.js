@@ -8,7 +8,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
  function($scope, Auth, $state) {
      if($scope.isAuthenticated() === true) {
          //Point 'em to logged in page of app
-         $state.go('home.cfeed');
+         $state.go('home');
      }
      
      //we need to put the salt on server + client side and it needs to be static
@@ -452,6 +452,28 @@ vmaControllerModule.controller('awards', function ($scope) {
 
 });
 
+vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
+    function($scope, $state, Auth) {
+//        console.log("HI");
+      $scope.logOut = function() {
+          console.log('loggedout');
+          Auth.clearCredentials();
+          $state.go("home", {}, {reload: true});
+      }
+}]);
+
+vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$rootScope',
+    function($scope, $state, Auth, $rootScope) {
+        
+      $scope.registerUser = function() {
+//          console.log($scope.register);
+          Auth.setCredentials("Visitor", "test");
+          $rootScope.Restangular().all("users").post($scope.register);
+          Auth.clearCredentials();
+          $state.go("home", {}, {reload: true});
+      }
+}]);
+
 //Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
     function($scope, $state) {
@@ -459,16 +481,6 @@ vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
         $scope.goBack = function() {
             window.history.back();
         };
-    }]);
-
-vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
-    function($scope, $state, Auth) {
-//        console.log("HI");
-      $scope.logOut = function() {
-          console.log('loggedout');
-          Auth.clearCredentials();
-          $state.go("home", {},{reload: true});
-      }
 }]);
 
 vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',
