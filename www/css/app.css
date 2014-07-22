@@ -25,7 +25,7 @@ body {
 
 /*****meun bar at the top**********/
 #background{
-    background:url(../img/background_grid3.png) fixed;
+background:url(../img/background_grid3.png) fixed;
 }
 
 #wrapper{
@@ -33,7 +33,6 @@ body {
     top: 60px;
     width: 100%;
     padding: 2%; 
-/*    height: 1166px;*/
     margin-bottom: 30px;
     z-index:0;
 /*    background:url(../img/background_grid3.png) no-repeat center center fixed; */
@@ -45,7 +44,7 @@ body {
 }
 
 #menuBar{position:fixed;
-    top: 0%;
+    top: 0;
     width:100%;
     height:65px;
     z-index:1;
@@ -57,7 +56,6 @@ body {
     height:65px;
      width:20%; 
     padding:10px 0px 10px 0px;
-/*    margin-right:;*/
     margin-left:3.3%;
     display: inline-block;
     text-align: center;
@@ -68,8 +66,9 @@ body {
 }
 
 
-.menuBar{
-    
+.menuBar:hover {
+  color: red;
+  color: green;
 }
 
 @keyframes spinAround {
@@ -86,17 +85,20 @@ body {
 
 
 
-#b_menu{position:fixed;
-    top:91%; 
+#b_menu{
+    position:fixed;
+/*    top:90%; */
+    bottom: 0px;
     padding:0px;
     width:100%;
+    height: 40px;
     z-index: 30;
-    
-    }
+    background: #ffffff;
+}
 
 .b_menu{
-    
     position:relative;
+    top: 10%;
     width:10%;
     padding:0px 0px 0px 0px;
     margin-right:7%;
@@ -145,7 +147,7 @@ body {
     width:100%;    
     bottom:80px;
     height:0%;
-    padding-bottom: 30px;
+    padding-bottom: auto;
     padding: 0% 2% 0% 2%;
 }
 
@@ -173,14 +175,13 @@ body {
 }
 
 #author{position:relative;    
-height:30px;
+height:100%;
 width: 100%;    
-padding:0% 15% 0% 15%;
-margin: 10% 0% 10% 0%;    
+margin: 15% 0% 10% 0%;    
 text-align: center;
 font-family: roboto medium;
 background-color: #e0e0e0;
-z-index: -1;    
+z-index:4;    
 }
 
 
@@ -190,20 +191,24 @@ z-index: -1;
     top:20px;
     width: 96%;
     height: 100%;
+    margin: auto;
     z-index: -1;
-    padding-left:40%;
+    padding-left:auto;
     border-radius: 0px 0px 0px 0px;
     overflow: auto;
+    font-family: roboto;
 }
 
 
 #likeicon{position:relative;
       background:#f96806;
       top:20px;
-      bottom:100px;
+      width: 100%;
+    margin: auto;
+/*      bottom:100px;*/
     color: white;
-      width:100%;
-      border-radius:0px 0px 0px 0px;
+/*      width:100%;*/
+/*      border-radius:0px 0px 0px 0px;*/
     text-align:left;
       -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
@@ -218,7 +223,6 @@ z-index: -1;
 /***group message******/
 
 #messageicon{position: relative;
-    top:20px;
     height: 80px;
 }
 
@@ -246,10 +250,11 @@ padding: 10% 0% 10% 0%;
 
 #message{position:relative;    
 top:0px;
-margin:15px;
-height: 100px;    
-background-color:#ffffff;     
-border-radius:15px 0px 15px 0px;
+margin:5px 5px 45px 5px;
+height: 80px;    
+background-color:#ffffff;
+padding: 30px 0px 0px 30px;    
+border-radius:0px 0px 0px 0px;
 border: 1px solid #EEEEEE;
 -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
@@ -266,6 +271,7 @@ border: 1px solid #EEEEEE;
     text-decoration: underline;
     
 }
+
 /***groupfeed****/
 
 
@@ -279,26 +285,21 @@ height:60px;
 
 #groupname{
 position:relative;
-top:0px;     
-bottom:0px;     
-left:0px;
-height:20px;
-margin:0px 0px 20px 0px;    
+bottom:90px;              
 font-family:sans-serif;
-font-size: 12pt;
-    
+font-size:12pt;
+padding-left:70px;    
+z-index: 3;    
 }
 
 
 #groupcon{
 position:relative;
-padding:0px 0px 0px 0px;
-margin:0px;    
-bottom:0px;
-left:0px;
-top:00px;
+height: 100px;    
+padding:0px 0px 0px 10px;
+margin:0px 2px 0px 2px;    
 background-color:#ffffff;
-border-radius: 0px 0px 25px 0px;    
+border-radius: 0px 0px 0px 0px;    
 -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
 	        box-shadow: 0 5px 10px -7px black;
@@ -310,9 +311,7 @@ border-radius: 0px 0px 25px 0px;
 /****group feed post****/
 #groupPost{
     position: relative;
-    background:#9CD4E5;
-    border-radius: 0px 15px 15px 0px;    
-    padding:10px 0px 10px 10px;
+    background:#9CD4E5;    
     margin:10px 10px 10px 10px;
     top: 10px;
         
@@ -326,11 +325,13 @@ border-radius: 0px 0px 25px 0px;
     background-color: #eeeeee;
     top: 65px;
     padding-bottom: 30px;
+    background:url(../img/01.jpg) fixed;
 }
 #snap_page{
     background-color: #eeeeee;
     top: 65px;
     padding-bottom: 30px;
+    background-image:url(..);
 }
 
 #groupfeed_post{
