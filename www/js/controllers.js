@@ -142,7 +142,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', f
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     
     $scope.displayPosts = function(click_id) {
-        $state.go('home.groupFeed.post', {id:click_id}, {reload: false});
+        $state.go('home.groupFeed.detail', {id:click_id}, {reload: false});
         snapRemote.close();
     }   
     
@@ -227,6 +227,53 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         {id:'5', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"}
     ];
+    
+    $rootScope.posts = $scope.posts;
+    
+    $scope.addPost = function() {
+        $scope.open();
+    }
+    
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addPost.html',
+          controller: ModalInstanceCtrl,
+          size: size
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+        $scope.ok = function () {
+            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: $scope.content});
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+}]);
+
+vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+    console.log($stateParams);
+    $scope.id = $stateParams.id;
+    $scope.$parent.pActiv = true;
+    $scope.tasks =[
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",}
+    ];
+    
     
     $rootScope.posts = $scope.posts;
     

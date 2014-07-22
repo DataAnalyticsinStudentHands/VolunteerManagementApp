@@ -74,10 +74,11 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('home.groupFeed.post', {
+      state('home.groupFeed.detail', {
           url: ":id",
           views: {
-            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
+            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'},
+            "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'}
           },
           authenticate: true
       }).
