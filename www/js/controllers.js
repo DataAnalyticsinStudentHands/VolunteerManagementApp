@@ -20,7 +20,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
 //             console.log($scope.passWordHashed);
              Auth.setCredentials($scope.userName, $scope.passWord);
 //             $scope.loginResult = $scope.Restangular.get();
-             $scope.loginResultPromise = $scope.Restangular().all("users").get("2");
+             $scope.loginResultPromise = $scope.Restangular().all("users").getList();
              $scope.loginResultPromise.then(function(result) {
                 $scope.loginResult = result;
                 $scope.loginMsg = "You have logged in successfully! Status 200OK technomumbojumbo";
@@ -460,6 +460,16 @@ vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
             window.history.back();
         };
     }]);
+
+vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
+    function($scope, $state, Auth) {
+//        console.log("HI");
+      $scope.logOut = function() {
+          console.log('loggedout');
+          Auth.clearCredentials();
+          $state.go("home", {},{reload: true});
+      }
+}]);
 
 vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',
  function($scope, $state, $stateParams) {

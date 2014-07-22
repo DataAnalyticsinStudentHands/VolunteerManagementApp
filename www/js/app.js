@@ -113,7 +113,7 @@ volunteerManagementApp.config(
       state('home.settings', {
           url: "/settings",
           views: {
-            "app": { templateUrl: "partials/settings.html"},
+            "app": { templateUrl: "partials/settings.html", controller: "settings"},
           },
           authenticate: true
       }).
@@ -134,7 +134,7 @@ volunteerManagementApp.config(
   });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {
-    Restangular.setBaseUrl("http://localhost:8080/RESTFUL-WS/services/");
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp-0.0.1");
     $rootScope.Restangular = function() {
         return Restangular;
     }
@@ -155,8 +155,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
-//        return Auth.hasCredentials();
-        return true;
+        return Auth.hasCredentials();
+//        return true;
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
