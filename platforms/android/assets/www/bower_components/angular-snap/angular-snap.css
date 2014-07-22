@@ -8,6 +8,7 @@ body {
   overflow: hidden;
 }
 */
+
 snap-content,
 [snap\:content],
 [snap-content],
@@ -26,12 +27,14 @@ snap-drawers,
 .snap-content {
   position: absolute;
   height: auto;
+  width: auto;
   top: 0;
   bottom: 0;
-  width: auto;
   left: 0;
   right: 0;
 }
+/*GO LOOK AT THIS!!!!*/
+
 snap-drawer,
 [snap\:drawer],
 [snap-drawer],
@@ -59,6 +62,7 @@ snap-drawer,
   overflow-scrolling: touch;
   width: 265px;
 }
+
 .snap-content {
   z-index: 2;
   -webkit-transform: translate3d(0, 0, 0);
@@ -71,6 +75,7 @@ snap-drawer,
   -o-overflow-scrolling: touch;
   overflow-scrolling: touch;
 }
+
 .snap-drawer-left {
   left: 0;
   z-index: 1;
