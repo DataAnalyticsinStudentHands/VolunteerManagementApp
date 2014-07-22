@@ -18,14 +18,15 @@ body {
     height: 115px;
     padding-top: 15px;
 }
-.clock{position: absolute;
+.clock{
+    position: absolute;
     top:1000px; 
     left:0px;
 }
 
 /*****meun bar at the top**********/
 #background{
-background:url(../img/background_grid3.png) fixed;
+    background:url(../img/background_grid3.png) fixed;
 }
 
 #wrapper{
@@ -43,7 +44,8 @@ background:url(../img/background_grid3.png) fixed;
  
 }
 
-#menuBar{position:fixed;
+#menuBar{
+    position:fixed;
     top: 0;
     width:100%;
     height:65px;
@@ -52,9 +54,10 @@ background:url(../img/background_grid3.png) fixed;
 
 }
 
-.menuBar{position:relative;
+.menuBar{
+    position:relative;
     height:65px;
-     width:20%; 
+    width:20%; 
     padding:10px 0px 10px 0px;
     margin-left:3.3%;
     display: inline-block;
@@ -87,7 +90,7 @@ background:url(../img/background_grid3.png) fixed;
 
 #b_menu{
     position:fixed;
-/*    top:90%; */
+/*  top:90%; */
     bottom: 0px;
     padding:0px;
     width:100%;
@@ -110,12 +113,14 @@ background:url(../img/background_grid3.png) fixed;
 /*********loging page**********/
 
 
-.logo{position: relative;
+.logo{
+    position: relative;
     max-width: 100%;
     margin: 0px 0px 0px 80px;  
 }
 
-.log{border-radius: 5px;
+.log{
+    border-radius: 5px;
     height:05%;
     width:50%;
     background-color:#0BA1F4;
@@ -174,19 +179,21 @@ background:url(../img/background_grid3.png) fixed;
   bottom:80px;     
 }
 
-#author{position:relative;    
-height:100%;
-width: 100%;    
-margin: 15% 0% 10% 0%;    
-text-align: center;
-font-family: roboto medium;
-background-color: #e0e0e0;
-z-index:4;    
+#author{
+    position:relative;    
+    height:100%;
+    width: 100%;    
+    margin: 15% 0% 10% 0%;    
+    text-align: center;
+    font-family: roboto medium;
+    background-color: #e0e0e0;
+    z-index:4;    
 }
 
 
 
-#contentbox{position:absolute; 
+#contentbox{
+    position:absolute; 
     background-color:#EEEEEE;
     top:20px;
     width: 96%;
@@ -200,15 +207,16 @@ z-index:4;
 }
 
 
-#likeicon{position:relative;
-      background:#f96806;
-      top:20px;
-      width: 100%;
+#likeicon{
+    position:relative;
+    background:#f96806;
+    top:20px;
+    width: 100%;
     margin: auto;
-/*      bottom:100px;*/
+/*  bottom:100px;*/
     color: white;
-/*      width:100%;*/
-/*      border-radius:0px 0px 0px 0px;*/
+/*  width:100%;*/
+/*  border-radius:0px 0px 0px 0px;*/
     text-align:left;
       -webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 0px 6px -6px black;
@@ -222,7 +230,8 @@ z-index:4;
 }
 /***group message******/
 
-#messageicon{position: relative;
+#messageicon{
+    position: relative;
     height: 80px;
 }
 
@@ -240,25 +249,27 @@ z-index:4;
     margin:0% 30% 0% 30%;
 }
 
-#scrollable_g{position:relative;
-padding: 10% 0% 10% 0%;
+#scrollable_g{
+    position:relative;
+    padding: 10% 0% 10% 0%;
     top: 20px;
     width: 100%;
     
     
 }
 
-#message{position:relative;    
-top:0px;
-margin:5px 5px 45px 5px;
-height: 80px;    
-background-color:#ffffff;
-padding: 30px 0px 0px 30px;    
-border-radius:0px 0px 0px 0px;
-border: 1px solid #EEEEEE;
--webkit-box-shadow: 0 8px 6px -6px black;
-	   -moz-box-shadow: 0 0px 6px -6px black;
-	        box-shadow: 0 5px 10px -7px black;
+#message{
+    position:relative;    
+    top:0px;
+    margin:5px 5px 45px 5px;
+    height: 80px;    
+    background-color:#ffffff;
+    padding: 30px 0px 0px 30px;    
+    border-radius:0px 0px 0px 0px;
+    border: 1px solid #EEEEEE;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 0px 6px -6px black;
+    box-shadow: 0 5px 10px -7px black;
     
 }
 
@@ -275,34 +286,35 @@ border: 1px solid #EEEEEE;
 /***groupfeed****/
 
 
-#groupfeed{position: relative;    
-top:0px;
-bottom:0px;
-left:0px;
-right:0px;
-height:60px;    
+#groupfeed{
+    position: relative;    
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:60px;    
 }
 
 #groupname{
-position:relative;
-bottom:90px;              
-font-family:sans-serif;
-font-size:12pt;
-padding-left:70px;    
-z-index: 3;    
+    position:relative;
+    bottom:90px;              
+    font-family:sans-serif;
+    font-size:12pt;
+    padding-left:70px;    
+    z-index: 3;    
 }
 
 
 #groupcon{
-position:relative;
-height: 100px;    
-padding:0px 0px 0px 10px;
-margin:0px 2px 0px 2px;    
-background-color:#ffffff;
-border-radius: 0px 0px 0px 0px;    
--webkit-box-shadow: 0 8px 6px -6px black;
-	   -moz-box-shadow: 0 0px 6px -6px black;
-	        box-shadow: 0 5px 10px -7px black;
+    position:relative;
+    height: 100px;    
+    padding:0px 0px 0px 10px;
+    margin:0px 2px 0px 2px;    
+    background-color:#ffffff;
+    border-radius: 0px 0px 0px 0px;    
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 0px 6px -6px black;
+    box-shadow: 0 5px 10px -7px black;
 }
 
 
@@ -314,7 +326,6 @@ border-radius: 0px 0px 0px 0px;
     background:#9CD4E5;    
     margin:10px 10px 10px 10px;
     top: 10px;
-        
 }
 
 #snap{
@@ -345,10 +356,12 @@ border-radius: 0px 0px 0px 0px;
 /**** Efforts******/
 
 
-#Egroups{position: relative;}
+#Egroups{
+    position: relative;
+}
 
 
-#invite{position: relative;
-    
+#invite{
+    position: relative;
 }
 

@@ -654,6 +654,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\feed_time.icone.png 
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\group_feed.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\group_feed_small.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\group_message.icon.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\home_mp.svg \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\image.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\image1.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\image10.png \
