@@ -4,8 +4,9 @@ input, textarea { -webkit-user-select:text; }
 body { background-color:white; color:black }
 
 body {
-   overflow-x: hidden;
+    overflow-x: hidden;
 }
+/*
 
 .phones {
     list-style: none;
@@ -27,6 +28,7 @@ body {
     top:1000px; 
     left:0px;
 }
+*/
 
 /*****meun bar at the top**********/
 #background{
@@ -55,7 +57,6 @@ body {
     height:65px;
     z-index:1;
     background:#f96806;
-
 }
 
 .menuBar{
