@@ -1,20 +1,12 @@
 <div class="container-fluid">
     <h1>Register</h1>
     
-    <form>
-        <input class="log" type="text" ng-model="userName" name="name" placeholder="name">
-        <br>
-        <input class="log" type="password" ng-model="passWord" name="eMail" placeholder="eMail">
-        <input class="log" type="text" ng-model="userName" name="password" placeholder="password">
-        <br>
-        <input class="log" type="password" ng-model="passWord" name="PasswordConf" placeholder="PasswordConf">
-        <br>
-        <input type="submit" value="Submit" id="submit">
+    <form name="registerform" ng-submit="registerUser()">
+        <input class="log" type="text" ng-model="register.username" placeholder="Username">
+        <input class="log" type="text" ng-model="register.firstName" placeholder="First Name">
+        <input class="log" type="text" ng-model="register.lastName" placeholder="Last Name">
+        <input class="log" type="password" ng-model="register.password" placeholder="Password">
+        <!--<input class="log" type="password" ng-model="register.pConf" placeholder="Password Confirmation">-->
+        <input class="log" type="submit" value="Submit" id="submit">
     </form>
-    
-<!--
-    <div ui-view>
-        <a class="myClass" id="myID" ui-sref="register.help">Registration Help</a>
-    </div>
--->
 </div>

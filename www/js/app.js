@@ -155,6 +155,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        });
 //        return deferred.resolve(rqPromise);
         //END
+//        alert(Auth.hasCredentials());
+//        alert(Auth.getCredentials());
         return Auth.hasCredentials();
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){

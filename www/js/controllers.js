@@ -24,10 +24,12 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
              $scope.loginResultPromise.then(function(result) {
                 $scope.loginResult = result;
                 $scope.loginMsg = "You have logged in successfully! Status 200OK technomumbojumbo";
-                $state.go('home.cfeed');
+                $state.go("home.cfeed", {}, {reload: true});
+//                alert("logged_in");
              }, function(error) {
                 $scope.loginMsg = "Arghhh, matey! Check your username or password.";
                 Auth.clearCredentials();
+//                alert("credentials_cleared");
              });
              $scope.userName = '';
              $scope.passWord = '';
@@ -90,7 +92,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
         $scope.displayMessages = function(click_id) {
 //            $scope.pActiv = true;
 //            $scope.tActiv = false;
-            console.log(click_id);
+//            console.log(click_id);
             $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
             snapRemote.close();
         }
@@ -126,7 +128,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
 
 vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
 //    console.log("hi");
-    console.log($stateParams);
+//    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.groupMSGs = [
         {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
@@ -216,7 +218,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
-    console.log($stateParams);
+//    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.$parent.pActiv = true;
     $scope.posts = [
@@ -262,7 +264,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 }]);
 
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
-    console.log($stateParams);
+//    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.$parent.pActiv = true;
     $scope.tasks =[
@@ -390,8 +392,8 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
 
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
             $scope.ok = function () {
-                console.log($scope.name);
-                console.log($scope.duration);
+//                console.log($scope.name);
+//                console.log($scope.duration);
                 $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
                 $modalInstance.close();
     //            console.log($rootscope.groups);
@@ -456,7 +458,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
     function($scope, $state, Auth) {
 //        console.log("HI");
       $scope.logOut = function() {
-          console.log('loggedout');
+//          console.log('loggedout');
           Auth.clearCredentials();
           $state.go("home", {}, {reload: true});
       }

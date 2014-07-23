@@ -707,6 +707,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\efforts.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\efforts.task.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\groupFeed.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\groupFeed.post.html \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\groupFeed.task.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\groupMessages.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\groupMessages.message.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\home.html \

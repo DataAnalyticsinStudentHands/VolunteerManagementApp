@@ -16,12 +16,12 @@
     </feature>
     <name>volunteerManagementApp</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        UH SoA VMA
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        UH SoA VMA
     </author>
+    <preference name="Orientation" value="default" />
     <content src="index.html" />
     <access origin="*" />
-    <preference name="Orientation" value="default" />
 </widget>
