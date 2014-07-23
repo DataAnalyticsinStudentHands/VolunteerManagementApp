@@ -126,18 +126,28 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
 }]);
 
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-//    console.log("hi");
-//    console.log($stateParams);
-    $scope.id = $stateParams.id;
-    $scope.groupMSGs = [
-        {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
-    ];
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout) {
+        $scope.id = $stateParams.id;
+        $scope.groupMSGs = [
+            {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
+        ];
+        $timeout(function() {
+            $location.hash('bottom');
+            $anchorScroll();
+        });
+        $scope.addMsg = function() {
+            $scope.groupMSGs.push({id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: $scope.msg.message});
+            $scope.msg = "";
+            $timeout(function() {
+                $location.hash('bottom');
+                $anchorScroll();
+            });
+        }
 }]);
 
 
@@ -461,6 +471,17 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
 //          console.log('loggedout');
           Auth.clearCredentials();
           $state.go("home", {}, {reload: true});
+      }
+      
+      $scope.deleteUser = function() {
+          $scope.getUserPromise = $scope.Restangular().all("users").getList();
+          $scope.getUserPromise.then(function(success) {
+              console.log(success[0].id);
+              var result = $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(function(success) { console.log(sucess)}, function(failure) { console.log(failure) });
+//              console.log(result);
+          }, function(failure) {
+              console.log(failure);
+          });
       }
 }]);
 

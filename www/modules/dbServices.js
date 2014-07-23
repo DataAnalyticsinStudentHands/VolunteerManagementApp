@@ -21,9 +21,9 @@ databaseServices.factory('Auth', ['Base64', '$http', function (Base64, $http) {
         },
         hasCredentials: function() {
             var ls = null;
-//            var cookie = $cookieStore.get('authdata');
+//          var cookie = $cookieStore.get('authdata');
             ls = localStorage.getItem('authdata');
-//            console.log(ls);
+//          console.log(ls);
             if(ls) return true; else return false;
         }
     };
