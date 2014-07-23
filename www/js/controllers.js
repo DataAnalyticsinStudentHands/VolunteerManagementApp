@@ -16,9 +16,12 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
      
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
-             //$scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
-//             console.log($scope.passWordHashed);
-             Auth.setCredentials($scope.userName, $scope.passWord);
+             $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
+             console.log($scope.passWord);
+             console.log($scope.userName);
+             console.log($scope.salt);
+             console.log($scope.passWordHashed.toString());
+             Auth.setCredentials($scope.userName, $scope.passWordHashed);
 //             $scope.loginResult = $scope.Restangular.get();
              $scope.loginResultPromise = $scope.Restangular().all("users").getList();
              $scope.loginResultPromise.then(function(result) {
@@ -477,7 +480,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
           $scope.getUserPromise = $scope.Restangular().all("users").getList();
           $scope.getUserPromise.then(function(success) {
               console.log(success[0].id);
-              var result = $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(function(success) { console.log(sucess)}, function(failure) { console.log(failure) });
+              var result = $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(function(success) { console.log(success)}, function(failure) { console.log(failure) });
 //              console.log(result);
           }, function(failure) {
               console.log(failure);
@@ -491,7 +494,13 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ro
       $scope.registerUser = function() {
 //          console.log($scope.register);
           Auth.setCredentials("Visitor", "test");
-          $rootScope.Restangular().all("users").post($scope.register);
+          $scope.salt = "nfp89gpe";
+          console.log($scope.register.password);
+          $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+          console.log($scope.register.password);
+          console.log($scope.register.username);
+          console.log($scope.salt);
+          $rootScope.Restangular().all("users").post($scope.register).then(function(success) {console.log(success)},function(fail) { console.log(fail)});
           Auth.clearCredentials();
           $state.go("home", {}, {reload: true});
       }
