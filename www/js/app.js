@@ -140,33 +140,27 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
     $rootScope.Restangular = function() {
         return Restangular;
     }
-    $rootScope.isAuthenticated = function() {
+    $rootScope.isAuthenticated = function(authenticate) {
 //        //BELOW - Trying to get promises to work to verify auth
 //        var deferred = $q.defer();
 //        //This should be set to a work-all URL.
         var rqPromise = Restangular.all("users").getList().then(function(result) {
             console.log("authed");
-            return true;
         }, function(error) {
             Auth.clearCredentials();
-//            $state.go("login");
             console.log("not-authed");
-            return false;
+            if(authenticate) $state.go("login");
         });
-//        return deferred.resolve(rqPromise);
-//        //END
         return Auth.hasCredentials();
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
-      console.log($rootScope.isAuthenticated());
-      if (toState.authenticate && !$rootScope.isAuthenticated()){
+      if (toState.authenticate && !$rootScope.isAuthenticated(toState.authenticate)){
         console.log("non-authed");
-        console.log(toState);
         // User isn’t authenticated
         $state.go("login");
         //What?
         event.preventDefault(); 
-      } else console.log("authed");
+      }
     });
 }]);
