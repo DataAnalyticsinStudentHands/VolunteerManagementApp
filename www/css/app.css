@@ -33,6 +33,7 @@ body {
 /*****meun bar at the top**********/
 #background{
     background:url(../img/background_grid3.png) fixed;
+background-repeat: no-repeat;    
 }
 
 #wrapper{
@@ -98,25 +99,31 @@ body {
 
 /*********loging page**********/
 
-
-.logo{
-    position:relative;
+#logo_O{position:fixed;
     width: 100%;
-    align-content: center;
-    z-index:-2; 
+    margin: 0px 0px 0px 0px;
 }
 
+
 .log{
-    position: relative;
+    position:relative;
     border-radius:5px;
-    height:60px; 
+    height:50px; 
     width:70%;
-    bottom:380px;
-    margin: 0px 0px 0px 50px;
+    top:350px;
+    margin: 0% 15% 0% 15%;
     text-align: center;
     background-color:#0BA1F4;
-    z-index: 3;
-    opacity: .9;
+    z-index: 1;
+    opacity: .8;
+}
+
+
+#register{
+    position: relative;
+    margin-top: 5%;
+    margin-left: 50%;
+    top: 350px;
 }
 
 /**** Community Feed****/
@@ -177,7 +184,8 @@ body {
     width: 100%;    
     margin: 15% 0% 10% 0%;    
     text-align: center;
-    font-family: roboto medium;
+    font-family: roboto black;
+    font-size:12pt ;
     background-color: #e0e0e0;
     z-index:4;    
 }
@@ -195,7 +203,8 @@ body {
     padding-left:auto;
     border-radius: 0px 0px 0px 0px;
     overflow: auto;
-    font-family: roboto;
+    font-family: roboto medium;
+    font-size: 12pt;
 }
 
 
