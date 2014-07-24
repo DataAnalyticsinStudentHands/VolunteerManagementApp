@@ -93,18 +93,23 @@ body {
 
 
 .logo{
-    position: relative;
-    max-width: 100%;
-    margin: 0px 0px 0px 80px;  
+    position:relative;
+    width: 100%;
+    align-content: center;
+    z-index:-2; 
 }
 
 .log{
-    border-radius: 5px;
-    height:05%;
-    width:50%;
+    position: relative;
+    border-radius:5px;
+    height:60px; 
+    width:70%;
+    bottom:380px;
+    margin: 0px 0px 0px 50px;
+    text-align: center;
     background-color:#0BA1F4;
-    margin: auto;
-    max-width:100%;
+    z-index: 3;
+    opacity: .9;
 }
 
 /**** Community Feed****/
