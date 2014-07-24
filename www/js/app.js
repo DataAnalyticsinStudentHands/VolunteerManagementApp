@@ -147,9 +147,13 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
         var rqPromise = Restangular.all("users").getList().then(function(result) {
             console.log("authed");
         }, function(error) {
-            Auth.clearCredentials();
-            console.log("not-authed");
-            if(authenticate) $state.go("login");
+            if(error.status === 0) {
+                console.log(error.status);
+            } else {
+                Auth.clearCredentials();
+                console.log("not-authed");
+                if(authenticate) $state.go("login");
+            }
         });
         return Auth.hasCredentials();
     }
