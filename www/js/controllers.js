@@ -101,18 +101,18 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
     //        element: null,
     //        dragger: null,
             disable: 'right',
-            addBodyClasses: true,
+//            addBodyClasses: true,
             hyperextensible: false,
-            resistance: 0.5,
-            flickThreshold: 50,
-            transitionSpeed: 0.3,
-            easing: 'ease',
+//            resistance: 0.5,
+//            flickThreshold: 50,
+//            transitionSpeed: 0.3,
+//            easing: 'ease',
     //        maxPosition: 266,
     //        minPosition: -266,
-            tapToClose: true,
-            touchToDrag: true,
-            slideIntent: 40,
-            minDragDistance: 5
+//            tapToClose: true,
+//            touchToDrag: true,
+//            slideIntent: 40,
+//            minDragDistance: 5
         }
 
         var snapper = new Snap({
@@ -203,18 +203,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 //        element: null,
 //        dragger: null,
         disable: 'right',
-        addBodyClasses: true,
+//        addBodyClasses: true,
         hyperextensible: false,
-        resistance: 0.5,
-        flickThreshold: 50,
-        transitionSpeed: 0.3,
-        easing: 'ease',
+//        resistance: 0.5,
+//        flickThreshold: 50,
+//        transitionSpeed: 0.3,
+//        easing: 'ease',
 //        maxPosition: 266,
 //        minPosition: -266,
-        tapToClose: true,
-        touchToDrag: true,
-        slideIntent: 40,
-        minDragDistance: 5
+//        tapToClose: true,
+//        touchToDrag: true,
+//        slideIntent: 40,
+//        minDragDistance: 5
     }
     
     var snapper = new Snap({
@@ -277,40 +277,44 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     $scope.id = $stateParams.id;
     $scope.$parent.pActiv = true;
     $scope.tasks =[
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",}
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"}
     ];
     
     
-    $rootScope.posts = $scope.posts;
+    $rootScope.tasks = $scope.tasks;
     
-    $scope.addPost = function() {
+    $scope.addTask = function() {
         $scope.open();
     }
     
     $scope.open = function (size) {
         var modalInstance = $modal.open({
-          templateUrl: 'partials/addPost.html',
+          templateUrl: 'partials/addTask.html',
           controller: ModalInstanceCtrl,
           size: size
         });
 
         modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
+//          $scope.selected = selectedItem;
         }, function () {
 //          What to do on dismiss
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
+    
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
+//        console.log($scope.$parent);
         $scope.ok = function () {
-            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: $scope.content});
+            console.log($scope.newTask);
+            $scope.$parent.tasks.push({title: $scope.newTask.name, date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"});
             $modalInstance.close();
+//            console.log($rootscope.groups);
         };
 
         $scope.cancel = function () {

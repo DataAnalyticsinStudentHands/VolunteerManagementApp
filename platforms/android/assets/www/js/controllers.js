@@ -16,9 +16,8 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
      
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
-             //$scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
-//             console.log($scope.passWordHashed);
-             Auth.setCredentials($scope.userName, $scope.passWord);
+             $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
+             Auth.setCredentials($scope.userName, $scope.passWordHashed);
 //             $scope.loginResult = $scope.Restangular.get();
              $scope.loginResultPromise = $scope.Restangular().all("users").getList();
              $scope.loginResultPromise.then(function(result) {
@@ -102,18 +101,18 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
     //        element: null,
     //        dragger: null,
             disable: 'right',
-            addBodyClasses: true,
+//            addBodyClasses: true,
             hyperextensible: false,
-            resistance: 0.5,
-            flickThreshold: 50,
-            transitionSpeed: 0.3,
-            easing: 'ease',
+//            resistance: 0.5,
+//            flickThreshold: 50,
+//            transitionSpeed: 0.3,
+//            easing: 'ease',
     //        maxPosition: 266,
     //        minPosition: -266,
-            tapToClose: true,
-            touchToDrag: true,
-            slideIntent: 40,
-            minDragDistance: 5
+//            tapToClose: true,
+//            touchToDrag: true,
+//            slideIntent: 40,
+//            minDragDistance: 5
         }
 
         var snapper = new Snap({
@@ -126,18 +125,28 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
 }]);
 
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-//    console.log("hi");
-//    console.log($stateParams);
-    $scope.id = $stateParams.id;
-    $scope.groupMSGs = [
-        {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-        {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
-    ];
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout) {
+        $scope.id = $stateParams.id;
+        $scope.groupMSGs = [
+            {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
+            {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
+        ];
+        $timeout(function() {
+            $location.hash('bottom');
+            $anchorScroll();
+        });
+        $scope.addMsg = function() {
+            $scope.groupMSGs.push({id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: $scope.msg.message});
+            $scope.msg = "";
+            $timeout(function() {
+                $location.hash('bottom');
+                $anchorScroll();
+            });
+        }
 }]);
 
 
@@ -194,18 +203,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 //        element: null,
 //        dragger: null,
         disable: 'right',
-        addBodyClasses: true,
+//        addBodyClasses: true,
         hyperextensible: false,
-        resistance: 0.5,
-        flickThreshold: 50,
-        transitionSpeed: 0.3,
-        easing: 'ease',
+//        resistance: 0.5,
+//        flickThreshold: 50,
+//        transitionSpeed: 0.3,
+//        easing: 'ease',
 //        maxPosition: 266,
 //        minPosition: -266,
-        tapToClose: true,
-        touchToDrag: true,
-        slideIntent: 40,
-        minDragDistance: 5
+//        tapToClose: true,
+//        touchToDrag: true,
+//        slideIntent: 40,
+//        minDragDistance: 5
     }
     
     var snapper = new Snap({
@@ -268,40 +277,44 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     $scope.id = $stateParams.id;
     $scope.$parent.pActiv = true;
     $scope.tasks =[
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",},
-            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2",}
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"},
+            {title: "TASK TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"}
     ];
     
     
-    $rootScope.posts = $scope.posts;
+    $rootScope.tasks = $scope.tasks;
     
-    $scope.addPost = function() {
+    $scope.addTask = function() {
         $scope.open();
     }
     
     $scope.open = function (size) {
         var modalInstance = $modal.open({
-          templateUrl: 'partials/addPost.html',
+          templateUrl: 'partials/addTask.html',
           controller: ModalInstanceCtrl,
           size: size
         });
 
         modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
+//          $scope.selected = selectedItem;
         }, function () {
 //          What to do on dismiss
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
+    
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
+//        console.log($scope.$parent);
         $scope.ok = function () {
-            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: $scope.content});
+            console.log($scope.newTask);
+            $scope.$parent.tasks.push({title: $scope.newTask.name, date: "4/21 4:22PM", location: "39410 BLAH RD", duration: "2"});
             $modalInstance.close();
+//            console.log($rootscope.groups);
         };
 
         $scope.cancel = function () {
@@ -462,15 +475,30 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
           Auth.clearCredentials();
           $state.go("home", {}, {reload: true});
       }
+      
+      $scope.deleteUser = function() {
+          $scope.getUserPromise = $scope.Restangular().all("users").getList();
+          $scope.getUserPromise.then(function(success) {
+              $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(
+                  function(success) {
+                      console.log(success); $state.go("home", {}, {reload: true});
+                  }, function(failure) {
+                      console.log(failure)
+                  }
+              );
+          }, function(failure) {
+              console.log(failure);
+          });
+      }
 }]);
 
 vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$rootScope',
     function($scope, $state, Auth, $rootScope) {
-        
       $scope.registerUser = function() {
-//          console.log($scope.register);
           Auth.setCredentials("Visitor", "test");
-          $rootScope.Restangular().all("users").post($scope.register);
+          $scope.salt = "nfp89gpe";
+          $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+          $rootScope.Restangular().all("users").post($scope.register).then(function(success) {console.log(success)},function(fail) { console.log(fail)});
           Auth.clearCredentials();
           $state.go("home", {}, {reload: true});
       }
