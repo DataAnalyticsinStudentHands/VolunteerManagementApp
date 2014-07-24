@@ -511,6 +511,8 @@ vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
         $scope.goBack = function() {
             window.history.back();
         };
+        $scope.state = $state;
+        console.log($state);
 }]);
 
 vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',
