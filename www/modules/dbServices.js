@@ -1,25 +1,30 @@
 var databaseServices = angular.module('databaseServicesModule', ['ngResource', 'ngCookies']);
 
-databaseServices.factory('Auth', ['Base64', '$http', '$cookieStore', function (Base64, $http, $cookieStore) {
+databaseServices.factory('Auth', ['Base64', '$http', function (Base64, $http) {
     // initialize to whatever is in the cookie, if anything
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorage.getItem('authdata');
     console.log($http.defaults.headers.common.Authorization);
  
     return {
         setCredentials: function (username, password) {
             var encoded = Base64.encode(username + ':' + password);
             $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-            $cookieStore.put('authdata', encoded);
+//            $cookieStore.put('authdata', encoded);
+//            localStorage.setItem('authdata', JSON.stringify(note));
+            localStorage.setItem('authdata', encoded);
         },
         clearCredentials: function () {
             document.execCommand("ClearAuthenticationCache");
-            $cookieStore.remove('authdata');
+//            $cookieStore.remove('authdata');
+            localStorage.removeItem('authdata');
             $http.defaults.headers.common.Authorization = 'Basic ';
         },
         hasCredentials: function() {
-            var cookie = null;
-            var cookie = $cookieStore.get('authdata');
-            if(cookie) return true; else return false;
+            var ls = null;
+//          var cookie = $cookieStore.get('authdata');
+            ls = localStorage.getItem('authdata');
+//          console.log(ls);
+            if(ls) return true; else return false;
         }
     };
 }]);

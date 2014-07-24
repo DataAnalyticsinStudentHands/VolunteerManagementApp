@@ -30,7 +30,8 @@ volunteerManagementApp.config(
           url: "/login",
           views: {
             "app": {templateUrl: "partials/login.html", controller: 'loginCtrl'}
-          }
+          },
+          authenticate: false
       }).
       state('login.help', {
           url: ":msg",
@@ -40,8 +41,9 @@ volunteerManagementApp.config(
       state('register', {
           url: "/register",
           views: {
-            "app": { templateUrl: "partials/register.html"}
-          }
+            "app": { templateUrl: "partials/register.html", controller: 'registerCtrl'}
+          },
+          authenticate: false
       }).
       state('register.help', {
           url: "",
@@ -74,10 +76,11 @@ volunteerManagementApp.config(
           },
           authenticate: true
       }).
-      state('home.groupFeed.post', {
+      state('home.groupFeed.detail', {
           url: ":id",
           views: {
-            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
+            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'},
+            "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'}
           },
           authenticate: true
       }).
@@ -112,7 +115,7 @@ volunteerManagementApp.config(
       state('home.settings', {
           url: "/settings",
           views: {
-            "app": { templateUrl: "partials/settings.html"},
+            "app": { templateUrl: "partials/settings.html", controller: "settings"},
           },
           authenticate: true
       }).
@@ -133,39 +136,35 @@ volunteerManagementApp.config(
   });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {
-    Restangular.setBaseUrl("http://localhost:8080/RESTFUL-WS/services/");
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp");
     $rootScope.Restangular = function() {
         return Restangular;
     }
-    $rootScope.addAuth = function() {
-        //
-    }
-    $rootScope.isAuthenticated = function() {
-        //BELOW - Trying to get promises to work to verify auth
+    $rootScope.isAuthenticated = function(authenticate) {
+//        //BELOW - Trying to get promises to work to verify auth
 //        var deferred = $q.defer();
 //        //This should be set to a work-all URL.
-//        var rqPromise = Restangular.all("users").get("2").then(function(result) {
-//            console.log("authed");
-//            return true;
-//        }, function(error) {
-//            Auth.clearCredentials();
-//            console.log("not-authed");
-//            return false;
-//        });
-//        return deferred.resolve(rqPromise);
-        //END
-//        return Auth.hasCredentials();
-        return true;
+        var rqPromise = Restangular.all("users").getList().then(function(result) {
+            console.log("authed");
+        }, function(error) {
+            if(error.status === 0) {
+                console.log(error.status);
+            } else {
+                Auth.clearCredentials();
+                console.log("not-authed");
+                if(authenticate) $state.go("login");
+            }
+        });
+        return Auth.hasCredentials();
     }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
-      console.log($rootScope.isAuthenticated());
-      if (toState.authenticate && !$rootScope.isAuthenticated()){
+      if (toState.authenticate && !$rootScope.isAuthenticated(toState.authenticate)){
         console.log("non-authed");
         // User isn’t authenticated
         $state.go("login");
         //What?
         event.preventDefault(); 
-      } else console.log("authed");
+      }
     });
 }]);

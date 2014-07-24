@@ -7,7 +7,7 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         UH SoA VMA
     </author>
+    <preference name="Orientation" value="default" />
     <content src="index.html" />
     <access origin="*" />
-    <preference name="Orientation" value="portrait" />
 </widget>

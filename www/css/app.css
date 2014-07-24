@@ -325,11 +325,15 @@ body {
 }
 
 #groupfeed_post{
-    width:50%;    
+    width: 33%;    
 }
 
 #groupfeed_tasks{
-    width: 50%;
+    width: 34%;
+}
+
+#groupfeed_users{
+    width: 33%;
 }
 
 /**** Efforts******/

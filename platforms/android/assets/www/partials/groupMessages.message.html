@@ -1,7 +1,16 @@
 <p>For testing purposes: {{id}}</p>
+<!--<div id="scrollArea" ng-controller="ScrollController">-->
+  <a ng-click="noHash()">Go to bottom</a>
+<!--</div>-->
 <div id="message" ng-repeat="groupMSG in groupMSGs">
         <div><img ng-src="{{groupMSG.img}}" width="20" height="20"/></div>
         <div> {{groupMSG.author}} </div>
         <div> {{groupMSG.content}}</div>
         <div> {{groupMSG.time}}</div>
 </div>
+<!--<div id="bottom">TEST</div>-->
+<form id="bottom">
+    <input type="text" ng-model="msg.message">
+    <input type="submit" ng-click="addMsg()" name="id" placeholder="Name"/>
+</form>
+<br/>
