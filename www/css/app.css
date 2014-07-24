@@ -32,7 +32,7 @@ body {
 
 /*****meun bar at the top**********/
 #background{
-    background:url(../img/background_grid2.png) fixed #eeeeee;
+    background:url(../img/background_grid3.png) fixed;
 background-repeat:no-repeat;
 width: 100%;    
 }
@@ -344,13 +344,13 @@ width: 100%;
 /*    background-color: #eeeeee;*/
     top: 65px;
     padding-bottom: 30px;
-/*    background:url(../img/01.jpg) fixed;*/
+    background:url(../img/01.jpg) fixed;
 }
 #snap_page{
     background-color: #ffffff;
     top: 65px;
     padding-bottom: 30px;
-    background-image:url(../img/poly_w.png);
+    background-image:url(../img/background_grid3.png);
 }
 
 #groupfeed_post{
