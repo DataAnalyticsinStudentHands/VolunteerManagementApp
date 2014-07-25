@@ -1,12 +1,24 @@
-<!--<p>For testing purposes: {{id}}</p>-->
+<p>For testing purposes: {{id}}</p>
 <!--<div id="scrollArea" ng-controller="ScrollController">-->
-  <a ng-click="noHash()">Go to bottom</a>
+<!--  <a ng-click="noHash()">Go to bottom</a>-->
 <!--</div>-->
-<div id="message_i" ng-repeat="groupMSG in groupMSGs">
-        <div id="message_icc"><img ng-src="{{groupMSG.img}}" width="40" height="40"/></div>
-        <div id="message_ia"> {{groupMSG.author}} </div>
-        <div id="message_ic"> {{groupMSG.content}}</div>
-<!--        <div id="message_it"> {{groupMSG.time}}</div>-->
+<div id="message" ng-repeat="groupMSG in groupMSGs">
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn dropdown-toggle">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+        <div><img ng-src="{{groupMSG.img}}" width="20" height="20"/></div>
+        <div> {{groupMSG.author}} </div>
+        <div> {{groupMSG.content}}</div>
+        <div> {{groupMSG.time}}</div>
 </div>
 
 <div id="bottom">

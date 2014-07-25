@@ -9,6 +9,7 @@ databaseServices.factory('Auth', ['Base64', '$http', function (Base64, $http) {
         setCredentials: function (username, password) {
             var encoded = Base64.encode(username + ':' + password);
             $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+//            console.log(encoded);
 //            $cookieStore.put('authdata', encoded);
 //            localStorage.setItem('authdata', JSON.stringify(note));
             localStorage.setItem('authdata', encoded);
@@ -24,7 +25,7 @@ databaseServices.factory('Auth', ['Base64', '$http', function (Base64, $http) {
 //          var cookie = $cookieStore.get('authdata');
             ls = localStorage.getItem('authdata');
 //          console.log(ls);
-            if(ls) return true; else return false;
+            if(ls && ls != "VmlzaXRvcjp0ZXN0") return true; else return false;
         }
     };
 }]);
