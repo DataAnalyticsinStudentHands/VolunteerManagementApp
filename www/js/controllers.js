@@ -494,9 +494,9 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
 vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$timeout', '$rootScope', '$http', 
     function($scope, $state, Auth, $timeout, $rootScope, $http) {
       $scope.registerUser = function() {
-          Auth.setCredentials("Visitor", "test");
-          $scope.salt = "nfp89gpe";
-          $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+            Auth.setCredentials("Visitor", "test");
+            $scope.salt = "nfp89gpe";
+            $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
             $scope.$parent.Restangular().all("users").post($scope.register).then(
                 function(success) {
                     Auth.clearCredentials();
@@ -507,6 +507,8 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ti
                     alert(fail.status + " " + fail.statusText);
                 }
             );
+          
+            Auth.clearCredentials();
       }
 }]);
 

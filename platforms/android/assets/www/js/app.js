@@ -135,9 +135,10 @@ volunteerManagementApp.config(
       });
   });
 
+
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {
-    Restangular.setBaseUrl("http://192.168.1.125:8080/VolunteerApp/");
-//    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
+//    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     $rootScope.Restangular = function() {
         return Restangular;
     }

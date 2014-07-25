@@ -679,6 +679,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\login_background.png
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\login_logo.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\logo.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\logo_O.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\logo_vma.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_a_off.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_a_on.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_background.png \
@@ -688,6 +689,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_gf_off.icon.png
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_gf_on.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_gm_off.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_gm_on.icon.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\poly_w.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\temp_icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\XMLID_18_.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\XMLID_4_.png \
@@ -775,6 +777,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\login_backg
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\login_logo.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\logo.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\logo_O.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\logo_vma.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_a_off.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_a_on.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_background.png \
@@ -784,6 +787,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_gf_off
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_gf_on.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_gm_off.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_gm_on.icon.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\poly_w.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\temp_icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\XMLID_18_.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\XMLID_4_.png \
