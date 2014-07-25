@@ -429,7 +429,6 @@ vmaControllerModule.controller('awards', function ($scope) {
     ];
     
     $scope.total_hours = 42 + 35 + 32 + 12 + 21;
-//    console.log($scope.badges[0][1]);
     $scope.badge1_percent = Math.round($scope.badges[0][1]/$scope.total_hours * 100);
     $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
     $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
@@ -492,15 +491,22 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
       }
 }]);
 
-vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$rootScope',
-    function($scope, $state, Auth, $rootScope) {
+vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$timeout', '$rootScope', '$http', 
+    function($scope, $state, Auth, $timeout, $rootScope, $http) {
       $scope.registerUser = function() {
           Auth.setCredentials("Visitor", "test");
           $scope.salt = "nfp89gpe";
           $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
-          $rootScope.Restangular().all("users").post($scope.register).then(function(success) {console.log(success)},function(fail) { console.log(fail)});
-          Auth.clearCredentials();
-          $state.go("home", {}, {reload: true});
+            $scope.$parent.Restangular().all("users").post($scope.register).then(
+                function(success) {
+                    Auth.clearCredentials();
+                    console.log(success);
+                    $state.go("home", {}, {reload: true});
+                },function(fail) {
+                    Auth.clearCredentials();
+                    alert(fail.status + " " + fail.statusText);
+                }
+            );
       }
 }]);
 
@@ -512,7 +518,6 @@ vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
             window.history.back();
         };
         $scope.state = $state;
-        console.log($state);
 }]);
 
 vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',

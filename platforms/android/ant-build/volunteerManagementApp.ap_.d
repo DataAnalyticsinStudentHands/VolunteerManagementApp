@@ -28,6 +28,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\ant-build\res\drawable-port-mdpi\sc
 D:\SoA\ExampleProjects\VMA\platforms\android\ant-build\res\drawable-port-xhdpi\screen.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\ant-build\res\drawable-xhdpi\icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\_where-is-www.txt \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\bower_components \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\cordova.js \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\cordova_plugins.js \
@@ -655,6 +656,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\group_feed.icon.png 
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\group_feed_small.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\group_message.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\home_mp.svg \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\icon_gf.svg \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\image.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\image1.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\image10.png \
@@ -676,6 +678,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\info_box_orange.png 
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\login_background.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\login_logo.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\logo.icon.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\logo_O.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_a_off.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_a_on.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\img\menu_background.png \
@@ -749,6 +752,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\feed_time.i
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\group_feed.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\group_feed_small.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\group_message.icon.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\icon_gf.svg \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\image.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\image1.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\image10.png \
@@ -770,6 +774,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\info_box_or
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\login_background.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\login_logo.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\logo.icon.png \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\logo_O.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_a_off.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_a_on.icon.png \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\img\menu_background.png \
