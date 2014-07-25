@@ -2730,7 +2730,7 @@ select[multiple].input-lg {
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  cursor: pointer;
+  cursor: pointer;    
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -3128,16 +3128,16 @@ tbody.collapse.in {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
-  z-index: 1000;
+/*  left: 0;*/
+  right: 0px;    
   display: none;
-  float: left;
+/*  float:right;*/    
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
   text-align: left;
-  list-style: none;
+  list-style: none;   
   background-color: #fff;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
@@ -3253,12 +3253,12 @@ tbody.collapse.in {
 .btn-group-vertical {
   position: relative;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: middle;    
 }
 .btn-group > .btn,
 .btn-group-vertical > .btn {
   position: relative;
-  float: left;
+  float: left;    
 }
 .btn-group > .btn:hover,
 .btn-group-vertical > .btn:hover,
