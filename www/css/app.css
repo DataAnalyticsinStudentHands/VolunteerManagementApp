@@ -63,11 +63,18 @@ width: 100%;
     text-align: center;
 }
 
+.menuBar_active{
+    position:relative;
+    height:65px;
+    width:20%; 
+    padding:10px 0px 10px 0px;
+    background-color: rgba(247, 129, 49, 0.65);
+    margin-left:3.3%;
+    display: inline-block;
+    text-align: center;
+}
 
 /********bottom menu************/
-
-
-
 #b_menu{
     position:fixed;
 /*  top:90%; */

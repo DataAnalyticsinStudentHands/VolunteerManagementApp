@@ -33,6 +33,7 @@ body {
 /*****meun bar at the top**********/
 #background{
     background:url(../img/background_grid3.png) fixed;
+background-repeat: no-repeat;    
 }
 
 #wrapper{
@@ -42,19 +43,11 @@ body {
     padding: 2%; 
     margin-bottom: 30px;
     z-index:0;
-/*    background:url(../img/background_grid3.png) no-repeat center center fixed; */
-/*  -webkit-background-size: cover;*/
-/*  -moz-background-size: cover;*/
-/*  -o-background-size: cover;*/
-/*  background-size: cover;*/
- 
 }
 
 #menuBar{
     position:fixed;
-    top: 0;
     width:100%;
-    height:65px;
     z-index:1;
     background:#f96806;
 }
@@ -67,32 +60,20 @@ body {
     margin-left:3.3%;
     display: inline-block;
     text-align: center;
-    z-index: 1;
-/*    box-shadow: 0 0 0 4px rgba(255,255,255,1);*/
-/*    transition: background 0.2s, color 0.2s;    */
-    
 }
 
-
-.menuBar:hover {
-  color: red;
-  color: green;
+.menuBar_active{
+    position:relative;
+    height:65px;
+    width:20%; 
+    padding:10px 0px 10px 0px;
+    background-color: rgba(247, 129, 49, 0.65);
+    margin-left:3.3%;
+    display: inline-block;
+    text-align: center;
 }
-
-@keyframes spinAround {
-    from {
-        transform: rotate(0deg)
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 
 /********bottom menu************/
-
-
-
 #b_menu{
     position:fixed;
 /*  top:90%; */
@@ -100,8 +81,9 @@ body {
     padding:0px;
     width:100%;
     height: 40px;
-    z-index: 30;
+    z-index: 2;
     background: #ffffff;
+    opacity: .9;
 }
 
 .b_menu{
@@ -117,20 +99,31 @@ body {
 
 /*********loging page**********/
 
-
-.logo{
-    position: relative;
-    max-width: 100%;
-    margin: 0px 0px 0px 80px;  
+#logo_O{position:fixed;
+    width: 100%;
+    margin: 0px 0px 0px 0px;
 }
 
+
 .log{
-    border-radius: 5px;
-    height:05%;
-    width:50%;
+    position:relative;
+    border-radius:5px;
+    height:50px; 
+    width:70%;
+    top:350px;
+    margin: 0% 15% 0% 15%;
+    text-align: center;
     background-color:#0BA1F4;
-    margin: auto;
-    max-width:100%;
+    z-index: 1;
+    opacity: .8;
+}
+
+
+#register{
+    position: relative;
+    margin-top: 5%;
+    margin-left: 50%;
+    top: 350px;
 }
 
 /**** Community Feed****/
@@ -141,14 +134,15 @@ body {
     width: 100%;
     padding-top: 80px;
     margin-bottom: -25px;
-    z-index: 30;
+    z-index: 6;
 }
 
 #avatar-img{
     position: absolute;
     bottom: 62px;
     width: 90px;
-    z-index: 35;
+    z-index: 5;
+    
 }
 
     
@@ -167,7 +161,7 @@ body {
   right: 15%;
   bottom: 20px;
   left: 15%;
-  z-index: 10;
+/*  z-index: 10;*/
   padding-top: 20px;
   padding-bottom: 20px;
   color: #fff;
@@ -180,7 +174,7 @@ body {
   position:relative;
     width: 100%;
     height: 100%;
-  z-index: 10;
+/*  z-index: 10;*/
   bottom:80px;     
 }
 
@@ -190,7 +184,8 @@ body {
     width: 100%;    
     margin: 15% 0% 10% 0%;    
     text-align: center;
-    font-family: roboto medium;
+    font-family: roboto black;
+    font-size:12pt ;
     background-color: #e0e0e0;
     z-index:4;    
 }
@@ -208,7 +203,8 @@ body {
     padding-left:auto;
     border-radius: 0px 0px 0px 0px;
     overflow: auto;
-    font-family: roboto;
+    font-family: roboto medium;
+    font-size: 12pt;
 }
 
 
@@ -241,37 +237,24 @@ body {
 }
 
 #gmessageicon{
-    position: relative;
-
-    
+    position: relative;    
 }
 
 #group_content{
-    position: relative;
-    padding:5px;
+    position:relative;
+    width: 50%;
+    padding:auto;
     bottom:40px;
-    height: 40px;
-    margin:0% 30% 0% 30%;
+    margin-left:30%;
 }
 
-#scrollable_g{
-    position:relative;
-    padding: 10% 0% 10% 0%;
-    top: 20px;
-    width: 100%;
-    
-    
-}
 
 #message{
     position:relative;    
-    top:0px;
-    margin:5px 5px 45px 5px;
-    height: 80px;    
+    width: 100%;
+    margin:10% 5% 10% 0%;
     background-color:#ffffff;
-    padding: 30px 0px 0px 30px;    
-    border-radius:0px 0px 0px 0px;
-    border: 1px solid #EEEEEE;
+    padding: 10% 0% 0% 10%;  
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 0px 6px -6px black;
     box-shadow: 0 5px 10px -7px black;
@@ -323,7 +306,14 @@ body {
 }
 
 
-.btn btn-default{}
+#scrollable_g{
+    position:relative;
+    padding: 10% 0% 10% 0%;
+    top: 20px;
+    width: 100%;    
+}
+
+#groupPost{}
 
 /****group feed post****/
 #groupPost{

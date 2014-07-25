@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "dependencies": {
     "angular": "1.2.10",
-    "ionic": "latest",
     "angular-resource": "1.2.10",
     "angular-touch": "latest",
     "angular-cookies": "1.2.10",

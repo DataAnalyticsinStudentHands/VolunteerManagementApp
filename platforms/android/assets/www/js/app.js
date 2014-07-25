@@ -20,7 +20,7 @@ volunteerManagementApp.config(
     $stateProvider.
       state('home', {
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html"},
+            "menuBar": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
             "app": { templateUrl: "partials/home.html"},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
           },
@@ -136,7 +136,8 @@ volunteerManagementApp.config(
   });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {
-    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp");
+    Restangular.setBaseUrl("http://192.168.1.125:8080/VolunteerApp/");
+//    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     $rootScope.Restangular = function() {
         return Restangular;
     }
@@ -144,11 +145,11 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        //BELOW - Trying to get promises to work to verify auth
 //        var deferred = $q.defer();
 //        //This should be set to a work-all URL.
-        var rqPromise = Restangular.all("users").getList().then(function(result) {
+        Restangular.all("users").getList().then(function(result) {
             console.log("authed");
         }, function(error) {
             if(error.status === 0) {
-                console.log(error.status);
+                console.log("error-0");
             } else {
                 Auth.clearCredentials();
                 console.log("not-authed");
