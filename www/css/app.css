@@ -379,7 +379,8 @@ color:#0ba1f4;
     position:relative;
     padding: 10% 0% 10% 0%;
     top: 20px;
-    width: 100%;    
+    width: 100%;
+    overflow-x: hidden;
 }
 
 #groupPost{}

@@ -14,11 +14,11 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <name>volunteerManagementApp</name>
+    <name>VMA</name>
     <description>
         UH SoA VMA
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="" href="http://uh.edu">
         UH SoA VMA
     </author>
     <preference name="Orientation" value="default" />
