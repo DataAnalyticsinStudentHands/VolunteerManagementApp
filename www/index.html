@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en" ng-app="volunteerManagementApp">
 <head>
-    
-    
     <meta charset="utf-8">
     <title>Volunteer Management App</title>
 
@@ -38,16 +36,12 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body id="background">
-    
     <div ui-view="menuBar"></div>
     <div ui-view="app"></div>
     <div ui-view="bottomMenu"></div>
     
-    
 <!--    Below code is for forcing a browser (Chrome) to display a full error message instead of truncating it.-->
-    
 <script type="text/javascript">
-
     //Chrome passes the error object (5th param) which we must use since it now truncates the Msg (1st param).
     window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObject) {
         var errMsg;
@@ -63,5 +57,6 @@
     }
 </script>
 <!--<div id="error"></div>-->
+
 </body>
 </html>
