@@ -15,6 +15,7 @@
     "restangular": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
+    "headroom.js": "latest",
     "angular-snap": "latest",
     "highcharts-ng": "latest",
     "lodash": "latest"

@@ -10,7 +10,8 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'ui.bootstrap',
   'restangular',
   'snap',
-  'highcharts-ng'
+  'highcharts-ng',
+  'headroom'
 ]);
 
 volunteerManagementApp.config(

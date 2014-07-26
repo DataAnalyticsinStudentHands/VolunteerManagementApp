@@ -2,6 +2,7 @@
 <!--<div id="scrollArea" ng-controller="ScrollController">-->
 <!--  <a ng-click="noHash()">Go to bottom</a>-->
 <!--</div>-->
+<div id="scrollable_g">
 <div id="message_i" ng-repeat="groupMSG in groupMSGs">
         <div id="message_icc"><img ng-src="{{groupMSG.img}}" width="40" height="40"/></div>
         <div id="message_ia"> {{groupMSG.author}} </div>
@@ -26,4 +27,5 @@
     <input type="submit" ng-click="addMsg()" name="id" placeholder="Name"/>
 </form>
 <br/>
+</div>
 </div>

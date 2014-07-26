@@ -30,6 +30,36 @@ body {
 }
 */
 
+
+.headroom {
+    position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out; z-index: 10000;
+}
+.headroom--unpinned {
+    top: -100px;
+}
+.headroom--pinned {
+    top: 0;
+}
+
+.footer {
+    position:fixed;
+/*  top:90%; */
+    bottom: 0px;
+    padding:0px;
+    width:100%;
+    height: 40px;
+    z-index: 2;
+    background: #ffffff;
+    opacity: .9;
+    transition: all .2s ease-in-out;
+}
+.footer--unpinned {
+    bottom: -100px;
+}
+.footer--pinned {
+    bottom: 0;
+}
+
 /*****meun bar at the top**********/
 #background{
     background:url(../img/background_grid3.png) fixed;
@@ -75,9 +105,9 @@ width: 100%;
 }
 
 /********bottom menu************/
+/*
 #b_menu{
     position:fixed;
-/*  top:90%; */
     bottom: 0px;
     padding:0px;
     width:100%;
@@ -86,6 +116,7 @@ width: 100%;
     background: #ffffff;
     opacity: .9;
 }
+*/
 
 .b_menu{
     position:relative;
@@ -388,8 +419,8 @@ right: 130px;
 
 #scrollable_g{
     position:relative;
-    padding: 10% 0% 10% 0%;
-    top: 20px;
+    padding: 0% 0% 10% 0%;
+/*    top: 20px;*/
     width: 100%;
     overflow-x: hidden;
 }
