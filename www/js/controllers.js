@@ -192,30 +192,25 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
-    
-    $scope.displayPosts = function(click_id) {
+    //OPENS THE SNAPPER TO DISPLAY DETAILS
+    $scope.displayDetail = function(click_id) {
         $state.go('home.groupFeed.detail', {id:click_id}, {reload: false});
         snapRemote.close();
-    }   
+    }
     
-    $rootscope.groups = [
-        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
-        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
-    ];
+    //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
+    $scope.updateGroups = function() {
+        var gProm = $scope.$parent.Restangular().all("groups").getList();
+        gProm.then(function(success) {
+//            console.log(success);
+            $rootscope.groups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+    }
+    $scope.updateGroups();
     
-     
+    //OPENING THE MODAL TO ADD A GROUP
     $scope.addGroup = function() {
         $scope.open();
     }
@@ -238,9 +233,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
         $scope.ok = function () {
-            $rootscope.groups.push({id:'7', group_name:$scope.name, icon: "img/temp_icon.png"});
-            $modalInstance.close();
-//            console.log($rootscope.groups);
+            $scope.message = "ADD FAILED";
+            
+            var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
+            
+            promise.then(function(success) {
+                console.log(success);
+                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                $modalInstance.close();
+            }, function(fail) {
+//                console.log(fail);
+                $scope.message = "ADD FAILED";
+            });
         };
 
         $scope.cancel = function () {
@@ -248,6 +252,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
         };
     };
     
+    //UI-SNAP SETTINGS
     $scope.settings = {
 //        element: null,
 //        dragger: null,
@@ -540,7 +545,7 @@ vmaControllerModule.controller('awards', function ($scope) {
         options: {
             chart: {
                 type: 'pie',
-                 plotBackgroundColor: null,
+                plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
 
@@ -614,16 +619,13 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ti
 }]);
 
 //Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
-vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
-    function($scope, $state) {
-//        console.log("HI");
-        $scope.goBack = function() {
-            window.history.back();
-        };
-        $scope.state = $state;
+vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
+    $scope.goBack = function() {
+        window.history.back();
+    };
+    $scope.state = $state;
 }]);
 
-vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',
- function($scope, $state, $stateParams) {
-     $scope.msg = $stateParams.msg;
- }]);
+vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+    $scope.msg = $stateParams.msg;
+}]);
