@@ -2,9 +2,9 @@
     <snap-drawer id="snap_drawer">
         <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
         <div id="groups" ng-repeat="group in groups">
-            <a ng-click="displayPosts(group.id)">
+            <a ng-click="displayDetail(group.id)">
                 <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-                <div id="groupname">Group: {{group.group_name}} </div>
+                <div id="groupname"> {{group.name}} </div>
             </a>
         </div>
     </snap-drawer>

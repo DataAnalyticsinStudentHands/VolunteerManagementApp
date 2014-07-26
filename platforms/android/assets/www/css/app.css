@@ -1,7 +1,15 @@
 /* app css stylesheet */
 * { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
 input, textarea { -webkit-user-select:text; }
-body { background-color:white; color:black }
+body { 
+    background-color:white; 
+    color:black
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 
 body {
     overflow-x: hidden;
@@ -29,6 +37,42 @@ body {
     left:0px;
 }
 */
+
+/*** START SCROLL AWAY ***/
+.headroom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all .25s ease-in-out;
+    z-index: 2;
+}
+.headroom--unpinned {
+    top: -100px;
+}
+.headroom--pinned {
+    top: 0;
+}
+
+.footer {
+    position:fixed;
+/*  top:90%; */
+    bottom: 0px;
+    padding:0px;
+    width:100%;
+    height: 40px;
+    z-index: 2;
+    background: #ffffff;
+    opacity: .85;
+    transition: all .25s ease-in-out;
+}
+.footer--unpinned {
+    bottom: -100px;
+}
+.footer--pinned {
+    bottom: 0;
+}
+/*** END SCROLL AWAY ***/
 
 /*****meun bar at the top**********/
 #background{
@@ -75,9 +119,9 @@ width: 100%;
 }
 
 /********bottom menu************/
+/*
 #b_menu{
     position:fixed;
-/*  top:90%; */
     bottom: 0px;
     padding:0px;
     width:100%;
@@ -86,6 +130,7 @@ width: 100%;
     background: #ffffff;
     opacity: .9;
 }
+*/
 
 .b_menu{
     position:relative;
@@ -104,7 +149,6 @@ width: 100%;
     width: 100%;
     margin: 0px 0px 0px 0px;
 }
-
 
 .log{
     position:relative;
@@ -292,7 +336,7 @@ width: 100%;
     padding-left:20px;
     font-family:roboto black;
     font-size: 16pt;
-    text-decoration: underline;
+    text-decoration: none;
     color: #0ba1f4;
     
 }
@@ -300,7 +344,7 @@ width: 100%;
 #message_i{
 position:relative;    
     width: 100%;
-    height: 60px;
+    height: 75px;
     margin:0% 0% 1.5% 0%;
     background-color:#ffffff;
     padding: 0% 5% 0% 5%;  
@@ -312,29 +356,41 @@ position:relative;
 #message_ic{
 position: relative;
 width: 100%;    
-bottom:40px; 
-text-align: center;    
+bottom:40px;
+left: 60px;    
+text-align:left;
+width: 250px;
+  overflow: hidden;    
 }
 
 #message_icc{
 position: relative;
 width: 100%;    
-top:10px;    
+top:10px;
+    
 }
 
 #message_ia{
 position: relative;
 bottom:40px; 
-text-align: center;
-font-size: 16pt;
-color:#0ba1f4;     
-    
+text-align:left;
+font-size: 16pt;    
+color:#0ba1f4; 
+left: 60px;        
 }
 
-/*#message_it{*/
-/*position: relative;*/
-/*bottom: 60px;    */
-/*}*/
+#bs{
+position:relative;
+bottom: 70px;
+left:90%;    
+}
+
+.dropdown-menu{
+position: relative;    
+z-index:3;
+top: 35px;
+right: 130px;    
+}
 
 #bottom{
     position: relative;
@@ -377,9 +433,10 @@ color:#0ba1f4;
 
 #scrollable_g{
     position:relative;
-    padding: 10% 0% 10% 0%;
-    top: 20px;
-    width: 100%;    
+    padding: 0% 0% 10% 0%;
+/*    top: 20px;*/
+    width: 100%;
+    overflow-x: hidden;
 }
 
 #groupPost{}
@@ -410,11 +467,11 @@ color:#0ba1f4;
 }
 
 #groupfeed_post{
-    width: 33%;    
+    width: 33%;
 }
 
 #groupfeed_tasks{
-    width: 34%;
+    width: 33%;
 }
 
 #groupfeed_users{

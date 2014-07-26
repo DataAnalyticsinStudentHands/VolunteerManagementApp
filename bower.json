@@ -3,15 +3,9 @@
   "appPath": "www",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.10",
-    "angular-resource": "1.2.10",
-    "angular-touch": "latest",
-    "angular-cookies": "1.2.10",
+    "angular": "latest",
     "angular-bootstrap": "latest",
-    "angular-sanitize": "1.2.10",
-    "angular-ui-router": "0.2.7",
-    "angular-animate": "latest",
-    "angular-route": "latest",
+    "angular-ui-router": "latest",
     "restangular": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
@@ -19,14 +13,5 @@
     "angular-snap": "latest",
     "highcharts-ng": "latest",
     "lodash": "latest"
-  },
-  "devDependencies": {
-    "angular-mocks": "1.2.10",
-    "angular-scenario": "1.2.10"
-  },
-  "resolutions": {
-    "angular": "1.2.19",
-    "angular-sanitize": "1.2.12",
-    "angular-animate": "~1.2.19"
   }
 }

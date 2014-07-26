@@ -3,14 +3,14 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
-  'ngRoute',
   'vmaControllerModule',
   'databaseServicesModule',
   'ui.router',
   'ui.bootstrap',
   'restangular',
   'snap',
-  'highcharts-ng'
+  'highcharts-ng',
+  'headroom'
 ]);
 
 volunteerManagementApp.config(

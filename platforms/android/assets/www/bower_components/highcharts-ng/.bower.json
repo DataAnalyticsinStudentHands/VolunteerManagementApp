@@ -16,7 +16,6 @@
     "commit": "2523eb339757c4a996491cdbdb609868cef08c36"
   },
   "_source": "git://github.com/pablojim/highcharts-ng.git",
-  "_target": "~0.0.6",
-  "_originalSource": "highcharts-ng",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "highcharts-ng"
 }

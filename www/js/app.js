@@ -3,7 +3,6 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
-  'ngRoute',
   'vmaControllerModule',
   'databaseServicesModule',
   'ui.router',

@@ -51,6 +51,12 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
         {id:'3', content:"POST 3", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
         {id:'4', content:"POST 4", time:"4:05", img: "img/temp_icon.png", author: "me", group: "postGroup", likes:"8", followers: "319"},
         {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
+        {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
+        {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
+        {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
+        {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
+        {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
+        {id:'5', content:"POST 5", time:"4:05", img: "img/temp_icon.png", author: "you", group: "postGroup", likes:"8", followers: "319"},
         {id:'6', content:"POST 6", time:"4:05", img: "img/temp_icon.png", author: "me", group: "postGroup", likes:"8", followers: "319"}
     ];
     
@@ -58,6 +64,14 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
         {id:'1', caption: "GROUP 1", image: "img/temp_icon.png"},
         {id:'2', caption: "GROUP 2", image: "img/temp_icon.png"},
         {id:'3', caption: "GROUP 3", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
+        {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
         {id:'4', caption: "GROUP 4", image: "img/temp_icon.png"},
         {id:'5', caption: "GROUP 5", image: "img/temp_icon.png"},
         {id:'6', caption: "GROUP 6", image: "img/temp_icon.png"}
@@ -81,6 +95,12 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', function($scope, $state, $rootscope, snapRemote) {
     $scope.messages = [
         {id:'1', task: "TASK 1", preview_content:"Hi!", img: "img/temp_icon.png", preview_author: "you"},
+        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
+        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
+        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
+        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
+        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
+        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
         {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
         {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
         {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
@@ -172,30 +192,25 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
-    
-    $scope.displayPosts = function(click_id) {
+    //OPENS THE SNAPPER TO DISPLAY DETAILS
+    $scope.displayDetail = function(click_id) {
         $state.go('home.groupFeed.detail', {id:click_id}, {reload: false});
         snapRemote.close();
-    }   
+    }
     
-    $rootscope.groups = [
-        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
-        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
-    ];
+    //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
+    $scope.updateGroups = function() {
+        var gProm = $scope.$parent.Restangular().all("groups").getList();
+        gProm.then(function(success) {
+//            console.log(success);
+            $rootscope.groups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+    }
+    $scope.updateGroups();
     
-     
+    //OPENING THE MODAL TO ADD A GROUP
     $scope.addGroup = function() {
         $scope.open();
     }
@@ -218,9 +233,18 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
         $scope.ok = function () {
-            $rootscope.groups.push({id:'7', group_name:$scope.name, icon: "img/temp_icon.png"});
-            $modalInstance.close();
-//            console.log($rootscope.groups);
+            $scope.message = "ADD FAILED";
+            
+            var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
+            
+            promise.then(function(success) {
+                console.log(success);
+                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                $modalInstance.close();
+            }, function(fail) {
+//                console.log(fail);
+                $scope.message = "ADD FAILED";
+            });
         };
 
         $scope.cancel = function () {
@@ -228,6 +252,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
         };
     };
     
+    //UI-SNAP SETTINGS
     $scope.settings = {
 //        element: null,
 //        dragger: null,
@@ -262,6 +287,14 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.posts = [
         {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'2', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
+        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
         {id:'5', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
@@ -366,12 +399,30 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, 
         {id:'2', task_name: "SIGNED UP TASK 2", icon: "img/temp_icon.png"},
         {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
         {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
+        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
+        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
+        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
+        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
+        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
+        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
         {id:'5', task_name: "SIGNED UP TASK 5", icon: "img/temp_icon.png"},
         {id:'6', task_name: "SIGNED UP TASK 6", icon: "img/temp_icon.png"}
     ];
     $scope.invites = [
         {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
         {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
         {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
@@ -385,6 +436,15 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
     $scope.tasks = [
         {id:'1', description: "BLAH BLAH"},
         {id:'2', description: "BLAH BLAH"},
+        {id:'3', description: "BLAH BLAH"},
+        {id:'4', description: "BLAH BLAH"},
+        {id:'5', description: "BLAH BLAH"},
+        {id:'3', description: "BLAH BLAH"},
+        {id:'4', description: "BLAH BLAH"},
+        {id:'5', description: "BLAH BLAH"},
+        {id:'3', description: "BLAH BLAH"},
+        {id:'4', description: "BLAH BLAH"},
+        {id:'5', description: "BLAH BLAH"},
         {id:'3', description: "BLAH BLAH"},
         {id:'4', description: "BLAH BLAH"},
         {id:'5', description: "BLAH BLAH"},
@@ -403,6 +463,15 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     $scope.entries = $rootScope.entries = [
         {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
         {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
+        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
+        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
+        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
+        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
+        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
+        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
+        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
+        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
+        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
         {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
         {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
         {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
@@ -476,7 +545,7 @@ vmaControllerModule.controller('awards', function ($scope) {
         options: {
             chart: {
                 type: 'pie',
-                 plotBackgroundColor: null,
+                plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
 
@@ -550,16 +619,13 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ti
 }]);
 
 //Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
-vmaControllerModule.controller('menuCtrl', ['$scope', '$state',
-    function($scope, $state) {
-//        console.log("HI");
-        $scope.goBack = function() {
-            window.history.back();
-        };
-        $scope.state = $state;
+vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
+    $scope.goBack = function() {
+        window.history.back();
+    };
+    $scope.state = $state;
 }]);
 
-vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams',
- function($scope, $state, $stateParams) {
-     $scope.msg = $stateParams.msg;
- }]);
+vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+    $scope.msg = $stateParams.msg;
+}]);
