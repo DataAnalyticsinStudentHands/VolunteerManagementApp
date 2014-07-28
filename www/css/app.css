@@ -1,15 +1,7 @@
 /* app css stylesheet */
 * { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
 input, textarea { -webkit-user-select:text; }
-body { 
-    background-color:white; 
-    color:black
-}
-
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
-}
+body { background-color:white; color:black }
 
 body {
     overflow-x: hidden;
@@ -38,14 +30,14 @@ body {
 }
 */
 
-/*** START SCROLL AWAY ***/
+
 .headroom {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    transition: all .25s ease-in-out;
-    z-index: 2;
+    transition: all .2s ease-in-out;
+    z-index: 1;
 }
 .headroom--unpinned {
     top: -100px;
@@ -56,14 +48,15 @@ body {
 
 .footer {
     position:fixed;
+/*  top:90%; */
     bottom: 0px;
     padding:0px;
     width:100%;
     height: 40px;
     z-index: 2;
     background: #ffffff;
-    opacity: .85;
-    transition: all .25s ease-in-out;
+    opacity: .9;
+    transition: all .2s ease-in-out;
 }
 .footer--unpinned {
     bottom: -100px;
@@ -71,7 +64,6 @@ body {
 .footer--pinned {
     bottom: 0;
 }
-/*** END SCROLL AWAY ***/
 
 /*****meun bar at the top**********/
 #background{
@@ -185,6 +177,8 @@ width: 100%;
 }
 
 /**** Community Feed****/
+
+
 #avatar-container{
     position:relative;
     width: 100%;
@@ -200,6 +194,7 @@ width: 100%;
     z-index: 5;
     
 }
+
     
 #post{
     position:relative;
@@ -209,6 +204,7 @@ width: 100%;
     padding-bottom: auto;
     padding: 0% 2% 0% 2%;
 }
+
 
 .carousel-caption {
   position: absolute;
@@ -222,6 +218,7 @@ width: 100%;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
+
 
 .carousel{
   position:relative;
@@ -243,6 +240,8 @@ width: 100%;
     z-index:4;
     color: #0ba1f4;
 }
+
+
 
 #contentbox{
     position:absolute; 
@@ -282,8 +281,8 @@ width: 100%;
 .slide_image{
     width: 100%;
 }
-
 /***group message******/
+
 #messageicon{
     position: relative;
     height: 80px;
@@ -328,13 +327,13 @@ width: 100%;
     padding-left:20px;
     font-family:roboto black;
     font-size: 16pt;
-    text-decoration: none;
+    text-decoration: underline;
     color: #0ba1f4;
     
 }
 
 #message_i{
-    position:relative;    
+position:relative;    
     width: 100%;
     height: 75px;
     margin:0% 0% 1.5% 0%;
@@ -363,32 +362,37 @@ top:10px;
 }
 
 #message_ia{
-    position: relative;
-    bottom:40px; 
-    text-align:left;
-    font-size: 16pt;    
-    color:#0ba1f4; 
-    left: 60px;        
+position: relative;
+bottom:40px; 
+text-align:left;
+font-size: 16pt;    
+color:#0ba1f4; 
+left: 60px;        
 }
 
 #bs{
     position:relative;
     bottom: 70px;
-    left:90%;
+    left:90%;    
 }
 
 .dropdown-menu{
-/*    position: relative;*/
+    /*position: relative;    */
     z-index:3;
-/*    top: 35px;*/
-/*    right: 130px;*/
+    /*
+    top: 35px;
+    right: 130px;    
+    */
 }
 
 #bottom{
-    position: relative;
+    position:relative;
+    
+    
 }
-
 /***groupfeed****/
+
+
 #groupfeed{
     position: relative;    
     top:0px;
@@ -400,7 +404,7 @@ top:10px;
 
 #groupname{
     position:relative;
-    bottom:90px;              
+    bottom:50px;              
     font-family:sans-serif;
     font-size:12pt;
     padding-left:70px;    
@@ -410,9 +414,9 @@ top:10px;
 
 #groupcon{
     position:relative;
-    height: 100px;    
+    height: 60px;    
     padding:0px 0px 0px 10px;
-    margin:0px 2px 0px 2px;    
+    margin:0px 0px 0px 0px;    
     background-color:#ffffff;
     border-radius: 0px 0px 0px 0px;    
     -webkit-box-shadow: 0 8px 6px -6px black;
@@ -427,9 +431,9 @@ top:10px;
 /*    top: 20px;*/
     width: 100%;
     overflow-x: hidden;
+    background:#eeeeee;
 }
 
-#groupPost{}
 
 /****group feed post****/
 #groupPost{
@@ -437,6 +441,9 @@ top:10px;
     background:#ffffff;    
     margin:10px 10px 10px 10px;
     top: 10px;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 0px 6px -6px black;
+    box-shadow: 0 5px 10px -7px black;
 }
 
 #snap{
@@ -473,12 +480,19 @@ top:10px;
 
 #groupfeed_a{
     position: relative;
-    bottom: 70px;
-    left: 70px;
+    bottom: 60px;
+    left: 80px;
+    color:#f96806;
+    font-size: 16pt;
 }
 
 
-#groupfeed_c{}
+#groupfeed_c{
+    position: relative;
+    bottom: 50px;
+    left: 80px;
+    
+}
 
 
 #groupfeed_l{
@@ -500,7 +514,29 @@ top:10px;
     left: 70px;
 }
 
+
+#t_t{
+     position: relative;
+      text-align: center;
+      font-size: 14pt;
+      bottom: 30px;
+      color:#f96806; 
+    
+}
+
+#t{
+    position: relative;
+    text-align: center;
+    font-size: 12pt;
+    bottom: 30px; 
+    color: #000000;    
+}
+
+
+
 /**** Efforts******/
+
+
 #Egroups{
     position: relative;
 }
@@ -508,4 +544,8 @@ top:10px;
 
 #invite{
     position: relative;
+}
+
+/*#bs {*/
+    
 }
