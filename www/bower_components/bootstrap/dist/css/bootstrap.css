@@ -2735,7 +2735,8 @@ select[multiple].input-lg {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  background-image: none;
+  background:#eeeeee;
+  opacity: .7;    
   border: 1px solid transparent;
   border-radius: 4px;
 }
@@ -3117,7 +3118,7 @@ tbody.collapse.in {
   vertical-align: middle;
   border-top: 4px solid;
   border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+  border-left: 4px solid transparent;    
 }
 .dropdown {
   position: relative;
@@ -3163,14 +3164,14 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #333;
+  color: blue;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #262626;
   text-decoration: none;
-  background-color: #f5f5f5;
+  background-color: #000000;
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,

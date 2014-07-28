@@ -373,9 +373,38 @@ left: 60px;
 #bs{
     position:relative;
     bottom: 70px;
-    left:85%;    
+    left:85%;
 }
 
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+ color:#f96806;     
+}
+
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #f96806;
+  white-space: nowrap;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color:#0ba1f4;
+}
 .dropdown-menu{
     /*position: relative;    */
     z-index:4;
@@ -485,15 +514,18 @@ g
 #groupfeed_a{
     position: relative;
     bottom: 60px;
-    left: 80px;
+    width: 40%;
+    left: 20%;
     color:#f96806;
     font-size: 16pt;
 }
 
 
 #groupfeed_c{
-    position: relative;
-    bottom: 50px;
+    position:absolute;
+    height: 90px;
+    width: 70%;
+    bottom: 30px;
     left: 80px;
     
 }
@@ -507,7 +539,8 @@ g
 
 #groupfeed_t{
     position: relative;
-    bottom: 120px;
+    bottom: 105px;
+    width: 100px;
     left: 70%;
 }
 
