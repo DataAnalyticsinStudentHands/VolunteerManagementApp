@@ -4,6 +4,7 @@
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'vmaControllerModule',
+  'vmaFilterModule',
   'databaseServicesModule',
   'ui.router',
   'ui.bootstrap',
