@@ -56,7 +56,6 @@ body {
 
 .footer {
     position:fixed;
-/*  top:90%; */
     bottom: 0px;
     padding:0px;
     width:100%;
@@ -186,8 +185,6 @@ width: 100%;
 }
 
 /**** Community Feed****/
-
-
 #avatar-container{
     position:relative;
     width: 100%;
@@ -203,7 +200,6 @@ width: 100%;
     z-index: 5;
     
 }
-
     
 #post{
     position:relative;
@@ -213,7 +209,6 @@ width: 100%;
     padding-bottom: auto;
     padding: 0% 2% 0% 2%;
 }
-
 
 .carousel-caption {
   position: absolute;
@@ -227,7 +222,6 @@ width: 100%;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
-
 
 .carousel{
   position:relative;
@@ -249,8 +243,6 @@ width: 100%;
     z-index:4;
     color: #0ba1f4;
 }
-
-
 
 #contentbox{
     position:absolute; 
@@ -290,8 +282,8 @@ width: 100%;
 .slide_image{
     width: 100%;
 }
-/***group message******/
 
+/***group message******/
 #messageicon{
     position: relative;
     height: 80px;
@@ -342,7 +334,7 @@ width: 100%;
 }
 
 #message_i{
-position:relative;    
+    position:relative;    
     width: 100%;
     height: 75px;
     margin:0% 0% 1.5% 0%;
@@ -371,34 +363,32 @@ top:10px;
 }
 
 #message_ia{
-position: relative;
-bottom:40px; 
-text-align:left;
-font-size: 16pt;    
-color:#0ba1f4; 
-left: 60px;        
+    position: relative;
+    bottom:40px; 
+    text-align:left;
+    font-size: 16pt;    
+    color:#0ba1f4; 
+    left: 60px;        
 }
 
 #bs{
-position:relative;
-bottom: 70px;
-left:90%;    
+    position:relative;
+    bottom: 70px;
+    left:90%;
 }
 
 .dropdown-menu{
-position: relative;    
-z-index:3;
-top: 35px;
-right: 130px;    
+/*    position: relative;*/
+    z-index:3;
+/*    top: 35px;*/
+/*    right: 130px;*/
 }
 
 #bottom{
     position: relative;
-    
 }
+
 /***groupfeed****/
-
-
 #groupfeed{
     position: relative;    
     top:0px;
@@ -510,11 +500,7 @@ right: 130px;
     left: 70px;
 }
 
-
-
 /**** Efforts******/
-
-
 #Egroups{
     position: relative;
 }
@@ -522,8 +508,4 @@ right: 130px;
 
 #invite{
     position: relative;
-}
-
-#bs {
-    
 }
