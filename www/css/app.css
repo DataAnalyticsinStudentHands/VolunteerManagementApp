@@ -379,7 +379,8 @@ right: 130px;
 }
 
 #bottom{
-    position: relative;
+    position:relative;
+    
     
 }
 /***groupfeed****/
@@ -396,7 +397,7 @@ right: 130px;
 
 #groupname{
     position:relative;
-    bottom:90px;              
+    bottom:50px;              
     font-family:sans-serif;
     font-size:12pt;
     padding-left:70px;    
@@ -406,9 +407,9 @@ right: 130px;
 
 #groupcon{
     position:relative;
-    height: 100px;    
+    height: 60px;    
     padding:0px 0px 0px 10px;
-    margin:0px 2px 0px 2px;    
+    margin:0px 0px 0px 0px;    
     background-color:#ffffff;
     border-radius: 0px 0px 0px 0px;    
     -webkit-box-shadow: 0 8px 6px -6px black;
@@ -423,9 +424,9 @@ right: 130px;
 /*    top: 20px;*/
     width: 100%;
     overflow-x: hidden;
+    background:#eeeeee;
 }
 
-#groupPost{}
 
 /****group feed post****/
 #groupPost{
@@ -433,6 +434,9 @@ right: 130px;
     background:#ffffff;    
     margin:10px 10px 10px 10px;
     top: 10px;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 0px 6px -6px black;
+    box-shadow: 0 5px 10px -7px black;
 }
 
 #snap{
@@ -469,12 +473,19 @@ right: 130px;
 
 #groupfeed_a{
     position: relative;
-    bottom: 70px;
-    left: 70px;
+    bottom: 60px;
+    left: 80px;
+    color:#f96806;
+    font-size: 16pt;
 }
 
 
-#groupfeed_c{}
+#groupfeed_c{
+    position: relative;
+    bottom: 50px;
+    left: 80px;
+    
+}
 
 
 #groupfeed_l{
@@ -495,6 +506,24 @@ right: 130px;
     top:0;
     left: 70px;
 }
+
+
+#t_t{
+     position: relative;
+      text-align: center;
+      font-size: 14pt;
+      bottom: 30px;
+      color:#f96806; 
+    
+}
+
+    #t{
+      position: relative;
+      text-align: center;
+      font-size: 12pt;
+      bottom: 30px; 
+      color: #000000;    
+    }
 
 
 
