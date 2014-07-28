@@ -378,7 +378,7 @@ left: 60px;
 
 .dropdown-menu{
     /*position: relative;    */
-    z-index:3;
+    z-index:4;
     /*
     top: 35px;
     right: 130px;    
@@ -477,8 +477,10 @@ left: 60px;
     width: 33%;
 }
 
+/*
 #groupfeed_img{}
 g
+*/
 
 #groupfeed_a{
     position: relative;
@@ -505,7 +507,7 @@ g
 
 #groupfeed_t{
     position: relative;
-    bottom: 130px;
+    bottom: 120px;
     left: 70%;
 }
 

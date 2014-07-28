@@ -465,6 +465,7 @@ D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\awards.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\bottomMenu.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\calendar.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\communityFeed.html \
+D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\deleteGroup.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\efforts.group.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\efforts.html \
 D:\SoA\ExampleProjects\VMA\platforms\android\assets\www\partials\efforts.task.html \

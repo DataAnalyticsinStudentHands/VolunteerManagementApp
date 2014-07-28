@@ -1,6 +1,6 @@
 <tabset>
     <tab heading="Tasks" style="width:50%">
-        <div id="groups" ng-repeat="task in tasks">
+        <div ng-repeat="task in tasks">
             <a ui-sref="home.task({id:{{task.id}}})">
                 <div><img src="img/effort_group.icon.png" width="70" height="50"/></div>
                 <div>{{task.task_name}} </div>

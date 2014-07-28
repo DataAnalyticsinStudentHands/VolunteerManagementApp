@@ -212,10 +212,10 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     
     //OPENING THE MODAL TO ADD A GROUP
     $scope.addGroup = function() {
-        $scope.open();
+        $scope.openAdd();
     }
     
-    $scope.open = function (size) {
+    $scope.openAdd = function (size) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/addGroup.html',
           controller: ModalInstanceCtrl,
@@ -230,7 +230,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
         });
     };
     
-    //Controller for the Modal PopUp
+    //Controller for the Modal PopUp Add
     var ModalInstanceCtrl = function ($scope, $modalInstance) {
         $scope.ok = function () {
             $scope.message = "ADD FAILED";
@@ -251,6 +251,52 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             $modalInstance.dismiss('cancel');
         };
     };
+    
+    
+    //OPENING THE MODAL TO EDIT A GROUP
+    $scope.deleteGroup = function() {
+        $scope.openDelete();
+    }
+    
+    $scope.openDelete = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteGroup.html',
+          controller: ModalInstanceCtrlDelete,
+          size: size
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance) {
+        $scope.ok = function () {
+            var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
+            
+            promise.then(function(success) {
+                console.log(success);
+                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                $modalInstance.close();
+            }, function(fail) {
+//                console.log(fail);
+                $scope.message = "DELETE FAILED";
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+    
+    //OPENING THE MODAL TO EDIT A GROUP
+    $scope.editGroup = function() {
+        $scope.openEdit();
+    }
     
     //UI-SNAP SETTINGS
     $scope.settings = {
