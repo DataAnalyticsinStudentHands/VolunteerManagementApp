@@ -124,7 +124,8 @@ volunteerManagementApp.config(
       state('home.calendar', {
           url: "/calendar",
           views: {
-            "app": { templateUrl: "partials/calendar.html"},
+            "app": { templateUrl: "partials/calendar.html", controller: "calendar"
+                   },
           },
           authenticate: true
       }).

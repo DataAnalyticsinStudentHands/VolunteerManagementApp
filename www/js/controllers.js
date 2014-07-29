@@ -744,6 +744,12 @@ vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope,
     $scope.state = $state;
 }]);
 
+//Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
+vmaControllerModule.controller('calendar', ['$scope', '$state', function($scope, $state) {
+    console.log("test");
+    myFunction();
+}]);
+
 vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
     $scope.msg = $stateParams.msg;
 }]);
