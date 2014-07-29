@@ -191,174 +191,174 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
-    $scope.displayDetail = function(click_id) {
+        $scope.displayDetail = function(click_id) {
         $state.go('home.groupFeed.detail', {id:click_id}, {reload: false});
         snapRemote.close();
     }
     
     //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
-    $scope.updateGroups = function() {
-        var gProm = $scope.$parent.Restangular().all("groups").getList();
-        gProm.then(function(success) {
-//            console.log(success);
-            $rootscope.groups = success;
-        }, function(fail) {
-//            console.log(fail);
-        });
-    }
-    $scope.updateGroups();
+        $scope.updateGroups = function() {
+            var gProm = $scope.$parent.Restangular().all("groups").getList();
+            gProm.then(function(success) {
+                $rootscope.groups = success;
+            }, function(fail) {
+    //            console.log(fail);
+            });
+        }
+
+        $scope.updateGroups();
     
     //OPENING THE MODAL TO ADD A GROUP
-    $scope.addGroup = function() {
-        $scope.openAdd();
-    }
-    
-    $scope.openAdd = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/addGroup.html',
-          controller: ModalInstanceCtrl,
-          resolve: {
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
+        $scope.addGroup = function() {
+            $scope.openAdd();
+        }
 
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-    
-    //Controller for the Modal PopUp Add
-    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope) {
-        $scope.ok = function () {
-            $scope.message = "ADD SUCCESS!";
-            
-            var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
-            
-            promise.then(function(success) {
-                console.log(success);
-                window_scope.updateGroups();
-                $modalInstance.close();
-            }, function(fail) {
-//                console.log(fail);
-                $scope.message = "ADD FAILED";
+        $scope.openAdd = function () {
+            var modalInstance = $modal.open({
+              templateUrl: 'partials/addGroup.html',
+              controller: ModalInstanceCtrl,
+              resolve: {
+                  window_scope: function() {
+                    return $scope;
+                  }
+              }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+            }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
             });
         };
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+        //Controller for the Modal PopUp Add
+        var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope) {
+            $scope.ok = function () {
+                $scope.message = "ADD SUCCESS!";
+
+                var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
+
+                promise.then(function(success) {
+                    console.log(success);
+                    window_scope.updateGroups();
+                    $modalInstance.close();
+                }, function(fail) {
+    //                console.log(fail);
+                    $scope.message = "ADD FAILED";
+                });
+            };
+
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
         };
-    };
-    
+
     
     //OPENING THE MODAL TO DELETE A GROUP
-    $scope.deleteGroup = function(id) {
-        $scope.openDelete(id);
-    }
-    
-    $scope.openDelete = function (id) {
-        console.log(id);
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteGroup.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              deleteId: function() {
-                  return id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
+        $scope.deleteGroup = function(id) {
+            $scope.openDelete(id);
+        }
 
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-    
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope) {
-        $scope.ok = function () {
-            var promise = $scope.$parent.Restangular().all("groups").all(deleteId).remove();
-            
-            promise.then(function(success) {
-                window_scope.updateGroups();
-                console.log(success);
-                $scope.message = "DELETE SUCCESS!";
-//                $rootscope.groups.push({name:$scope.name, description: $scope.description});
-                $modalInstance.close();
-            }, function(fail) {
-//                console.log(fail);
-                $scope.message = "DELETE FAILED";
+        $scope.openDelete = function (id) {
+            console.log(id);
+            var modalInstance = $modal.open({
+              templateUrl: 'partials/deleteGroup.html',
+              controller: ModalInstanceCtrlDelete,
+              resolve: {
+                  deleteId: function() {
+                      return id;
+                  },
+                  window_scope: function() {
+                    return $scope;
+                  }
+              }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+            }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
             });
         };
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    };
-    
-   //OPENING THE MODAL TO DELETE A GROUP
-    $scope.editGroup = function(id) {
-        $scope.openEdit(id);
-    }
-    
-    $scope.openEdit = function (id) {
-        console.log(id);
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/editGroup.html',
-          controller: ModalInstanceCtrlEdit,
-          resolve: {
-              editId: function() {
-                  return id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
+        //Controller for the Modal PopUp Delete
+        var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope) {
+            $scope.ok = function () {
+                var promise = $scope.$parent.Restangular().all("groups").all(deleteId).remove();
 
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
+                promise.then(function(success) {
+                    window_scope.updateGroups();
+                    console.log(success);
+                    $scope.message = "DELETE SUCCESS!";
+    //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                    $modalInstance.close();
+                }, function(fail) {
+    //                console.log(fail);
+                    $scope.message = "DELETE FAILED";
+                });
+            };
+
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        };
     
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
-        $scope.group = $filter('getById')($rootscope.groups, editId);
-//        console.log(found);
-        $scope.ok = function () {
-            var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
-            
-            promise.then(function(success) {
-                $scope.message = "EDIT SUCCESS!";
-                window_scope.updateGroups();
-                console.log(success);
-//                $rootscope.groups.push({name:$scope.name, description: $scope.description});
-                $modalInstance.close();
-            }, function(fail) {
-//                console.log(fail);
-                $scope.message = "EDIT FAILED";
+    //OPENING THE MODAL TO EDIT A GROUP
+        $scope.editGroup = function(id) {
+            $scope.openEdit(id);
+        }
+
+        $scope.openEdit = function (id) {
+            console.log(id);
+            var modalInstance = $modal.open({
+              templateUrl: 'partials/editGroup.html',
+              controller: ModalInstanceCtrlEdit,
+              resolve: {
+                  editId: function() {
+                      return id;
+                  },
+                  window_scope: function() {
+                    return $scope;
+                  }
+              }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+        //          $scope.selected = selectedItem;
+            }, function () {
+        //          What to do on dismiss
+        //          $log.info('Modal dismissed at: ' + new Date());
             });
         };
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+        //Controller for the Modal PopUp Edit
+        var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
+            $scope.group = $filter('getById')($rootscope.groups, editId);
+        //        console.log(found);
+            $scope.ok = function () {
+                var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
+
+                promise.then(function(success) {
+                    $scope.message = "EDIT SUCCESS!";
+                    window_scope.updateGroups();
+                    console.log(success);
+        //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                    $modalInstance.close();
+                }, function(fail) {
+        //                console.log(fail);
+                    $scope.message = "EDIT FAILED";
+                });
+            };
+
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
         };
-    };
     
     //UI-SNAP SETTINGS
-    $scope.settings = {
+        $scope.settings = {
 //        element: null,
 //        dragger: null,
         disable: 'right',
@@ -376,13 +376,13 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 //        minDragDistance: 5
     }
     
-    var snapper = new Snap({
+        var snapper = new Snap({
       element: document.getElementById('content')
     });
     
-    snapRemote.getSnapper().then(function(snapper) {
-        snapper.open('left');
-    });
+        snapRemote.getSnapper().then(function(snapper) {
+            snapper.open('left');
+        });
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
@@ -562,6 +562,19 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
     $scope.id = $stateParams.id;
     $scope.task =
         {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
+    
+    $scope.map = {
+        sensor: true, //required
+        size: '500x300',
+        zoom: 15, //a low zoom number indicates a wider view of the world.
+        center: $scope.task.location, //center location. it can be entered as a set of coordinates or a physical address.
+        markers: [$scope.task.location], //marker locations
+        mapevents: {redirect: true, loadmap: false}
+        /* setting loadmap=true loads the map when clicked. loadmap=false will not load the map. 
+        when the map is clicked on, the function(MAP_EVENTS), line 104 in adaptive-googlemaps.js is called.
+        the function reads if (MAP_EVENTS.redirect) as true and it will evaluate the body of the if statement.
+        */
+    };
 }]);
 
 vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {

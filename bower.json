@@ -12,6 +12,7 @@
     "headroom.js": "latest",
     "angular-snap": "latest",
     "highcharts-ng": "latest",
-    "lodash": "latest"
+    "lodash": "latest",
+	"angular-adaptive-googlemaps": "latest"
   }
 }
