@@ -144,7 +144,6 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
         });
 }]);
 
-
 vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout) {
         $scope.id = $stateParams.id;
         $scope.groupMSGs = [
@@ -190,7 +189,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }
 }]);
 
-
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
     $scope.displayDetail = function(click_id) {
@@ -215,11 +213,15 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
         $scope.openAdd();
     }
     
-    $scope.openAdd = function (size) {
+    $scope.openAdd = function () {
         var modalInstance = $modal.open({
           templateUrl: 'partials/addGroup.html',
           controller: ModalInstanceCtrl,
-          size: size
+          resolve: {
+              window_scope: function() {
+                return $scope;
+              }
+          }
         });
 
         modalInstance.result.then(function (selectedItem) {
@@ -231,15 +233,15 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     };
     
     //Controller for the Modal PopUp Add
-    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope) {
         $scope.ok = function () {
-            $scope.message = "ADD FAILED";
+            $scope.message = "ADD SUCCESS!";
             
             var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
             
             promise.then(function(success) {
                 console.log(success);
-                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                window_scope.updateGroups();
                 $modalInstance.close();
             }, function(fail) {
 //                console.log(fail);
@@ -289,6 +291,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             promise.then(function(success) {
                 window_scope.updateGroups();
                 console.log(success);
+                $scope.message = "DELETE SUCCESS!";
 //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
                 $modalInstance.close();
             }, function(fail) {
@@ -332,12 +335,13 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     
     //Controller for the Modal PopUp Delete
     var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
-        var found = $filter('getById')($rootscope.groups, editId);
-        console.log(found);
+        $scope.group = $filter('getById')($rootscope.groups, editId);
+//        console.log(found);
         $scope.ok = function () {
-            var promise = $scope.$parent.Restangular().all("groups").all(deleteId).post();
+            var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
             
             promise.then(function(success) {
+                $scope.message = "EDIT SUCCESS!";
                 window_scope.updateGroups();
                 console.log(success);
 //                $rootscope.groups.push({name:$scope.name, description: $scope.description});

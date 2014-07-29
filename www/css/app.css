@@ -6,30 +6,6 @@ body { background-color:white; color:black }
 body {
     overflow-x: hidden;
 }
-/*
-
-.phones {
-    list-style: none;
-}
-.thumb {
-    float: left;
-    margin: -0.5em 1em 1.5em 0;
-    padding-bottom: 1em;
-    height: 100px;
-    width: 100px;
-}
-.phones li {
-    clear: both;
-    height: 115px;
-    padding-top: 15px;
-}
-.clock{
-    position: absolute;
-    top:1000px; 
-    left:0px;
-}
-*/
-
 
 .headroom {
     position: fixed;
@@ -68,8 +44,8 @@ body {
 /*****meun bar at the top**********/
 #background{
     background:url(../img/background_grid3.png) fixed;
-background-repeat:no-repeat;
-width: 100%;    
+    background-repeat:no-repeat;
+    width: 100%;    
 }
 
 #wrapper{
@@ -136,7 +112,8 @@ width: 100%;
 
 /*********loging page**********/
 
-#logo_O{position:fixed;
+#logo_O{
+    position:fixed;
     width: 100%;
     margin: 0px 0px 0px 0px;
 }
@@ -378,15 +355,15 @@ left: 60px;
 
 
 .caret {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 4px solid;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
- color:#f96806;     
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    color:#f96806;     
 }
 
 
