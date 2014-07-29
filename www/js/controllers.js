@@ -198,9 +198,15 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     
     //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
         $scope.updateGroups = function() {
-            var gProm = $scope.$parent.Restangular().all("groups").getList();
+            var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
             gProm.then(function(success) {
                 $rootscope.groups = success;
+            }, function(fail) {
+    //            console.log(fail);
+            });
+            var gPromByMan = $scope.$parent.Restangular().all("groups").one("byManager").getList();
+            gPromByMan.then(function(success) {
+                $rootscope.manGroups = success;
             }, function(fail) {
     //            console.log(fail);
             });
@@ -742,6 +748,12 @@ vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope,
         window.history.back();
     };
     $scope.state = $state;
+}]);
+
+//Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
+vmaControllerModule.controller('calendar', ['$scope', '$state', function($scope, $state) {
+    console.log("test");
+    myFunction();
 }]);
 
 vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
