@@ -21,7 +21,6 @@ volunteerManagementApp.config(
 
     $stateProvider.
       state('home', {
-          abstract: true,
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
             "app": { templateUrl: "partials/home.html"},
