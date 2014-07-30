@@ -3,6 +3,9 @@
         <input id="name" type="text" ng-model="$parent.newTask.name" placeholder="Name"/>
         <br/>
         <input id="time" type="text" ng-model="$parent.newTask.time" placeholder="Time"/>
+        TYPING IN TIME FIELD WILL BREAK THINGS DON'T DO IT (for now)
+        <br/>
+        <input id="time" type="number" ng-model="$parent.newTask.duration" placeholder="Duration"/>
         <br/>
         <input id="description" type="text" ng-model="$parent.newTask.description" placeholder="Description"/>
         <br/>
@@ -10,6 +13,4 @@
         <br/>
         <input type="submit" ng-click="ok()" placeholder="Name"/>
     </form>
-    
-<!--    <p>{{name}}</p>-->
 </div>

@@ -11,11 +11,12 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'restangular',
   'snap',
   'highcharts-ng',
-  'headroom'
+  'headroom',
+  'adaptive.googlemaps'
 ]);
 
 volunteerManagementApp.config(
-  function($stateProvider, $urlRouterProvider) {
+  function($stateProvider, $urlRouterProvider, $compileProvider) {
     $urlRouterProvider.otherwise("/cfeed");
 
     $stateProvider.
@@ -123,7 +124,8 @@ volunteerManagementApp.config(
       state('home.calendar', {
           url: "/calendar",
           views: {
-            "app": { templateUrl: "partials/calendar.html"},
+            "app": { templateUrl: "partials/calendar.html", controller: "calendar"
+                   },
           },
           authenticate: true
       }).
@@ -134,7 +136,11 @@ volunteerManagementApp.config(
           },
           authenticate: false
       });
-  });
+    
+
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+  }
+);
 
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {

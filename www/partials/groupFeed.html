@@ -1,7 +1,7 @@
 <div id="snap">
     <snap-drawer id="snap_drawer">
         <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
-        <div id="groups" ng-repeat="group in groups">
+        <div id="groups" ng-repeat="group in manGroups">
             <a ng-click="displayDetail(group.id)">
                 <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
                 <div id="groupname"> {{group.name}} </div>
@@ -14,6 +14,22 @@
                 <ul class="dropdown-menu" role="menu">
                     <li><a ng-click="editGroup(group.id)">Edit</a></li>
                     <li><a ng-click="deleteGroup(group.id)">Delete</a></li>
+                    <li><a ng-click="leaveGroup(group.id)">Leave Group</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="groups" ng-repeat="group in groups">
+            <a ng-click="displayDetail(group.id)">
+                <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+                <div id="groupname"> {{group.name}} </div>
+            </a>
+<!--        In order to position below contextual opts, try surrounding it with a div you can position instead of affecting them all.-->
+            <div id="bs" class="btn-group" dropdown>
+                <button type="button" class="btn dropdown-toggle">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="leaveGroup(group.id)">Leave Group</a></li>
                 </ul>
             </div>
         </div>
