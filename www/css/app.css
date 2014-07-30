@@ -54,7 +54,7 @@ body {
     width:100%;
     height: 40px;
     z-index: 2;
-    background: #ffffff;
+    background: rgba(200, 16, 46, 0.37);
     opacity: .9;
     transition: all .2s ease-in-out;
 }
@@ -67,7 +67,8 @@ body {
 
 /*****meun bar at the top**********/
 #background{
-    background:url(../img/background_grid3.png) fixed;
+    background:url(../img/03bopaquemain.png)fixed;
+/*    background-color: #c8babb;*/
 background-repeat:no-repeat;
 width: 100%;    
 }
@@ -85,7 +86,7 @@ width: 100%;
     position:fixed;
     width:100%;
     z-index:1;
-    background:#f96806;
+    background:#c8102e;
 }
 
 .menuBar{
@@ -103,7 +104,7 @@ width: 100%;
     height:65px;
     width:20%; 
     padding:10px 0px 10px 0px;
-    background-color: rgba(247, 129, 49, 0.65);
+    background-color: #960c22;
     margin-left:3.3%;
     display: inline-block;
     text-align: center;
@@ -149,7 +150,7 @@ width: 100%;
     top:360px;
     margin: 0% 15% 0% 15%;
     text-align: center;
-    background-color:#0BA1F4;
+    background-color:#960c22;
     z-index: 1;
     opacity: .8;
 }
@@ -164,7 +165,7 @@ width: 100%;
     margin: 05% 10% 05% 10%;
     margin: 5% 10% 5% 10%;
     text-align: center;
-    background-color:#0BA1F4;
+    background-color:#960c22;
     z-index: 1;
     opacity: .8;
 }
@@ -192,7 +193,6 @@ width: 100%;
     bottom: 62px;
     width: 90px;
     z-index: 5;
-    
 }
 
     
@@ -225,7 +225,7 @@ width: 100%;
     width: 100%;
     height: 100%;
 /*  z-index: 10;*/
-  bottom:80px;     
+  bottom:80px;  
 }
 
 #author{
@@ -236,16 +236,16 @@ width: 100%;
     text-align: center;
     font-family: roboto black;
     font-size:12pt ;
-    background-color: #e0e0e0;
+    background-color: #ffffff;
     z-index:4;
-    color: #0ba1f4;
+    color: #007;
 }
 
 
 
 #contentbox{
     position:absolute; 
-    background-color:#EEEEEE;
+    background-color:#fffcf7;
     top:20px;
     width: 96%;
     height: 100%;
@@ -256,13 +256,13 @@ width: 100%;
     overflow: auto;
     font-family: Roboto medium;
     font-size: 12pt;
-    color: #000000;
+    color: #007;
 }
 
 
 #likeicon{
     position:relative;
-    background:#f96806;
+    background:#c8102e;
     top:20px;
     width: 100%;
     margin: auto;
@@ -302,7 +302,7 @@ width: 100%;
     overflow:hidden;               
     white-space:nowrap;
     width: 60%;  
-    color: #000000;
+    color: #007;
 }
 
 
@@ -311,7 +311,7 @@ width: 100%;
     width: 100%;
     height: 70px;
     margin:0% 5% 5% 0%;
-    background-color:#ffffff;
+    background-color:rgb(255, 249, 217);
     padding: 10% 0% 0% 10%;  
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 0px 6px -6px black;
@@ -325,10 +325,10 @@ width: 100%;
     bottom: 50px;
     padding-bottom:10px; 
     padding-left:20px;
-    font-family:roboto black;
+    font-family:Roboto #007;
     font-size: 16pt;
     text-decoration: underline;
-    color: #0ba1f4;
+    color: #007;
     
 }
 
@@ -337,7 +337,7 @@ position:relative;
     width: 100%;
     height: 75px;
     margin:0% 0% 1.5% 0%;
-    background-color:#ffffff;
+    background-color:rgb(255, 249, 217);
     padding: 0% 5% 0% 5%;  
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 0px 6px -6px black;
@@ -366,7 +366,7 @@ position: relative;
 bottom:40px; 
 text-align:left;
 font-size: 16pt;    
-color:#0ba1f4; 
+color:#007; 
 left: 60px;        
 }
 
@@ -386,7 +386,7 @@ left: 60px;
   border-top: 4px solid;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
- color:#f96806;     
+ color:#c8102e;     
 }
 
 
@@ -396,14 +396,14 @@ left: 60px;
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #f96806;
+  color: #007;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #ffffff;
   text-decoration: none;
-  background-color:#0ba1f4;
+  background-color:#c8102e;
 }
 .dropdown-menu{
     /*position: relative;    */
@@ -448,7 +448,7 @@ left: 60px;
     height: 60px;    
     padding:0px 0px 0px 10px;
     margin:0px 0px 0px 0px;    
-    background-color:#ffffff;
+    background-color:#fff9d9;
     border-radius: 0px 0px 0px 0px;    
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 0px 6px -6px black;
@@ -462,14 +462,14 @@ left: 60px;
 /*    top: 20px;*/
     width: 100%;
     overflow-x: hidden;
-    background:#eeeeee;
+    background:#fffcf7;
 }
 
 
 /****group feed post****/
 #groupPost{
     position: relative;
-    background:#ffffff;    
+    background:#fff9d9;    
     margin:10px 10px 10px 10px;
     top: 10px;
     -webkit-box-shadow: 0 8px 6px -6px black;
@@ -485,13 +485,14 @@ left: 60px;
 /*    background-color: #eeeeee;*/
     top: 65px;
     padding-bottom: 30px;
-    background:url(../img/01.jpg) fixed;
+    background:url(../img/04.jpg) fixed;
+
 }
 #snap_page{
-    background-color: #ffffff;
+/*    background-color: rgba(0, 0, 119, 0.59);*/
     top: 65px;
     padding-bottom: 30px;
-    background-image:url(../img/background_grid3.png);
+    background-image:url(../img/03bopaque.png);
 }
 
 #groupfeed_post{
@@ -516,7 +517,7 @@ g
     bottom: 60px;
     width: 40%;
     left: 20%;
-    color:#f96806;
+    color:#007;
     font-size: 16pt;
 }
 
@@ -527,13 +528,14 @@ g
     width: 70%;
     bottom: 30px;
     left: 80px;
-    
+    color: #007
 }
 
 
 #groupfeed_l{
     position: relative;
     top: 40px;
+    color: #007
 }
 
 
@@ -542,6 +544,7 @@ g
     bottom: 105px;
     width: 100px;
     left: 70%;
+    color: #007
 }
 
 
@@ -549,6 +552,7 @@ g
     position: relative;
     top:0;
     left: 70px;
+    color: #007
 }
 
 
@@ -557,7 +561,7 @@ g
       text-align: center;
       font-size: 14pt;
       bottom: 30px;
-      color:#f96806; 
+      color:#007; 
     
 }
 
@@ -566,7 +570,7 @@ g
     text-align: center;
     font-size: 12pt;
     bottom: 30px; 
-    color: #000000;    
+    color: #007;    
 }
 
 #groups {
