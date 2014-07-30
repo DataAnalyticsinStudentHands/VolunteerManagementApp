@@ -30,8 +30,8 @@ body {
     width:100%;
     height: 40px;
     z-index: 2;
-    background: rgba(200, 16, 46, 0.37);
-    opacity: .9;
+    background: #fff9f9;
+    
     transition: all .2s ease-in-out;
 }
 .footer--unpinned {
@@ -47,7 +47,6 @@ body {
 /*    background-color: #c8babb;*/
 background-repeat:no-repeat;
 width: 100%;    
-    background:url(../img/background_grid3.png) fixed;
     background-repeat:no-repeat;
     width: 100%;
     background-repeat: repeat-x;
@@ -416,7 +415,7 @@ background:white;
     top:360px;
     margin: 0% 15% 0% 15%;
     text-align: center;
-    background-color:#960c22;
+    background-color:rgb(150, 12, 34);
     z-index: 1;
     opacity: .8;
 }
@@ -469,7 +468,7 @@ background:white;
     height:0%;
     padding-bottom: auto;
     padding: 0% 0% 0% 0%;
-    background-color: #eeeeee;
+    background-color: #fff9d9;
     z-index: -3;
 }
 
@@ -502,9 +501,9 @@ background:white;
     width: 100%;    
     margin: 15% 0% 10% 0%;    
     text-align: center;
-    font-family: roboto black;
+    font-family: roboto #007;
     font-size:12pt ;
-    background-color: #ffffff;
+    background-color: #fff9f9;
     z-index:4;
     color: #007;
 }
@@ -513,7 +512,6 @@ background:white;
 
 #contentbox{
     position:absolute; 
-    background-color:#fffcf7;
     top:40px;
     right: 10px;
     width: 80%;
@@ -709,7 +707,7 @@ left: 60px;
     bottom:0px;
     left:0px;
     right:0px;
-    height:60px;    
+    height:60px;
 }
 
 #groupname{
@@ -791,7 +789,7 @@ left: 60px;
 	visibility: visible !important;	
 }
 #snap_page{
-/*    background-color: rgba(0, 0, 119, 0.59);*/
+    background-color: #fff9f9;
     top: 65px;
     padding-bottom: 30px;
     background-image:url(../img/03bopaque.png);
