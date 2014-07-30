@@ -191,13 +191,13 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
-        $scope.displayDetail = function(click_id) {
+    $scope.displayDetail = function(click_id) {
         $state.go('home.groupFeed.detail', {id:click_id}, {reload: false});
         snapRemote.close();
     }
     
     //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
-        $scope.updateGroups = function() {
+    $scope.updateGroups = function() {
             var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
             gProm.then(function(success) {
                 $rootscope.groups = success;
@@ -212,14 +212,14 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             });
         }
 
-        $scope.updateGroups();
+    $scope.updateGroups();
     
     //OPENING THE MODAL TO ADD A GROUP
-        $scope.addGroup = function() {
+    $scope.addGroup = function() {
             $scope.openAdd();
         }
 
-        $scope.openAdd = function () {
+    $scope.openAdd = function () {
             var modalInstance = $modal.open({
               templateUrl: 'partials/addGroup.html',
               controller: ModalInstanceCtrl,
@@ -238,8 +238,8 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             });
         };
 
-        //Controller for the Modal PopUp Add
-        var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope) {
+    //Controller for the Modal PopUp Add
+    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope) {
             $scope.ok = function () {
                 $scope.message = "ADD SUCCESS!";
 
@@ -262,35 +262,35 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 
     
     //OPENING THE MODAL TO DELETE A GROUP
-        $scope.deleteGroup = function(id) {
-            $scope.openDelete(id);
-        }
+    $scope.deleteGroup = function(id) {
+        $scope.openDelete(id);
+    }
 
-        $scope.openDelete = function (id) {
-            console.log(id);
-            var modalInstance = $modal.open({
-              templateUrl: 'partials/deleteGroup.html',
-              controller: ModalInstanceCtrlDelete,
-              resolve: {
-                  deleteId: function() {
-                      return id;
-                  },
-                  window_scope: function() {
-                    return $scope;
-                  }
+    $scope.openDelete = function (id) {
+        console.log(id);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteGroup.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              deleteId: function() {
+                  return id;
+              },
+              window_scope: function() {
+                return $scope;
               }
-            });
+          }
+        });
 
-            modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-            }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
 
-        //Controller for the Modal PopUp Delete
-        var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope) {
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope) {
             $scope.ok = function () {
                 var promise = $scope.$parent.Restangular().all("groups").all(deleteId).remove();
 
@@ -312,35 +312,35 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
         };
     
     //OPENING THE MODAL TO EDIT A GROUP
-        $scope.editGroup = function(id) {
-            $scope.openEdit(id);
-        }
+    $scope.editGroup = function(id) {
+        $scope.openEdit(id);
+    }
 
-        $scope.openEdit = function (id) {
-            console.log(id);
-            var modalInstance = $modal.open({
-              templateUrl: 'partials/editGroup.html',
-              controller: ModalInstanceCtrlEdit,
-              resolve: {
-                  editId: function() {
-                      return id;
-                  },
-                  window_scope: function() {
-                    return $scope;
-                  }
+    $scope.openEdit = function (id) {
+        console.log(id);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editGroup.html',
+          controller: ModalInstanceCtrlEdit,
+          resolve: {
+              editId: function() {
+                  return id;
+              },
+              window_scope: function() {
+                return $scope;
               }
-            });
+          }
+        });
 
-            modalInstance.result.then(function (selectedItem) {
-        //          $scope.selected = selectedItem;
-            }, function () {
-        //          What to do on dismiss
-        //          $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
 
-        //Controller for the Modal PopUp Edit
-        var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
+    //Controller for the Modal PopUp Edit
+    var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
             $scope.group = $filter('getById')($rootscope.groups, editId);
         //        console.log(found);
             $scope.ok = function () {
@@ -364,7 +364,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
         };
     
     //UI-SNAP SETTINGS
-        $scope.settings = {
+    $scope.settings = {
 //        element: null,
 //        dragger: null,
         disable: 'right',
@@ -382,13 +382,13 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 //        minDragDistance: 5
     }
     
-        var snapper = new Snap({
-      element: document.getElementById('content')
+    var snapper = new Snap({
+        element: document.getElementById('content')
     });
     
-        snapRemote.getSnapper().then(function(snapper) {
-            snapper.open('left');
-        });
+    snapRemote.getSnapper().then(function(snapper) {
+        snapper.open('left');
+    });
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
@@ -561,7 +561,11 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
         {id:'5', description: "BLAH BLAH"},
         {id:'6', description: "BLAH BLAH"}
     ];
-    
+    console.log($stateParams.id);
+    $scope.id = 15;
+    $scope.joinGroup = function() {
+        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").one("test").post(); //Must be dynamic eventually
+    }
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
@@ -696,33 +700,65 @@ vmaControllerModule.controller('awards', function ($scope) {
 
 });
 
-vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth',
-    function($scope, $state, Auth) {
-//        console.log("HI");
-      $scope.logOut = function() {
-//          console.log('loggedout');
-          Auth.clearCredentials();
-          $state.go("home", {}, {reload: true});
-      }
-      
-      $scope.deleteUser = function() {
-          $scope.getUserPromise = $scope.Restangular().all("users").getList();
-          $scope.getUserPromise.then(function(success) {
-              $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(
-                  function(success) {
-                      console.log(success); $state.go("home", {}, {reload: true});
-                  }, function(failure) {
-                      console.log(failure)
-                  }
-              );
-          }, function(failure) {
-              console.log(failure);
-          });
-      }
+vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal', function($scope, $state, Auth, $modal) {
+    $scope.logOut = function() {
+        Auth.clearCredentials();
+        $state.go("home", {}, {reload: true});
+    }
+
+    $scope.delUser = function() {
+        $scope.getUserPromise = $scope.Restangular().all("users").getList();
+        $scope.getUserPromise.then(function(success) {
+            $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(
+                function(success) {
+                    $state.go("home", {}, {reload: true});
+                }, function(failure) {
+                    console.log(failure)
+                }
+            );
+        }, function(failure) {
+            console.log(failure);
+        });
+    }
+
+    //OPENING THE MODAL TO DELETE A USER
+    $scope.deleteUser = function(id) {
+        $scope.openDelete(id);
+    }
+
+    $scope.openDelete = function () {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteUser.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope) {
+        $scope.ok = function () {
+            window_scope.delUser();
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
 }]);
 
-vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$timeout', '$rootScope', '$http', 
-    function($scope, $state, Auth, $timeout, $rootScope, $http) {
+vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$timeout', '$rootScope', '$http', function($scope, $state, Auth, $timeout, $rootScope, $http) {
       $scope.registerUser = function() {
             Auth.setCredentials("Visitor", "test");
             $scope.salt = "nfp89gpe";
@@ -742,20 +778,14 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ti
       }
 }]);
 
-//Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
-vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
-    $scope.goBack = function() {
-        window.history.back();
-    };
-    $scope.state = $state;
-}]);
-
-//Not really used in the scope of the VMA app at this point, but still here. Will probably need soon.
 vmaControllerModule.controller('calendar', ['$scope', '$state', function($scope, $state) {
     console.log("test");
     myFunction();
 }]);
 
-vmaControllerModule.controller('lHelpCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    $scope.msg = $stateParams.msg;
+vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
+    $scope.goBack = function() {
+        window.history.back();
+    };
+    $scope.state = $state;
 }]);

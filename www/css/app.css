@@ -1,9 +1,10 @@
 /* app css stylesheet */
 * { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
 input, textarea { -webkit-user-select:text; }
-body { background-color:white; color:black }
 
 body {
+    background-color:white;
+    color:black
     overflow-x: hidden;
 }
 
@@ -70,7 +71,6 @@ body {
     animation-duration:.8s;
 }
 
-
 #menuBar{
     position:fixed;
     width:100%;
@@ -88,7 +88,6 @@ body {
     display: inline-block;
     text-align: center;
 }
-
 
 .menuBar_active{
     position:relative;
@@ -114,7 +113,7 @@ body {
 }
 
 .menuBar_active:active{
-background:white; 
+    background:white; 
 }
 
 /*** bounce****/
@@ -338,19 +337,6 @@ background:white;
 }
 
 /********bottom menu************/
-/*
-#b_menu{
-    position:fixed;
-    bottom: 0px;
-    padding:0px;
-    width:100%;
-    height: 40px;
-    z-index: 2;
-    background: #ffffff;
-    opacity: .9;
-}
-*/
-
 .b_menu{
     position:relative;
     top: 10%;
@@ -363,13 +349,13 @@ background:white;
 }
 
 .b_menu:hover{
--webkit-animation: bounce 1s ease-out;
+    -webkit-animation: bounce 1s ease-out;
 	-moz-animation: bounce 1s ease-out;
 	-o-animation: bounce 1s ease-out;
 	animation: bounce 1s ease-out;
 }
 
-/*********loging page**********/
+/*********login page**********/
 
 #logo_O{
     position:fixed;
@@ -413,8 +399,6 @@ background:white;
 }
 
 /**** Community Feed****/
-
-
 #avatar-container{
     position:relative;
     width: 100%;
@@ -430,7 +414,6 @@ background:white;
     z-index: 5;
     
 }
-
     
 #post{
     position:relative;
@@ -441,13 +424,11 @@ background:white;
     padding: 0% 2% 0% 2%;
 }
 
-
 .carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 20px;
   left: 15%;
-/*  z-index: 10;*/
   padding-top: 20px;
   padding-bottom: 20px;
   color: #fff;
@@ -455,13 +436,11 @@ background:white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
 
-
 .carousel{
-  position:relative;
+    position:relative;
     width: 100%;
     height: 100%;
-/*  z-index: 10;*/
-  bottom:80px;     
+    bottom:80px;     
 }
 
 #author{
@@ -476,8 +455,6 @@ background:white;
     z-index:4;
     color: #0ba1f4;
 }
-
-
 
 #contentbox{
     position:absolute; 
@@ -494,8 +471,6 @@ background:white;
     font-size: 12pt;
     color: #000000;
 }
-
-
 
 #likeicon{
     position:relative;
@@ -514,12 +489,11 @@ background:white;
     
 }
 
-
 .slide_image{
     width: 100%;
 }
-/***group message******/
 
+/***group message******/
 #messageicon{
     position: relative;
     height: 80px;
@@ -541,7 +515,6 @@ background:white;
     width: 60%;  
     color: #000000;
 }
-
 
 #message{
     position:relative;    
@@ -570,7 +543,7 @@ background:white;
 }
 
 #message_i{
-position:relative;    
+    position:relative;    
     width: 100%;
     height: 75px;
     margin:0% 0% 1.5% 0%;
@@ -582,29 +555,28 @@ position:relative;
 }
 
 #message_ic{
-position: relative;
-width: 100%;    
-bottom:40px;
-left: 60px;    
-text-align:left;
-width: 250px;
-  overflow: hidden;    
+    position: relative;
+    width: 100%;    
+    bottom:40px;
+    left: 60px;    
+    text-align:left;
+    width: 250px;
+    overflow: hidden;    
 }
 
 #message_icc{
-position: relative;
-width: 100%;    
-top:10px;
-    
+    position: relative;
+    width: 100%;    
+    top:10px;  
 }
 
 #message_ia{
-position: relative;
-bottom:40px; 
-text-align:left;
-font-size: 16pt;    
-color:#0ba1f4; 
-left: 60px;        
+    position: relative;
+    bottom:40px; 
+    text-align:left;
+    font-size: 16pt;    
+    color:#0ba1f4; 
+    left: 60px;        
 }
 
 #bs{
@@ -656,18 +628,11 @@ left: 60px;
       
 }
 .dropdown-menu{
-    /*position: relative;    */
     z-index:4;
-    /*
-    top: 35px;
-    right: 130px;    
-    */
 }
 
 #bottom{
     position:relative;
-    
-    
 }
 /***groupfeed****/
 
@@ -756,21 +721,17 @@ left: 60px;
     background-image:url(../img/background_grid3.png);
 }
 
-
 #groupfeed_post{
     width: 33%;
 }
-
 
 #groupfeed_tasks{
     width: 33%;
 }
 
-
 #groupfeed_users{
     width: 33%;
 }
-
 
 #groupfeed_a{
     position: relative;
@@ -781,7 +742,6 @@ left: 60px;
     font-size: 16pt;
 }
 
-
 #groupfeed_c{
     position:absolute;
     height: 90px;
@@ -791,12 +751,10 @@ left: 60px;
     
 }
 
-
 #groupfeed_l{
     position: relative;
     top: 40px;
 }
-
 
 #groupfeed_t{
     position: relative;
@@ -805,13 +763,11 @@ left: 60px;
     left: 70%;
 }
 
-
 #groupfeed_cc{
     position: relative;
     top:0;
     left: 70px;
 }
-
 
 #t_t{
      position: relative;
@@ -819,7 +775,6 @@ left: 60px;
       font-size: 14pt;
       bottom: 30px;
       color:#f96806; 
-    
 }
 
 #t{
@@ -836,12 +791,9 @@ left: 60px;
 }
 
 /**** Efforts******/
-
-
 #Egroups{
     position: relative;
 }
-
 
 #invite{
     position: relative;
@@ -854,16 +806,16 @@ left: 60px;
 }
 
 #task{
-position: relative;    
-background:#ffffff;
-margin: 1px 0px 0px 0px;
-height: 60px;    
-width: 100%;
-font-size: 14pt;
-text-align:center;
+    position: relative;    
+    background:#ffffff;
+    margin: 1px 0px 0px 0px;
+    height: 60px;    
+    width: 100%;
+    font-size: 14pt;
+    text-align:center;
 }
 
-
-#task_c{position: relative;
-background:#f96806;
+#task_c{
+    position: relative;
+    background:#f96806;
 }
