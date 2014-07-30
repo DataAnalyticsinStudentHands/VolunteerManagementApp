@@ -38,7 +38,6 @@
     "commit": "9ce8c8f3b528ea8275ba4cec6b5bc3dee1342a9d"
   },
   "_source": "git://github.com/angular-adaptive/adaptive-googlemaps.git",
-  "_target": "~0.3.0",
-  "_originalSource": "angular-adaptive-googlemaps",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "angular-adaptive-googlemaps"
 }
