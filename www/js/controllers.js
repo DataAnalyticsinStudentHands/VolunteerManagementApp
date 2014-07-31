@@ -198,19 +198,25 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     
     //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
     $scope.updateGroups = function() {
-            var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
-            gProm.then(function(success) {
-                $rootscope.groups = success;
-            }, function(fail) {
-    //            console.log(fail);
-            });
-            var gPromByMan = $scope.$parent.Restangular().all("groups").one("byManager").getList();
-            gPromByMan.then(function(success) {
-                $rootscope.manGroups = success;
-            }, function(fail) {
-    //            console.log(fail);
-            });
-        }
+        var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
+        gProm.then(function(success) {
+            $rootscope.groups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+        var gPromByMan = $scope.$parent.Restangular().all("groups").one("byManager").getList();
+        gPromByMan.then(function(success) {
+            $rootscope.manGroups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+        var gPromMaster = $scope.$parent.Restangular().all("groups").getList();
+        gPromMaster.then(function(success) {
+            $rootscope.masterGroups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+    }
 
     $scope.updateGroups();
     
@@ -260,7 +266,6 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             };
         };
 
-    
     //OPENING THE MODAL TO DELETE A GROUP
     $scope.deleteGroup = function(id) {
         $scope.openDelete(id);
@@ -314,7 +319,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     //OPENING THE MODAL TO EDIT A GROUP
     $scope.editGroup = function(id) {
         $scope.openEdit(id);
-}
+    }
 
     $scope.openEdit = function (id) {
         console.log(id);
@@ -362,6 +367,61 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
                 $modalInstance.dismiss('cancel');
             };
         };
+    
+    //OPENING THE MODAL TO LEAVE A GROUP
+    $scope.leaveGroup = function(id) {
+        $scope.openLeave(id);
+    }
+
+    $scope.openLeave = function (id) {
+        console.log(id);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/leaveGroup.html',
+          controller: ModalInstanceCtrlLeave,
+          resolve: {
+              deleteId: function() {
+                  return id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp Leave
+    var ModalInstanceCtrlLeave = function ($scope, $modalInstance, deleteId, window_scope) {
+        $scope.ok = function () {
+            var promise = $scope.Restangular().all("groups").all(deleteId).all("MEMBER").all($scope.uid).remove();
+
+            promise.then(function(success) {
+                window_scope.updateGroups();
+                console.log(success);
+                $scope.message = "LEAVE SUCCESS!";
+//                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                $modalInstance.close();
+            }, function(fail) {
+//                console.log(fail);
+                $scope.message = "LEAVE FAILED";
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+
+    $scope.joinGroup = function(id) {
+        $scope.Restangular().all("groups").all(id).all("MEMBER").all($scope.uid).post();
+        $scope.updateGroups();
+    }
     
     //UI-SNAP SETTINGS
     $scope.settings = {
@@ -445,7 +505,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     };
 }]);
 
-vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', function($scope, $state, $stateParams, $modal, $rootScope, $filter) {
 //    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.$parent.pActiv = true;
@@ -459,10 +519,14 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 //            }, function(fail) {
 //    //            console.log(fail);
 //            });
-            var gPromByMan = $scope.$parent.Restangular().all("tasks").all("byGroup").all($scope.id).getList();
+            var gPromByMan = $scope.$parent.Restangular().all("tasks").all("byManager").getList();
             gPromByMan.then(function(success) {
-                $scope.tasks = success;
-                console.log(success);
+                success = $scope.Restangular().stripRestangular(success);
+//                  console.log(success);
+//                  console.log($scope.id);
+                $scope.tasks = $filter('getTasksByGroupId')(success, $scope.id);
+//                $scope.tasks = success;
+                console.log($scope.tasks);
             }, function(fail) {
     //            console.log(fail);
             });
@@ -581,16 +645,17 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
         {id:'6', description: "BLAH BLAH"}
     ];
     console.log($stateParams.id);
-    $scope.id = 15;
+    $scope.id = 16;
+    $scope.uid = 17;
     $scope.joinGroup = function() {
-        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").one("test").post(); //Must be dynamic eventually
+        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").all($scope.uid).post();
     }
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
     $scope.id = $stateParams.id;
     $scope.task =
-        {title: "TITLE", date: "4/21 4:22PM", location: "39410 BLAH RD", description: "THIS IS A DESCRIPTION"};
+        {title: "TITLE", date: "4/21 4:22PM", location: "4800 Wheeler Rd", description: "THIS IS A DESCRIPTION"};
     
     $scope.map = {
         sensor: true, //required

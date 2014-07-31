@@ -16,7 +16,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
 ]);
 
 volunteerManagementApp.config(
-  function($stateProvider, $urlRouterProvider, $compileProvider) {
+  function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
 
     $stateProvider.
@@ -155,6 +155,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        //This should be set to a work-all URL.
         Restangular.all("users").getList().then(function(result) {
             console.log("authed");
+//            console.log(result[0]);
+            $rootScope.uid = result[0].id.toString();
         }, function(error) {
             if(error.status === 0) {
                 console.log("error-0");

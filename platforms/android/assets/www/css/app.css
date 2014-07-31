@@ -56,18 +56,59 @@ body {
     padding: 2%; 
     margin-bottom: 30px;
     z-index:0;
-    opacity:0;  /* make things invisible upon start */
-    -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
- 
-    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
- 
-    -webkit-animation-duration:.8s;
-    -moz-animation-duration:.8s;
-    animation-duration:.8s;
+    animation-name: slideDown;
+	-webkit-animation-name: slideDown;	
+
+	animation-duration: .5s;	
+	-webkit-animation-duration: .5s;
+
+	animation-timing-function: ease;	
+	-webkit-animation-timing-function: ease;	
+
+	visibility: visible !important;	
+}
+
+
+@keyframes slideDown {
+	0% {
+/*		transform: translateY(-100%);*/
+	}
+	50%{
+/*		transform: translateY(8%);*/
+	}
+	65%{
+/*		transform: translateY(-4%);*/
+	}
+	80%{
+/*		transform: translateY(4%);*/
+	}
+	95%{
+/*		transform: translateY(-2%);*/
+	}			
+	100% {
+		transform: translateY(0%);
+	}		
+}
+
+@-webkit-keyframes slideDown {
+	0% {
+		-webkit-transform: translateY(100%);
+	}
+	50%{
+/*		-webkit-transform: translateY(8%);*/
+	}
+	65%{
+/*		-webkit-transform: translateY(-4%);*/
+	}
+	80%{
+/*		-webkit-transform: translateY(4%);*/
+	}
+	95%{
+/*		-webkit-transform: translateY(-2%);*/
+	}			
+	100% {
+		-webkit-transform: translateY(0%);
+	}	
 }
 
 
@@ -108,9 +149,9 @@ body {
     -moz-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
  
-    -webkit-animation-duration:.6s;
-    -moz-animation-duration:.6s;
-    animation-duration:.6s;
+    -webkit-animation-duration:.4s;
+    -moz-animation-duration:.4s;
+    animation-duration:.4s;
 }
 
 .menuBar_active:active{
@@ -338,18 +379,7 @@ background:white;
 }
 
 /********bottom menu************/
-/*
-#b_menu{
-    position:fixed;
-    bottom: 0px;
-    padding:0px;
-    width:100%;
-    height: 40px;
-    z-index: 2;
-    background: #ffffff;
-    opacity: .9;
-}
-*/
+
 
 .b_menu{
     position:relative;
@@ -362,12 +392,10 @@ background:white;
     text-align: center;
 }
 
-.b_menu:hover{
--webkit-animation: bounce 1s ease-out;
+.b_menu:hover{-webkit-animation: bounce 1s ease-out;
 	-moz-animation: bounce 1s ease-out;
 	-o-animation: bounce 1s ease-out;
-	animation: bounce 1s ease-out;
-}
+	animation: bounce 1s ease-out;}
 
 /*********loging page**********/
 
@@ -438,7 +466,9 @@ background:white;
     bottom:80px;
     height:0%;
     padding-bottom: auto;
-    padding: 0% 2% 0% 2%;
+    padding: 0% 0% 0% 0%;
+    background-color: #eeeeee;
+    z-index: -3;
 }
 
 
@@ -482,14 +512,14 @@ background:white;
 #contentbox{
     position:absolute; 
     background-color:#EEEEEE;
-    top:20px;
-    width: 96%;
-    height: 100%;
+    top:40px;
+    right: 10px;
+    width: 80%;
+    height: 40%;
     margin: auto;
     z-index: -1;
     padding-left:auto;
-    border-radius: 0px 0px 0px 0px;
-    overflow: auto;
+    text-overflow: ellipsis;
     font-family: Roboto medium;
     font-size: 12pt;
     color: #000000;
@@ -748,6 +778,16 @@ left: 60px;
     top: 65px;
     padding-bottom: 30px;
     background:url(../img/01.jpg) fixed;
+    animation-name: slideDown;
+	-webkit-animation-name: slideDown;	
+
+	animation-duration: .5s;	
+	-webkit-animation-duration: .5s;
+
+	animation-timing-function: ease;	
+	-webkit-animation-timing-function: ease;	
+
+	visibility: visible !important;	
 }
 #snap_page{
     background-color: #ffffff;
@@ -845,25 +885,50 @@ left: 60px;
 
 #invite{
     position: relative;
-    background: black;
+    background: #ffffff;
 }
 
 .google-maps {
     width: 100%;
     height: 400px;
+    z-index: 10000;
 }
 
 #task{
-position: relative;    
-background:#ffffff;
-margin: 1px 0px 0px 0px;
-height: 60px;    
-width: 100%;
-font-size: 14pt;
-text-align:center;
+    position: relative;    
+    background:#ffffff;
+    margin: 1px 0px 0px 0px;
+    height: 60px;    
+    width: 100%;
+    font-size: 14pt;
+    text-align:center;
 }
 
 
-#task_c{position: relative;
-background:#f96806;
+#task_c{
+    position: relative;
+    background:#f96806;
+}
+
+
+#task_e{
+position: relative;
+background: #ffffff;    
+}
+
+
+/******* hours*******/
+
+#entry{
+position: relative;
+background: #ffffff;
+margin:1px     
+border-bottom:solid #000000;    
+}
+
+
+/*****settings*****/
+
+#setting_p{
+
 }

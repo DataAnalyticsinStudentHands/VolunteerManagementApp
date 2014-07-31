@@ -41,7 +41,7 @@ html .fc,
 	}
 	
 .fc-header-center {
-	text-align: center;
+	text-align:center;
 	}
 	
 .fc-header-right {
@@ -67,7 +67,7 @@ html .fc,
 	margin-bottom: 1em;
 	vertical-align: top;
 	}
-	
+
 /* buttons edges butting together */
 
 .fc-header .fc-button {
