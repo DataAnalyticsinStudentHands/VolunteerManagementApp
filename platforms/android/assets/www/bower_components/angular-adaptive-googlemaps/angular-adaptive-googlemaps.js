@@ -1,5 +1,5 @@
-/*!
- * angular-adaptive-googlemaps v0.3.0
+/**
+ * angular-adaptive-googlemaps v0.2.0
  * The MIT License
  * Copyright (c) 2013 Jan Antala
  */
@@ -11,7 +11,7 @@
 
   adaptive.controller('GoogleMapsCtrl', [ '$scope', '$element', '$log', '$window', function ($scope, $element, $log, $window) {
 
-    var STATIC_URL = '//maps.googleapis.com/maps/api/staticmap?';
+    var STATIC_URL = 'http://maps.googleapis.com/maps/api/staticmap?';
     var that = this;
     var google = $window.google;
 
@@ -100,11 +100,29 @@
         return encodeURIComponent(attr) + '=' + encodeURIComponent(attrs[attr]);
       });
 
+	
       (function(MAP_EVENTS){
-        var query = markers && markers.length ? markers[0] : '';
+		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+		 //I mainly edited the body of if(MAP_EVENTS.redirect) 
+		 //to take into account of multiple the multiple web devices one could be using
+		 //and default it to the normal google maps webpage if it is not an iOS or android device.
         if (MAP_EVENTS.redirect) {
-          $scope.MAP_HREF = 'http://maps.apple.com/?' + '&q=' + $scope.options.center + '&z=' + $scope.options.zoom + '&t=' + getMapType($scope.options.maptype, true);
-        }
+				if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i))
+					{
+						//maps: is the URI to call apple maps (iOS 6 or higher. I have not tested on an iOS 5 or lower device.)
+						$scope.MAP_HREF = 'maps://?daddr=' + $scope.options.center + '&saddr=My+Location';
+					}
+				else if(userAgent.match(/Android/i))
+					{
+						//geo: is the official android way of calling google maps.
+						$scope.MAP_HREF = 'geo:0,0?q=' + $scope.options.center;
+ 					}
+				else
+ 					{	
+					  	//this will call the normal google maps web browser.
+  					  	$scope.MAP_HREF = 'http://maps.google.com/maps?saddr=Current+Location&daddr=' + $scope.options.center;
+  					}
+        } 
       })($scope.MAP_EVENTS);
 
       $scope.imgsrc = STATIC_URL + params.reduce(function (a, b) {

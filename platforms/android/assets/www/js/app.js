@@ -79,7 +79,7 @@ volunteerManagementApp.config(
           authenticate: true
       }).
       state('home.groupFeed.detail', {
-          url: ":id",
+          url: ":id/:detail",
           views: {
             "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'},
             "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'}
@@ -155,6 +155,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        //This should be set to a work-all URL.
         Restangular.all("users").getList().then(function(result) {
             console.log("authed");
+//            console.log(result[0]);
+            $rootScope.uid = result[0].id.toString();
         }, function(error) {
             if(error.status === 0) {
                 console.log("error-0");

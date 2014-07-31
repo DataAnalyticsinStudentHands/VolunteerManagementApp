@@ -191,26 +191,33 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
-    $scope.displayDetail = function(click_id) {
-        $state.go('home.groupFeed.detail', {id:click_id}, {reload: false});
+    $scope.displayDetail = function(click_id, detail_bool) {
+        console.log(detail_bool);
+        $state.go('home.groupFeed.detail', {id: click_id, detail: detail_bool}, {reload: false});
         snapRemote.close();
     }
     
     //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
     $scope.updateGroups = function() {
-            var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
-            gProm.then(function(success) {
-                $rootscope.groups = success;
-            }, function(fail) {
-    //            console.log(fail);
-            });
-            var gPromByMan = $scope.$parent.Restangular().all("groups").one("byManager").getList();
-            gPromByMan.then(function(success) {
-                $rootscope.manGroups = success;
-            }, function(fail) {
-    //            console.log(fail);
-            });
-        }
+        var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
+        gProm.then(function(success) {
+            $rootscope.groups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+        var gPromByMan = $scope.$parent.Restangular().all("groups").one("byManager").getList();
+        gPromByMan.then(function(success) {
+            $rootscope.manGroups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+        var gPromMaster = $scope.$parent.Restangular().all("groups").getList();
+        gPromMaster.then(function(success) {
+            $rootscope.masterGroups = success;
+        }, function(fail) {
+//            console.log(fail);
+        });
+    }
 
     $scope.updateGroups();
     
@@ -260,7 +267,6 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             };
         };
 
-    
     //OPENING THE MODAL TO DELETE A GROUP
     $scope.deleteGroup = function(id) {
         $scope.openDelete(id);
@@ -314,7 +320,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     //OPENING THE MODAL TO EDIT A GROUP
     $scope.editGroup = function(id) {
         $scope.openEdit(id);
-}
+    }
 
     $scope.openEdit = function (id) {
         console.log(id);
@@ -363,6 +369,61 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             };
         };
     
+    //OPENING THE MODAL TO LEAVE A GROUP
+    $scope.leaveGroup = function(id) {
+        $scope.openLeave(id);
+    }
+
+    $scope.openLeave = function (id) {
+        console.log(id);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/leaveGroup.html',
+          controller: ModalInstanceCtrlLeave,
+          resolve: {
+              deleteId: function() {
+                  return id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp Leave
+    var ModalInstanceCtrlLeave = function ($scope, $modalInstance, deleteId, window_scope) {
+        $scope.ok = function () {
+            var promise = $scope.Restangular().all("groups").all(deleteId).all("MEMBER").all($scope.uid).remove();
+
+            promise.then(function(success) {
+                window_scope.updateGroups();
+                console.log(success);
+                $scope.message = "LEAVE SUCCESS!";
+//                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                $modalInstance.close();
+            }, function(fail) {
+//                console.log(fail);
+                $scope.message = "LEAVE FAILED";
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+
+    $scope.joinGroup = function(id) {
+        $scope.Restangular().all("groups").all(id).all("MEMBER").all($scope.uid).post();
+        $scope.updateGroups();
+    }
+    
     //UI-SNAP SETTINGS
     $scope.settings = {
 //        element: null,
@@ -394,6 +455,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
 //    console.log($stateParams);
     $scope.id = $stateParams.id;
+    $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
     $scope.posts = [
         {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
@@ -448,35 +510,49 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', function($scope, $state, $stateParams, $modal, $rootScope, $filter) {
 //    console.log($stateParams);
     $scope.id = $stateParams.id;
+    $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
     
     //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
     $scope.updateTasks = function() {
-//            var gProm = $scope.$parent.Restangular().all("tasks").one("byMembership").getList();
-//            gProm.then(function(success) {
-//                $scope.tasks = success;
-//                console.log(success);
-//            }, function(fail) {
-//    //            console.log(fail);
-//            });
-            var gPromByMan = $scope.$parent.Restangular().all("tasks").all("byManager").getList();
-            gPromByMan.then(function(success) {
-                success = $scope.Restangular().stripRestangular(success);
+        var gProm = $scope.$parent.Restangular().all("tasks").getList();
+        gProm.then(function(success) {success = $scope.Restangular().stripRestangular(success);
+//            console.log(success);
+            //console.log($scope.id);
+            $scope.tasksAll = $filter('getTasksByGroupId')(success, $scope.id);
+            //$scope.tasks = success;
+            console.log($scope.tasks);
+        }, function(fail) {
+            //console.log(fail);
+        });
+        var gPromMemb = $scope.$parent.Restangular().all("tasks").all("byMembership").getList();
+        gPromMemb.then(function(success) {success = $scope.Restangular().stripRestangular(success);
+//            console.log(success);
+            //console.log($scope.id);
+            $scope.tasksMemb = $filter('getTasksByGroupId')(success, $scope.id);
+            //$scope.tasks = success;
+            console.log($scope.tasks);
+        }, function(fail) {
+            //console.log(fail);
+        });
+        var gPromByMan = $scope.$parent.Restangular().all("tasks").all("byManager").getList();
+        gPromByMan.then(function(success) {
+            success = $scope.Restangular().stripRestangular(success);
 //                  console.log(success);
 //                  console.log($scope.id);
-                $scope.tasks = $filter('getTasksByGroupId')(success, $scope.id);
+            $scope.tasks = $filter('getTasksByGroupId')(success, $scope.id);
 //                $scope.tasks = success;
-                console.log($scope.tasks);
-            }, function(fail) {
-    //            console.log(fail);
-            });
-        }
+            console.log($scope.tasks);
+        }, function(fail) {
+//            console.log(fail);
+        });
+    }
 
     $scope.updateTasks();
     
 //    $rootScope.tasks = $scope.tasks;
     
-    //OPENING THE MODAL TO ADD A GROUP
+    //OPENING THE MODAL TO ADD A TASK
     $scope.addTask = function() {
         $scope.openAdd();
     }
@@ -524,6 +600,60 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             $modalInstance.dismiss('cancel');
         };
     };
+
+    //OPENING THE MODAL TO DELETE A TASK
+    $scope.deleteTask = function() {
+        $scope.openAdd();
+    }
+
+    $scope.openDelete = function () {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteTask.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              group_id: function() {
+                  return $scope.id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+        //          $scope.selected = selectedItem;
+            }, function () {
+        //          What to do on dismiss
+        //          $log.info('Modal dismissed at: ' + new Date());
+            });
+    };
+
+    //Controller for the Modal PopUp Add
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, group_id) {
+        $scope.ok = function () {
+            $scope.newTask.group_id = group_id;
+            console.log($scope.newTask);
+//            var promise = $scope.$parent.Restangular().all("tasks").post($scope.newTask);
+
+            promise.then(function(success) {
+                    $scope.message = "ADD SUCCESS!";
+                    console.log(success);
+                    window_scope.updateTasks();
+                    $modalInstance.close();
+                }, function(fail) {
+                    $scope.message = "ADD FAILED";
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+
+    //OPENING THE MODAL TO DELETE A TASK
+    $scope.viewTask = function() {
+        $state.go("home.task", {id: click_id}, {reload: false});
+    }    
 
 }]);
 
@@ -585,9 +715,10 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
         {id:'6', description: "BLAH BLAH"}
     ];
     console.log($stateParams.id);
-    $scope.id = 15;
+    $scope.id = 16;
+    $scope.uid = 17;
     $scope.joinGroup = function() {
-        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").one("test").post(); //Must be dynamic eventually
+        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").all($scope.uid).post();
     }
 }]);
 

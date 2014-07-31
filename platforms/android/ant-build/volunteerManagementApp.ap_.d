@@ -499,6 +499,7 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\groupMessages.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\groupMessages.message.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\home.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\hours.html \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\leaveGroup.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\login.help.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\login.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\menuBar.html \

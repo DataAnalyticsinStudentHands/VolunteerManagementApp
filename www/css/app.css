@@ -153,10 +153,12 @@ body {
     -moz-animation-duration:.4s;
     animation-duration:.4s;
 }
+/*
 
-.menuBar_active:active{
-background:white; 
+.menuBar:active{
+    background:white; 
 }
+*/
 
 /*** bounce****/
 /*-webkit-animation: bounce 800ms ease-out;*/
