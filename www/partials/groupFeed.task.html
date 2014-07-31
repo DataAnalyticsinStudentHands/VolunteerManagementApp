@@ -1,13 +1,10 @@
 <div id="scrollable_g">
-    <button class="btn btn-default" ng-click="addTask()">Add Task</button>    
-<!--    <p>For testing purposes: {{id}}</p>-->
-    <div id="groupPost" ng-repeat="task in tasks">
-            <a href="">
+    <button ng-show="{{detail}}" class="btn btn-default" ng-click="addTask()">Add Task</button>    
+    <div id="groupPost" ng-repeat="task in tasks" ng-click="viewTask()">
                 <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
                 <div id="t_t"> {{task.name}} </div>
                 <div id="t"> {{task.date}} </div>
                 <div id="t"> {{task.location}} </div>
                 <div id="t"> {{task.duration}} Hours </div>
-            </a>
     </div>
 </div>

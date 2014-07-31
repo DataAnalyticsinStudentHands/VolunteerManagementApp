@@ -1,11 +1,10 @@
 <div id="snap">
-
     <snap-drawer id="snap_drawer">
         <tabset>
             <tab heading="Groups">
                 <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
                 <div id="groups" ng-repeat="group in manGroups">
-                    <a ng-click="displayDetail(group.id)">
+                    <a ng-click="displayDetail(group.id, true)">
                         <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
                         <div id="groupname"> {{group.name}} </div>
                     </a>
@@ -22,7 +21,7 @@
                     </div>
                 </div>
                 <div id="groups" ng-repeat="group in groups">
-                    <a ng-click="displayDetail(group.id)">
+                    <a ng-click="displayDetail(group.id, true)">
                         <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
                         <div id="groupname"> {{group.name}} </div>
                     </a>
@@ -40,7 +39,7 @@
             <tab heading="Search">
                 <input ng-model="query" placeholder="Search">
                 <div id="groups" ng-repeat="group in masterGroups | filter:query | orderBy:orderProp">
-                    <a ng-click="displayDetail(group.id)">
+                    <a ng-click="displayDetail(group.id, false)">
                         <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
                         <div id="groupname"> {{group.name}} </div>
                     </a>
