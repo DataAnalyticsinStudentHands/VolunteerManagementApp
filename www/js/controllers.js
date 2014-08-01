@@ -507,7 +507,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     };
 }]);
 
-vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', function($scope, $state, $stateParams, $modal, $rootScope, $filter) {
+vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', '$q', function($scope, $state, $stateParams, $modal, $rootScope, $filter, $q) {
 //    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
@@ -545,6 +545,33 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 //                $scope.tasks = success;
         }, function(fail) {
 //            console.log(fail);
+        });
+        
+        //YES, MESSY, BUT WORKS
+        $q.all([gProm, gPromMemb, gPromByMan]).then(function() {
+            console.log($scope.tasksAll);
+            console.log($scope.tasksMan);
+            var assignedGroupsIds = {};
+            var groupsIds = {};
+            var result = [];
+            $scope.assignedGroups = $scope.tasksMan;
+            $scope.groups = $scope.tasksAll;
+            
+            $scope.assignedGroups.forEach(function (el, i) {
+              assignedGroupsIds[el.id] = $scope.assignedGroups[i];
+            });
+
+            $scope.groups.forEach(function (el, i) {
+              groupsIds[el.id] = $scope.groups[i];
+            });
+
+            for (var i in groupsIds) {
+                if (!assignedGroupsIds.hasOwnProperty(i)) {
+                    result.push(groupsIds[i]);
+                }
+            }
+            
+            $scope.tasksAllSubtracted = result;          
         });
     }
 
@@ -650,10 +677,45 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         };
     };
 
-    //OPENING THE MODAL TO DELETE A TASK
+    //OPENING THE MODAL TO VIEW A TASK
     $scope.viewTask = function(click_id) {
         var task = $filter('getById')($scope.tasksAll, click_id);
-        $state.go("home.task", {task: JSON.stringify(task)}, {reload: false});
+//        $state.go("home.task", {task: JSON.stringify(task)}, {reload: false});
+        $scope.openView(task);
+    }
+
+    $scope.openView = function (task) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/efforts.task.html',
+          controller: ModalInstanceCtrlView,
+          resolve: {
+              task: function() {
+                  return task;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    //Controller for the Modal PopUp View
+    var ModalInstanceCtrlView = function($scope, task) {
+        $scope.task = task;
+        $scope.map = {
+            sensor: true,
+            size: '500x300',
+            zoom: 15,
+            center: $scope.task.location,
+            markers: [$scope.task.location], //marker locations
+            mapevents: {redirect: true, loadmap: false}
+        };
+        $scope.ok = function () {
+            $modalInstance.close();
+        };
     }
 }]);
 
@@ -722,8 +784,10 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
     }
 }]);
 
-vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$filter', function($scope, $state, $stateParams, $filter) {
-    $scope.task = JSON.parse($stateParams.task);
+vmaControllerModule.controller('task', ['$scope', 'task', function($scope, task) {
+//    $scope.task = JSON.parse($stateParams.task);
+    $scope.task = task;
+    console.log("HI");
     $scope.map = {
         sensor: true, //required
         size: '500x300',
