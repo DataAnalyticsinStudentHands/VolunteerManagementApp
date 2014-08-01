@@ -2,15 +2,20 @@
     <form>
         <input id="name" type="text" ng-model="$parent.newTask.name" placeholder="Name"/>
         <br/>
-        <input id="time" type="text" ng-model="$parent.newTask.time" placeholder="Time"/>
-        TYPING IN TIME FIELD WILL BREAK THINGS DON'T DO IT (for now)
+        <center>
+          <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
         <br/>
-        <input id="time" type="number" ng-model="$parent.newTask.duration" placeholder="Duration"/>
-        <br/>
+        <div style="display:inline-block; min-height:290px;">
+            <datepicker ng-model="$parent.mytime" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+        </div>
+        </center>
         <input id="description" type="text" ng-model="$parent.newTask.description" placeholder="Description"/>
         <br/>
         <input id="location" type="text" ng-model="$parent.newTask.location" placeholder="Location"/>
         <br/>
-        <input type="submit" ng-click="ok()" placeholder="Name"/>
+        <center>
+            <input type="submit" ng-click="ok()" placeholder="Name"/>
+            <input type="submit" ng-click="cancel()" placeholder="Name" value="Cancel"/>
+        </center>
     </form>
 </div>

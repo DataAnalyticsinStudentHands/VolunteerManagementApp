@@ -138,7 +138,8 @@ volunteerManagementApp.config(
       });
     
 
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+    
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
   }
 );
 
@@ -154,8 +155,8 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        var deferred = $q.defer();
 //        //This should be set to a work-all URL.
         Restangular.all("users").getList().then(function(result) {
-//            console.log("authed");
-            console.log(result[0]);
+            console.log("authed");
+//            console.log(result[0]);
             $rootScope.uid = result[0].id.toString();
             $rootScope.uin = result[0].username.toString();
         }, function(error) {

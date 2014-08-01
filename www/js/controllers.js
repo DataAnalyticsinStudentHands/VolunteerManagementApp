@@ -347,31 +347,31 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 
     //Controller for the Modal PopUp Edit
     var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
-            var promiseGet = $scope.Restangular().all("groups").get(editId);
-            promiseGet.then(function(success) {
-                $scope.group = success;
+        var promiseGet = $scope.Restangular().all("groups").get(editId);
+        promiseGet.then(function(success) {
+            $scope.group = success;
+        }, function(fail) {
+//          $scope.message = "DELETE FAILED";
+        });
+        $scope.ok = function () {
+            var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
+
+            promise.then(function(success) {
+                $scope.message = "EDIT SUCCESS!";
+                window_scope.updateGroups();
+                console.log(success);
+    //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                $modalInstance.close();
             }, function(fail) {
-    //          $scope.message = "DELETE FAILED";
+    //                console.log(fail);
+                $scope.message = "EDIT FAILED";
             });
-            $scope.ok = function () {
-                var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
-
-                promise.then(function(success) {
-                    $scope.message = "EDIT SUCCESS!";
-                    window_scope.updateGroups();
-                    console.log(success);
-        //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
-                    $modalInstance.close();
-                }, function(fail) {
-        //                console.log(fail);
-                    $scope.message = "EDIT FAILED";
-                });
-            };
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
         };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
     
     //OPENING THE MODAL TO LEAVE A GROUP
     $scope.leaveGroup = function(id) {
@@ -552,12 +552,13 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         
         //YES, MESSY, BUT WORKS
         $q.all([gProm, gPromMemb, gPromByMan]).then(function() {
-            console.log($scope.tasksAll);
-            console.log($scope.tasksMan);
+//            console.log($scope.tasksAll);
+//            console.log($scope.tasksMan);
             var assignedGroupsIds = {};
             var groupsIds = {};
             var result = [];
-            $scope.assignedGroups = $scope.tasksMan;
+            $scope.assignedGroups = $scope.tasksMan.concat($scope.tasksMemb);
+//            console.log($scope.assignedGroups);
             $scope.groups = $scope.tasksAll;
             
             $scope.assignedGroups.forEach(function (el, i) {
@@ -588,7 +589,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     $scope.openAdd = function () {
     var modalInstance = $modal.open({
       templateUrl: 'partials/addTask.html',
-      controller: ModalInstanceCtrl,
+      controller: ModalInstanceCtrlAdd,
       resolve: {
           group_id: function() {
               return $scope.id;
@@ -608,9 +609,61 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp Add
-    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope, group_id) {
-        $scope.ok = function () {
+    var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id) {
+
+          $scope.today = function() {
+            $scope.mytime = new Date();
+            $scope.dt = new Date();
+          };
+          $scope.today();
+          $scope.toggleMin = function() {
+              $scope.minDate = $scope.minDate ? null : new Date();
+          };
+          $scope.toggleMin();
+        
+          $scope.hstep = 1;
+          $scope.mstep = 5;
+
+          $scope.ismeridian = true;
+
+          $scope.changed = function () {
+            console.log('Time changed to: ' + $scope.mytime);
+          };
+
+          $scope.clear = function() {
+            $scope.mytime = null;
+            $scope.dt = null;
+          };
+
+          // Disable weekend selection
+          $scope.disabled = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+          };
+
+          $scope.toggleMin = function() {
+            $scope.minDate = $scope.minDate ? null : new Date();
+          };
+          $scope.toggleMin();
+
+          $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+          };
+
+          $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+          };
+
+          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+          $scope.format = $scope.formats[0];
+
+
+        $scope.ok = function () {            
             $scope.newTask.group_id = group_id;
+            $scope.newTask.time = $scope.mytime;
 //            console.log($scope.newTask);
             var promise = $scope.$parent.Restangular().all("tasks").post($scope.newTask);
 
@@ -761,6 +814,8 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     //Controller for the Modal PopUp View
     var ModalInstanceCtrlView = function($scope, task) {
         $scope.task = task;
+        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
+//        console.log($scope.task.time);
         $scope.map = {
             sensor: true,
             size: '500x300',
@@ -779,7 +834,17 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).post();
 
         promise.then(function(success) {
-                window_scope.updateTasks();
+                $scope.updateTasks();
+            }, function(fail) {
+//                $scope.message = "DELETE FAILED";
+        });
+    }    
+    //LEAVING A TASK
+    $scope.leaveTask = function(task_id) {
+        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).remove();
+
+        promise.then(function(success) {
+                $scope.updateTasks();
             }, function(fail) {
 //                $scope.message = "DELETE FAILED";
         });
