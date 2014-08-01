@@ -94,7 +94,7 @@ volunteerManagementApp.config(
           authenticate: true
       }).
       state('home.task', {
-          url: "/task:id",
+          url: "/task:task",
           views: {
             "app": { templateUrl: "partials/efforts.task.html", controller: 'task'},
           },

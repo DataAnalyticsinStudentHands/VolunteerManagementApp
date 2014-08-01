@@ -521,7 +521,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             //console.log($scope.id);
             $scope.tasksAll = $filter('getTasksByGroupId')(success, $scope.id);
             //$scope.tasks = success;
-            console.log($scope.tasks);
+//            console.log($scope.tasksAll);
         }, function(fail) {
             //console.log(fail);
         });
@@ -531,7 +531,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             //console.log($scope.id);
             $scope.tasksMemb = $filter('getTasksByGroupId')(success, $scope.id);
             //$scope.tasks = success;
-            console.log($scope.tasks);
+//            console.log($scope.tasksMemb);
         }, function(fail) {
             //console.log(fail);
         });
@@ -540,9 +540,9 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             success = $scope.Restangular().stripRestangular(success);
 //                  console.log(success);
 //                  console.log($scope.id);
-            $scope.tasks = $filter('getTasksByGroupId')(success, $scope.id);
+            $scope.tasksMan = $filter('getTasksByGroupId')(success, $scope.id);
+//            console.log($scope.tasksMan);
 //                $scope.tasks = success;
-            console.log($scope.tasks);
         }, function(fail) {
 //            console.log(fail);
         });
@@ -583,7 +583,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope, group_id) {
         $scope.ok = function () {
             $scope.newTask.group_id = group_id;
-            console.log($scope.newTask);
+//            console.log($scope.newTask);
             var promise = $scope.$parent.Restangular().all("tasks").post($scope.newTask);
 
             promise.then(function(success) {
@@ -603,7 +603,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     //OPENING THE MODAL TO DELETE A TASK
     $scope.deleteTask = function() {
-        $scope.openAdd();
+        $scope.openDelete();
     }
 
     $scope.openDelete = function () {
@@ -651,10 +651,10 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //OPENING THE MODAL TO DELETE A TASK
-    $scope.viewTask = function() {
-        $state.go("home.task", {id: click_id}, {reload: false});
-    }    
-
+    $scope.viewTask = function(click_id) {
+        var task = $filter('getById')($scope.tasksAll, click_id);
+        $state.go("home.task", {task: JSON.stringify(task)}, {reload: false});
+    }
 }]);
 
 vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, $state) {
@@ -722,11 +722,8 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
     }
 }]);
 
-vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    $scope.id = $stateParams.id;
-    $scope.task =
-        {title: "TITLE", date: "4/21 4:22PM", location: "4800 Wheeler Rd", description: "THIS IS A DESCRIPTION"};
-    
+vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$filter', function($scope, $state, $stateParams, $filter) {
+    $scope.task = JSON.parse($stateParams.task);
     $scope.map = {
         sensor: true, //required
         size: '500x300',

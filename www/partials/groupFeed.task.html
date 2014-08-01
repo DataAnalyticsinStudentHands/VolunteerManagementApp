@@ -1,24 +1,75 @@
 <div id="scrollable_g">
     <button ng-show="{{detail}}" class="btn btn-default" ng-click="addTask()">Add Task</button>    
-    <div ng-hide="{{detail}}" id="groupPost" ng-repeat="task in tasksAll" ng-click="viewTask()">
-                <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-                <div id="t_t"> {{task.name}} </div>
-                <div id="t"> {{task.date}} </div>
-                <div id="t"> {{task.location}} </div>
-                <div id="t"> {{task.duration}} Hours </div>
+    <div ng-hide="{{detail}}" id="groupPost" ng-repeat="task in tasksAll">
+        <div ng-click="viewTask(task.id)">
+            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
+            <div id="t_t"> {{task.name}} </div>
+            <div id="t"> {{task.date}} </div>
+            <div id="t"> {{task.location}} </div>
+            <div id="t"> {{task.duration}} Hours </div>
+        </div>
+<!--
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>Please join group to join task.</li>
+            </ul>
+        </div>
+-->
     </div>    
-    <div id="groupPost" ng-repeat="task in tasks" ng-click="viewTask()">
-                <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-                <div id="t_t"> {{task.name}} </div>
-                <div id="t"> {{task.date}} </div>
-                <div id="t"> {{task.location}} </div>
-                <div id="t"> {{task.duration}} Hours </div>
+    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksAll">
+        <div ng-click="viewTask(task.id)">
+            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
+            <div id="t_t"> {{task.name}} </div>
+            <div id="t"> {{task.date}} </div>
+            <div id="t"> {{task.location}} </div>
+            <div id="t"> {{task.duration}} Hours </div>
+        </div>
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="joinTask(task.id)">Edit</a></li>
+            </ul>
+        </div>
     </div>
-    <div id="groupPost" ng-repeat="task in tasksMemb" ng-click="viewTask()">
-                <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-                <div id="t_t"> {{task.name}} </div>
-                <div id="t"> {{task.date}} </div>
-                <div id="t"> {{task.location}} </div>
-                <div id="t"> {{task.duration}} Hours </div>
+    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksMan">
+        <div ng-click="viewTask(task.id)">
+            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
+            <div id="t_t"> {{task.name}} </div>
+            <div id="t"> {{task.date}} </div>
+            <div id="t"> {{task.location}} </div>
+            <div id="t"> {{task.duration}} Hours </div>
+        </div>
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="editTask(task.id)">Edit</a></li>
+                <li><a ng-click="deleteTask(task.id)">Delete</a></li>
+                <li><a ng-click="leaveTask(task.id)">Leave</a></li>
+            </ul>
+        </div>
+    </div>
+    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksMemb">
+        <div ng-click="viewTask(task.id)">
+            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
+            <div id="t_t"> {{task.name}} </div>
+            <div id="t"> {{task.date}} </div>
+            <div id="t"> {{task.location}} </div>
+            <div id="t"> {{task.duration}} Hours </div>
+        </div>
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="leaveTask(task.id)">Leave</a></li>
+            </ul>
+        </div>
     </div>
 </div>
