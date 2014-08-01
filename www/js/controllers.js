@@ -347,8 +347,12 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 
     //Controller for the Modal PopUp Edit
     var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
-            $scope.group = $filter('getById')($rootscope.groups, editId);
-        //        console.log(found);
+            var promiseGet = $scope.Restangular().all("groups").get(editId);
+            promiseGet.then(function(success) {
+                $scope.group = success;
+            }, function(fail) {
+    //          $scope.message = "DELETE FAILED";
+            });
             $scope.ok = function () {
                 var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
 
@@ -508,12 +512,11 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 }]);
 
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', '$q', function($scope, $state, $stateParams, $modal, $rootScope, $filter, $q) {
-//    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
     
-    //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
+    //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
         var gProm = $scope.$parent.Restangular().all("tasks").getList();
         gProm.then(function(success) {success = $scope.Restangular().stripRestangular(success);
@@ -577,8 +580,6 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     $scope.updateTasks();
     
-//    $rootScope.tasks = $scope.tasks;
-    
     //OPENING THE MODAL TO ADD A TASK
     $scope.addTask = function() {
         $scope.openAdd();
@@ -629,17 +630,18 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //OPENING THE MODAL TO DELETE A TASK
-    $scope.deleteTask = function() {
-        $scope.openDelete();
+    $scope.deleteTask = function(task_id) {
+        console.log(task_id);
+        $scope.openDelete(task_id);
     }
 
-    $scope.openDelete = function () {
+    $scope.openDelete = function (task_id) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/deleteTask.html',
           controller: ModalInstanceCtrlDelete,
           resolve: {
-              group_id: function() {
-                  return $scope.id;
+              task_id: function() {
+                  return task_id;
               },
               window_scope: function() {
                 return $scope;
@@ -655,20 +657,18 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             });
     };
 
-    //Controller for the Modal PopUp Add
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, group_id) {
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, task_id) {
         $scope.ok = function () {
-            $scope.newTask.group_id = group_id;
-            console.log($scope.newTask);
-//            var promise = $scope.$parent.Restangular().all("tasks").post($scope.newTask);
+            var promise = $scope.$parent.Restangular().all("tasks").all(task_id).remove();
 
             promise.then(function(success) {
-                    $scope.message = "ADD SUCCESS!";
+                    $scope.message = "DELETE SUCCESS!";
                     console.log(success);
                     window_scope.updateTasks();
                     $modalInstance.close();
                 }, function(fail) {
-                    $scope.message = "ADD FAILED";
+                    $scope.message = "DELETE FAILED";
             });
         };
 
@@ -677,6 +677,61 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         };
     };
 
+    
+    //OPENING THE MODAL TO EDIT A TASK
+    $scope.editTask = function(task_id) {
+        $scope.openEdit(task_id);
+    }
+    
+    $scope.openEdit = function (task_id) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editTask.html',
+          controller: ModalInstanceCtrlEdit,
+          resolve: {
+              task_id: function() {
+                  return task_id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id) {
+        console.log(task_id);
+        var promiseGet = $scope.Restangular().all("tasks").get(task_id);
+        promiseGet.then(function(success) {
+            $scope.editTask = success;
+        }, function(fail) {
+//          $scope.message = "DELETE FAILED";
+        });
+        $scope.ok = function () {
+            var promise = $scope.$parent.Restangular().all("tasks").all(task_id).post($scope.editTask);
+
+            promise.then(function(success) {
+                    $scope.message = "DELETE SUCCESS!";
+                    console.log(success);
+                    window_scope.updateTasks();
+                    $modalInstance.close();
+                }, function(fail) {
+                    $scope.message = "DELETE FAILED";
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+    
     //OPENING THE MODAL TO VIEW A TASK
     $scope.viewTask = function(click_id) {
         var task = $filter('getById')($scope.tasksAll, click_id);
@@ -702,6 +757,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
+    
     //Controller for the Modal PopUp View
     var ModalInstanceCtrlView = function($scope, task) {
         $scope.task = task;
@@ -716,6 +772,17 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         $scope.ok = function () {
             $modalInstance.close();
         };
+    }
+    
+    //JOINING A TASK
+    $scope.joinTask = function(task_id) {
+        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).post();
+
+        promise.then(function(success) {
+                window_scope.updateTasks();
+            }, function(fail) {
+//                $scope.message = "DELETE FAILED";
+        });
     }
 }]);
 
