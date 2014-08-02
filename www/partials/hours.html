@@ -1,7 +1,5 @@
 <tabset>
     <tab heading="Record" style="width:50%">
-        <button class="btn btn-default" ng-click="open()">Add Entry</button>
-
         <div id="entry" ng-repeat="entry in entries">
             <a href=""> <!-- Link this to modal window from in depth -->
                 <div> {{entry.title}} </div>
@@ -14,9 +12,9 @@
     <tab heading="Submit" style="width:50%">
         <div style="margin: 10px">
             <form>
-                <input id="name" type="text" name="name" ng-model="$parent.name" placeholder="Task Name"/>
+                <input id="name" type="text" name="name" ng-model="entry.name" placeholder="Task Name"/>
                 <br/>
-                <input id="duration" type="text" ng-model="$parent.duration" placeholder="Duration"/>
+                <input id="duration" type="text" ng-model="entry.duration" placeholder="Duration"/>
                 <br/>
                 <input type="submit" ng-click="ok()" name="id" placeholder="Name"/>
             </form>

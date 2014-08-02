@@ -851,41 +851,98 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     }
 }]);
 
-vmaControllerModule.controller('efforts', ['$scope', '$state', function($scope, $state) {
-    $scope.tasks = [
-        {id:'1', task_name: "SIGNED UP TASK 1", icon: "img/temp_icon.png"},
-        {id:'2', task_name: "SIGNED UP TASK 2", icon: "img/temp_icon.png"},
-        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
-        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
-        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
-        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
-        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
-        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
-        {id:'3', task_name: "SIGNED UP TASK 3", icon: "img/temp_icon.png"},
-        {id:'4', task_name: "SIGNED UP TASK 4", icon: "img/temp_icon.png"},
-        {id:'5', task_name: "SIGNED UP TASK 5", icon: "img/temp_icon.png"},
-        {id:'6', task_name: "SIGNED UP TASK 6", icon: "img/temp_icon.png"}
-    ];
-    $scope.invites = [
-        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
-        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
-    ];
+vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', '$q', function($scope, $state, $stateParams, $modal, $rootScope, $filter, $q) {
+    //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
+    $scope.updateTasks = function() {
+        var gProm = $scope.$parent.Restangular().all("tasks").getList();
+        gProm.then(function(success) {
+            success = $scope.Restangular().stripRestangular(success);
+//            console.log(success);
+            //console.log($scope.id);
+            $scope.tasksAll = success;
+            //$scope.tasks = success;
+//            console.log($scope.tasksAll);
+        }, function(fail) {
+            //console.log(fail);
+        });
+        var gPromMemb = $scope.$parent.Restangular().all("tasks").all("byMembership").getList();
+        gPromMemb.then(function(success) {success = $scope.Restangular().stripRestangular(success);
+//            console.log(success);
+            //console.log($scope.id);
+            $scope.tasksMemb = success;
+            //$scope.tasks = success;
+//            console.log($scope.tasksMemb);
+        }, function(fail) {
+            //console.log(fail);
+        });
+    }
+
+    $scope.updateTasks();
+
+    //OPENING THE MODAL TO VIEW A TASK
+    $scope.viewTask = function(click_id) {
+        var task = $filter('getById')($scope.tasksAll, click_id);
+        $scope.openView(task);
+    }
+
+    $scope.openView = function (task) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/efforts.task.html',
+          controller: ModalInstanceCtrlView,
+          resolve: {
+              task: function() {
+                  return task;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    
+    //Controller for the Modal PopUp View
+    var ModalInstanceCtrlView = function($scope, task) {
+        $scope.task = task;
+        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
+//        console.log($scope.task.time);
+        $scope.map = {
+            sensor: true,
+            size: '500x300',
+            zoom: 15,
+            center: $scope.task.location,
+            markers: [$scope.task.location], //marker locations
+            mapevents: {redirect: true, loadmap: false}
+        };
+        $scope.ok = function () {
+            $modalInstance.close();
+        };
+    }
+    
+    //JOINING A TASK
+    $scope.joinTask = function(task_id) {
+        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).post();
+
+        promise.then(function(success) {
+                $scope.updateTasks();
+            }, function(fail) {
+//                $scope.message = "DELETE FAILED";
+        });
+    }
+    
+    //LEAVING A TASK
+    $scope.leaveTask = function(task_id) {
+        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).remove();
+
+        promise.then(function(success) {
+                $scope.updateTasks();
+            }, function(fail) {
+//                $scope.message = "DELETE FAILED";
+        });
+    }
 }]);
 
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
@@ -953,50 +1010,9 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
     ];
     
-    
-         
-    $scope.addEntry = function() {
-        $scope.open();
+    $scope.ok = function() {
+        $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
     }
-
-    
-    
-  $scope.items = ['item1', 'item2', 'item3'];
-    
-    $scope.open = function (size) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/addHoursEntry.html',
-          controller: ModalInstanceCtrl,
-          size: size
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-    
-    
-    
-    
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
-
-    var ModalInstanceCtrl = function ($scope, $modalInstance) {
-            $scope.ok = function () {
-//                console.log($scope.name);
-//                console.log($scope.duration);
-                $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
-                $modalInstance.close();
-    //            console.log($rootscope.groups);
-            };
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
-    };
 }]);
 
 vmaControllerModule.controller('awards', function ($scope) {
