@@ -94,7 +94,7 @@ volunteerManagementApp.config(
           authenticate: true
       }).
       state('home.task', {
-          url: "/task:id",
+          url: "/task:task",
           views: {
             "app": { templateUrl: "partials/efforts.task.html", controller: 'task'},
           },
@@ -138,7 +138,8 @@ volunteerManagementApp.config(
       });
     
 
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+    
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
   }
 );
 
@@ -157,6 +158,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
             console.log("authed");
 //            console.log(result[0]);
             $rootScope.uid = result[0].id.toString();
+            $rootScope.uin = result[0].username.toString();
         }, function(error) {
             if(error.status === 0) {
                 console.log("error-0");

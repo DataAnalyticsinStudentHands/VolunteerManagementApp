@@ -852,6 +852,26 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 }]);
 
 vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', '$q', function($scope, $state, $stateParams, $modal, $rootScope, $filter, $q) {
+    $scope.invites = [
+        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
+        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
+        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
+        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
+        {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
+    ];
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
         var gProm = $scope.$parent.Restangular().all("tasks").getList();

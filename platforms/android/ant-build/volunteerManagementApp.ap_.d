@@ -487,8 +487,10 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\bottomMenu.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\calendar.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\communityFeed.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deleteGroup.html \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deleteTask.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deleteUser.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\editGroup.html \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\editTask.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\efforts.group.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\efforts.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\efforts.task.html \
