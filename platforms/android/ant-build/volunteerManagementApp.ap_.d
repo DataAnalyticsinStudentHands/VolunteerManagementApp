@@ -17,6 +17,7 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\bower_components \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\cordova.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\cordova_plugins.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\css \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\index.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js \
