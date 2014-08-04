@@ -15,14 +15,14 @@ var cjson = (function () {
 
 //loads the generic full calendar
 function myFunction() {
-	
+	   var dateToday = new Date(); //TODAY
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2014-06-12',
+			defaultDate: dateToday,
     //this is to add an event by selecting hours or days in a selected view through a pop up
 		    selectable: false,
 			selectHelper: true,
@@ -41,7 +41,7 @@ $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
         	},    
             
     //allows the events to be draggable or not. 
-            editable: true,
+            editable: false,
 			events: cjson
 		
 	       });
