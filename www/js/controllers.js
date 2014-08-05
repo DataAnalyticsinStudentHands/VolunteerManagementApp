@@ -1087,22 +1087,67 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ti
       }
 }]);
 
-vmaControllerModule.controller('calendar', ['$scope', '$state', '$filter', function($scope, $state, $filter) {
+vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', '$modal', function($scope, $state, vmaTaskService, $compile, $modal) {
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasksAndDisplayCalendar = function() {
-        var gPromMemb = $scope.$parent.Restangular().all("tasks").all("byMembership").getList();
+        var gPromMemb = vmaTaskService.getCalTasks($scope.id);
         gPromMemb.then(function(success) {success = $scope.Restangular().stripRestangular(success);
 //            console.log(success);
             //console.log($scope.id);
-            $scope.tasksMemb = success;
-            displayFullCalendar($scope.tasksMemb);
+            $scope.calTasks = success;
+            displayFullCalendar($scope.calTasks);
+            $compile($('#calendar'))($scope);
             //$scope.tasks = success;
 //            console.log($scope.tasksMemb);
         }, function(fail) {
             //console.log(fail);
         });
     }
+    
     $scope.updateTasksAndDisplayCalendar();
+    
+    //OPENING THE MODAL TO VIEW A TASK
+    $scope.viewTask = function(click_id) {
+        var task = vmaTaskService.getTaskView(click_id);
+        $scope.openView(task);
+    }
+
+    $scope.openView = function (task) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/efforts.task.html',
+          controller: ModalInstanceCtrlView,
+          resolve: {
+              task: function() {
+                  return task;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp View
+    var ModalInstanceCtrlView = function($scope, task) {
+        $scope.task = task;
+        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
+//        console.log($scope.task.time);
+        $scope.map = {
+            sensor: true,
+            size: '500x300',
+            zoom: 15,
+            center: $scope.task.location,
+            markers: [$scope.task.location], //marker locations
+            mapevents: {redirect: true, loadmap: false}
+        };
+        $scope.ok = function () {
+            $modalInstance.close();
+        };
+    }
 }]);
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {

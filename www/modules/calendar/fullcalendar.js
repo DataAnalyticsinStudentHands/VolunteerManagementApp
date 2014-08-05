@@ -4890,7 +4890,9 @@ function AgendaEventRenderer() {
 			classes = classes.concat(event.source.className || []);
 		}
 		if (url) {
-			html += "a href='" + htmlEscape(event.url) + "'";
+//			html += "a href='" + htmlEscape(event.url) + "'";
+            console.log(angular);
+			html += "a ng-click='" + event.url + "'";
 		}else{
 			html += "div";
 		}
@@ -6267,7 +6269,8 @@ function DayEventRenderer() {
 		var skinCss = getSkinCss(event, opt);
 
 		if (url) {
-			html += "<a href='" + htmlEscape(url) + "'";
+//			html += "<a href='" + htmlEscape(url) + "'";
+			html += "<a ng-click='" + url + "'";
 		}else{
 			html += "<div";
 		}

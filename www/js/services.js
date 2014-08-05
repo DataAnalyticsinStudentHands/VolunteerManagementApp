@@ -191,6 +191,23 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             function() {
                 return this.updateTasks().then(function(success) { return memTasks.concat(manTasks); });
             },
+        getCalTasks:
+            function() {
+                return this.getJoinTasks().then(function(success) {
+                    console.log(success);
+                    var result = [];
+                    success.forEach(function(entry) {
+//                        console.log(new Date(entry.time));
+                        var localoffset = (new Date(entry.time)).getTimezoneOffset();
+                        // "unadjust" date
+                        entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
+//                        console.log(new Date(entry.time));
+//                        console.log(entry.id);
+                        result.push({"title" : entry.name, "start": entry.time, "url": "viewTask(" + entry.id + ")"});
+                    });
+                    return result;
+                });
+            },
         getTask:
             function(task_id) {
                 return $filter('getById')(allTasks, task_id);
