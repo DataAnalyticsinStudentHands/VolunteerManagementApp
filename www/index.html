@@ -57,11 +57,25 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-snap/angular-snap.css"></link>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/animation.css">
 </head>
 <body id="background">
+    
+    <div id="div_2">
+        <div class="wrap">
+  <div class="cube">
+    <div class="front"><img class ="front_image" src="img/logo_O2.png"></div>
+    <div class="back"><img class ="back_image" src="img/uhlogo.svg"></div>
+    <div class="left"><img class ="left_image" src="img/summerofappslogo.svg"></div>
+    <div class="right"><img class ="right_image" src="img/honorslogo.svg"></div>
+  </div>
+</div>    
+</div>        
+    <div id="div_1">
     <div ui-view="menuBar"></div>
     <div ui-view="app"></div>
     <div ui-view="bottomMenu"></div>
+    </div>    
     
 <!--FORCE CHROME - FULL DEBUG - ALERT ERROR-->
 <!--
