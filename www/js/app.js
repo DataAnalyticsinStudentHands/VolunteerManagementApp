@@ -19,7 +19,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
 volunteerManagementApp.config(
     function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
         $urlRouterProvider.otherwise("/cfeed");
-
+        
         $stateProvider.
           state('home', {
               views: {
@@ -140,6 +140,7 @@ volunteerManagementApp.config(
 
 
 
+        
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
     }
 );

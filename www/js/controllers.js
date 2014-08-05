@@ -91,21 +91,11 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
     
 }]);
 
-vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', function($scope, $state, $rootscope, snapRemote) {
-    $scope.messages = [
-        {id:'1', task: "TASK 1", preview_content:"Hi!", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'5', task: "TASK 5", preview_content:"msg content", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'6', task: "TASK 6", preview_content:"More stuff", img: "img/temp_icon.png", preview_author: "me"}
-    ];
+vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', 'vmaTaskService', function($scope, $state, $rootscope, snapRemote, vmaTaskService) {
+    $scope.updateTasks = function() {
+        vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
+    }
+    $scope.updateTasks();
 
     $scope.displayMessages = function(click_id) {
 //            $scope.pActiv = true;
@@ -918,9 +908,7 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
 }]);
 
 vmaControllerModule.controller('task', ['$scope', 'task', function($scope, task) {
-//    $scope.task = JSON.parse($stateParams.task);
     $scope.task = task;
-    console.log("HI");
     $scope.map = {
         sensor: true, //required
         size: '500x300',
@@ -1048,7 +1036,6 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
     //          $scope.selected = selectedItem;
         }, function () {
     //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
