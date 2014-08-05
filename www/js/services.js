@@ -82,10 +82,13 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
     var allTasks = [];
     var manTasks = [];
     var memTasks = [];
+    var subTasks = [];
+    var metaTasks = [];
     return {
         updateTasks:
             //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function() {
+                console.log("TASKS UPDATED");
                 var gProm = Restangular.all("tasks").one("byMembership").getList();
                 gProm.then(function(success) {
                     success = Restangular.stripRestangular(success);
@@ -144,8 +147,34 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
                             result.push(groupsIds[i]);
                         }
                     }
-
+                    subTasks = result;
                     return result;
+                });
+            },
+        getMetaTasks:
+            function() {
+                return this.getSubtractedTasks().then(function(success) {
+//                    console.log(success);
+                    var result = [];
+                    memTasks.forEach(function(obj){
+                        obj.isMember = true;
+//                        console.log(obj);
+                        result.push(obj);
+                    });
+                    manTasks.forEach(function(obj){
+                        obj.isManager = true;
+//                        console.log(obj);
+                        result.push(obj);
+                    });
+                    subTasks.forEach(function(obj){
+                        obj.isTask = true;
+//                        console.log(obj);
+                        result.push(obj);
+                    });
+//                    console.log(result);
+                    metaTasks = result;
+                    return result;
+//                  return $filter('getTasksByGroupId')(memTasks, gid);
                 });
             },
         getAllTasksGroup: 
@@ -185,6 +214,13 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
                     }
                     var result = $filter('getTasksByGroupId')(result, gid);
                     return result;
+                });
+            },
+        getMetaTasksGroup:
+            function(gid) {
+                return this.getMetaTasks().then(function(success) {
+//                    console.log(success);
+                    return $filter('getTasksByGroupId')(success, gid);
                 });
             },
         getJoinTasks:

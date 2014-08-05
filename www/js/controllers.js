@@ -420,7 +420,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
-    
+
     $scope.updatePosts = function() {
         var gProm = $scope.$parent.Restangular().all("posts").getList({"group_id" : $scope.id});
         gProm.then(function(success) {
@@ -431,11 +431,11 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         });
     }
     $scope.updatePosts();
-    
+
     $scope.addPost = function() {
         $scope.open();
     }
-    
+
     $scope.open = function (size) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/addPost.html',
@@ -458,7 +458,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-    //Controller for the Modal PopUp
+    //Contsroller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance, group_id, window_scope) {
         $scope.group_id = group_id;
         $scope.ok = function () {
@@ -486,10 +486,11 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
-        vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.allTasks = success; });
-        vmaTaskService.getManTasksGroup($scope.id).then(function(success) { $scope.manTasks = success; });
-        vmaTaskService.getMemTasksGroup($scope.id).then(function(success) { $scope.memTasks = success; });
-        vmaTaskService.getSubtractedTasksGroup($scope.id).then(function(success) { $scope.subTasks = success; });
+//        vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.allTasks = success; });
+//        vmaTaskService.getManTasksGroup($scope.id).then(function(success) { $scope.manTasks = success; });
+//        vmaTaskService.getMemTasksGroup($scope.id).then(function(success) { $scope.memTasks = success; });
+//        vmaTaskService.getSubtractedTasksGroup($scope.id).then(function(success) { $scope.subTasks = success; });
+        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { /*console.log(success);*/ $scope.metaTasks = success; });
     }
     $scope.updateTasks();
 
