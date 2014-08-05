@@ -84,7 +84,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
     var memTasks = [];
     return {
         updateTasks:
-            //ACCESSES SERVER AND UPDATES THE LIST OF TaskS
+            //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function() {
                 var gProm = Restangular.all("tasks").one("byMembership").getList();
                 gProm.then(function(success) {
@@ -108,6 +108,18 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
         //            console.log(fail);
                 });
                 return $q.all([gProm, gPromByMan, gPromMaster]);
+            },
+        getAllTasks: 
+            function() {
+                return this.updateTasks().then(function(success) { return allTasks; });
+            },
+        getManTasks: 
+            function() {
+                return this.updateTasks().then(function(success) { return manTasks; });
+            },
+        getMemTasks:
+            function() {
+                return this.updateTasks().then(function(success) { return memTasks; });
             },
         getSubtractedTasks:
             function() {
@@ -136,21 +148,68 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
                     return result;
                 });
             },
-        getAllTasks: 
-            function() {
-                return this.updateTasks().then(function(success) { return allTasks; });
+        getAllTasksGroup: 
+            function(gid) {
+                return this.updateTasks().then(function(success) { return $filter('getTasksByGroupId')(allTasks, gid);});
             },
-        getManTasks: 
-            function() {
-                return this.updateTasks().then(function(success) { return manTasks; });
+        getManTasksGroup: 
+            function(gid) {
+                return this.updateTasks().then(function(success) { return $filter('getTasksByGroupId')(manTasks, gid);});
             },
-        getMemTasks:
+        getMemTasksGroup:
+            function(gid) {
+                return this.updateTasks().then(function(success) { return $filter('getTasksByGroupId')(memTasks, gid);});
+            },
+        getSubtractedTasksGroup:
+            function(gid) {
+                return this.updateTasks().then(function(success) {
+                    var assignedGroupsIds = {};
+                    var groupsIds = {};
+                    var result = [];
+
+                    var assignedGroups = manTasks.concat(memTasks);
+                    var groups = allTasks;
+
+                    assignedGroups.forEach(function (el, i) {
+                        assignedGroupsIds[el.id] = assignedGroups[i];
+                    });
+
+                    groups.forEach(function (el, i) {
+                        groupsIds[el.id] = groups[i];
+                    });
+
+                    for (var i in groupsIds) {
+                        if (!assignedGroupsIds.hasOwnProperty(i)) {
+                            result.push(groupsIds[i]);
+                        }
+                    }
+                    var result = $filter('getTasksByGroupId')(result, gid);
+                    return result;
+                });
+            },
+        getJoinTasks:
             function() {
-                return this.updateTasks().then(function(success) { return memTasks; });
+                return this.updateTasks().then(function(success) { return memTasks.concat(manTasks); });
             },
         getTask:
             function(task_id) {
                 return $filter('getById')(allTasks, task_id);
+            },
+        getTaskView:
+            function(task_id) {
+                var viewTask = $filter('getById')(allTasks, task_id);
+                if(viewTask.time) {
+                    viewTask.time = new Date(viewTask.time).toDateString() + " " + new Date(viewTask.time).getHours() + ":" + new Date(viewTask.time).getMinutes();
+                } else {
+                    viewTask.time = "No Time Specified";
+                }
+                if(!viewTask.location) {
+                    viewTask.show_map = false;
+                } else {
+                    viewTask.show_map = true;
+                }
+                console.log(viewTask);
+                return viewTask;
             },
         addTask:
             function(task) {
@@ -180,106 +239,3 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             }
     }
 }]);
-
-//vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
-//    var allTasks = [];
-//    var manTasks = [];
-//    var memTasks = [];
-//    return {
-//        updateTasks:
-//            //ACCESSES SERVER AND UPDATES THE LIST OF TaskS
-//            function() {
-//                var gProm = Restangular.all("tasks").one("byMembership").getList();
-//                gProm.then(function(success) {
-//                    success = Restangular.stripRestangular(success);
-//                    memTasks = success;
-//                }, function(fail) {
-//        //            console.log(fail);
-//                });
-//                var gPromByMan = Restangular.all("tasks").one("byManager").getList();
-//                gPromByMan.then(function(success) {
-//                    success = Restangular.stripRestangular(success);
-//                    manTasks = success;
-//                }, function(fail) {
-//        //            console.log(fail);
-//                });
-//                var gPromMaster = Restangular.all("tasks").getList();
-//                gPromMaster.then(function(success) {
-//                    success = Restangular.stripRestangular(success);
-//                    allTasks = success;
-//                }, function(fail) {
-//        //            console.log(fail);
-//                });
-//                return $q.all([gProm, gPromByMan, gPromMaster]);
-//            },
-//        getSubtractedTasks:
-//            function() {
-//                return this.updateTasks().then(function(success) {
-//                    var assignedGroupsIds = {};
-//                    var groupsIds = {};
-//                    var result = [];
-//
-//                    var assignedGroups = manTasks.concat(memTasks);
-//                    var groups = allTasks;
-//
-//                    assignedGroups.forEach(function (el, i) {
-//                        assignedGroupsIds[el.id] = assignedGroups[i];
-//                    });
-//
-//                    groups.forEach(function (el, i) {
-//                        groupsIds[el.id] = groups[i];
-//                    });
-//
-//                    for (var i in groupsIds) {
-//                        if (!assignedGroupsIds.hasOwnProperty(i)) {
-//                            result.push(groupsIds[i]);
-//                        }
-//                    }
-//
-//                    return result;
-//                });
-//            },
-//        getAllTasks: 
-//            function() {
-//                return this.updateTasks().then(function(success) { return allTasks; });
-//            },
-//        getManTasks: 
-//            function() {
-//                return this.updateTasks().then(function(success) { return manTasks; });
-//            },
-//        getMemTasks:
-//            function() {
-//                return this.updateTasks().then(function(success) { return memTasks; });
-//            },
-//        getTask:
-//            function(task_id) {
-//                return $filter('getById')(allTasks, task_id);
-//            },
-//        addTask:
-//            function(task) {
-//                return Restangular.all("tasks").post(task);
-//            },
-//        editTask:
-//            function(id, task) {
-//                 return Restangular.all("tasks").all(id).post(task);
-//            },
-//        deleteTask:
-//            function(tid) {
-//                return Restangular.all("tasks").all(tid).remove();
-//            },
-//        joinTask:
-//            function(tid, uid) {
-//                return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).post();
-//            },
-//        leaveTaskManager:
-//            function(tid, uid) {
-//                 return Restangular.all("tasks").all(tid).all("MANAGER").all(uid).remove().then(function(success) {});
-//            },
-//        leaveTaskMember:
-//            function(tid, uid) {
-//                return this.leaveTaskManager(tid, uid).then(function(success) {
-//                    return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {});
-//                });
-//            }
-//    }
-//}]);

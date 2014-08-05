@@ -1,6 +1,6 @@
 <tabset>
     <tab id="task_tab" heading="Tasks" style="width:50%">
-        <div id="task_e" ng-repeat="task in tasksMemb">
+        <div id="task_e" ng-repeat="task in joinTasks">
             <a ng-click="viewTask(task.id)">
                 <div><img src="img/effort_group.icon.png" width="70" height="50"/></div>
                 <div>{{task.name}} </div>
