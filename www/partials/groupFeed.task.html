@@ -1,6 +1,6 @@
 <div id="scrollable_g">
     <button ng-show="{{detail}}" class="btn btn-default" ng-click="addTask()">Add Task</button>    
-    <div ng-hide="{{detail}}" id="groupPost" ng-repeat="task in tasksAll">
+    <div ng-hide="{{detail}}" id="groupPost" ng-repeat="task in allTasks">
         <div ng-click="viewTask(task.id)">
             <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
             <div id="t_t"> {{task.name}} </div>
@@ -9,7 +9,7 @@
             <div id="t"> {{task.duration}} Hours </div>
         </div>
     </div> 
-    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksMan">
+    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in manTasks">
         <div ng-click="viewTask(task.id)">
             <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
             <div id="t_t"> {{task.name}} </div>
@@ -28,7 +28,7 @@
             </ul>
         </div>
     </div>
-    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksMemb">
+    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in memTasks">
         <div ng-click="viewTask(task.id)">
             <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
             <div id="t_t"> {{task.name}} </div>
@@ -45,7 +45,7 @@
             </ul>
         </div>
     </div>   
-    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksAllSubtracted">
+    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in subTasks">
         <div ng-click="viewTask(task.id)">
             <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
             <div id="t_t"> {{task.name}} </div>

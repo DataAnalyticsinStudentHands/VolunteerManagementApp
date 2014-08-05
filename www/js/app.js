@@ -3,6 +3,7 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
+  'vmaServicesModule',
   'vmaControllerModule',
   'vmaFilterModule',
   'databaseServicesModule',

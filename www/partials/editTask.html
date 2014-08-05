@@ -2,10 +2,10 @@
     <form>
         <input id="name" type="text" ng-model="$parent.editTask.name" placeholder="Name"/>
         <br/>
-        <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
         <br/>
         <div style="display:inline-block; min-height:290px; width: 100%">
-            <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+            <datepicker ng-model="$parent.mytime" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
         </div>
         <input id="description" type="text" ng-model="$parent.editTask.description" placeholder="Description"/>
         <br/>

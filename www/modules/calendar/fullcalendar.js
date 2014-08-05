@@ -1220,7 +1220,7 @@ function Header(calendar, options) {
 	function updateTitle(html) {
 		element.find('h2')
 			.html("<br/>" + html);
-        console.log(html);
+//        console.log(html);
 	}
 	
 	

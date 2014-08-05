@@ -461,24 +461,19 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
-    $scope.posts = [
-        {id:'1', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'2', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'3', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'4', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'5', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "you", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"},
-        {id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "43", likes: "3", time: "3:10AM", content: "THIS IS CONTENT"}
-    ];
-    
-    $rootScope.posts = $scope.posts;
+    $scope.posts = [];
+    $scope.updatePosts = function() {
+        var gProm = $scope.$parent.Restangular().all("posts").getList({"group_id" : $scope.id});
+        gProm.then(function(success) {
+            success = $scope.Restangular().stripRestangular(success);
+            console.log(success);
+            $scope.posts = success;
+        }, function(fail) {
+            console.log(fail);
+        });
+    }
+    $scope.updatePosts();
+//    $rootScope.posts = $scope.posts;
     
     $scope.addPost = function() {
         $scope.open();
@@ -488,7 +483,15 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         var modalInstance = $modal.open({
           templateUrl: 'partials/addPost.html',
           controller: ModalInstanceCtrl,
-          size: size
+          size: size,
+          resolve: {
+              group_id: function() {
+                  return $scope.id;
+              },
+              window_scope: function() {
+                  return $scope;
+              }
+          }  
         });
 
         modalInstance.result.then(function (selectedItem) {
@@ -499,9 +502,17 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         });
     };
     //Controller for the Modal PopUp
-    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+    var ModalInstanceCtrl = function ($scope, $modalInstance, group_id, window_scope) {
+        $scope.group_id = group_id;
         $scope.ok = function () {
-            $rootScope.posts.push({id:'6', avatar_img: "img/temp_icon.png", img: "img/temp_icon.png", author: "me", post: "This is content", comment_count: "12", likes: "3", time: "3:10AM", content: $scope.content});
+            $scope.post["group_id"] = $scope.group_id;
+            var prom = $scope.$parent.Restangular().all("posts").post($scope.post);
+            prom.then(function(success) {
+                console.log(success);
+                window_scope.updatePosts();
+            }, function(fail) {
+                console.log(fail)
+            });
             $modalInstance.close();
         };
 

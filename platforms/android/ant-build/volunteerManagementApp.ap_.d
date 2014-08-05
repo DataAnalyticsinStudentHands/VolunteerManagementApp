@@ -473,6 +473,7 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\dbServices.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\app.css \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\fullcalendar.css \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\fullcalendar.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\fullcalendar.min.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\fullcalendar.print.css \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\jquery-ui.custom.min.js \
