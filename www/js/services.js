@@ -6,6 +6,8 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
     var allGroups = [];
     var manGroups = [];
     var memGroups = [];
+    var subGroups = [];
+    var metaGroups = [];
     return {
         updateGroups:
             //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
@@ -44,6 +46,69 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
         getMemGroups:
             function() {
                 return this.updateGroups().then(function(success) { return memGroups; });
+            },
+        getSubtractedGroups:
+            function() {
+                return this.updateGroups().then(function(success) {
+                    var assignedGroupsIds = {};
+                    var groupsIds = {};
+                    var result = [];
+
+                    var assignedGroups = manGroups.concat(memGroups);
+                    var groups = allGroups;
+
+                    assignedGroups.forEach(function (el, i) {
+                        assignedGroupsIds[el.id] = assignedGroups[i];
+                    });
+
+                    groups.forEach(function (el, i) {
+                        groupsIds[el.id] = groups[i];
+                    });
+
+                    for (var i in groupsIds) {
+                        if (!assignedGroupsIds.hasOwnProperty(i)) {
+                            result.push(groupsIds[i]);
+                        }
+                    }
+                    subGroups = result;
+                    return result;
+                });
+            },
+        getMetaGroups:
+            function() {
+                return this.getSubtractedGroups().then(function(success) {
+                    var result = [];
+                    subGroups.forEach(function(obj){
+                        obj.isGroup = true;
+                        result.push(obj);
+                    });
+                    memGroups.forEach(function(obj){
+                        obj.isMember = true;
+                        result.push(obj);
+                    });
+                    manGroups.forEach(function(obj){
+                        obj.isManager = true;
+                        result.push(obj);
+                    });
+                    metaGroups = result;
+                    return result;
+                });
+            },
+        getMetaJoinedGroups:
+            function() {
+                return this.getSubtractedGroups().then(function(success) {
+                    var result = [];
+                    manGroups.forEach(function(obj){
+                        obj.isManager = true;
+                        result.push(obj);
+                    });
+                    memGroups.forEach(function(obj){
+                        obj.isMember = true;
+                        result.push(obj);
+                    });
+                    metaGroups = result;
+                    return result;
+                });
             },
         getGroup:
             function(group_id) {
@@ -156,13 +221,13 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
                 return this.getSubtractedTasks().then(function(success) {
 //                    console.log(success);
                     var result = [];
-                    memTasks.forEach(function(obj){
-                        obj.isMember = true;
+                    manTasks.forEach(function(obj){
+                        obj.isManager = true;
 //                        console.log(obj);
                         result.push(obj);
                     });
-                    manTasks.forEach(function(obj){
-                        obj.isManager = true;
+                    memTasks.forEach(function(obj){
+                        obj.isMember = true;
 //                        console.log(obj);
                         result.push(obj);
                     });

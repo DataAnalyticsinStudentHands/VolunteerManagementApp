@@ -186,9 +186,11 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     }
 
     $scope.updateGroups = function() {
-        vmaGroupService.getAllGroups().then(function(success) { $scope.allGroups = success; });
-        vmaGroupService.getManGroups().then(function(success) { $scope.manGroups = success; });
-        vmaGroupService.getMemGroups().then(function(success) { $scope.memGroups = success; });
+//        vmaGroupService.getAllGroups().then(function(success) { $scope.allGroups = success; });
+//        vmaGroupService.getManGroups().then(function(success) { $scope.manGroups = success; });
+//        vmaGroupService.getMemGroups().then(function(success) { $scope.memGroups = success; });
+        vmaGroupService.getMetaGroups().then(function(success) { $scope.metaGroups = success; });
+        vmaGroupService.getMetaJoinedGroups().then(function(success) { $scope.metaJoinedGroups = success; });
     }
 
     $scope.updateGroups();
@@ -486,11 +488,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
-//        vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.allTasks = success; });
-//        vmaTaskService.getManTasksGroup($scope.id).then(function(success) { $scope.manTasks = success; });
-//        vmaTaskService.getMemTasksGroup($scope.id).then(function(success) { $scope.memTasks = success; });
-//        vmaTaskService.getSubtractedTasksGroup($scope.id).then(function(success) { $scope.subTasks = success; });
-        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { /*console.log(success);*/ $scope.metaTasks = success; });
+        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success; });
     }
     $scope.updateTasks();
 
