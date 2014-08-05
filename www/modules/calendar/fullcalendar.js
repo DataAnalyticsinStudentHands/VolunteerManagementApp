@@ -4891,7 +4891,6 @@ function AgendaEventRenderer() {
 		}
 		if (url) {
 //			html += "a href='" + htmlEscape(event.url) + "'";
-            console.log(angular);
 			html += "a ng-click='" + event.url + "'";
 		}else{
 			html += "div";

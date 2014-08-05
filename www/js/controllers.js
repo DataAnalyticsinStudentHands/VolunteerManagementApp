@@ -863,8 +863,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     //Controller for the Modal PopUp View
     var ModalInstanceCtrlView = function($scope, task) {
         $scope.task = task;
-        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
-//        console.log($scope.task.time);
         $scope.map = {
             sensor: true,
             size: '500x300',
@@ -1134,7 +1132,6 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
     //Controller for the Modal PopUp View
     var ModalInstanceCtrlView = function($scope, task) {
         $scope.task = task;
-        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
 //        console.log($scope.task.time);
         $scope.map = {
             sensor: true,
