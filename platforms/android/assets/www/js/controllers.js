@@ -4,8 +4,7 @@
 
 var vmaControllerModule = angular.module('vmaControllerModule', []);
 
-vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state',
- function($scope, Auth, $state) {
+vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', function($scope, Auth, $state) {
      if($scope.isAuthenticated() === true) {
          //Point 'em to logged in page of app
          $state.go('home');
@@ -92,56 +91,45 @@ vmaControllerModule.controller('communityFeedController', ['$scope', '$state', f
     
 }]);
 
-vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', function($scope, $state, $rootscope, snapRemote) {
-    $scope.messages = [
-        {id:'1', task: "TASK 1", preview_content:"Hi!", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'2', task: "TASK 2", preview_content:"Bye!", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'3', task: "TASK 3", preview_content:"That", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'4', task: "TASK 4", preview_content:"This", img: "img/temp_icon.png", preview_author: "me"},
-        {id:'5', task: "TASK 5", preview_content:"msg content", img: "img/temp_icon.png", preview_author: "you"},
-        {id:'6', task: "TASK 6", preview_content:"More stuff", img: "img/temp_icon.png", preview_author: "me"}
-    ];
-    
-        $scope.displayMessages = function(click_id) {
+vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', 'vmaTaskService', function($scope, $state, $rootscope, snapRemote, vmaTaskService) {
+    $scope.updateTasks = function() {
+        vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
+    }
+    $scope.updateTasks();
+
+    $scope.displayMessages = function(click_id) {
 //            $scope.pActiv = true;
 //            $scope.tActiv = false;
 //            console.log(click_id);
-            $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
-            snapRemote.close();
-        }
-        
-        
-        $scope.settings = {
-    //        element: null,
-    //        dragger: null,
-            disable: 'right',
+        $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
+        snapRemote.close();
+    }
+
+    $scope.settings = {
+//        element: null,
+//        dragger: null,
+        disable: 'right',
 //            addBodyClasses: true,
-            hyperextensible: false,
+        hyperextensible: false,
 //            resistance: 0.5,
 //            flickThreshold: 50,
 //            transitionSpeed: 0.3,
 //            easing: 'ease',
-    //        maxPosition: 266,
-    //        minPosition: -266,
+//        maxPosition: 266,
+//        minPosition: -266,
 //            tapToClose: true,
 //            touchToDrag: true,
 //            slideIntent: 40,
 //            minDragDistance: 5
-        }
+    }
 
-        var snapper = new Snap({
-          element: document.getElementById('content')
-        });
+    var snapper = new Snap({
+      element: document.getElementById('content')
+    });
 
-        snapRemote.getSnapper().then(function(snapper) {
-            snapper.open('left');
-        });
+    snapRemote.getSnapper().then(function(snapper) {
+        snapper.open('left');
+    });
 }]);
 
 vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout) {
@@ -189,88 +177,71 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }
 }]);
 
-vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$rootScope', 'snapRemote', function($scope, $state, $modal, $rootscope, snapRemote) {
+vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', function($scope, $state, $modal, snapRemote, vmaGroupService) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
     $scope.displayDetail = function(click_id, detail_bool) {
         console.log(detail_bool);
         $state.go('home.groupFeed.detail', {id: click_id, detail: detail_bool}, {reload: false});
         snapRemote.close();
     }
-    
-    //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
+
     $scope.updateGroups = function() {
-        var gProm = $scope.$parent.Restangular().all("groups").one("byMembership").getList();
-        gProm.then(function(success) {
-            $rootscope.groups = success;
-        }, function(fail) {
-//            console.log(fail);
-        });
-        var gPromByMan = $scope.$parent.Restangular().all("groups").one("byManager").getList();
-        gPromByMan.then(function(success) {
-            $rootscope.manGroups = success;
-        }, function(fail) {
-//            console.log(fail);
-        });
-        var gPromMaster = $scope.$parent.Restangular().all("groups").getList();
-        gPromMaster.then(function(success) {
-            $rootscope.masterGroups = success;
-        }, function(fail) {
-//            console.log(fail);
-        });
+//        vmaGroupService.getAllGroups().then(function(success) { $scope.allGroups = success; });
+//        vmaGroupService.getManGroups().then(function(success) { $scope.manGroups = success; });
+//        vmaGroupService.getMemGroups().then(function(success) { $scope.memGroups = success; });
+        vmaGroupService.getMetaGroups().then(function(success) { $scope.metaGroups = success; });
+        vmaGroupService.getMetaJoinedGroups().then(function(success) { $scope.metaJoinedGroups = success; });
     }
 
     $scope.updateGroups();
     
     //OPENING THE MODAL TO ADD A GROUP
     $scope.addGroup = function() {
-            $scope.openAdd();
-        }
+        $scope.openAdd();
+    }
 
     $scope.openAdd = function () {
-            var modalInstance = $modal.open({
-              templateUrl: 'partials/addGroup.html',
-              controller: ModalInstanceCtrl,
-              resolve: {
-                  window_scope: function() {
-                    return $scope;
-                  }
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addGroup.html',
+          controller: ModalInstanceCtrl,
+          resolve: {
+              window_scope: function() {
+                return $scope;
               }
-            });
+          }
+        });
 
-            modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-            }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
 
     //Controller for the Modal PopUp Add
-    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope) {
-            $scope.ok = function () {
+    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope, vmaGroupService) {
+        $scope.ok = function () {
+            var promise = vmaGroupService.addGroup($scope.newGroup);
+            promise.then(function(success) {
                 $scope.message = "ADD SUCCESS!";
-
-                var promise = $scope.$parent.Restangular().all("groups").post({"name": $scope.name, "description": $scope.description});
-
-                promise.then(function(success) {
-                    console.log(success);
-                    window_scope.updateGroups();
-                    $modalInstance.close();
-                }, function(fail) {
-    //                console.log(fail);
-                    $scope.message = "ADD FAILED";
-                });
-            };
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
+                window_scope.updateGroups();
+                $modalInstance.close();
+            }, function(fail) {
+//                console.log(fail);
+                $scope.message = "ADD FAILED";
+            });
         };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+};
+    };
 
     //OPENING THE MODAL TO DELETE A GROUP
     $scope.deleteGroup = function(id) {
         $scope.openDelete(id);
-}
+    }
 
     $scope.openDelete = function (id) {
         console.log(id);
@@ -296,34 +267,29 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 };
 
     //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope) {
-            $scope.ok = function () {
-                var promise = $scope.$parent.Restangular().all("groups").all(deleteId).remove();
-
-                promise.then(function(success) {
-                    window_scope.updateGroups();
-                    console.log(success);
-                    $scope.message = "DELETE SUCCESS!";
-    //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
-                    $modalInstance.close();
-                }, function(fail) {
-    //                console.log(fail);
-                    $scope.message = "DELETE FAILED";
-                });
-            };
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
+        $scope.ok = function () {
+            var promise = vmaGroupService.deleteGroup(deleteId);
+            promise.then(function(success) {
+                window_scope.updateGroups();
+                $scope.message = "DELETE SUCCESS!";
+                $modalInstance.close();
+            }, function(fail) {
+                $scope.message = "DELETE FAILED";
+            });
         };
-    
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+
     //OPENING THE MODAL TO EDIT A GROUP
     $scope.editGroup = function(id) {
         $scope.openEdit(id);
     }
 
     $scope.openEdit = function (id) {
-        console.log(id);
         var modalInstance = $modal.open({
           templateUrl: 'partials/editGroup.html',
           controller: ModalInstanceCtrlEdit,
@@ -343,24 +309,17 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     //          What to do on dismiss
     //          $log.info('Modal dismissed at: ' + new Date());
         });
-};
+    };
 
     //Controller for the Modal PopUp Edit
-    var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope) {
-        var promiseGet = $scope.Restangular().all("groups").get(editId);
-        promiseGet.then(function(success) {
-            $scope.group = success;
-        }, function(fail) {
-//          $scope.message = "DELETE FAILED";
-        });
+    var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope, vmaGroupService) {
+        $scope.group = vmaGroupService.getGroup(editId);
         $scope.ok = function () {
-            var promise = $scope.$parent.Restangular().all("groups").all(editId).post($scope.group);
-
+            var promise = vmaGroupService.editGroup(editId, $scope.group);
             promise.then(function(success) {
                 $scope.message = "EDIT SUCCESS!";
                 window_scope.updateGroups();
                 console.log(success);
-    //                $rootscope.groups.push({name:$scope.name, description: $scope.description});
                 $modalInstance.close();
             }, function(fail) {
     //                console.log(fail);
@@ -372,7 +331,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
             $modalInstance.dismiss('cancel');
         };
     };
-    
+
     //OPENING THE MODAL TO LEAVE A GROUP
     $scope.leaveGroup = function(id) {
         $scope.openLeave(id);
@@ -402,18 +361,16 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     };
 
     //Controller for the Modal PopUp Leave
-    var ModalInstanceCtrlLeave = function ($scope, $modalInstance, deleteId, window_scope) {
+    var ModalInstanceCtrlLeave = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
         $scope.ok = function () {
-            var promise = $scope.Restangular().all("groups").all(deleteId).all("MEMBER").all($scope.uid).remove();
+            var promise = vmaGroupService.leaveGroupMember(deleteId, $scope.uid);
 
             promise.then(function(success) {
                 window_scope.updateGroups();
-                console.log(success);
                 $scope.message = "LEAVE SUCCESS!";
-//                $rootscope.groups.push({name:$scope.name, description: $scope.description});
+                console.log(success);
                 $modalInstance.close();
             }, function(fail) {
-//                console.log(fail);
                 $scope.message = "LEAVE FAILED";
             });
         };
@@ -424,10 +381,14 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
     };
 
     $scope.joinGroup = function(id) {
-        $scope.Restangular().all("groups").all(id).all("MEMBER").all($scope.uid).post();
-        $scope.updateGroups();
+        var jProm = vmaGroupService.joinGroup(id, $scope.uid);
+        jProm.then(function(success) {
+            $scope.updateGroups();
+        }, function(fail) {
+            console.log(fail);
+        });
     }
-    
+
     //UI-SNAP SETTINGS
     $scope.settings = {
 //        element: null,
@@ -446,39 +407,37 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', '$roo
 //        slideIntent: 40,
 //        minDragDistance: 5
     }
-    
+
     var snapper = new Snap({
         element: document.getElementById('content')
     });
-    
+
     snapRemote.getSnapper().then(function(snapper) {
         snapper.open('left');
     });
 }]);
 
-vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'vmaPostService', function($scope, $state, $stateParams, $modal, $rootScope, vmaPostService) {
 //    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
-    $scope.posts = [];
+
     $scope.updatePosts = function() {
         var gProm = $scope.$parent.Restangular().all("posts").getList({"group_id" : $scope.id});
         gProm.then(function(success) {
             success = $scope.Restangular().stripRestangular(success);
-            console.log(success);
             $scope.posts = success;
         }, function(fail) {
             console.log(fail);
         });
     }
     $scope.updatePosts();
-//    $rootScope.posts = $scope.posts;
-    
+
     $scope.addPost = function() {
         $scope.open();
     }
-    
+
     $scope.open = function (size) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/addPost.html',
@@ -501,7 +460,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-    //Controller for the Modal PopUp
+    //Contsroller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance, group_id, window_scope) {
         $scope.group_id = group_id;
         $scope.ok = function () {
@@ -522,76 +481,17 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     };
 }]);
 
-vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', '$q', function($scope, $state, $stateParams, $modal, $rootScope, $filter, $q) {
+vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
-    
+
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
-        var gProm = $scope.$parent.Restangular().all("tasks").getList();
-        gProm.then(function(success) {success = $scope.Restangular().stripRestangular(success);
-//            console.log(success);
-            //console.log($scope.id);
-            $scope.tasksAll = $filter('getTasksByGroupId')(success, $scope.id);
-            //$scope.tasks = success;
-//            console.log($scope.tasksAll);
-        }, function(fail) {
-            //console.log(fail);
-        });
-        var gPromMemb = $scope.$parent.Restangular().all("tasks").all("byMembership").getList();
-        gPromMemb.then(function(success) {success = $scope.Restangular().stripRestangular(success);
-//            console.log(success);
-            //console.log($scope.id);
-            $scope.tasksMemb = $filter('getTasksByGroupId')(success, $scope.id);
-            //$scope.tasks = success;
-//            console.log($scope.tasksMemb);
-        }, function(fail) {
-            //console.log(fail);
-        });
-        var gPromByMan = $scope.$parent.Restangular().all("tasks").all("byManager").getList();
-        gPromByMan.then(function(success) {
-            success = $scope.Restangular().stripRestangular(success);
-//                  console.log(success);
-//                  console.log($scope.id);
-            $scope.tasksMan = $filter('getTasksByGroupId')(success, $scope.id);
-//            console.log($scope.tasksMan);
-//                $scope.tasks = success;
-        }, function(fail) {
-//            console.log(fail);
-        });
-        
-        //YES, MESSY, BUT WORKS
-        $q.all([gProm, gPromMemb, gPromByMan]).then(function() {
-//            console.log($scope.tasksAll);
-//            console.log($scope.tasksMan);
-            var assignedGroupsIds = {};
-            var groupsIds = {};
-            var result = [];
-            $scope.assignedGroups = $scope.tasksMan.concat($scope.tasksMemb);
-//            console.log($scope.assignedGroups);
-            $scope.groups = $scope.tasksAll;
-            
-            $scope.assignedGroups.forEach(function (el, i) {
-              assignedGroupsIds[el.id] = $scope.assignedGroups[i];
-            });
-
-            $scope.groups.forEach(function (el, i) {
-              groupsIds[el.id] = $scope.groups[i];
-            });
-
-            for (var i in groupsIds) {
-                if (!assignedGroupsIds.hasOwnProperty(i)) {
-                    result.push(groupsIds[i]);
-                }
-            }
-            
-            $scope.tasksAllSubtracted = result;          
-        });
+        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success; });
     }
-
     $scope.updateTasks();
-    
+
     //OPENING THE MODAL TO ADD A TASK
     $scope.addTask = function() {
         $scope.openAdd();
@@ -620,7 +520,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp Add
-    var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id) {
+    var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id, vmaTaskService) {
 
           $scope.today = function() {
             $scope.mytime = new Date();
@@ -675,9 +575,9 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         $scope.ok = function () {            
             $scope.newTask.group_id = group_id;
             $scope.newTask.time = $scope.mytime;
-//            console.log($scope.newTask);
-            var promise = $scope.$parent.Restangular().all("tasks").post($scope.newTask);
-
+            
+            var promise = vmaTaskService.addTask($scope.newTask);
+            
             promise.then(function(success) {
                 $scope.message = "ADD SUCCESS!";
                     console.log(success);
@@ -722,10 +622,9 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, task_id) {
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
         $scope.ok = function () {
-            var promise = $scope.$parent.Restangular().all("tasks").all(task_id).remove();
-
+            var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
                     $scope.message = "DELETE SUCCESS!";
                     console.log(success);
@@ -741,12 +640,11 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         };
     };
 
-    
     //OPENING THE MODAL TO EDIT A TASK
     $scope.editTask = function(task_id) {
         $scope.openEdit(task_id);
     }
-    
+
     $scope.openEdit = function (task_id) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/editTask.html',
@@ -770,20 +668,66 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id) {
-        console.log(task_id);
-        var promiseGet = $scope.Restangular().all("tasks").get(task_id);
-        promiseGet.then(function(success) {
-            $scope.editTask = success;
-        }, function(fail) {
-//          $scope.message = "DELETE FAILED";
-        });
-        $scope.ok = function () {
-            var promise = $scope.$parent.Restangular().all("tasks").all(task_id).post($scope.editTask);
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
+        
+        var setup = function() {
+          $scope.today = function() {
+              $scope.mytime = new Date($scope.editTask.time);
+          };
+          $scope.today();
+          $scope.toggleMin = function() {
+              $scope.minDate = $scope.minDate ? null : new Date();
+          };
+          $scope.toggleMin();
 
+          $scope.hstep = 1;
+          $scope.mstep = 5;
+
+          $scope.ismeridian = true;
+
+          $scope.changed = function () {
+            console.log('Time changed to: ' + $scope.mytime);
+          };
+
+          $scope.clear = function() {
+            $scope.mytime = null;
+            $scope.dt = null;
+          };
+
+          // Disable weekend selection
+          $scope.disabled = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+          };
+
+          $scope.toggleMin = function() {
+            $scope.minDate = $scope.minDate ? null : new Date();
+          };
+          $scope.toggleMin();
+
+          $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+          };
+
+          $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+          };
+
+          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+          $scope.format = $scope.formats[0];
+        }
+        $scope.editTask = vmaTaskService.getTask(task_id);
+        setup();
+        
+        $scope.ok = function () {
+            $scope.editTask.time = $scope.mytime;
+            var promise = vmaTaskService.editTask(task_id, $scope.editTask);
+            
             promise.then(function(success) {
                     $scope.message = "DELETE SUCCESS!";
-                    console.log(success);
                     window_scope.updateTasks();
                     $modalInstance.close();
                 }, function(fail) {
@@ -795,11 +739,10 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             $modalInstance.dismiss('cancel');
         };
     };
-    
+
     //OPENING THE MODAL TO VIEW A TASK
     $scope.viewTask = function(click_id) {
-        var task = $filter('getById')($scope.tasksAll, click_id);
-//        $state.go("home.task", {task: JSON.stringify(task)}, {reload: false});
+        var task = vmaTaskService.getTaskView(click_id);
         $scope.openView(task);
     }
 
@@ -813,20 +756,11 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
               }
           }
         });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
     };
-    
+
     //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task) {
+    var ModalInstanceCtrlView = function($scope, task, vmaTaskService) {
         $scope.task = task;
-        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
-//        console.log($scope.task.time);
         $scope.map = {
             sensor: true,
             size: '500x300',
@@ -839,21 +773,21 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             $modalInstance.close();
         };
     }
-    
+
     //JOINING A TASK
     $scope.joinTask = function(task_id) {
-        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).post();
+        var promise = vmaTaskService.joinTask(task_id, $scope.uid);
 
         promise.then(function(success) {
                 $scope.updateTasks();
             }, function(fail) {
 //                $scope.message = "DELETE FAILED";
         });
-    }    
+    }
+
     //LEAVING A TASK
     $scope.leaveTask = function(task_id) {
-        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).remove();
-
+        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
                 $scope.updateTasks();
             }, function(fail) {
@@ -862,7 +796,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     }
 }]);
 
-vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', '$filter', '$q', function($scope, $state, $stateParams, $modal, $rootScope, $filter, $q) {
+vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
     $scope.invites = [
         {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
         {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
@@ -883,36 +817,16 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
     ];
+
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
-        var gProm = $scope.$parent.Restangular().all("tasks").getList();
-        gProm.then(function(success) {
-            success = $scope.Restangular().stripRestangular(success);
-//            console.log(success);
-            //console.log($scope.id);
-            $scope.tasksAll = success;
-            //$scope.tasks = success;
-//            console.log($scope.tasksAll);
-        }, function(fail) {
-            //console.log(fail);
-        });
-        var gPromMemb = $scope.$parent.Restangular().all("tasks").all("byMembership").getList();
-        gPromMemb.then(function(success) {success = $scope.Restangular().stripRestangular(success);
-//            console.log(success);
-            //console.log($scope.id);
-            $scope.tasksMemb = success;
-            //$scope.tasks = success;
-//            console.log($scope.tasksMemb);
-        }, function(fail) {
-            //console.log(fail);
-        });
+        vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
     }
-
     $scope.updateTasks();
 
     //OPENING THE MODAL TO VIEW A TASK
     $scope.viewTask = function(click_id) {
-        var task = $filter('getById')($scope.tasksAll, click_id);
+        var task = vmaTaskService.getTaskView(click_id);
         $scope.openView(task);
     }
 
@@ -934,12 +848,10 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-    
+
     //Controller for the Modal PopUp View
     var ModalInstanceCtrlView = function($scope, task) {
         $scope.task = task;
-        $scope.task.time = new Date($scope.task.time).toDateString() + " " + new Date($scope.task.time).getHours() + ":" + new Date($scope.task.time).getMinutes();
-//        console.log($scope.task.time);
         $scope.map = {
             sensor: true,
             size: '500x300',
@@ -952,23 +864,13 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
             $modalInstance.close();
         };
     }
-    
-    //JOINING A TASK
-    $scope.joinTask = function(task_id) {
-        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).post();
 
-        promise.then(function(success) {
-                $scope.updateTasks();
-            }, function(fail) {
-//                $scope.message = "DELETE FAILED";
-        });
-    }
-    
     //LEAVING A TASK
     $scope.leaveTask = function(task_id) {
-        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MEMBER").all($scope.uid).remove();
+        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MANAGER").all($scope.uid).remove();
 
         promise.then(function(success) {
+                console.log(success);
                 $scope.updateTasks();
             }, function(fail) {
 //                $scope.message = "DELETE FAILED";
@@ -1005,9 +907,7 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
 }]);
 
 vmaControllerModule.controller('task', ['$scope', 'task', function($scope, task) {
-//    $scope.task = JSON.parse($stateParams.task);
     $scope.task = task;
-    console.log("HI");
     $scope.map = {
         sensor: true, //required
         size: '500x300',
@@ -1135,7 +1035,6 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
     //          $scope.selected = selectedItem;
         }, function () {
     //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
@@ -1172,9 +1071,62 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$ti
       }
 }]);
 
-vmaControllerModule.controller('calendar', ['$scope', '$state', function($scope, $state) {
-    console.log("test");
-    myFunction();
+vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', '$modal', function($scope, $state, vmaTaskService, $compile, $modal) {
+    //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
+    $scope.updateTasksAndDisplayCalendar = function() {
+        var gPromMemb = vmaTaskService.getCalTasks($scope.id);
+        gPromMemb.then(function(success) {
+            $scope.calTasks = success;
+            displayFullCalendar($scope.calTasks);
+            $compile($('#calendar'))($scope);
+        }, function(fail) {
+            //console.log(fail);
+        });
+    }
+    
+    $scope.updateTasksAndDisplayCalendar();
+    
+    //OPENING THE MODAL TO VIEW A TASK
+    $scope.viewTask = function(click_id) {
+        var task = vmaTaskService.getTaskView(click_id);
+        $scope.openView(task);
+    }
+
+    $scope.openView = function (task) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/efforts.task.html',
+          controller: ModalInstanceCtrlView,
+          resolve: {
+              task: function() {
+                  return task;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp View
+    var ModalInstanceCtrlView = function($scope, task) {
+        $scope.task = task;
+//        console.log($scope.task.time);
+        $scope.map = {
+            sensor: true,
+            size: '500x300',
+            zoom: 15,
+            center: $scope.task.location,
+            markers: [$scope.task.location], //marker locations
+            mapevents: {redirect: true, loadmap: false}
+        };
+        $scope.ok = function () {
+            $modalInstance.close();
+        };
+    }
 }]);
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {

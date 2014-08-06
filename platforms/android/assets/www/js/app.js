@@ -3,6 +3,7 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
+  'vmaServicesModule',
   'vmaControllerModule',
   'vmaFilterModule',
   'databaseServicesModule',
@@ -15,10 +16,8 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'adaptive.googlemaps'
 ]);
 
-volunteerManagementApp.config(
-  function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
+volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
-
     $stateProvider.
       state('home', {
           views: {
@@ -135,13 +134,9 @@ volunteerManagementApp.config(
             "app": { templateUrl: "partials/hours.html", controller: "hours"},
           },
           authenticate: false
-      });
-    
-
-    
-  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
-  }
-);
+      });    
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+});
 
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {
@@ -150,6 +145,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
     $rootScope.Restangular = function() {
         return Restangular;
     }
+    
     $rootScope.isAuthenticated = function(authenticate) {
 //        //BELOW - Trying to get promises to work to verify auth
 //        var deferred = $q.defer();
@@ -170,6 +166,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
         });
         return Auth.hasCredentials();
     }
+    
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       console.log("$stateChangeStart");
       if (toState.authenticate && !$rootScope.isAuthenticated(toState.authenticate)){

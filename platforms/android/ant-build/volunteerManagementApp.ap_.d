@@ -21,7 +21,6 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\index.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js \
-D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\json \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\plugins \
@@ -468,7 +467,6 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js\controllers.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js\directives.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js\filters.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js\services.js \
-D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\json\events.json \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\dbServices.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\modules\calendar\app.css \

@@ -1,20 +1,21 @@
 //to store a json file in a variable:
-var cjson = (function () {
-    var cjson = null;
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': "json/events.json",
-        'dataType': "json",
-        'success': function (data) {
-            cjson = data;
-        }
-    });
-    return cjson;
-})(); 
+//var cjson = (function () {
+//    var cjson = null;
+//    $.ajax({
+//        'async': false,
+//        'global': false,
+//        'url': "json/events.json",
+//        'dataType': "json",
+//        'success': function (data) {
+//            cjson = data;
+//        }
+//    });
+//    return cjson;
+//})(); 
 
 //loads the generic full calendar
-function myFunction() {
+function displayFullCalendar(eventsFromScope) {
+//    console.log(eventsFromScope);
 	   var dateToday = new Date(); //TODAY
 		$('#calendar').fullCalendar({
 			header: {
@@ -42,7 +43,7 @@ $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
             
     //allows the events to be draggable or not. 
             editable: false,
-			events: cjson
+			events: eventsFromScope
 		
 	       });
     

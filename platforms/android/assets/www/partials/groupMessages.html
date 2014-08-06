@@ -1,11 +1,11 @@
 <div id="snap">
     <snap-drawer id="snap_drawer">
         <img id="messageicon" src="img/group_message.icon.png"/>
-        <div id="message" ng-repeat="message in messages">
-            <a ng-click="displayMessages(message.id)">
+        <div id="message" ng-repeat="tasks in joinTasks">
+            <a ng-click="displayMessages(tasks.id)">
                 <div><img id="gmessageicon" src="img/group_feed_small.icon.png" width="20%"/></div>
-                <div id="groupmsg"> {{message.task}} </div>
-                <div id="group_content"> {{message.preview_author}}: {{message.preview_content}} </div>
+                <div id="groupmsg"> {{tasks.name}} </div>
+<!--                <div id="group_content"> {{message.preview_author}}: {{message.preview_content}} </div>-->
             </a>
         </div>
     </snap-drawer>

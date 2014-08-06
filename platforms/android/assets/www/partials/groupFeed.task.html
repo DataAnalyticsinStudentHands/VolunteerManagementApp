@@ -1,15 +1,6 @@
 <div id="scrollable_g">
     <button ng-show="{{detail}}" class="btn btn-default" ng-click="addTask()">Add Task</button>    
-    <div ng-hide="{{detail}}" id="groupPost" ng-repeat="task in tasksAll">
-        <div ng-click="viewTask(task.id)">
-            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-            <div id="t_t"> {{task.name}} </div>
-            <div id="t"> {{task.date}} </div>
-            <div id="t"> {{task.location}} </div>
-            <div id="t"> {{task.duration}} Hours </div>
-        </div>
-    </div> 
-    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksMan">
+    <div id="groupPost" ng-repeat="task in metaTasks">
         <div ng-click="viewTask(task.id)">
             <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
             <div id="t_t"> {{task.name}} </div>
@@ -22,43 +13,13 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="editTask(task.id)">Edit</a></li>
-                <li><a ng-click="leaveTask(task.id)">Leave</a></li>
-                <li><a ng-click="deleteTask(task.id)">Delete</a></li>
-            </ul>
-        </div>
-    </div>
-    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksMemb">
-        <div ng-click="viewTask(task.id)">
-            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-            <div id="t_t"> {{task.name}} </div>
-            <div id="t"> {{task.date}} </div>
-            <div id="t"> {{task.location}} </div>
-            <div id="t"> {{task.duration}} Hours </div>
-        </div>
-        <div id="bs" class="btn-group" dropdown>
-            <button type="button" class="btn dropdown-toggle">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="leaveTask(task.id)">Leave</a></li>
-            </ul>
-        </div>
-    </div>   
-    <div ng-show="{{detail}}" id="groupPost" ng-repeat="task in tasksAllSubtracted">
-        <div ng-click="viewTask(task.id)">
-            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-            <div id="t_t"> {{task.name}} </div>
-            <div id="t"> {{task.date}} </div>
-            <div id="t"> {{task.location}} </div>
-            <div id="t"> {{task.duration}} Hours </div>
-        </div>
-        <div id="bs" class="btn-group" dropdown>
-            <button type="button" class="btn dropdown-toggle">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="joinTask(task.id)">Join</a></li>
+                <li><a ng-show="task.isManager" ng-click="editTask(task.id)">Edit</a></li>
+                <li><a ng-show="task.isManager" ng-click="leaveTask(task.id)">Leave</a></li>
+                <li><a ng-show="task.isManager" ng-click="deleteTask(task.id)">Delete</a></li>
+                
+                <li><a ng-show="task.isMember" ng-click="leaveTask(task.id)">Leave</a></li>
+                
+                <li><a ng-show="{{detail}}"  ng-show="task.isTask" ng-click="joinTask(task.id)">Join</a></li>
             </ul>
         </div>
     </div>

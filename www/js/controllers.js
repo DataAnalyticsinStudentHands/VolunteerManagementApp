@@ -417,7 +417,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     });
 }]);
 
-vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'vmaPostService', function($scope, $state, $stateParams, $modal, $rootScope, vmaPostService) {
 //    console.log($stateParams);
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
@@ -1075,14 +1075,10 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasksAndDisplayCalendar = function() {
         var gPromMemb = vmaTaskService.getCalTasks($scope.id);
-        gPromMemb.then(function(success) {success = $scope.Restangular().stripRestangular(success);
-//            console.log(success);
-            //console.log($scope.id);
+        gPromMemb.then(function(success) {
             $scope.calTasks = success;
             displayFullCalendar($scope.calTasks);
             $compile($('#calendar'))($scope);
-            //$scope.tasks = success;
-//            console.log($scope.tasksMemb);
         }, function(fail) {
             //console.log(fail);
         });

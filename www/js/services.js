@@ -149,33 +149,41 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
     var memTasks = [];
     var subTasks = [];
     var metaTasks = [];
+    var refresh = true;
     return {
         updateTasks:
             //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function() {
-                console.log("TASKS UPDATED");
-                var gProm = Restangular.all("tasks").one("byMembership").getList();
-                gProm.then(function(success) {
-                    success = Restangular.stripRestangular(success);
-                    memTasks = success;
-                }, function(fail) {
-        //            console.log(fail);
-                });
-                var gPromByMan = Restangular.all("tasks").one("byManager").getList();
-                gPromByMan.then(function(success) {
-                    success = Restangular.stripRestangular(success);
-                    manTasks = success;
-                }, function(fail) {
-        //            console.log(fail);
-                });
-                var gPromMaster = Restangular.all("tasks").getList();
-                gPromMaster.then(function(success) {
-                    success = Restangular.stripRestangular(success);
-                    allTasks = success;
-                }, function(fail) {
-        //            console.log(fail);
-                });
-                return $q.all([gProm, gPromByMan, gPromMaster]);
+                if(refresh) {
+//                    refresh = !refresh;
+                    console.log("TASKS UPDATED");
+                    var gProm = Restangular.all("tasks").one("byMembership").getList();
+                    gProm.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        memTasks = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    var gPromByMan = Restangular.all("tasks").one("byManager").getList();
+                    gPromByMan.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        manTasks = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    var gPromMaster = Restangular.all("tasks").getList();
+                    gPromMaster.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        allTasks = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    return $q.all([gProm, gPromByMan, gPromMaster]);
+                } else {
+                    var deferred = $q.defer();
+                    deferred.resolve("DONE");
+                    return deferred.promise;                    
+                }
             },
         getAllTasks: 
             function() {
@@ -290,7 +298,9 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             },
         getJoinTasks:
             function() {
-                return this.updateTasks().then(function(success) { return memTasks.concat(manTasks); });
+                return this.updateTasks().then(function(success) {
+                    return memTasks.concat(manTasks);
+                });
             },
         getCalTasks:
             function() {
@@ -355,5 +365,178 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
                     return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {});
                 });
             }
+    }
+}]);
+
+vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
+    var allPosts = [];
+    var manPosts = [];
+    var memPosts = [];
+    var subPosts = [];
+    var metaPosts = [];
+    var refresh = true;
+    return {
+        updatePosts:
+            //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
+            function() {
+                if(refresh) {
+//                    refresh = !refresh;
+                    console.log("TASKS UPDATED");
+                    var gProm = Restangular.all("posts").one("byMembership").getList();
+                    gProm.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        memPosts = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    var gPromByMan = Restangular.all("posts").one("byManager").getList();
+                    gPromByMan.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        manPosts = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    var gPromMaster = Restangular.all("posts").getList();
+                    gPromMaster.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        allPosts = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    return $q.all([gProm, gPromByMan, gPromMaster]);
+                }
+                else {
+                    var deferred = $q.defer();
+                    deferred.resolve("DONE");
+                    return deferred.promise;                    
+                }
+            },
+        getAllPosts: 
+            function() {
+                return this.updatePosts().then(function(success) { return allPosts; });
+            },
+        getManPosts: 
+            function() {
+                return this.updatePosts().then(function(success) { return manPosts; });
+            },
+        getMemPosts:
+            function() {
+                return this.updatePosts().then(function(success) { return memPosts; });
+            },
+        getSubtractedPosts:
+            function() {
+                return this.updatePosts().then(function(success) {
+                    var assignedGroupsIds = {};
+                    var groupsIds = {};
+                    var result = [];
+
+                    var assignedGroups = manPosts.concat(memPosts);
+                    var groups = allPosts;
+
+                    assignedGroups.forEach(function (el, i) {
+                        assignedGroupsIds[el.id] = assignedGroups[i];
+                    });
+
+                    groups.forEach(function (el, i) {
+                        groupsIds[el.id] = groups[i];
+                    });
+
+                    for (var i in groupsIds) {
+                        if (!assignedGroupsIds.hasOwnProperty(i)) {
+                            result.push(groupsIds[i]);
+                        }
+                    }
+                    subPosts = result;
+                    return result;
+                });
+            },
+        getMetaPosts:
+            function() {
+                return this.getSubtractedPosts().then(function(success) {
+//                    console.log(success);
+                    var result = [];
+                    manPosts.forEach(function(obj){
+                        obj.isManager = true;
+//                        console.log(obj);
+                        result.push(obj);
+                    });
+                    memPosts.forEach(function(obj){
+                        obj.isMember = true;
+//                        console.log(obj);
+                        result.push(obj);
+                    });
+                    subPosts.forEach(function(obj){
+                        obj.isPost = true;
+//                        console.log(obj);
+                        result.push(obj);
+                    });
+//                    console.log(result);
+                    metaPosts = result;
+                    return result;
+//                  return $filter('getPostsByGroupId')(memPosts, gid);
+                });
+            },
+        getAllPostsGroup: 
+            function(gid) {
+                return this.updatePosts().then(function(success) { return $filter('getPostsByGroupId')(allPosts, gid);});
+            },
+        getManPostsGroup: 
+            function(gid) {
+                return this.updatePosts().then(function(success) { return $filter('getPostsByGroupId')(manPosts, gid);});
+            },
+        getMemPostsGroup:
+            function(gid) {
+                return this.updatePosts().then(function(success) { return $filter('getPostsByGroupId')(memPosts, gid);});
+            },
+        getSubtractedPostsGroup:
+            function(gid) {
+                return this.updatePosts().then(function(success) {
+                    var assignedGroupsIds = {};
+                    var groupsIds = {};
+                    var result = [];
+
+                    var assignedGroups = manPosts.concat(memPosts);
+                    var groups = allPosts;
+
+                    assignedGroups.forEach(function (el, i) {
+                        assignedGroupsIds[el.id] = assignedGroups[i];
+                    });
+
+                    groups.forEach(function (el, i) {
+                        groupsIds[el.id] = groups[i];
+                    });
+
+                    for (var i in groupsIds) {
+                        if (!assignedGroupsIds.hasOwnProperty(i)) {
+                            result.push(groupsIds[i]);
+                        }
+                    }
+                    var result = $filter('getPostsByGroupId')(result, gid);
+                    return result;
+                });
+            },
+        getMetaPostsGroup:
+            function(gid) {
+                return this.getMetaPosts().then(function(success) {
+//                    console.log(success);
+                    return $filter('getPostsByGroupId')(success, gid);
+                });
+            },
+        getPost:
+            function(post_id) {
+                return $filter('getById')(allPosts, post_id);
+            },
+        addPost:
+            function(post) {
+                return Restangular.all("posts").post(post);
+            },
+        editPost:
+            function(id, post) {
+                 return Restangular.all("posts").all(id).post(post);
+            },
+        deletePost:
+            function(pid) {
+                return Restangular.all("posts").all(pid).remove();
+            },
     }
 }]);
