@@ -403,6 +403,7 @@ background:white;
     position:fixed;
     width: 100%;
     margin: 0px 0px 0px 0px;
+    padding: 10%;
 }
 
 .log{
@@ -962,6 +963,7 @@ border-bottom:solid #000000;
 	position: absolute;
 	width: 200px;
 	height: 200px;
+    top: 100px;
   
   /*border: 1px solid green;*/
   
@@ -1050,8 +1052,8 @@ border-bottom:solid #000000;
 
 #div_1 {
  
-    height: ;
-   position:absolute;
+    height:;
+   position:relative;
 /*    top:0px;*/
 /*    left:100px;*/
     z-index: 1;
