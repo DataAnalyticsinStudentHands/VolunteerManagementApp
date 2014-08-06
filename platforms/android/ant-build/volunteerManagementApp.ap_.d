@@ -1,16 +1,26 @@
 D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\volunteerManagementApp.ap_ \
  : D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-hdpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-hdpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-ldpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-ldpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-mdpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-mdpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-xhdpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\res\drawable-xhdpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\res\values\strings.xml \
 D:\SoA\VMA\VMA_DEV\platforms\android\res\xml\config.xml \
 D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-hdpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-hdpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-ldpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-ldpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-mdpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-mdpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-xhdpi\icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\ant-build\res\drawable-xhdpi\splash.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\_where-is-www.txt \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\bower_components \
@@ -425,6 +435,7 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\group_feed.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\group_feed_small.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\group_message.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\home_mp.svg \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\honorslogo.svg \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\icon_gf.svg \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\image.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\image1.png \
@@ -447,7 +458,9 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\info_box_orange.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\login_background.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\login_logo.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo.icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_big.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_O.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_O2.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_vma.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\menu_a_off.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\menu_a_on.icon.png \
@@ -459,7 +472,9 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\menu_gf_on.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\menu_gm_off.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\menu_gm_on.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\poly_w.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\summerofappslogo.svg \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\temp_icon.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\uhlogo.svg \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\XMLID_18_.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\XMLID_4_.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\js\app.js \

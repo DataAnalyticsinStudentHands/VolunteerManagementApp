@@ -155,11 +155,6 @@ body {
 }
 /*
 
-.menuBar:active{
-    background:white; 
-}
-*/
-
 /*** bounce****/
 /*-webkit-animation: bounce 800ms ease-out;*/
 /*	-moz-animation: bounce 800ms ease-out;*/
@@ -405,6 +400,7 @@ body {
     position:fixed;
     width: 100%;
     margin: 0px 0px 0px 0px;
+    padding: 10%;
 }
 
 .log{
@@ -933,4 +929,199 @@ border-bottom:solid #000000;
 
 #setting_p{
 
+}
+
+
+
+/* spin animation css
+*********************************************************************************************/
+
+
+
+.wrapanimate {
+  margin: 0 100px;
+	-webkit-perspective:800px;
+	-webkit-perspective-origin: 50% 100px;
+  /*border: 1px solid red;*/
+  width: 100%;
+  height: 300px;
+  margin: 0;
+  margin-top: 50px;
+}
+
+.cube {
+	position: relative;
+  margin: 0 auto;
+	width: 200px;
+	-webkit-transform-style: preserve-3d;
+  -webkit-animation: spin 4s  1 ;
+    
+    -webkit-animation-delay: 3s; /* Chrome, Safari, Opera */
+    animation-delay: 3s;
+    
+  /*border: 1px solid blue;*/
+}
+
+.cube div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+    top: 100px;
+  
+  /*border: 1px solid green;*/
+  
+  text-align: center;
+  font-family: sans-serif;
+  line-height: 200px;
+  transition: background-color 1s ease;
+}
+
+
+
+.back {
+	-webkit-transform: translateZ(-100px) rotateY(180deg);
+}
+
+.right {
+	-webkit-transform: rotateY(-270deg) translateX(100px);
+	-webkit-transform-origin: top right;
+}
+
+.left {
+	-webkit-transform: rotateY(270deg) translateX(-100px);
+	-webkit-transform-origin: center left;
+}
+
+.top {
+	-webkit-transform: rotateX(-90deg) translateY(-100px);
+	-webkit-transform-origin: top center;
+}
+
+.bottom {
+	-webkit-transform: rotateX(90deg) translateY(100px);
+	-webkit-transform-origin: bottom center;
+}
+
+.front {
+
+	-webkit-transform: translateZ(100px);
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotateY(0) }
+  to { -webkit-transform: rotateY(360deg) }
+}
+
+
+
+
+/* image css
+*********************************************************************************************/
+
+.front_image{
+   
+    width: 200px;
+	height: 200px;
+}
+
+
+.back_image{
+    
+    width: 200px;
+	height: 200px;
+}
+
+
+
+.right_image{
+    
+    width: 200px;
+	height: 200px;
+}
+
+
+
+.left_image{
+     
+    width: 200px;
+	height: 200px;
+}
+
+
+
+/* fade animation css
+*********************************************************************************************/
+
+
+#div_1 {
+   position:relative;
+/*    top:0px;*/
+/*    left:100px;*/
+    z-index: 1;
+    
+    
+    -webkit-animation: myfirst 20s ; /* Chrome, Safari, Opera */
+    animation: myfirst 20s ;
+    
+    animation-iteration-count: 1 ;
+     -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+   
+    -webkit-animation-delay: 9s; /*Safari and Chrome*/
+    animation-delay: 9s;
+    
+    -webkit-animation-fill-mode: backwards;  /* Safari and Chrome */
+      animation-fill-mode: backwards;
+}
+
+
+
+
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+0%  {animation-timing-function: ease-in-out; opacity: 0}
+20% {animation-timing-function: ease-in-out; opacity: 1}
+100% {animation-timing-function: ease-in-out; opacity: 1}
+ 
+ 
+}
+
+ Standard syntax 
+@keyframes myfirst {
+ 0%  {left: 0px; top:0px;}
+  100% {left: -960px;}
+}
+
+#div_2 {
+/*    position: relative;*/
+    margin: auto;
+    top: 20%;
+    z-index: 12;
+    
+    -webkit-animation: mysecound 12s ; /* Chrome, Safari, Opera */
+    animation: mysecound 12s ;
+    
+    animation-iteration-count: 1 ;
+     -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+   
+    -webkit-animation-fill-mode: forwards;  /* Safari and Chrome */
+      animation-fill-mode: forwards;
+    
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mysecound {
+0% {animation-timing-function: ease-out; opacity: 1}
+60%{animation-timing-function: ease-out; opacity: 1}    
+70%{animation-timing-function: ease-out; opacity: 0}
+100% {animation-timing-function: ease-out; opacity: 0}
+ 
+    
+}
+
+ Standard syntax 
+@keyframes mysecound {
+ 0%  {animation-timing-function: ease-out; opacity: 1}
+20% {animation-timing-function: ease-out; opacity: 0}
+100% {animation-timing-function: ease-out; opacity: 0}
 }

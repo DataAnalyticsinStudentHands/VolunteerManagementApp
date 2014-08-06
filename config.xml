@@ -8,11 +8,13 @@
         UH SoA VMA
     </author>
     
-    <preference name="SplashScreen" value="icon" />
-    <preference name="SplashScreenDelay" value="3500" />
     <icon src="icon.png"/>
     
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="3200" />
+    
     <preference name="Orientation" value="default" />
+    
     <content src="index.html" />
     <access origin="*" />
 </widget>
