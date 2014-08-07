@@ -1059,8 +1059,9 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
     }
 }]);
 
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', function($scope, $state, $stateParams, $modal) {
-    $scope.entries = [
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+    if(!$rootScope.entries)
+    $rootScope.entries = [
         {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
         {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
         {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
@@ -1069,7 +1070,7 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     ];
     
     $scope.ok = function() {
-        $scope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $rootScope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
         $scope.entry = [];
     }
     
