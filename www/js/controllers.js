@@ -6,39 +6,29 @@ var vmaControllerModule = angular.module('vmaControllerModule', []);
 
 vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', function($scope, Auth, $state) {
      if($scope.isAuthenticated() === true) {
-         //Point 'em to logged in page of app
+         //Point to logged in page of app
          $state.go('home');
      }
      
-     //we need to put the salt on server + client side and it needs to be static
-     $scope.salt = "nfp89gpe"; //PENDING
-     
+     $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
+
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
              $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
              Auth.setCredentials($scope.userName, $scope.passWordHashed);
-//             $scope.loginResult = $scope.Restangular.get();
+             $scope.userName = '';
+             $scope.passWord = '';
              $scope.loginResultPromise = $scope.Restangular().all("users").getList();
              $scope.loginResultPromise.then(function(result) {
                 $scope.loginResult = result;
-                $scope.loginMsg = "You have logged in successfully! Status 200OK technomumbojumbo";
+                $scope.loginMsg = "You have logged in successfully!";
                 $state.go("home.cfeed", {}, {reload: true});
-//                alert("logged_in");
              }, function(error) {
-                $scope.loginMsg = "Arghhh, matey! Check your username or password.";
+                $scope.loginMsg = "Incorrect username or password.";
                 Auth.clearCredentials();
-//                alert("credentials_cleared");
              });
-             $scope.userName = '';
-             $scope.passWord = '';
-         } else if(!$scope.userName && !$scope.passWord) {
-             $scope.loginMsg = "You kiddin' me m8? No username or password?";
-         } else if (!$scope.userName) {
-             $scope.loginMsg = "No username? Tryina hack me?";
-             $scope.loginResult = "";
-         } else if (!$scope.passWord) {
-             $scope.loginMsg = "What? No password!? Where do you think you're going?";
-             $scope.loginResult = "";
+         } else {
+             $scope.loginMsg = "Please enter a username or password.";
          }
      };
  }]);
@@ -86,9 +76,6 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope
     $scope.updateTasks();
 
     $scope.displayMessages = function(click_id) {
-//            $scope.pActiv = true;
-//            $scope.tActiv = false;
-//            console.log(click_id);
         $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
         snapRemote.close();
     }
@@ -1012,32 +999,33 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
         {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
         {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
-        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
-        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
-        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
-        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
-        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
-        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
-        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
-        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
-        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
-        {title: "Name of Completed Task 5", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "3", badge_type: "1", approved: true},
         {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
     ];
     
     $scope.ok = function() {
-        $rootScope.entries.push({title: $scope.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.duration, badge_type: "4", approved: false});
+        $rootScope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+    }
+    
+    $scope.checkIn = function() {
+        $scope.checkInTime = new Date();
+        console.log($scope.checkInTime);
+    }
+    
+    $scope.checkOut = function() {
+        $scope.checkOutTime = new Date();
+        console.log($scope.checkOutTime);
+        $scope.entry.duration = $scope.checkInTime - $scope.checkOutTime;
     }
 }]);
 
 vmaControllerModule.controller('awards', function ($scope) {
-
+//    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Badge1", 42],
-        ["Badge2", 35],
-        ["Badge3", 32],
-        ["Badge4", 12],
-        ["Badge5", 21]
+        ["Grunt Badge", 42],
+        ["Other Badge", 35],
+        ["Other Badge", 32],
+        ["Other Badge", 12],
+        ["Other Badge", 21]
     ];
     
     $scope.total_hours = 42 + 35 + 32 + 12 + 21;
@@ -1046,7 +1034,7 @@ vmaControllerModule.controller('awards', function ($scope) {
     $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
     $scope.badge4_percent = Math.round($scope.badges[3][1]/$scope.total_hours * 100);
     $scope.badge5_percent = Math.round($scope.badges[4][1]/$scope.total_hours * 100);
-
+    
     $scope.chartConfig = {
         options: {
             chart: {

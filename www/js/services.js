@@ -1,6 +1,50 @@
 'use strict';
 
 var vmaServices = angular.module('vmaServicesModule', ['restangular']);
+vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
+    var allUsers = [];
+    var myUser = [];
+    return {
+        updateUsers:
+            //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
+            function() {
+                var gProm = Restangular.all("users").getList();
+                gPromMaster.then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    allUsers = success;
+                }, function(fail) {
+        //            console.log(fail);
+                });
+                return gProm;
+            },
+        getAllUsers: 
+            function() {
+                return this.updateUsers().then(function(success) { return allUsers; });
+            },
+        getManUsers: 
+            function() {
+                return this.updateUsers().then(function(success) { return manUsers; });
+            },
+        getUser:
+            function(user_id) {
+                return this.updateUsers().then(function(success) {
+                    return $filter('getById')(allUsers, user_id);
+                });
+            },
+        addUser:
+            function(user) {
+                return Restangular.all("users").post(user);
+            },
+        editUser:
+            function(id, user) {
+                 return Restangular.all("users").all(id).post(user);
+            },
+        deleteUser:
+            function(uid) {
+                return Restangular.all("users").all(uid).remove();
+            },
+    }
+}]);
 
 vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
     var allGroups = [];
