@@ -28,3 +28,16 @@ vmaFilterModule.filter('getTasksByGroupId', function() {
     return returnArray;
   }
 });
+
+vmaFilterModule.filter('getByGroupId', function() {
+  return function(input, id) {
+    var returnArray = [];
+    var i=0, len=input.length;
+    for (; i<len; i++) {
+      if (+input[i].group_id == +id) {
+        returnArray.push(input[i]);
+      }
+    }
+    return returnArray;
+  }
+});

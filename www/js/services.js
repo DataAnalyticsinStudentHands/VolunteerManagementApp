@@ -370,9 +370,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
 
 vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
     var allPosts = [];
-    var manPosts = [];
-    var memPosts = [];
-    var subPosts = [];
+    var myGroupPosts = [];
     var metaPosts = [];
     var refresh = true;
     return {
@@ -380,30 +378,22 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(
             //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function() {
                 if(refresh) {
-//                    refresh = !refresh;
-                    console.log("TASKS UPDATED");
-                    var gProm = Restangular.all("posts").one("byMembership").getList();
-                    gProm.then(function(success) {
-                        success = Restangular.stripRestangular(success);
-                        memPosts = success;
-                    }, function(fail) {
-            //            console.log(fail);
-                    });
-                    var gPromByMan = Restangular.all("posts").one("byManager").getList();
-                    gPromByMan.then(function(success) {
-                        success = Restangular.stripRestangular(success);
-                        manPosts = success;
-                    }, function(fail) {
-            //            console.log(fail);
-                    });
-                    var gPromMaster = Restangular.all("posts").getList();
-                    gPromMaster.then(function(success) {
+                    console.log("POSTS UPDATED");
+                    var gPromAll = Restangular.all("posts").getList();
+                    gPromAll.then(function(success) {
                         success = Restangular.stripRestangular(success);
                         allPosts = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
-                    return $q.all([gProm, gPromByMan, gPromMaster]);
+                    var gPromByMe = Restangular.all("posts").one("myPosts").getList();
+                    gPromByMe.then(function(success) {
+                        success = Restangular.stripRestangular(success);
+                        myGroupPosts = success;
+                    }, function(fail) {
+            //            console.log(fail);
+                    });
+                    return $q.all([gPromAll, gPromByMe]);
                 }
                 else {
                     var deferred = $q.defer();
@@ -415,111 +405,26 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(
             function() {
                 return this.updatePosts().then(function(success) { return allPosts; });
             },
-        getManPosts: 
+        getMyGroupPosts: 
             function() {
                 return this.updatePosts().then(function(success) { return manPosts; });
             },
-        getMemPosts:
-            function() {
-                return this.updatePosts().then(function(success) { return memPosts; });
-            },
-        getSubtractedPosts:
-            function() {
-                return this.updatePosts().then(function(success) {
-                    var assignedGroupsIds = {};
-                    var groupsIds = {};
-                    var result = [];
-
-                    var assignedGroups = manPosts.concat(memPosts);
-                    var groups = allPosts;
-
-                    assignedGroups.forEach(function (el, i) {
-                        assignedGroupsIds[el.id] = assignedGroups[i];
-                    });
-
-                    groups.forEach(function (el, i) {
-                        groupsIds[el.id] = groups[i];
-                    });
-
-                    for (var i in groupsIds) {
-                        if (!assignedGroupsIds.hasOwnProperty(i)) {
-                            result.push(groupsIds[i]);
-                        }
-                    }
-                    subPosts = result;
-                    return result;
+        getGroupPostsPromise:
+            function(numPosts, startindex, gid) {
+                var gPromAll = Restangular.all("posts")
+                    .getList({"numberOfPosts": numPosts, "startIndex": startindex, "group_id": gid});
+                gPromAll.then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    return success;
+                }, function(fail) {
+        //            console.log(fail);
                 });
+                return gPromAll;
             },
-        getMetaPosts:
-            function() {
-                return this.getSubtractedPosts().then(function(success) {
-//                    console.log(success);
-                    var result = [];
-                    manPosts.forEach(function(obj){
-                        obj.isManager = true;
-//                        console.log(obj);
-                        result.push(obj);
-                    });
-                    memPosts.forEach(function(obj){
-                        obj.isMember = true;
-//                        console.log(obj);
-                        result.push(obj);
-                    });
-                    subPosts.forEach(function(obj){
-                        obj.isPost = true;
-//                        console.log(obj);
-                        result.push(obj);
-                    });
-//                    console.log(result);
-                    metaPosts = result;
-                    return result;
-//                  return $filter('getPostsByGroupId')(memPosts, gid);
-                });
-            },
-        getAllPostsGroup: 
-            function(gid) {
-                return this.updatePosts().then(function(success) { return $filter('getPostsByGroupId')(allPosts, gid);});
-            },
-        getManPostsGroup: 
-            function(gid) {
-                return this.updatePosts().then(function(success) { return $filter('getPostsByGroupId')(manPosts, gid);});
-            },
-        getMemPostsGroup:
-            function(gid) {
-                return this.updatePosts().then(function(success) { return $filter('getPostsByGroupId')(memPosts, gid);});
-            },
-        getSubtractedPostsGroup:
-            function(gid) {
-                return this.updatePosts().then(function(success) {
-                    var assignedGroupsIds = {};
-                    var groupsIds = {};
-                    var result = [];
-
-                    var assignedGroups = manPosts.concat(memPosts);
-                    var groups = allPosts;
-
-                    assignedGroups.forEach(function (el, i) {
-                        assignedGroupsIds[el.id] = assignedGroups[i];
-                    });
-
-                    groups.forEach(function (el, i) {
-                        groupsIds[el.id] = groups[i];
-                    });
-
-                    for (var i in groupsIds) {
-                        if (!assignedGroupsIds.hasOwnProperty(i)) {
-                            result.push(groupsIds[i]);
-                        }
-                    }
-                    var result = $filter('getPostsByGroupId')(result, gid);
-                    return result;
-                });
-            },
-        getMetaPostsGroup:
-            function(gid) {
-                return this.getMetaPosts().then(function(success) {
-//                    console.log(success);
-                    return $filter('getPostsByGroupId')(success, gid);
+        getGroupPosts:
+            function(num, ind, gid) {
+                return this.getGroupPostsPromise(num, ind, gid).then(function(success) {
+                    return success;
                 });
             },
         getPost:

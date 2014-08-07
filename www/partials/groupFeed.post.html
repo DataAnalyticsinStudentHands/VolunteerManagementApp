@@ -9,7 +9,15 @@
             <div id="groupfeed_l"> Likes: {{post.likes}} </div>
             <div id="groupfeed_t"> Time: {{post.time}} </div>
             <div id="groupfeed_cc"> Comment Count: {{post.comment_count}} </div>
-        </div>    
+        </div>
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="editPost(post.id)">Edit</a></li>
+                <li><a ng-click="deletePost(post.id)">Delete</a></li>
+            </ul>
+        </div>
     </div>
 </div>
-

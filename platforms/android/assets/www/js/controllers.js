@@ -424,7 +424,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.$parent.pActiv = true;
 
     $scope.updatePosts = function() {
-        var gProm = $scope.$parent.Restangular().all("posts").getList({"group_id" : $scope.id});
+        var gProm = vmaPostService.getAllPosts();
         gProm.then(function(success) {
             success = $scope.Restangular().stripRestangular(success);
             $scope.posts = success;

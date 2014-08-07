@@ -424,16 +424,16 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.$parent.pActiv = true;
 
     $scope.updatePosts = function() {
-        var gProm = $scope.$parent.Restangular().all("posts").getList({"group_id" : $scope.id});
+        var gProm = vmaPostService.getGroupPosts($scope.id);
         gProm.then(function(success) {
-            success = $scope.Restangular().stripRestangular(success);
             $scope.posts = success;
         }, function(fail) {
             console.log(fail);
         });
     }
     $scope.updatePosts();
-
+    
+    //OPEN ADD
     $scope.addPost = function() {
         $scope.open();
     }
@@ -460,12 +460,61 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-    //Contsroller for the Modal PopUp
+    //Controller for the Modal PopUp
     var ModalInstanceCtrl = function ($scope, $modalInstance, group_id, window_scope) {
         $scope.group_id = group_id;
         $scope.ok = function () {
             $scope.post["group_id"] = $scope.group_id;
-            var prom = $scope.$parent.Restangular().all("posts").post($scope.post);
+            var prom = vmaPostService.addPost($scope.post);
+            prom.then(function(success) {
+                console.log(success);
+                window_scope.updatePosts();
+            }, function(fail) {
+                console.log(fail)
+            });
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+    
+    //OPEN EDIT
+    $scope.editPost = function(pid) {
+        $scope.openEdit(pid);
+    }
+
+    $scope.openEdit = function (pid) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addPost.html',
+          controller: ModalInstanceCtrlEdit,
+          resolve: {
+              group_id: function() {
+                  return $scope.id;
+              },
+              window_scope: function() {
+                  return $scope;
+              },
+              post_id: function() {
+                  return pid;
+              }
+          }  
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope) {
+        $scope.group_id = group_id;
+        $scope.ok = function () {
+            $scope.post["group_id"] = $scope.group_id;
+            var prom = vmaPostService.addPost($scope.post);
             prom.then(function(success) {
                 console.log(success);
                 window_scope.updatePosts();
