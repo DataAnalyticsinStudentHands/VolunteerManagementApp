@@ -33,6 +33,83 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', functio
      };
  }]);
 
+vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
+      $scope.registerUser = function() {
+            Auth.setCredentials("Visitor", "test");
+            $scope.salt = "nfp89gpe";
+            $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+            $scope.$parent.Restangular().all("users").post($scope.register).then(
+                function(success) {
+                    Auth.clearCredentials();
+                    console.log(success);
+                    $state.go("home", {}, {reload: true});
+                },function(fail) {
+                    Auth.clearCredentials();
+                    alert(fail.status + " " + fail.statusText);
+                }
+            );
+          
+            Auth.clearCredentials();
+      }
+}]);
+
+vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal', function($scope, $state, Auth, $modal) {
+    $scope.logOut = function() {
+        Auth.clearCredentials();
+        $state.go("home", {}, {reload: true});
+    }
+
+    $scope.delUser = function() {
+        $scope.getUserPromise = $scope.Restangular().all("users").getList();
+        $scope.getUserPromise.then(function(success) {
+            $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(
+                function(success) {
+                    $state.go("home", {}, {reload: true});
+                }, function(failure) {
+                    console.log(failure)
+                }
+            );
+        }, function(failure) {
+            console.log(failure);
+        });
+    }
+
+    //OPENING THE MODAL TO DELETE A USER
+    $scope.deleteUser = function(id) {
+        $scope.openDelete(id);
+    }
+
+    $scope.openDelete = function () {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteUser.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+        });
+    };
+
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope) {
+        $scope.ok = function () {
+            window_scope.delUser();
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+}]);
+
 vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', function($scope, $state, vmaPostService) {
     $scope.posts = [];
     
@@ -69,7 +146,7 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     });
 }]);
 
-vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', 'vmaTaskService', function($scope, $state, $rootscope, snapRemote, vmaTaskService) {
+vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
     $scope.updateTasks = function() {
         vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
         console.log($scope.joinTasks);
@@ -392,7 +469,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     });
 }]);
 
-vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'vmaPostService', function($scope, $state, $stateParams, $modal, $rootScope, vmaPostService) {
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', function($scope, $state, $stateParams, $modal, vmaPostService) {
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
@@ -970,18 +1047,6 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
     $scope.title = "TITLE OF GROUP/EFFORT";
     $scope.effort = {description: "WE HAVE TO DO THINGS"};
     $scope.tasks = [
-        {id:'1', description: "BLAH BLAH"},
-        {id:'2', description: "BLAH BLAH"},
-        {id:'3', description: "BLAH BLAH"},
-        {id:'4', description: "BLAH BLAH"},
-        {id:'5', description: "BLAH BLAH"},
-        {id:'3', description: "BLAH BLAH"},
-        {id:'4', description: "BLAH BLAH"},
-        {id:'5', description: "BLAH BLAH"},
-        {id:'3', description: "BLAH BLAH"},
-        {id:'4', description: "BLAH BLAH"},
-        {id:'5', description: "BLAH BLAH"},
-        {id:'3', description: "BLAH BLAH"},
         {id:'4', description: "BLAH BLAH"},
         {id:'5', description: "BLAH BLAH"},
         {id:'6', description: "BLAH BLAH"}
@@ -994,24 +1059,8 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
     }
 }]);
 
-vmaControllerModule.controller('task', ['$scope', 'task', function($scope, task) {
-    $scope.task = task;
-    $scope.map = {
-        sensor: true, //required
-        size: '500x300',
-        zoom: 15, //a low zoom number indicates a wider view of the world.
-        center: $scope.task.location, //center location. it can be entered as a set of coordinates or a physical address.
-        markers: [$scope.task.location], //marker locations
-        mapevents: {redirect: true, loadmap: false}
-        /* setting loadmap=true loads the map when clicked. loadmap=false will not load the map. 
-        when the map is clicked on, the function(MAP_EVENTS), line 104 in adaptive-googlemaps.js is called.
-        the function reads if (MAP_EVENTS.redirect) as true and it will evaluate the body of the if statement.
-        */
-    };
-}]);
-
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
-    $scope.entries = $rootScope.entries = [
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', function($scope, $state, $stateParams, $modal) {
+    $scope.entries = [
         {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
         {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
         {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
@@ -1020,7 +1069,7 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     ];
     
     $scope.ok = function() {
-        $rootScope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $scope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
     }
     
     $scope.checkIn = function() {
@@ -1082,83 +1131,6 @@ vmaControllerModule.controller('awards', function ($scope) {
     }
 
 });
-
-vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal', function($scope, $state, Auth, $modal) {
-    $scope.logOut = function() {
-        Auth.clearCredentials();
-        $state.go("home", {}, {reload: true});
-    }
-
-    $scope.delUser = function() {
-        $scope.getUserPromise = $scope.Restangular().all("users").getList();
-        $scope.getUserPromise.then(function(success) {
-            $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(
-                function(success) {
-                    $state.go("home", {}, {reload: true});
-                }, function(failure) {
-                    console.log(failure)
-                }
-            );
-        }, function(failure) {
-            console.log(failure);
-        });
-    }
-
-    //OPENING THE MODAL TO DELETE A USER
-    $scope.deleteUser = function(id) {
-        $scope.openDelete(id);
-    }
-
-    $scope.openDelete = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteUser.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-        });
-    };
-
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope) {
-        $scope.ok = function () {
-            window_scope.delUser();
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    };
-}]);
-
-vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', '$timeout', '$rootScope', '$http', function($scope, $state, Auth, $timeout, $rootScope, $http) {
-      $scope.registerUser = function() {
-            Auth.setCredentials("Visitor", "test");
-            $scope.salt = "nfp89gpe";
-            $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
-            $scope.$parent.Restangular().all("users").post($scope.register).then(
-                function(success) {
-                    Auth.clearCredentials();
-                    console.log(success);
-                    $state.go("home", {}, {reload: true});
-                },function(fail) {
-                    Auth.clearCredentials();
-                    alert(fail.status + " " + fail.statusText);
-                }
-            );
-          
-            Auth.clearCredentials();
-      }
-}]);
 
 vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', '$modal', function($scope, $state, vmaTaskService, $compile, $modal) {
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
