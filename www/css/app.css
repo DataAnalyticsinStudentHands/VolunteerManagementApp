@@ -390,10 +390,12 @@ body {
 }
 
 
+/*
 .b_menu:hover{-webkit-animation: bounce 1s ease-out;
 	-moz-animation: bounce 1s ease-out;
 	-o-animation: bounce 1s ease-out;
 	animation: bounce 1s ease-out;}
+*/
 
 /*********loging page**********/
 
@@ -941,13 +943,13 @@ position: relative;
 color:#f96806;    
 }
 
-#submit{
-position: relative;
-background-color:#ffffff;
-width: 100%;
-height:500px;
-bottom: 9px;
-padding: 30px 10px 10px 30px;    
+#submit_hours{
+    position: relative;
+    background-color:#ffffff;
+    width: 100%;
+    height:500px;
+    bottom: 9px;
+    padding: 30px 10px 10px 30px;
 }
 
 /*****settings*****/
