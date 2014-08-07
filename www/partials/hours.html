@@ -4,7 +4,7 @@
             <a href=""> <!-- Link this to modal window from in depth -->
                 <div> {{entry.title}} </div>
                 <div> {{entry.duration}} Hours </div>
-                <div ng-show={{entry.approved}}>Approved</div>
+                <div id="approve" ng-show={{entry.approved}}><img src="img/check.png" width="70%" height="80%"></div>
                 <div ng-show=!{{entry.approved}}>Pending</div>
             </a>
         </div>
