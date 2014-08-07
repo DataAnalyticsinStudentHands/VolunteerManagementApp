@@ -417,7 +417,6 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid2.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid3.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_h.png \
-D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\dropdown_bar.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\effort_check.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\effort_group.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\effort_invite_g.com.png \
@@ -457,8 +456,6 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\info_box_blue.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\info_box_orange.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\login_background.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\login_logo.png \
-D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo.icon.png \
-D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_big.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_O.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_O2.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\logo_vma.png \
@@ -502,6 +499,7 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\bottomMenu.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\calendar.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\communityFeed.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deleteGroup.html \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deletePost.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deleteTask.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\deleteUser.html \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\editGroup.html \

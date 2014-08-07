@@ -53,7 +53,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       state('home.cfeed', {
           url: "/cfeed",
           views: {
-            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeedController'}
+            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeed'}
           },
           authenticate: true
       }).
@@ -73,7 +73,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       state('home.groupFeed', {
           url: "/groupFeed",
           views: {
-            "app-nowrap": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'},
+            "app-nowrap": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'}
           },
           authenticate: true
       }).

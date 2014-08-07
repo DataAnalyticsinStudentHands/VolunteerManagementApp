@@ -976,7 +976,7 @@ border-bottom:solid #000000;
 
 
 
-.back {
+.back_cube {
 	-webkit-transform: translateZ(-100px) rotateY(180deg);
 }
 
@@ -1000,7 +1000,7 @@ border-bottom:solid #000000;
 	-webkit-transform-origin: bottom center;
 }
 
-.front {
+.front_cube {
 
 	-webkit-transform: translateZ(100px);
 }
