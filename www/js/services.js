@@ -462,20 +462,32 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         getMyGroupPosts: 
             function() {
-                return this.updatePosts().then(function(success) { return myGroupPosts; });
+                return this.updatePosts().then(function(success) {
+                    var resultPosts = [];
+                    myGroupPosts.forEach(function(post) {
+                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                        resultPosts.push(post);
+                    });
+                    return resultPosts;
+                });
             },
         getGroupPostsPromise:
             function(numPosts, startindex, gid) {
-                var gPromAll = Restangular.all("posts")
-                    .getList({"numberOfPosts": numPosts, "startIndex": startindex, "group_id": gid});
-                gPromAll.then(function(success) {
+                var gPromAll = Restangular.all("posts").getList({"numberOfPosts": numPosts, "startIndex": startindex, "group_id": gid});
+                return gPromAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
-                    console.log(success);
-                    return success;
+                    var resultPosts = [];
+                    success.forEach(function(post) {
+                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                        resultPosts.push(post);
+                    });
+                    resultPosts = Restangular.stripRestangular(resultPosts);
+                    return resultPosts;
                 }, function(fail) {
         //            console.log(fail);
                 });
-                return gPromAll;
             },
         getGroupPosts:
             function(num, ind, gid) {

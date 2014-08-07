@@ -72,6 +72,7 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', '$rootScope', 'snapRemote', 'vmaTaskService', function($scope, $state, $rootscope, snapRemote, vmaTaskService) {
     $scope.updateTasks = function() {
         vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
+        console.log($scope.joinTasks);
     }
     $scope.updateTasks();
 
@@ -159,6 +160,8 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
         $state.go('home.groupFeed.detail', {id: click_id, detail: detail_bool}, {reload: false});
         snapRemote.close();
     }
+    
+    $scope.state = $state;
 
     $scope.updateGroups = function() {
         vmaGroupService.getMetaGroups().then(function(success) { $scope.metaGroups = success; });
@@ -393,15 +396,29 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
+    
+    if($scope.id) {
+        $scope.updatePosts = function() {
+            var gProm = vmaPostService.getGroupPosts(null, null, $scope.id);
+            gProm.then(function(success) {
+//                console.log(success);
+                $scope.posts = success;
+            }, function(fail) {
+//                console.log(fail);
+            });
+        }
+    } else {
+        $scope.updatePosts = function() {
+            var gProm = vmaPostService.getMyGroupPosts();
+            gProm.then(function(success) {
+//                console.log(success);
+                $scope.posts = success;
+            }, function(fail) {
+//                console.log(fail);
+            });
+        }
+    }
 
-    $scope.updatePosts = function() {
-        var gProm = vmaPostService.getGroupPosts(null, null, $scope.id);
-        gProm.then(function(success) {
-            $scope.posts = success;
-        }, function(fail) {
-            console.log(fail);
-        });
-}
     $scope.updatePosts();
 
     //OPEN ADD
