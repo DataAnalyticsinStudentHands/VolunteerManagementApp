@@ -1044,6 +1044,7 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
 }]);
 
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+    console.log($stateParams.id);
     $scope.title = "TITLE OF GROUP/EFFORT";
     $scope.effort = {description: "WE HAVE TO DO THINGS"};
     $scope.tasks = [
@@ -1051,7 +1052,6 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', fun
         {id:'5', description: "BLAH BLAH"},
         {id:'6', description: "BLAH BLAH"}
     ];
-    console.log($stateParams.id);
     $scope.id = 16;
     $scope.uid = 17;
     $scope.joinGroup = function() {

@@ -1090,11 +1090,9 @@ border-bottom:solid #000000;
 
 #div_2 {
 /*    position: relative;*/
-/*
     margin: auto;
     top: 20%;
     z-index: 12;
-*/
     
     -webkit-animation: mysecound 12s ; /* Chrome, Safari, Opera */
     animation: mysecound 12s ;

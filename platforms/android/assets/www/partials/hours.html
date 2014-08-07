@@ -11,12 +11,16 @@
     </tab>
     <tab heading="Submit" style="width:50%">
         <div style="margin: 10px">
-            <form>
-                <input id="name" type="text" name="name" ng-model="entry.name" placeholder="Task Name"/>
+            <button ng-click="checkIn()" type="button">Check in!</button>
+            <button ng-click="checkOut()" type="button">Check out!</button>
+            <p>{{checkInTime}}</p>
+            <p>{{checkOutTime}}</p>
+            <form ng-submit="ok()">
+                <input id="name" type="text" name="name" ng-model="$parent.entry.name" placeholder="Task Name"/>
                 <br/>
-                <input id="duration" type="text" ng-model="entry.duration" placeholder="Duration"/>
+                <input id="duration" type="number" ng-model="$parent.entry.duration" placeholder="Duration"/>
                 <br/>
-                <input type="submit" ng-click="ok()" name="id" placeholder="Name"/>
+                <input type="submit"/>
             </form>
         </div>
     </tab>

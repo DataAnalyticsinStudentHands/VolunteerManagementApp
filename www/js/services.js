@@ -355,12 +355,14 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
                     var result = [];
                     success.forEach(function(entry) {
 //                        console.log(new Date(entry.time));
-                        var localoffset = (new Date(entry.time)).getTimezoneOffset();
-                        // "unadjust" date
-                        entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
-//                        console.log(new Date(entry.time));
-//                        console.log(entry.id);
-                        result.push({"title" : entry.name, "start": entry.time, "url": "viewTask(" + entry.id + ")"});
+                        if(entry.time) {
+                            var localoffset = (new Date(entry.time)).getTimezoneOffset();
+                            // "unadjust" date
+                            entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
+    //                        console.log(new Date(entry.time));
+    //                        console.log(entry.id);
+                            result.push({"title" : entry.name, "start": entry.time, "url": "viewTask(" + entry.id + ")"});
+                        }
                     });
                     return result;
                 });
