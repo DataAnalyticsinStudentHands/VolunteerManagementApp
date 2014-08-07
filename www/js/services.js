@@ -112,7 +112,9 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         getGroup:
             function(group_id) {
-                return $filter('getById')(allGroups, group_id);
+                return this.updateGroups().then(function(success) {
+                    return $filter('getById')(allGroups, group_id);
+                });
             },
         addGroup:
             function(group) {
@@ -368,7 +370,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
     }
 }]);
 
-vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
+vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', function(Restangular, $q, $filter, vmaGroupService) {
     var allPosts = [];
     var myGroupPosts = [];
     var metaPosts = [];
@@ -403,7 +405,16 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(
             },
         getAllPosts: 
             function() {
-                return this.updatePosts().then(function(success) { return allPosts; });
+                var updatePostPromise = this.updatePosts().then(function(success) {
+                    var resultPosts = [];
+                    allPosts.forEach(function(post) {
+                        post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                        resultPosts.push(post);
+                    });
+                    return resultPosts;
+                });
+                return updatePostPromise;
             },
         getMyGroupPosts: 
             function() {

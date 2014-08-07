@@ -53,7 +53,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       state('home.cfeed', {
           url: "/cfeed",
           views: {
-            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeedController'}
+            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeed'}
           },
           authenticate: true
       }).
