@@ -112,7 +112,6 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
 
 vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', function($scope, $state, vmaPostService) {
     $scope.posts = [];
-    
     $scope.updatePosts = function() {
         var gProm = vmaPostService.getAllPosts();
         gProm.then(function(success) {
@@ -1043,19 +1042,14 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     }
 }]);
 
-vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    console.log($stateParams.id);
-    $scope.title = "TITLE OF GROUP/EFFORT";
-    $scope.effort = {description: "WE HAVE TO DO THINGS"};
-    $scope.tasks = [
-        {id:'4', description: "BLAH BLAH"},
-        {id:'5', description: "BLAH BLAH"},
-        {id:'6', description: "BLAH BLAH"}
-    ];
-    $scope.id = 16;
-    $scope.uid = 17;
+vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'vmaGroupService', 'vmaTaskService', function($scope, $state, $stateParams, vmaGroupService, vmaTaskService) {
+    $scope.id = $stateParams.id;
+    vmaGroupService.getGroup($scope.id).then(function(success) { $scope.group = success; console.log(success); });
+    vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; console.log(success); });
+
+    console.log($scope.uid);
     $scope.joinGroup = function() {
-        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").all($scope.uid).post();
+        vmaGroupService.joinGroup($scope.id, $scope.uid);
     }
 }]);
 

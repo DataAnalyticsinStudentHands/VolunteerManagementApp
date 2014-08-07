@@ -1,13 +1,13 @@
-<div> {{title}} </div>
-<div> {{effort.description}} </div>
+<div> {{group.name}} </div>
+<div> {{group.description}} </div>
 <button class="btn btn-default" ng-click="joinGroup()">Join Group</button>
 <div id="task_c">
     <div id="task" ng-repeat="task in tasks">
         <a>
             <div name="approval">
-                <label>{{task.description}}</label>
-<!--                TOGGLE BUTTON FOR JOINING-->
+                <label>{{task.name}}</label>
             </div>
+            <button class="btn btn-default" ng-click="joinTask()">Join Task</button>
         </a>
     </div>
 </div>
