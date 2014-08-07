@@ -3,8 +3,11 @@
 <button class="btn btn-default" ng-click="joinGroup()">Join Group</button>
 <div id="task_c">
     <div id="task" ng-repeat="task in tasks">
-        <a ui-sref="home.task({id:{{task.id}}})">
-            <input type="checkbox" name="approval"> <label>{{task.description}}</label>
+        <a>
+            <div name="approval">
+                <label>{{task.description}}</label>
+<!--                TOGGLE BUTTON FOR JOINING-->
+            </div>
         </a>
     </div>
 </div>

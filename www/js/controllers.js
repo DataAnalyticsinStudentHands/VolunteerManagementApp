@@ -1070,17 +1070,22 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     
     $scope.ok = function() {
         $scope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $scope.entry = [];
     }
     
     $scope.checkIn = function() {
         $scope.checkInTime = new Date();
+        $scope.checkInTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
         console.log($scope.checkInTime);
     }
     
     $scope.checkOut = function() {
+        if(!$scope.entry) $scope.entry = [];
         $scope.checkOutTime = new Date();
+        $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
         console.log($scope.checkOutTime);
-        $scope.entry.duration = $scope.checkInTime - $scope.checkOutTime;
+        $scope.entry.duration = ($scope.checkOutTime - $scope.checkInTime)/1000/60;
+        console.log($scope.entry.duration);
     }
 }]);
 
