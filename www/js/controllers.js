@@ -424,7 +424,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.$parent.pActiv = true;
 
     $scope.updatePosts = function() {
-        var gProm = vmaPostService.getGroupPosts($scope.id);
+        var gProm = vmaPostService.getGroupPosts(null, null, $scope.id);
         gProm.then(function(success) {
             $scope.posts = success;
         }, function(fail) {
@@ -510,11 +510,16 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         });
     };
     //Controller for the Modal PopUp
-    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope) {
-        $scope.group_id = group_id;
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope, post_id) {
+//        $scope.group_id = group_id;
+        var getPostProm = vmaPostService.getPost(post_id);
+        getPostProm.then(function(success) {
+            $scope.post = success;
+        });
         $scope.ok = function () {
-            $scope.post["group_id"] = $scope.group_id;
-            var prom = vmaPostService.addPost($scope.post);
+//            $scope.post["id"] = post_id;
+//            $scope.post["group_id"] = group_id;
+            var prom = vmaPostService.editPost(post_id, $scope.post);
             prom.then(function(success) {
                 console.log(success);
                 window_scope.updatePosts();
@@ -522,6 +527,52 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
                 console.log(fail)
             });
             $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+    
+    //OPEN DELETE
+    $scope.deletePost = function(pid) {
+        $scope.openDelete(pid);
+    }
+
+    $scope.openDelete = function (pid) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deletePost.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              group_id: function() {
+                  return $scope.id;
+              },
+              window_scope: function() {
+                  return $scope;
+              },
+              post_id: function() {
+                  return pid;
+              }
+          }  
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, group_id, window_scope, post_id) {
+        $scope.ok = function () {
+            var prom = vmaPostService.deletePost(post_id);
+            prom.then(function(success) {
+                $modalInstance.close();
+                window_scope.updatePosts();
+            }, function(fail) {
+                console.log(fail)
+            });
         };
 
         $scope.cancel = function () {

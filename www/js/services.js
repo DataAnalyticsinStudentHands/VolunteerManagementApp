@@ -407,7 +407,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(
             },
         getMyGroupPosts: 
             function() {
-                return this.updatePosts().then(function(success) { return manPosts; });
+                return this.updatePosts().then(function(success) { return myGroupPosts; });
             },
         getGroupPostsPromise:
             function(numPosts, startindex, gid) {
@@ -415,6 +415,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(
                     .getList({"numberOfPosts": numPosts, "startIndex": startindex, "group_id": gid});
                 gPromAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
+                    console.log(success);
                     return success;
                 }, function(fail) {
         //            console.log(fail);
@@ -429,7 +430,9 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', function(
             },
         getPost:
             function(post_id) {
-                return $filter('getById')(allPosts, post_id);
+                return this.getAllPosts().then(function(success) {
+                    return $filter('getById')(success, post_id);
+                });
             },
         addPost:
             function(post) {
