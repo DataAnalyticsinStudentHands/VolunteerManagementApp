@@ -11,6 +11,8 @@
         </center>
         <button type="button" ng-click="clear()">Toggle Time</button>
         <br/>
+        <input id="duration" type="number" ng-model="$parent.editTask.duration" step="any" placeholder="Duration" />
+        <br/>
         <input id="description" type="text" ng-model="$parent.editTask.description" placeholder="Description" />
         <br/>
         <input id="location" type="text" ng-model="$parent.editTask.location" placeholder="Location" />
