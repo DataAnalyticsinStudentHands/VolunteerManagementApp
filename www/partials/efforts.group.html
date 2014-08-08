@@ -4,8 +4,8 @@
 <button ng-show="group.joined" class="btn btn-default">Already Joined</button>
 <div id="task_c">
     <div id="task" ng-repeat="task in tasks">
-            <div name="approval"> <label>{{task.name}}</label> </div>
-            <button ng-hide="task.joined" class="btn btn-default" ng-click="joinTask(task.id)">Join Task</button>
-            <button ng-show="task.joined" class="btn btn-default" ng-click="leaveTask(task.id)">Already Joined</button>
+        <div name="approval"> <label>{{task.name}}</label> </div>
+        <button ng-hide="task.joined" class="btn btn-default" ng-click="joinTask(task.id)">Join Task</button>
+        <button ng-show="task.joined" class="btn btn-default" ng-click="leaveTask(task.id)">Already Joined</button>
     </div>
 </div>

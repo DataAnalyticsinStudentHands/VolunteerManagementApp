@@ -645,12 +645,13 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
     $scope.id = $stateParams.id;
+    console.log($stateParams.detail);
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
 
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
-        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success; });
+        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success; console.log(success); });
     }
     $scope.updateTasks();
 
@@ -683,7 +684,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     //Controller for the Modal PopUp Add
     var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id, vmaTaskService) {
-
+          $scope.showTime = true;
           $scope.today = function() {
             $scope.mytime = new Date();
             $scope.dt = new Date();
@@ -704,6 +705,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
           };
 
           $scope.clear = function() {
+            $scope.showTime = !$scope.showTime;
             $scope.mytime = null;
             $scope.dt = null;
           };
@@ -831,8 +833,8 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     //Controller for the Modal PopUp Delete
     var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
-        
-        var setup = function() {
+        var setup = function(st) {
+          $scope.showTime = st;
           $scope.today = function() {
               $scope.mytime = new Date($scope.editTask.time);
           };
@@ -849,11 +851,6 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
           $scope.changed = function () {
             console.log('Time changed to: ' + $scope.mytime);
-          };
-
-          $scope.clear = function() {
-            $scope.mytime = null;
-            $scope.dt = null;
           };
 
           // Disable weekend selection
@@ -881,22 +878,42 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
           $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
           $scope.format = $scope.formats[0];
         }
-        $scope.editTask = vmaTaskService.getTask(task_id);
-        setup();
-        
+        vmaTaskService.getTask(task_id).then(function(success) {
+            $scope.editTask = success;
+            console.log($scope.editTask.time);
+            if(!$scope.editTask.time) {
+                console.log("HERE1");
+                var showTime = false;
+            } else {
+                console.log("HERE2");
+                var showTime = true;
+            }
+            setup(showTime);
+        });
+
         $scope.ok = function () {
-            $scope.editTask.time = $scope.mytime;
+            if($scope.showTime)
+                $scope.editTask.time = new Date($scope.mytime).toISOString();
+            else {
+                $scope.editTask.time = null;
+            }
+            console.log($scope.editTask);
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
-            
+
             promise.then(function(success) {
-                    $scope.message = "DELETE SUCCESS!";
+                    $scope.message = "EDIT SUCCESS!";
                     window_scope.updateTasks();
                     $modalInstance.close();
                 }, function(fail) {
-                    $scope.message = "DELETE FAILED";
+                    $scope.message = "EDIT FAILED";
             });
         };
 
+        $scope.clear = function() {
+          $scope.showTime = !$scope.showTime;
+          setup($scope.showTime);
+        };
+        
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
@@ -1043,7 +1060,7 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'vmaGroupService', 'vmaTaskService', function($scope, $state, $stateParams, vmaGroupService, vmaTaskService) {
     $scope.id = $stateParams.id;
     $scope.update = function(){
-        vmaGroupService.getGroup($scope.id).then(function(success) { $scope.group = success; });
+        vmaGroupService.getGroupMeta($scope.id).then(function(success) { $scope.group = success; });
         vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
     }
     $scope.update();

@@ -159,6 +159,13 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             function(group_id) {
                 return this.updateGroups().then(function(success) {
                     var group = $filter('getById')(allGroups, group_id);
+                    return group;
+                });
+            },
+        getGroupMeta:
+            function(group_id) {
+                return this.updateGroups().then(function(success) {
+                    var group = $filter('getById')(allGroups, group_id);
                     if($filter('getById')(memGroups.concat(manGroups), group_id)) {
                         group.joined = true;
                     } else {
@@ -384,7 +391,11 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             },
         getTask:
             function(task_id) {
-                return $filter('getById')(allTasks, task_id);
+                return this.updateTasks().then(function(success) {
+                    var task = $filter('getById')(allTasks, task_id);
+                    console.log(task);
+                    return task;
+                });
             },
         getTaskView:
             function(task_id) {
