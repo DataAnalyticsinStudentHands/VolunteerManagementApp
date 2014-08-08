@@ -13,10 +13,9 @@
     <div id="log-in">
         <img id="logo_O" src="img/logo_O.png">
         <form class="submit" ng-submit="submit()">
-            <input class="log" type="text" ng-model="userName" name="userName" placeholder="USERNAME" required/>
-            <input class="log" type="password" ng-model="passWord" name="passWord" placeholder="PASSWORD" required/>
+            <input class="log" type="text" ng-model="userName" name="userName" placeholder="USERNAME"/>
+            <input class="log" type="password" ng-model="passWord" name="passWord" placeholder="PASSWORD"/>
             <input class="log" type="submit" value="Submit" id="submit">
-            <p> {{loginMsg}} </p>
             <p id="register"><a ui-sref="register">REGISTER HERE</a></p>
         </form>
     </div>

@@ -9,6 +9,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'vmaFilterModule',
   'databaseServicesModule',
   'ngTouch',
+  'ngNotify',
   'ui.router',
   'ui.bootstrap',
   'restangular',
@@ -147,7 +148,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
     $rootScope.Restangular = function() {
         return Restangular;
     }
-    
+
     $rootScope.isAuthenticated = function(authenticate) {
 //        //BELOW - Trying to get promises to work to verify auth
 //        var deferred = $q.defer();
