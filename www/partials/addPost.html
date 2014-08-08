@@ -1,8 +1,7 @@
-<div style="margin: 10px">
-    <form>
+<div class="modal-body" stop-event="touchend">
+    <form ng-submit="ok()">
         <input id="content" type="text" ng-model="$parent.post.content" placeholder="CONTENT" required/>
         <br/>
-        <p> Will eventually include something for linking a post to task </p>
-        <input type="submit" ng-click="ok()"/>
+        <input type="submit"/>
     </form>
 </div>

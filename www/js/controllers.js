@@ -124,8 +124,7 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     
     $scope.carousel_images = [
         {id:'1', caption: "GROUP 1", image: "img/image13.png"},
-        {id:'1', caption: "GROUP 1", image: "img/image13.png"},
-//        {id:'2', caption: "GROUP 2", image: "img/garden.jpg"},
+        {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
         {id:'3', caption: "GROUP 3", image: "img/image13.png"},
         {id:'6', caption: "GROUP 6", image: "img/image13.png"}
     ];

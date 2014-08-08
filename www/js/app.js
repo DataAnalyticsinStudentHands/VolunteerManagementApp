@@ -5,8 +5,10 @@
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
   'vmaServicesModule',
   'vmaControllerModule',
+  'vmaDirectiveModule',
   'vmaFilterModule',
   'databaseServicesModule',
+  'ngTouch',
   'ui.router',
   'ui.bootstrap',
   'restangular',
