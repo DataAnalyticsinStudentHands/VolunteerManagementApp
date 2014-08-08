@@ -112,7 +112,6 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
 
 vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', function($scope, $state, vmaPostService) {
     $scope.posts = [];
-    
     $scope.updatePosts = function() {
         var gProm = vmaPostService.getAllPosts();
         gProm.then(function(success) {
@@ -1043,24 +1042,20 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     }
 }]);
 
-vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-    console.log($stateParams.id);
-    $scope.title = "TITLE OF GROUP/EFFORT";
-    $scope.effort = {description: "WE HAVE TO DO THINGS"};
-    $scope.tasks = [
-        {id:'4', description: "BLAH BLAH"},
-        {id:'5', description: "BLAH BLAH"},
-        {id:'6', description: "BLAH BLAH"}
-    ];
-    $scope.id = 16;
-    $scope.uid = 17;
+vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'vmaGroupService', 'vmaTaskService', function($scope, $state, $stateParams, vmaGroupService, vmaTaskService) {
+    $scope.id = $stateParams.id;
+    vmaGroupService.getGroup($scope.id).then(function(success) { $scope.group = success; console.log(success); });
+    vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; console.log(success); });
+
+    console.log($scope.uid);
     $scope.joinGroup = function() {
-        $scope.Restangular().all("groups").all($scope.id).all("MEMBER").all($scope.uid).post();
+        vmaGroupService.joinGroup($scope.id, $scope.uid);
     }
 }]);
 
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', function($scope, $state, $stateParams, $modal) {
-    $scope.entries = [
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', function($scope, $state, $stateParams, $modal, $rootScope) {
+    if(!$rootScope.entries)
+    $rootScope.entries = [
         {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
         {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
         {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
@@ -1069,18 +1064,23 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     ];
     
     $scope.ok = function() {
-        $scope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $rootScope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $scope.entry = [];
     }
     
     $scope.checkIn = function() {
         $scope.checkInTime = new Date();
+        $scope.checkInTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
         console.log($scope.checkInTime);
     }
     
     $scope.checkOut = function() {
+        if(!$scope.entry) $scope.entry = [];
         $scope.checkOutTime = new Date();
+        $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
         console.log($scope.checkOutTime);
-        $scope.entry.duration = $scope.checkInTime - $scope.checkOutTime;
+        $scope.entry.duration = ($scope.checkOutTime - $scope.checkInTime)/1000/60;
+        console.log($scope.entry.duration);
     }
 }]);
 

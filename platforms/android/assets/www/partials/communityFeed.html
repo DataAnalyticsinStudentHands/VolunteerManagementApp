@@ -16,7 +16,7 @@
 </div>
 
 <div id="post" ng-repeat="post in posts">    
-    <a ui-sref="home.group({id:{{post.id}}})">
+    <a ui-sref="home.group({id:{{post.group_id}}})">
         <div id="author"> Author {{post.author}} > {{post.group.name}} at:{{post.date}} </div>
         <div id="boxicon"><img src="img/effort_task.icon.png" width="15%" /></div>
         <div id="contentbox"> {{post.content}} </div>

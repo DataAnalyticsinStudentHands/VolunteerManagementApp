@@ -56,6 +56,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
         updateGroups:
             //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
             function() {
+                console.log("GROUPS UPDATED");
                 var gProm = Restangular.all("groups").one("byMembership").getList();
                 gProm.then(function(success) {
                     success = Restangular.stripRestangular(success);
@@ -157,7 +158,13 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
         getGroup:
             function(group_id) {
                 return this.updateGroups().then(function(success) {
-                    return $filter('getById')(allGroups, group_id);
+                    var group = $filter('getById')(allGroups, group_id);
+                    if($filter('getById')(memGroups.concat(manGroups), group_id)) {
+                        group.joined = true;
+                    } else {
+                        group.joined = false;
+                    }
+                    return group;
                 });
             },
         addGroup:
@@ -201,7 +208,6 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function() {
                 if(refresh) {
-//                    refresh = !refresh;
                     console.log("TASKS UPDATED");
                     var gProm = Restangular.all("tasks").one("byMembership").getList();
                     gProm.then(function(success) {
@@ -298,7 +304,16 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             },
         getAllTasksGroup: 
             function(gid) {
-                return this.updateTasks().then(function(success) { return $filter('getTasksByGroupId')(allTasks, gid);});
+                return this.updateTasks().then(function(success) {
+                    var tasks = $filter('getTasksByGroupId')(allTasks, gid);
+                    
+                    tasks.forEach(function(task) {
+                        if($filter('getById')(memTasks.concat(manTasks), task.id))
+                           task.joined = true;
+                    });
+                    
+                    return tasks;
+                });
             },
         getManTasksGroup: 
             function(gid) {

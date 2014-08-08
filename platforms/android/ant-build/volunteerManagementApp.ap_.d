@@ -417,6 +417,8 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid2.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid3.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_h.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\check.png \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\dashlogo.svg \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\effort_check.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\effort_group.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\effort_invite_g.com.png \

@@ -116,7 +116,6 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
         var gProm = vmaPostService.getAllPosts();
         gProm.then(function(success) {
             $scope.posts = success;
-            console.log(success);
         }, function(fail) {
             console.log(fail);
         });
@@ -141,7 +140,6 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     };
     $scope.carousel_images.forEach(function(imgPost) {
         $scope.addSlide(imgPost);
-        console.log("I'M HERE");
     });
 }]);
 
@@ -1044,12 +1042,36 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
 
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'vmaGroupService', 'vmaTaskService', function($scope, $state, $stateParams, vmaGroupService, vmaTaskService) {
     $scope.id = $stateParams.id;
-    vmaGroupService.getGroup($scope.id).then(function(success) { $scope.group = success; console.log(success); });
-    vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; console.log(success); });
-
-    console.log($scope.uid);
+    $scope.update = function(){
+        vmaGroupService.getGroup($scope.id).then(function(success) { $scope.group = success; });
+        vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
+    }
+    $scope.update();
+    
+    //JOINING A GROUP
     $scope.joinGroup = function() {
-        vmaGroupService.joinGroup($scope.id, $scope.uid);
+        vmaGroupService.joinGroup($scope.id, $scope.uid).then(function(success) { $scope.update(); });
+    }
+    
+    //JOINING A TASK
+    $scope.joinTask = function(task_id) {
+        var promise = vmaTaskService.joinTask(task_id, $scope.uid);
+
+        promise.then(function(success) {
+                $scope.update();
+            }, function(fail) {
+//                $scope.message = "DELETE FAILED";
+        });
+    }
+    
+    //LEAVING A TASK
+    $scope.leaveTask = function(task_id) {
+        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
+        promise.then(function(success) {
+                $scope.update();
+            }, function(fail) {
+//                $scope.message = "DELETE FAILED";
+        });
     }
 }]);
 
