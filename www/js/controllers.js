@@ -22,7 +22,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
                 $scope.loginResult = result;
                 $scope.loginMsg = "You have logged in successfully!";
                 $state.go("home.cfeed", {}, {reload: true});
-                ngNotify.set($scope.loginMsg, 'top');
+                ngNotify.set($scope.loginMsg, 'success');
              }, function(error) {
                 $scope.loginMsg = "Incorrect username or password.";
                 ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
@@ -1234,8 +1234,5 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
 }]);
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
-    $scope.goBack = function() {
-        window.history.back();
-    };
     $scope.state = $state;
 }]);
