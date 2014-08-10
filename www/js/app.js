@@ -142,7 +142,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
 });
 
 
-volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', function(Restangular, $rootScope, Auth, $q, $state) {
+volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
 //    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     $rootScope.Restangular = function() {
@@ -153,11 +153,10 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
 //        //BELOW - Trying to get promises to work to verify auth
 //        var deferred = $q.defer();
 //        //This should be set to a work-all URL.
-        Restangular.all("users").getList().then(function(result) {
+        vmaUserService.getMyUser().then(function(result) {
             console.log("authed");
-//            console.log(result[0]);
-            $rootScope.uid = result[0].id.toString();
-            $rootScope.uin = result[0].username.toString();
+            $rootScope.uid = result.id.toString();
+            $rootScope.uin = result.username.toString();
         }, function(error) {
             if(error.status === 0) {
                 console.log("error-0");

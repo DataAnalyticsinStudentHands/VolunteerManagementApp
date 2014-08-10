@@ -530,7 +530,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         $scope.group_id = group_id;
         $scope.ok = function () {
             $scope.post["group_id"] = $scope.group_id;
-            var prom = vmaPostService.addPost($scope.post);
+            var prom = vmaPostService.addPost($scope.post, $scope.uid);
             prom.then(function(success) {
                 console.log(success);
                 window_scope.updatePosts();

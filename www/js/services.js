@@ -21,9 +21,16 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
             function() {
                 return this.updateUsers().then(function(success) { return allUsers; });
             },
-        getManUsers: 
+        getMyUser:
             function() {
-                return this.updateUsers().then(function(success) { return manUsers; });
+                var myUserPromise = Restangular.all("users").all("myUser").getList();
+                return myUserPromise.then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    return success[0];
+                }, function(fail) {
+        //            console.log(fail);
+                });
+//                return myUserPromise;
             },
         getUser:
             function(user_id) {
@@ -530,7 +537,8 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                 });
             },
         addPost:
-            function(post) {
+            function(post, uid) {
+                post.user_id = uid;
                 return Restangular.all("posts").post(post);
             },
         editPost:
