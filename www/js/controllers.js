@@ -17,7 +17,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
              Auth.setCredentials($scope.userName, $scope.passWordHashed);
              $scope.userName = '';
              $scope.passWord = '';
-             $scope.loginResultPromise = $scope.Restangular().all("users").getList();
+             $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
              $scope.loginResultPromise.then(function(result) {
                 $scope.loginResult = result;
                 $scope.loginMsg = "You have logged in successfully!";
@@ -35,7 +35,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
      };
  }]);
 
-vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
+vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngNotify', function($scope, $state, Auth, ngNotify) {
       $scope.registerUser = function() {
             Auth.setCredentials("Visitor", "test");
             $scope.salt = "nfp89gpe";
@@ -43,11 +43,11 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', func
             $scope.$parent.Restangular().all("users").post($scope.register).then(
                 function(success) {
                     Auth.clearCredentials();
-                    console.log(success);
+                    ngNotify.set("User account created. Please login!", {position: 'top', type: 'success'});
                     $state.go("home", {}, {reload: true});
                 },function(fail) {
                     Auth.clearCredentials();
-                    alert(fail.status + " " + fail.statusText);
+                    ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
                 }
             );
           
@@ -148,7 +148,6 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
     $scope.updateTasks = function() {
         vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
-        console.log($scope.joinTasks);
     }
     $scope.updateTasks();
 
@@ -229,7 +228,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }
 }]);
 
-vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout) {
+vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
     $scope.displayDetail = function(click_id, detail_bool) {
         console.log(detail_bool);
@@ -240,7 +239,6 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     $scope.state = $state;
 
     var updateGroups = $scope.updateGroups = function() {
-        console.log("HERE");
         vmaGroupService.getMetaGroups().then(function(success) { $scope.metaGroups = success; });
         vmaGroupService.getMetaJoinedGroups().then(function(success) { $scope.metaJoinedGroups = success; });
     }
@@ -276,12 +274,11 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
             promise.then(function(success) {
-                $scope.message = "ADD SUCCESS!";
                 window_scope.updateGroups();
                 $modalInstance.close();
+                ngNotify.set("Group created successfully!", 'success');
             }, function(fail) {
-//                console.log(fail);
-                $scope.message = "ADD FAILED";
+                ngNotify.set(fail.data.message, 'error');
             });
         };
 
@@ -324,10 +321,11 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
             var promise = vmaGroupService.deleteGroup(deleteId);
             promise.then(function(success) {
                 window_scope.updateGroups();
-                $scope.message = "DELETE SUCCESS!";
+                ngNotify.set("Group deleted successfully!", 'success');
                 $modalInstance.close();
             }, function(fail) {
                 $scope.message = "DELETE FAILED";
+                ngNotify.set("Group not deleted!", 'error');
             });
         };
 

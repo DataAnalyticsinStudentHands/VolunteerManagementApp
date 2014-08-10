@@ -23,14 +23,7 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
             },
         getMyUser:
             function() {
-                var myUserPromise = Restangular.all("users").all("myUser").getList();
-                return myUserPromise.then(function(success) {
-                    success = Restangular.stripRestangular(success);
-                    return success[0];
-                }, function(fail) {
-        //            console.log(fail);
-                });
-//                return myUserPromise;
+                return Restangular.all("users").all("myUser").getList();
             },
         getUser:
             function(user_id) {
