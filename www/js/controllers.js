@@ -212,19 +212,32 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
             {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
         ];
-        $scope.msg = "";
         $timeout(function() {
             $location.hash('messaging_input_scrollto');
             $anchorScroll();
         });
         $scope.addMsg = function() {
-            console.log($scope.msg);
             $scope.groupMSGs.push({id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: $scope.msg.message});
             $scope.msg = "";
+            $scope.scrollToAdd();
+        }
+        
+        $scope.scrollToAdd = function() {
             $timeout(function() {
                 $location.hash('messaging_input_scrollto');
                 $anchorScroll();
             });
+        }
+        
+        $scope.scrollTo = function() {
+            $timeout(function() {
+                $location.hash('messaging_input_scrollto');
+                $anchorScroll();
+            }, 500);
+            $timeout(function() {
+                $location.hash('messaging_input_scrollto');
+                $anchorScroll();
+            }, 2000);
         }
 }]);
 

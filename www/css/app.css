@@ -616,11 +616,13 @@ body {
     overflow: hidden;
 }
 
+#scrollable_wrap{
+    position: relative;
+}
+
 #messaging_input{
-    position: fixed;
-    bottom: 0px;
-    width:100%;
-    z-index: 3;
+    position: relative;
+    bottom: 10px;
 }
 
 #message_input_input{
