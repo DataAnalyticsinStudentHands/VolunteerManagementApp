@@ -337,8 +337,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
                 ngNotify.set("Group deleted successfully!", 'success');
                 $modalInstance.close();
             }, function(fail) {
-                $scope.message = "DELETE FAILED";
-                ngNotify.set("Group not deleted!", 'error');
+                ngNotify.set(fail.data.message, 'error');
             });
         };
 
@@ -380,13 +379,12 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
         $scope.ok = function () {
             var promise = vmaGroupService.editGroup(editId, $scope.group);
             promise.then(function(success) {
-                $scope.message = "EDIT SUCCESS!";
+                ngNotify.set("Group edited successfully!", 'success');
                 window_scope.updateGroups();
                 console.log(success);
                 $modalInstance.close();
             }, function(fail) {
-    //                console.log(fail);
-                $scope.message = "EDIT FAILED";
+                ngNotify.set(fail.data.message, 'error');
             });
         };
 
@@ -430,11 +428,11 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 
             promise.then(function(success) {
                 window_scope.updateGroups();
-                $scope.message = "LEAVE SUCCESS!";
+                ngNotify.set("Group left successfully!", 'success');
                 console.log(success);
                 $modalInstance.close();
             }, function(fail) {
-                $scope.message = "LEAVE FAILED";
+                ngNotify.set(fail.data.message, 'error');
             });
         };
 
@@ -447,8 +445,10 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
         var jProm = vmaGroupService.joinGroup(id, $scope.uid);
         jProm.then(function(success) {
             $scope.updateGroups();
+            ngNotify.set("Group joined successfully!", 'success');
         }, function(fail) {
             console.log(fail);
+            ngNotify.set(fail.data.message, 'error');
         });
     }
 
@@ -480,7 +480,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     });
 }]);
 
-vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', function($scope, $state, $stateParams, $modal, vmaPostService) {
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaPostService, ngNotify) {
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
@@ -545,8 +545,9 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             prom.then(function(success) {
                 console.log(success);
                 window_scope.updatePosts();
+                ngNotify.set("Posted successfully!", 'success');
             }, function(fail) {
-                console.log(fail)
+                ngNotify.set(fail.data.message, 'error');
             });
             $modalInstance.close();
         };
@@ -559,7 +560,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     //OPEN EDIT
     $scope.editPost = function(pid) {
         $scope.openEdit(pid);
-}
+    }
 
     $scope.openEdit = function (pid) {
         var modalInstance = $modal.open({
@@ -590,17 +591,14 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     //        $scope.group_id = group_id;
         var getPostProm = vmaPostService.getPost(post_id);
         getPostProm.then(function(success) {
-            $scope.post = success;
-        });
+            $scope.post = success;});
         $scope.ok = function () {
-    //            $scope.post["id"] = post_id;
-    //            $scope.post["group_id"] = group_id;
             var prom = vmaPostService.editPost(post_id, $scope.post);
             prom.then(function(success) {
-                console.log(success);
+                ngNotify.set("Post edited successfully!", 'success');
                 window_scope.updatePosts();
             }, function(fail) {
-                console.log(fail)
+                ngNotify.set(fail.data.message, 'error');
             });
             $modalInstance.close();
         };
@@ -646,8 +644,10 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             prom.then(function(success) {
                 $modalInstance.close();
                 window_scope.updatePosts();
+                ngNotify.set("Post deleted successfully!", 'success');
             }, function(fail) {
-                console.log(fail)
+//                console.log(fail)
+                ngNotify.set(fail.data.message, 'error');
             });
         };
 

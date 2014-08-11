@@ -444,6 +444,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
 
 vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', function(Restangular, $q, $filter, vmaGroupService) {
     var allPosts = [];
+    var allPostsPlain = [];
     var myGroupPosts = [];
     var metaPosts = [];
     var refresh = true;
@@ -525,8 +526,8 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         getPost:
             function(post_id) {
-                return this.getAllPosts().then(function(success) {
-                    return $filter('getById')(success, post_id);
+                return this.updatePosts().then(function(success) {
+                    return $filter('getById')(allPosts, post_id);
                 });
             },
         addPost:

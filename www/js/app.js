@@ -8,7 +8,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'vmaDirectiveModule',
     'vmaFilterModule',
     'databaseServicesModule',
-    'ngTouch',
+//    'ngTouch',
     'ngNotify',
     'ui.router',
     'ui.bootstrap',
