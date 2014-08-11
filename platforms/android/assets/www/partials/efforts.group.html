@@ -1,13 +1,12 @@
+<button onclick="goBack()"> < Back </button>
 <div> {{group.name}} </div>
 <div> {{group.description}} </div>
-<button class="btn btn-default" ng-click="joinGroup()">Join Group</button>
+<button ng-hide="group.joined" class="btn btn-default" ng-click="joinGroup()">Join Group</button>
+<button ng-show="group.joined" class="btn btn-default">Already Joined</button>
 <div id="task_c">
     <div id="task" ng-repeat="task in tasks">
-        <a>
-            <div name="approval">
-                <label>{{task.name}}</label>
-            </div>
-            <button class="btn btn-default" ng-click="joinTask()">Join Task</button>
-        </a>
+        <div name="approval"> <label>{{task.name}}</label> </div>
+        <button ng-hide="task.joined" class="btn btn-default" ng-click="joinTask(task.id)">Join Task</button>
+        <button ng-show="task.joined" class="btn btn-default" ng-click="leaveTask(task.id)">Already Joined</button>
     </div>
 </div>

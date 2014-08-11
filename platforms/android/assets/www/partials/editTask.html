@@ -1,16 +1,22 @@
-<div style="margin: 10px">
-    <form>
-        <input id="name" type="text" ng-model="$parent.editTask.name" placeholder="Name"/>
+<div class="modal-body" stop-event="touchend">
+    <form ng-submit="ok()">
+        <input id="name" type="text" ng-model="$parent.editTask.name" placeholder="Name" required/>
         <br/>
-        <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        <center ng-show="showTime">
+            <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+            <br/>
+            <div style="display:inline-block; min-height:290px; width: 100%">
+                <datepicker ng-model="$parent.mytime" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+            </div>
+        </center>
+        <button type="button" ng-click="clear()">Toggle Time</button>
         <br/>
-        <div style="display:inline-block; min-height:290px; width: 100%">
-            <datepicker ng-model="$parent.mytime" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
-        </div>
-        <input id="description" type="text" ng-model="$parent.editTask.description" placeholder="Description"/>
+        <input id="duration" type="number" ng-model="$parent.editTask.duration" step="any" placeholder="Duration" />
         <br/>
-        <input id="location" type="text" ng-model="$parent.editTask.location" placeholder="Location"/>
+        <input id="description" type="text" ng-model="$parent.editTask.description" placeholder="Description" />
         <br/>
-        <input type="submit" ng-click="ok()" placeholder="Name"/>
+        <input id="location" type="text" ng-model="$parent.editTask.location" placeholder="Location" />
+        <br/>
+        <input type="submit"/>
     </form>
 </div>
