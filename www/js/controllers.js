@@ -1044,7 +1044,7 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     };
 
     //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task) {
+    var ModalInstanceCtrlView = function($scope, task, $modalInstance) {
         $scope.task = task;
         $scope.map = {
             sensor: true,
@@ -1057,6 +1057,13 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         $scope.ok = function () {
             $modalInstance.close();
         };
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+          console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     }
 
     //LEAVING A TASK
