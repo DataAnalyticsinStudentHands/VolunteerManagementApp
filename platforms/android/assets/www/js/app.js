@@ -3,20 +3,20 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
-  'vmaServicesModule',
-  'vmaControllerModule',
-  'vmaDirectiveModule',
-  'vmaFilterModule',
-  'databaseServicesModule',
-  'ngTouch',
-  'ngNotify',
-  'ui.router',
-  'ui.bootstrap',
-  'restangular',
-  'snap',
-  'highcharts-ng',
-  'headroom',
-  'adaptive.googlemaps'
+    'vmaServicesModule',
+    'vmaControllerModule',
+    'vmaDirectiveModule',
+    'vmaFilterModule',
+    'databaseServicesModule',
+    'ngTouch',
+    'ngNotify',
+    'ui.router',
+    'ui.bootstrap',
+    'restangular',
+    'snap',
+    'highcharts-ng',
+    'headroom',
+    'adaptive.googlemaps'
 ]);
 
 volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
@@ -91,56 +91,54 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       state('home.group', {
           url: "/group:id",
           views: {
-            "app": { templateUrl: "partials/efforts.group.html", controller: 'group'},
+            "app": { templateUrl: "partials/efforts.group.html", controller: 'group'}
           },
           authenticate: true
       }).
       state('home.task', {
           url: "/task:task",
           views: {
-            "app": { templateUrl: "partials/efforts.task.html", controller: 'task'},
+            "app": { templateUrl: "partials/efforts.task.html", controller: 'task'}
           },
           authenticate: true
       }).
       state('home.efforts', {
           url: "/efforts",
           views: {
-            "app": { templateUrl: "partials/efforts.html", controller: 'efforts'},
+            "app": { templateUrl: "partials/efforts.html", controller: 'efforts'}
           },
           authenticate: true
       }).
       state('home.awards', {
           url: "/awards",
           views: {
-            "app": { templateUrl: "partials/awards.html", controller: 'awards'},
+            "app": { templateUrl: "partials/awards.html", controller: 'awards'}
           },
           authenticate: true
       }).
       state('home.settings', {
           url: "/settings",
           views: {
-            "app": { templateUrl: "partials/settings.html", controller: "settings"},
+            "app": { templateUrl: "partials/settings.html", controller: "settings"}
           },
           authenticate: true
       }).
       state('home.calendar', {
           url: "/calendar",
           views: {
-            "app": { templateUrl: "partials/calendar.html", controller: "calendar"
-                   },
+            "app": { templateUrl: "partials/calendar.html", controller: "calendar"}
           },
           authenticate: true
       }).
       state('home.hours', {
           url: "/hours",
           views: {
-            "app": { templateUrl: "partials/hours.html", controller: "hours"},
+            "app": { templateUrl: "partials/hours.html", controller: "hours"}
           },
           authenticate: false
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
 });
-
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
 //    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
@@ -175,7 +173,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
         console.log("non-authed");
         // User isn’t authenticated
         $state.go("login");
-        //What?
+        //Prevents the switching of the state
         event.preventDefault(); 
       }
     });

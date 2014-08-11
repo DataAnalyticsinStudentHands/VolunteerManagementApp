@@ -190,6 +190,14 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             function(gid, uid) {
                 return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post();
             },
+        isManager: function(gid) {
+            return this.getManGroups().then(function(success) {
+                var group = $filter('getById')(manGroups, gid);
+                if(group) return true; else return false;
+            }, function(fail) {
+//                asdf
+            });
+        },
         leaveGroupManager:
             function(gid, uid) {
                  return Restangular.all("groups").all(gid).all("MANAGER").all(uid).remove().then(function(success) {});
@@ -203,7 +211,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
     }
 }]);
 
-vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
+vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroupService', function(Restangular, $q, $filter, vmaGroupService) {
     var allTasks = [];
     var manTasks = [];
     var memTasks = [];
@@ -286,27 +294,21 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
         getMetaTasks:
             function() {
                 return this.getSubtractedTasks().then(function(success) {
-//                    console.log(success);
                     var result = [];
                     manTasks.forEach(function(obj){
                         obj.isManager = true;
-//                        console.log(obj);
                         result.push(obj);
                     });
                     memTasks.forEach(function(obj){
                         obj.isMember = true;
-//                        console.log(obj);
                         result.push(obj);
                     });
                     subTasks.forEach(function(obj){
                         obj.isTask = true;
-//                        console.log(obj);
                         result.push(obj);
                     });
-//                    console.log(result);
                     metaTasks = result;
                     return result;
-//                  return $filter('getTasksByGroupId')(memTasks, gid);
                 });
             },
         getAllTasksGroup: 
@@ -361,7 +363,24 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
             function(gid) {
                 return this.getMetaTasks().then(function(success) {
 //                    console.log(success);
-                    return $filter('getTasksByGroupId')(success, gid);
+                    
+                    var manGroups = [];
+                    return vmaGroupService.isManager(gid).then(function(isMan) {
+                        if(!isMan) {
+                            return $filter('getTasksByGroupId')(success, gid);
+                        } else {
+                            var result = $filter('getTasksByGroupId')(success, gid);
+                            result.forEach(function(obj) {
+                                obj.isMember = false;
+                                obj.isManager = false;
+                                obj.isTask = false;
+                                obj.isGroupManager = true;
+                            });
+                            return result;
+                        }
+                    }, function(error) {
+                        console.log(error);
+                    });
                 });
             },
         getJoinTasks:
@@ -444,6 +463,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', function(
 
 vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', function(Restangular, $q, $filter, vmaGroupService) {
     var allPosts = [];
+    var allPostsPlain = [];
     var myGroupPosts = [];
     var metaPosts = [];
     var refresh = true;
@@ -525,8 +545,8 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         getPost:
             function(post_id) {
-                return this.getAllPosts().then(function(success) {
-                    return $filter('getById')(success, post_id);
+                return this.updatePosts().then(function(success) {
+                    return $filter('getById')(allPosts, post_id);
                 });
             },
         addPost:

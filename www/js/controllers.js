@@ -107,7 +107,13 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 }]);
 
@@ -297,7 +303,14 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-};
+        };
+                        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     //OPENING THE MODAL TO DELETE A GROUP
@@ -343,7 +356,13 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     //OPENING THE MODAL TO EDIT A GROUP
@@ -390,7 +409,13 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     //OPENING THE MODAL TO LEAVE A GROUP
@@ -438,7 +463,13 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     $scope.joinGroup = function(id) {
@@ -551,11 +582,16 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             });
             $modalInstance.close();
         };
-
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
-};
+        };             
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
 
     //OPEN EDIT
     $scope.editPost = function(pid) {
@@ -605,8 +641,15 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
-};
+        };    
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
 
     //OPEN DELETE
     $scope.deletePost = function(pid) {
@@ -653,8 +696,14 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
-};
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
 }]);
 
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify) {
@@ -770,6 +819,13 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     //OPENING THE MODAL TO DELETE A TASK
@@ -805,18 +861,25 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         $scope.ok = function () {
             var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
-                    $scope.message = "DELETE SUCCESS!";
                     console.log(success);
                     window_scope.updateTasks();
                     $modalInstance.close();
+                    ngNotify.set("Task deleted successfully", "success");
                 }, function(fail) {
-                    $scope.message = "DELETE FAILED";
+                    ngNotify.set(fail.data.message, 'error');
             });
         };
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     //OPENING THE MODAL TO EDIT A TASK
@@ -916,11 +979,11 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
 
             promise.then(function(success) {
-                    $scope.message = "EDIT SUCCESS!";
+                    ngNotify.set("Task edited successfully", "success");
                     window_scope.updateTasks();
                     $modalInstance.close();
                 }, function(fail) {
-                    $scope.message = "EDIT FAILED";
+                    ngNotify.set(fail.data.message, 'error');
             });
         };
 
@@ -932,6 +995,13 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     };
 
     //OPENING THE MODAL TO VIEW A TASK
@@ -966,6 +1036,12 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         $scope.ok = function () {
             $modalInstance.close();
         };
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     }
 
     //JOINING A TASK
@@ -974,8 +1050,9 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
         promise.then(function(success) {
                 $scope.updateTasks();
+                ngNotify.set("Task joined successfully", "success");
             }, function(fail) {
-//                $scope.message = "DELETE FAILED";
+                ngNotify.set(fail.data.message, 'error');
         });
     }
 
@@ -984,9 +1061,9 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
                 $scope.updateTasks();
-                console.log(success);
+                ngNotify.set("Task left successfully", "success");
             }, function(fail) {
-//                $scope.message = "DELETE FAILED";
+                ngNotify.set(fail.data.message, 'error');
         });
     }
 }]);
@@ -1090,7 +1167,12 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
     
     //JOINING A GROUP
     $scope.joinGroup = function() {
-        vmaGroupService.joinGroup($scope.id, $scope.uid).then(function(success) { $scope.update(); });
+        vmaGroupService.joinGroup($scope.id, $scope.uid).then(function(success) {
+            $scope.update();
+            ngNotify.set("Task joined successfully", "success");
+        }, function(fail) {
+            ngNotify.set(fail.data.message, 'error');
+        });
     }
     
     //JOINING A TASK
@@ -1099,8 +1181,9 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
 
         promise.then(function(success) {
                 $scope.update();
+                ngNotify.set("Task joined successfully", "success");
             }, function(fail) {
-//                $scope.message = "DELETE FAILED";
+                ngNotify.set(fail.data.message, 'error');
         });
     }
     
@@ -1109,8 +1192,9 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
                 $scope.update();
+                ngNotify.set("Task left successfully", "success");
             }, function(fail) {
-//                $scope.message = "DELETE FAILED";
+                ngNotify.set(fail.data.message, 'error');
         });
     }
 }]);
@@ -1235,7 +1319,7 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
     };
 
     //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task) {
+    var ModalInstanceCtrlView = function($scope, task, $modalInstance) {
         $scope.task = task;
 //        console.log($scope.task.time);
         $scope.map = {
@@ -1248,7 +1332,13 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
         };
         $scope.ok = function () {
             $modalInstance.close();
-        };
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
     }
 }]);
 
