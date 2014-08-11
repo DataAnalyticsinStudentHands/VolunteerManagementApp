@@ -466,7 +466,6 @@ body {
     width:100%;    
     bottom:80px;
     height:0%;
-    padding-bottom: auto;
     padding: 0% 0% 0% 0%;
     background-color: #eeeeee;
     z-index: -3;
@@ -525,7 +524,6 @@ body {
     height: 40%;
     margin: auto;
     z-index: -1;
-    padding-left:auto;
     text-overflow: ellipsis;
     font-family: Roboto medium;
     font-size: 12pt;
@@ -565,7 +563,6 @@ body {
 #group_content{
     position:relative;
     width: 50%;
-    padding:auto;
     bottom:55px;
     margin-left:30%;   
     text-overflow:    ellipsis;   
@@ -927,7 +924,6 @@ background: #ffffff;
 height: 80px;    
 margin:1px;
 padding: 5px;
-font-family:;    
 border-bottom:solid #f96806;    
 }
 
@@ -1117,7 +1113,7 @@ background-color: white;
     100% {animation-timing-function: ease-in-out; opacity: 1}
 }
 
- Standard syntax 
+ /*Standard syntax */
 @keyframes myfirst {
  0%  {left: 0px; top:0px;}
   100% {left: -960px;}
@@ -1150,7 +1146,7 @@ background-color: white;
     
 }
 
- Standard syntax 
+ /*Standard syntax */
 @keyframes mysecound {
  0%  {animation-timing-function: ease-out; opacity: 1}
 20% {animation-timing-function: ease-out; opacity: 0}

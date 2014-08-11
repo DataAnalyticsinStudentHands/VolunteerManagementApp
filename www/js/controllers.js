@@ -1,7 +1,5 @@
 'use strict';
-
 /* Controllers */
-
 var vmaControllerModule = angular.module('vmaControllerModule', []);
 
 vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', function($scope, Auth, $state, ngNotify) {
@@ -161,7 +159,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
 //        dragger: null,
         disable: 'right',
 //            addBodyClasses: true,
-        hyperextensible: false,
+        hyperextensible: false
 //            resistance: 0.5,
 //            flickThreshold: 50,
 //            transitionSpeed: 0.3,
@@ -445,7 +443,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 //        dragger: null,
         disable: 'right',
 //        addBodyClasses: true,
-        hyperextensible: false,
+        hyperextensible: false
 //        resistance: 0.5,
 //        flickThreshold: 50,
 //        transitionSpeed: 0.3,
