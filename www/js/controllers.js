@@ -657,9 +657,9 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 };
 }]);
 
-vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify) {
     $scope.id = $stateParams.id;
-    console.log($stateParams.detail);
+//    console.log($stateParams.detail);
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
 
@@ -761,9 +761,10 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
                     console.log(success);
                     window_scope.updateTasks();
                     $modalInstance.close();
+                    ngNotify.set("Task added successfully", "success");
                 }, function(fail) {
-                    $scope.message = "ADD FAILED";
-            });
+                    ngNotify.set(fail.data.message, 'error');
+                });
         };
 
         $scope.cancel = function () {
@@ -1059,7 +1060,7 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         };
         
         $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-          console.log("SCOPE - $stateChangeStart");
+            console.log("SCOPE - $stateChangeStart");
             $modalInstance.dismiss('cancel');
             //Prevents the switching of the state
             event.preventDefault();
@@ -1079,7 +1080,7 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     }
 }]);
 
-vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'vmaGroupService', 'vmaTaskService', function($scope, $state, $stateParams, vmaGroupService, vmaTaskService) {
+vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ngNotify', 'vmaGroupService', 'vmaTaskService', function($scope, $state, $stateParams, ngNotify, vmaGroupService, vmaTaskService) {
     $scope.id = $stateParams.id;
     $scope.update = function(){
         vmaGroupService.getGroupMeta($scope.id).then(function(success) { $scope.group = success; });

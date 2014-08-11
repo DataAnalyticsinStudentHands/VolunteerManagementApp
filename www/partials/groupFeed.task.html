@@ -13,9 +13,9 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a ng-show="task.isManager" ng-click="editTask(task.id)">Edit</a></li>
+                <li><a ng-show="task.isManager || task.isGroupManager" ng-click="editTask(task.id)">Edit</a></li>
                 <li><a ng-show="task.isManager" ng-click="leaveTask(task.id)">Leave</a></li>
-                <li><a ng-show="task.isManager" ng-click="deleteTask(task.id)">Delete</a></li>
+                <li><a ng-show="task.isManager || task.isGroupManager" ng-click="deleteTask(task.id)">Delete</a></li>
 
                 <li><a ng-show="task.isMember" ng-click="leaveTask(task.id)">Leave</a></li>
 
