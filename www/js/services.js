@@ -429,7 +429,6 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                 } else {
                     viewTask.show_map = true;
                 }
-                console.log(viewTask);
                 return viewTask;
             },
         addTask:
