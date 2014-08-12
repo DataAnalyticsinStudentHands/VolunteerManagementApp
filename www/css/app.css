@@ -622,10 +622,14 @@ body {
 #messaging_input{
     position: relative;
     bottom: 10px;
+    width: 100%
 }
 
 #message_input_input{
-    width:80%;
+    width:73%;
+}
+#message_input_submit{
+    width:25%;
 }
 
 #message_ic{

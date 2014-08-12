@@ -219,7 +219,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
         ];
         $timeout(function() {
-            $location.hash('messaging_input_scrollto');
+            $location.hash('messaging_input');
             $anchorScroll();
         });
         $scope.addMsg = function() {
@@ -230,21 +230,42 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         
         $scope.scrollToAdd = function() {
             $timeout(function() {
-                $location.hash('messaging_input_scrollto');
+                $location.hash('messaging_input');
                 $anchorScroll();
             });
         }
+
         
-        $scope.scrollTo = function() {
-            $timeout(function() {
-                $location.hash('messaging_input_scrollto');
-                $anchorScroll();
-            }, 500);
-            $timeout(function() {
-                $location.hash('messaging_input_scrollto');
-                $anchorScroll();
-            }, 2000);
-        }
+		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+    $scope.scrollTo = function() { }
+    
+}
+else if(userAgent.match(/Android/i)) {
+    $scope.scrollTo = function() {
+        $timeout(function() {
+            $location.hash('messaging_input');
+            $anchorScroll();
+        }, 500);
+        $timeout(function() {
+            $location.hash('messaging_input');
+            $anchorScroll();
+        }, 2000);
+    }
+} else {
+    $scope.scrollTo = function() {
+        $timeout(function() {
+            $location.hash('messaging_input');
+            $anchorScroll();
+        }, 500);
+        $timeout(function() {
+            $location.hash('messaging_input');
+            $anchorScroll();
+        }, 2000);
+    }
+}
+        
+
 }]);
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify) {
