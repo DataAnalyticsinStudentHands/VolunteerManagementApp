@@ -26,7 +26,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
             "app": { templateUrl: "partials/home.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html", controller:"menuCtrl"}
           },
           authenticate: true
       }).

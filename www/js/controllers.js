@@ -352,6 +352,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope, vmaGroupService) {
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
+            console.log($scope.newGroup);
             promise.then(function(success) {
                 window_scope.updateGroups();
                 $modalInstance.close();
