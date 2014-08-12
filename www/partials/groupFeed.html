@@ -49,13 +49,13 @@
     </snap-drawer>
     <snap-content id="snap_page" snap-options="settings">
         <tabset ng-show="state.is('home.groupFeed.detail')">
-            <tab heading="Posts" active="pActiv" id="groupfeed_post">
+            <tab heading="Posts" active="pActiv" id="groupfeed_post" style="width:33%; text-align: center;">
                 <div ui-view="post">Click on a Effort Above to View Posts Here</div>
             </tab>
-            <tab heading="Tasks" active="tActiv" id="groupfeed_tasks">
+            <tab heading="Tasks" active="tActiv" id="groupfeed_tasks" style="width:33%; text-align: center;">
                 <div ui-view="task">Tasks from group will be shown here</div>
             </tab>
-            <tab heading="Users" active="uActiv" id="groupfeed_users">
+            <tab heading="Users" active="uActiv" id="groupfeed_users" style="width:33%; text-align: center;">
                 <div ui-view="group.user">Users from group will be shown here</div>
             </tab>
         </tabset>
