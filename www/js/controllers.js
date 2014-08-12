@@ -227,21 +227,22 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             $scope.msg = "";
             $scope.scrollToAdd();
         }
-        
-        $scope.scrollToAdd = function() {
-            $timeout(function() {
-                $location.hash('messaging_input');
-                $anchorScroll();
-            });
-        }
+
 
         
-		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
     $scope.scrollTo = function() { }
+    $scope.scrollToAdd = function() { }
     
 }
-else if(userAgent.match(/Android/i)) {
+else if(userAgent.match(/Android/i)) {        
+    $scope.scrollToAdd = function() {
+        $timeout(function() {
+            $location.hash('messaging_input');
+            $anchorScroll();
+        });
+    }
     $scope.scrollTo = function() {
         $timeout(function() {
             $location.hash('messaging_input');
@@ -252,7 +253,13 @@ else if(userAgent.match(/Android/i)) {
             $anchorScroll();
         }, 2000);
     }
-} else {
+} else {        
+    $scope.scrollToAdd = function() {
+        $timeout(function() {
+            $location.hash('messaging_input');
+            $anchorScroll();
+        });
+    }
     $scope.scrollTo = function() {
         $timeout(function() {
             $location.hash('messaging_input');
