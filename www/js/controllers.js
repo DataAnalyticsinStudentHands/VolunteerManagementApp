@@ -58,21 +58,58 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
         Auth.clearCredentials();
         console.log("HERE");
         $state.go("home", {}, {reload: true});
+//        ngNotify.set("Successfully logged out!", {"type" : "success", "position" : "top" });
+    }
+    
+    //OPENING THE MODAL TO LOG OUT A USER
+    $scope.logOutUser = function(id) {
+        $scope.openLogOut(id);
     }
 
+    $scope.openLogOut = function () {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/logOutUser.html',
+          controller: ModalInstanceCtrlLogOut,
+          resolve: {
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+        });
+    };
+
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlLogOut = function ($scope, $modalInstance, window_scope) {
+        $scope.ok = function () {
+            $modalInstance.close();
+            window_scope.out();
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };                
+//        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+//            console.log("SCOPE - $stateChangeStart");
+//            $modalInstance.dismiss('cancel');
+//            //Prevents the switching of the state
+//            event.preventDefault();
+//        });
+    };
+    
+    //DELETE THE USER
     $scope.delUser = function() {
-        $scope.getUserPromise = $scope.Restangular().all("users").getList();
-        $scope.getUserPromise.then(function(success) {
-            $scope.Restangular().all("users").one(success[0].id.toString()).remove().then(
+        $scope.Restangular().all("users").one($scope.uid).remove().then(
                 function(success) {
                     $state.go("home", {}, {reload: true});
                 }, function(failure) {
                     console.log(failure)
                 }
-            );
-        }, function(failure) {
-            console.log(failure);
-        });
+        );
     }
 
     //OPENING THE MODAL TO DELETE A USER
@@ -228,51 +265,46 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             $scope.scrollToAdd();
         }
 
-
-        
-var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
-    $scope.scrollTo = function() { }
-    $scope.scrollToAdd = function() { }
-    
-}
-else if(userAgent.match(/Android/i)) {        
-    $scope.scrollToAdd = function() {
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        });
-    }
-    $scope.scrollTo = function() {
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        }, 500);
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        }, 2000);
-    }
-} else {        
-    $scope.scrollToAdd = function() {
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        });
-    }
-    $scope.scrollTo = function() {
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        }, 500);
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        }, 2000);
-    }
-}
-        
-
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+            $scope.scrollTo = function() { }
+            $scope.scrollToAdd = function() { }
+        }
+        else if(userAgent.match(/Android/i)) {        
+            $scope.scrollToAdd = function() {
+                $timeout(function() {
+                    $location.hash('messaging_input');
+                    $anchorScroll();
+                });
+            }
+            $scope.scrollTo = function() {
+                $timeout(function() {
+                    $location.hash('messaging_input');
+                    $anchorScroll();
+                }, 500);
+                $timeout(function() {
+                    $location.hash('messaging_input');
+                    $anchorScroll();
+                }, 2000);
+            }
+        } else {        
+            $scope.scrollToAdd = function() {
+                $timeout(function() {
+                    $location.hash('messaging_input');
+                    $anchorScroll();
+                });
+            }
+            $scope.scrollTo = function() {
+                $timeout(function() {
+                    $location.hash('messaging_input');
+                    $anchorScroll();
+                }, 500);
+                $timeout(function() {
+                    $location.hash('messaging_input');
+                    $anchorScroll();
+                }, 2000);
+            }
+        }
 }]);
 
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify) {
@@ -282,16 +314,16 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
         $state.go('home.groupFeed.detail', {id: click_id, detail: detail_bool}, {reload: false});
         snapRemote.close();
     }
-    
+
     $scope.state = $state;
 
     var updateGroups = $scope.updateGroups = function() {
         vmaGroupService.getMetaGroups().then(function(success) { $scope.metaGroups = success; });
         vmaGroupService.getMetaJoinedGroups().then(function(success) { $scope.metaJoinedGroups = success; });
     }
-    
+
     $timeout(function() { updateGroups(); }, 5);
-    
+
     //OPENING THE MODAL TO ADD A GROUP
     $scope.addGroup = function() {
         $scope.openAdd();
