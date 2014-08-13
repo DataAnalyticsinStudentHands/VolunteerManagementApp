@@ -666,6 +666,27 @@ overflow: auto;
     left: 60px;        
 }
 
+.btn_name {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;    
+    -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+    opacity: .7;    
+    border: 1px solid transparent;
+    background:rgba(238, 238, 238, 0);
+    border-radius: 4px;
+}
+
 #bs{
     position:relative;
     bottom: 70px;
