@@ -1089,7 +1089,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task, vmaTaskService) {
+    var ModalInstanceCtrlView = function($scope, task, vmaTaskService, $modalInstance) {
         $scope.task = task;
         $scope.map = {
             sensor: true,
