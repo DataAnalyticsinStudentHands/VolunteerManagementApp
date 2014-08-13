@@ -165,12 +165,7 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
         });
     }
     $scope.updatePosts();
-    
-    $scope.popover = {
-      "title": "Title",
-      "content": "Hello Popover<br />This is a multiline message!"
-    };
-    
+
     $scope.carousel_images = [
         {id:'1', caption: "GROUP 1", image: "img/image13.png"},
         {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
@@ -224,6 +219,13 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
       element: document.getElementById('content')
     });
 
+        
+    $scope.popover = {
+        "title": "Carl",
+        "content": "<B> BADGES </B> <BR/> MEMBER SINCE"
+    };
+    
+    
     snapRemote.getSnapper().then(function(snapper) {
         snapper.open('left');
     });
