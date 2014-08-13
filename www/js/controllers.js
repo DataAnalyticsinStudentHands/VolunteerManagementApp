@@ -977,61 +977,60 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     //Controller for the Modal PopUp Delete
     var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
         var setup = function(st) {
-          $scope.showTime = st;
-          $scope.today = function() {
-              $scope.mytime = new Date($scope.editTask.time);
-          };
-          $scope.today();
-          $scope.toggleMin = function() {
-              $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
+            $scope.showTime = st;
+            $scope.today = function() {
+                $scope.mytime = new Date($scope.editTask.time);
+            };
+            $scope.today();
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
 
-          $scope.hstep = 1;
-          $scope.mstep = 5;
+            $scope.hstep = 1;
+            $scope.mstep = 5;
 
-          $scope.ismeridian = true;
+            $scope.ismeridian = true;
 
-          $scope.changed = function () {
-            console.log('Time changed to: ' + $scope.mytime);
-          };
+            $scope.changed = function () {
+                console.log('Time changed to: ' + $scope.mytime);
+            };
 
-          // Disable weekend selection
-          $scope.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-          };
+            // Disable weekend selection
+            $scope.disabled = function(date, mode) {
+                return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+            };
 
-          $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
 
-          $scope.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened = true;
+            };
 
-            $scope.opened = true;
-          };
+            $scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
 
-          $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-          };
-
-          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-          $scope.format = $scope.formats[0];
+            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            $scope.format = $scope.formats[0];
         }
         vmaTaskService.getTask(task_id).then(function(success) {
             $scope.editTask = success;
             console.log($scope.editTask.time);
             if(!$scope.editTask.time) {
-                console.log("HERE1");
-                var showTime = false;
+                console.log("SHOWTIME = FALSE");
+                $scope.showTime = false;
             } else {
-                console.log("HERE2");
-                var showTime = true;
+                console.log("SHOWTIME = TRUE");
+                $scope.showTime = true;
             }
-            setup(showTime);
+            setup($scope.showTime);
         });
 
         $scope.ok = function () {
@@ -1053,8 +1052,10 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         };
 
         $scope.clear = function() {
-          $scope.showTime = !$scope.showTime;
-          setup($scope.showTime);
+            $scope.showTime = !$scope.showTime;
+            if($scope.showTime) $scope.editTask.time = new Date(); else $scope.editTask.time = null;
+            console.log($scope.showTime);
+            setup($scope.showTime);
         };
         
         $scope.cancel = function () {
