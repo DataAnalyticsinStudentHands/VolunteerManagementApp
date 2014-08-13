@@ -10,8 +10,8 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
+             document.activeElement.blur();
              $timeout(function() {
-                 document.activeElement.blur();
                  $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
                  Auth.setCredentials($scope.userName, $scope.passWordHashed);
                  $scope.userName = '';
@@ -27,32 +27,32 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
                     ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
                     Auth.clearCredentials();
                  });
-             }, 250);
+             }, 500);
          } else {
-             $scope.loginMsg = "Please enter a username or password.";
+             $scope.loginMsg = "Please enter a username and password.";
              ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
          }
      };
  }]);
 
 vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngNotify', function($scope, $state, Auth, ngNotify) {
-      $scope.registerUser = function() {
-            Auth.setCredentials("Visitor", "test");
-            $scope.salt = "nfp89gpe";
-            $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
-            $scope.$parent.Restangular().all("users").post($scope.register).then(
-                function(success) {
-                    Auth.clearCredentials();
-                    ngNotify.set("User account created. Please login!", {position: 'top', type: 'success'});
-                    $state.go("home", {}, {reload: true});
-                },function(fail) {
-                    Auth.clearCredentials();
-                    ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
-                }
-            );
-          
-            Auth.clearCredentials();
-      }
+    $scope.registerUser = function() {
+        Auth.setCredentials("Visitor", "test");
+        $scope.salt = "nfp89gpe";
+        $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+        $scope.$parent.Restangular().all("users").post($scope.register).then(
+            function(success) {
+                Auth.clearCredentials();
+                ngNotify.set("User account created. Please login!", {position: 'top', type: 'success'});
+                $state.go("home", {}, {reload: true});
+            },function(fail) {
+                Auth.clearCredentials();
+                ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
+            }
+        );
+
+        Auth.clearCredentials();
+    }
 }]);
 
 vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal', function($scope, $state, Auth, $modal) {
