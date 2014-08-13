@@ -2,7 +2,7 @@
 /* Controllers */
 var vmaControllerModule = angular.module('vmaControllerModule', []);
 
-vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', function($scope, Auth, $state, ngNotify) {
+vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', '$timeout', function($scope, Auth, $state, ngNotify, $timeout) {
      if($scope.isAuthenticated() === true) {
          //Point to logged in page of app
          $state.go('home');
@@ -10,21 +10,24 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
-             $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
-             Auth.setCredentials($scope.userName, $scope.passWordHashed);
-             $scope.userName = '';
-             $scope.passWord = '';
-             $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
-             $scope.loginResultPromise.then(function(result) {
-                $scope.loginResult = result;
-                $scope.loginMsg = "You have logged in successfully!";
-                $state.go("home.cfeed", {}, {reload: true});
-                ngNotify.set($scope.loginMsg, 'success');
-             }, function(error) {
-                $scope.loginMsg = "Incorrect username or password.";
-                ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
-                Auth.clearCredentials();
-             });
+             $timeout(function() {
+                 document.activeElement.blur();
+                 $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
+                 Auth.setCredentials($scope.userName, $scope.passWordHashed);
+                 $scope.userName = '';
+                 $scope.passWord = '';
+                 $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
+                 $scope.loginResultPromise.then(function(result) {
+                    $scope.loginResult = result;
+                    $scope.loginMsg = "You have logged in successfully!";
+                    $state.go("home.cfeed", {}, {reload: true});
+                    ngNotify.set($scope.loginMsg, 'success');
+                 }, function(error) {
+                    $scope.loginMsg = "Incorrect username or password.";
+                    ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
+                    Auth.clearCredentials();
+                 });
+             }, 250);
          } else {
              $scope.loginMsg = "Please enter a username or password.";
              ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
