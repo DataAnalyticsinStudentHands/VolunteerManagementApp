@@ -11,7 +11,15 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'ngTouch',
     'ngNotify',
     'ui.router',
-    'ui.bootstrap',
+    'ui.bootstrap.tpls',
+    'ui.bootstrap.carousel',
+    'ui.bootstrap.tabs',
+    'ui.bootstrap.modal',
+    'ui.bootstrap.dropdown',
+    'ui.bootstrap.datepicker',
+    'ui.bootstrap.timepicker',
+    'mgcrea.ngStrap.tooltip',
+    'mgcrea.ngStrap.popover',
     'restangular',
     'snap',
     'highcharts-ng',
@@ -19,14 +27,14 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'adaptive.googlemaps'
 ]);
 
-volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
+volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
           views: {
             "menuBar": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
             "app": { templateUrl: "partials/home.html"},
-            "bottomMenu":  { templateUrl: "partials/bottomMenu.html"}
+            "bottomMenu":  { templateUrl: "partials/bottomMenu.html", controller:"menuCtrl"}
           },
           authenticate: true
       }).
@@ -138,6 +146,9 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           authenticate: false
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+    angular.extend($popoverProvider.defaults, {
+        html: true
+    });
 });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
