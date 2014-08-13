@@ -1,7 +1,7 @@
 /* app css stylesheet */
 * { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
 input, textarea { -webkit-user-select:text; height: 100%;}
-body { background-color:white; color:black }
+/*body { background-color:white; color:black }*/
 
 body {
     overflow-x: hidden;
@@ -42,8 +42,7 @@ body {
 }
 
 /*****meun bar at the top**********/
-#background{
-    background:url(../img/background_grid3.png) fixed;
+#background{    background:url(../img/background_grid3.png) fixed;
     background-repeat:no-repeat;
     width: 100%;
     background-repeat: repeat-x;
@@ -399,11 +398,14 @@ body {
 
 /*********loging page**********/
 
+
 #logo_O{
     position:fixed;
-    width: 100%;
+    width:70%;
+    top:80px;
+    left:60px;
     margin: 0px 0px 0px 0px;
-    padding: 10%;
+    z-index: 1;
 }
 
 .log{
@@ -411,11 +413,11 @@ body {
     border-radius:5px;
     height:50px; 
     width:70%;
-    top:360px;
+    top:390px;
     margin: 0% 15% 0% 15%;
     text-align: center;
     background-color:#0BA1F4;
-    z-index: 1;
+    z-index: 2;
     opacity: .8;
 }
 
@@ -438,7 +440,8 @@ body {
     position: relative;
     margin-top: 5%;
     margin-left: 50%;
-    top: 350px;
+    top: 380px;
+    z-index: 3;
 }
 
 /**** Community Feed****/
