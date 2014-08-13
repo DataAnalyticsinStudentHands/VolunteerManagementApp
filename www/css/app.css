@@ -833,7 +833,7 @@ overflow: auto;
 	-webkit-animation-duration: .5s;
 
 	animation-timing-function: ease;	
-	-webkit-animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;	
 
 	visibility: visible !important;	
 }

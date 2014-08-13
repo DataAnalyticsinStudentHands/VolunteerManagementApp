@@ -8,7 +8,6 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
          $state.go('home');
      }
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
-
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
              $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
@@ -1089,7 +1088,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task, vmaTaskService) {
+    var ModalInstanceCtrlView = function($scope, task, vmaTaskService, $modalInstance) {
         $scope.task = task;
         $scope.map = {
             sensor: true,

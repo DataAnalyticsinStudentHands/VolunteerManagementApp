@@ -437,7 +437,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         editTask:
             function(id, task) {
-                 return Restangular.all("tasks").all(id).post(task);
+                 return Restangular.all("tasks").all(id).doPUT(task);
             },
         deleteTask:
             function(tid) {

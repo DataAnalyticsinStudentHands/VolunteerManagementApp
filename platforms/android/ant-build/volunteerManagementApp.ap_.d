@@ -166,7 +166,7 @@ D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\bower_components\snapjs\snap.css
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\bower_components\snapjs\snap.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\bower_components\snapjs\snap.min.js \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\css\app.css \
-D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\02.jpg \
+D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\01.jpg \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\avatar.icon.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\background_grid3.png \
 D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\img\check.png \
