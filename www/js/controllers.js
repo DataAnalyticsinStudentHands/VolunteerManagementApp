@@ -590,7 +590,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         $scope.updatePosts = function() {
             var gProm = vmaPostService.getGroupPosts(null, null, $scope.id);
             gProm.then(function(success) {
-//                console.log(success);
+                console.log(success);
                 $scope.posts = success;
             }, function(fail) {
 //                console.log(fail);

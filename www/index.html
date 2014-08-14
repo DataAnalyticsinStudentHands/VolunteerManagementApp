@@ -5,7 +5,7 @@
     <title>Volunteer Management App</title>
 
 <!--CORE ANGULAR - JQUERY-->
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
 <!--CORE APP JS-->
@@ -13,25 +13,23 @@
     <script src="js/filters.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
-    <script src="modules/dbServices.js"></script>
     <script src="js/services.js"></script>
     <script src="js/native.js"></script>
-
+    
 <!--UI-ROUTER - BOOTSTRAP-JS - ANGULAR-STRAP-->
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 
-<!--EXTERNAL SCRIPTS-->
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512.js"></script>
-
-<!--RESTFUL NETWORK ACCESS-->
+<!--RESTFUL API-->
+    <script src="modules/dbServices.js"></script>
+    <script src="modules/sha512.js"></script>
     <script src="bower_components/lodash/dist/lodash.underscore.min.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
 
 <!--HIGHCHARTS-->
-    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="bower_components/highcharts-ng/dist/highcharts.js"></script>
     <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
 
 <!--UI-SNAP-->
@@ -39,20 +37,20 @@
     <script src="bower_components/snapjs/snap.js"></script>
 
 <!--NGTOUCH - NOTFIY-->
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
     <script src="bower_components/ng-notify/src/scripts/ng-notify.js"></script>
 
 <!--HEADROOM-->
     <script src="bower_components/headroom.js/dist/headroom.js"></script>
     <script src="bower_components/headroom.js/dist/angular.headroom.js"></script>
 
-<!--CALENDAR-->
+<!--CALENDAR MODULE-->
     <script src="modules/calendar/moment.min.js"></script>
     <script src="modules/calendar/fullcalendar.js"></script>
     <script src="modules/calendar/services.js"></script>
     <link rel="stylesheet" href="modules/calendar/fullcalendar.css">
     
-<!--ADAPTIVE-MAPS-->
+<!--ADAPTIVE-MAPS MODULE-->
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="modules/map/angular-adaptive-googlemaps.js"></script>
     

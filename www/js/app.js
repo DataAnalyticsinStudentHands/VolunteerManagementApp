@@ -3,14 +3,17 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
-    'vmaServicesModule',
+    'ui.router',
     'vmaControllerModule',
+    'databaseServicesModule',
+    'vmaServicesModule',
     'vmaDirectiveModule',
     'vmaFilterModule',
-    'databaseServicesModule',
+    'restangular',
     'ngTouch',
     'ngNotify',
-    'ui.router',
+    'headroom',
+    'snap',
     'ui.bootstrap.tpls',
     'ui.bootstrap.carousel',
     'ui.bootstrap.tabs',
@@ -20,10 +23,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'ui.bootstrap.timepicker',
     'mgcrea.ngStrap.tooltip',
     'mgcrea.ngStrap.popover',
-    'restangular',
-    'snap',
     'highcharts-ng',
-    'headroom',
     'adaptive.googlemaps'
 ]);
 
@@ -152,7 +152,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
 });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
-//    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
+//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     
     $rootScope.Restangular = function() {
