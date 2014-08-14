@@ -1349,12 +1349,15 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     }
     
     $scope.checkOut = function() {
-        if(!$scope.entry) $scope.entry = [];
+//        if(!$scope.entry) $scope.entry = [];
+        console.log($scope.entry.inTime);
         $scope.checkOutTime = new Date();
         $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         console.log($scope.checkOutTime);
-        $scope.entry.duration = ($scope.checkOutTime - $scope.checkInTime)/1000/60;
-//        console.log($scope.entry.duration);
+        $scope.entry.duration = ($scope.checkOutTime - $scope.entry.inTime)/1000/60;
+        console.log($scope.entry.inTime);
+        console.log($scope.checkOutTime);
+        console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
     }
 }]);
