@@ -2,55 +2,57 @@
 /* Controllers */
 var vmaControllerModule = angular.module('vmaControllerModule', []);
 
-vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', function($scope, Auth, $state, ngNotify) {
+vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', '$timeout', function($scope, Auth, $state, ngNotify, $timeout) {
      if($scope.isAuthenticated() === true) {
          //Point to logged in page of app
          $state.go('home');
      }
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
-
      $scope.submit = function() {
          if ($scope.userName && $scope.passWord) {
-             $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
-             Auth.setCredentials($scope.userName, $scope.passWordHashed);
-             $scope.userName = '';
-             $scope.passWord = '';
-             $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
-             $scope.loginResultPromise.then(function(result) {
-                $scope.loginResult = result;
-                $scope.loginMsg = "You have logged in successfully!";
-                $state.go("home.cfeed", {}, {reload: true});
-                ngNotify.set($scope.loginMsg, 'success');
-             }, function(error) {
-                $scope.loginMsg = "Incorrect username or password.";
-                ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
-                Auth.clearCredentials();
-             });
+             document.activeElement.blur();
+             $timeout(function() {
+                 $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
+                 Auth.setCredentials($scope.userName, $scope.passWordHashed);
+                 $scope.userName = '';
+                 $scope.passWord = '';
+                 $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
+                 $scope.loginResultPromise.then(function(result) {
+                    $scope.loginResult = result;
+                    $scope.loginMsg = "You have logged in successfully!";
+                    $state.go("home.cfeed", {}, {reload: true});
+                    ngNotify.set($scope.loginMsg, 'success');
+                 }, function(error) {
+                    $scope.loginMsg = "Incorrect username or password.";
+                    ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
+                    Auth.clearCredentials();
+                 });
+             }, 500);
          } else {
-             $scope.loginMsg = "Please enter a username or password.";
+             $scope.loginMsg = "Please enter a username and password.";
              ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
          }
      };
  }]);
 
 vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngNotify', function($scope, $state, Auth, ngNotify) {
-      $scope.registerUser = function() {
-            Auth.setCredentials("Visitor", "test");
-            $scope.salt = "nfp89gpe";
-            $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
-            $scope.$parent.Restangular().all("users").post($scope.register).then(
-                function(success) {
-                    Auth.clearCredentials();
-                    ngNotify.set("User account created. Please login!", {position: 'top', type: 'success'});
-                    $state.go("home", {}, {reload: true});
-                },function(fail) {
-                    Auth.clearCredentials();
-                    ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
-                }
-            );
-          
-            Auth.clearCredentials();
-      }
+    $scope.registerUser = function() {
+        Auth.setCredentials("Visitor", "test");
+        $scope.salt = "nfp89gpe";
+        $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+        $scope.$parent.Restangular().all("users").post($scope.register).then(
+            function(success) {
+                Auth.clearCredentials();
+                ngNotify.set("User account created. Please login!", {position: 'top', type: 'success'});
+                $state.go("home", {}, {reload: true});
+            },function(fail) {
+                Auth.clearCredentials();
+                ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
+            }
+        );
+
+        Auth.clearCredentials();
+    }
 }]);
 
 vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal', function($scope, $state, Auth, $modal) {
@@ -165,7 +167,7 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
         });
     }
     $scope.updatePosts();
-    
+
     $scope.carousel_images = [
         {id:'1', caption: "GROUP 1", image: "img/image13.png"},
         {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
@@ -219,6 +221,13 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
       element: document.getElementById('content')
     });
 
+        
+    $scope.popover = {
+        "title": "Carl",
+        "content": "<B> BADGES </B> <BR/> MEMBER SINCE"
+    };
+    
+    
     snapRemote.getSnapper().then(function(snapper) {
         snapper.open('left');
     });
@@ -581,7 +590,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         $scope.updatePosts = function() {
             var gProm = vmaPostService.getGroupPosts(null, null, $scope.id);
             gProm.then(function(success) {
-//                console.log(success);
+                console.log(success);
                 $scope.posts = success;
             }, function(fail) {
 //                console.log(fail);
@@ -971,61 +980,60 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     //Controller for the Modal PopUp Delete
     var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
         var setup = function(st) {
-          $scope.showTime = st;
-          $scope.today = function() {
-              $scope.mytime = new Date($scope.editTask.time);
-          };
-          $scope.today();
-          $scope.toggleMin = function() {
-              $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
+            $scope.showTime = st;
+            $scope.today = function() {
+                $scope.mytime = new Date($scope.editTask.time);
+            };
+            $scope.today();
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
 
-          $scope.hstep = 1;
-          $scope.mstep = 5;
+            $scope.hstep = 1;
+            $scope.mstep = 5;
 
-          $scope.ismeridian = true;
+            $scope.ismeridian = true;
 
-          $scope.changed = function () {
-            console.log('Time changed to: ' + $scope.mytime);
-          };
+            $scope.changed = function () {
+                console.log('Time changed to: ' + $scope.mytime);
+            };
 
-          // Disable weekend selection
-          $scope.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-          };
+            // Disable weekend selection
+            $scope.disabled = function(date, mode) {
+                return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+            };
 
-          $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
 
-          $scope.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened = true;
+            };
 
-            $scope.opened = true;
-          };
+            $scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
 
-          $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-          };
-
-          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-          $scope.format = $scope.formats[0];
+            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            $scope.format = $scope.formats[0];
         }
         vmaTaskService.getTask(task_id).then(function(success) {
             $scope.editTask = success;
             console.log($scope.editTask.time);
             if(!$scope.editTask.time) {
-                console.log("HERE1");
-                var showTime = false;
+                console.log("SHOWTIME = FALSE");
+                $scope.showTime = false;
             } else {
-                console.log("HERE2");
-                var showTime = true;
+                console.log("SHOWTIME = TRUE");
+                $scope.showTime = true;
             }
-            setup(showTime);
+            setup($scope.showTime);
         });
 
         $scope.ok = function () {
@@ -1047,8 +1055,10 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         };
 
         $scope.clear = function() {
-          $scope.showTime = !$scope.showTime;
-          setup($scope.showTime);
+            $scope.showTime = !$scope.showTime;
+            if($scope.showTime) $scope.editTask.time = new Date(); else $scope.editTask.time = null;
+            console.log($scope.showTime);
+            setup($scope.showTime);
         };
         
         $scope.cancel = function () {
@@ -1082,7 +1092,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     };
 
     //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task, vmaTaskService) {
+    var ModalInstanceCtrlView = function($scope, task, vmaTaskService, $modalInstance) {
         $scope.task = task;
         $scope.map = {
             sensor: true,
@@ -1325,26 +1335,26 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
         {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
     ];
-    
+    $scope.entry = [];
     $scope.ok = function() {
-        $rootScope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $rootScope.entries.unshift({title: $scope.entry.name, start: $scope.entry.startTime, end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
         $scope.entry = [];
     }
     
     $scope.checkIn = function() {
-        $scope.checkInTime = new Date();
-        $scope.checkInTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
-        console.log($scope.checkInTime);
+        $scope.entry.inTime = new Date();
+        $scope.checkInTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
+        console.log($scope.entry.inTime);
         ngNotify.set("Successfully checked in!", "success");
     }
     
     $scope.checkOut = function() {
         if(!$scope.entry) $scope.entry = [];
         $scope.checkOutTime = new Date();
-        $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
+        $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         console.log($scope.checkOutTime);
         $scope.entry.duration = ($scope.checkOutTime - $scope.checkInTime)/1000/60;
-        console.log($scope.entry.duration);
+//        console.log($scope.entry.duration);
         ngNotify.set("Successfully checked out!", "success");
     }
 }]);

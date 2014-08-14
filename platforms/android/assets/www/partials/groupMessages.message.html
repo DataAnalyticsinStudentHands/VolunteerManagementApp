@@ -6,7 +6,7 @@
 <div id="scrollable_m">
         <div id="message_i" ng-repeat="groupMSG in groupMSGs">
             <div id="message_icc"><img ng-src="{{groupMSG.img}}" width="40" height="40"/></div>
-            <div id="message_ia"> {{groupMSG.author}} </div>
+            <button  class="btn_name" id="message_ia" data-placement="right-center" title="{{popover.title}}" data-content="{{popover.content}}" data-trigger="focus" bs-popover> {{groupMSG.author}} </button>
             <div id="message_ic"> {{groupMSG.content}}</div>
             <div id="bs" class="btn-group" dropdown>
                 <button type="button" class="btn dropdown-toggle">
@@ -18,10 +18,11 @@
                 </ul>
             </div>
         </div>
+
         <div id="messaging_input">
             <form ng-submit="addMsg()">
                 <input id="message_input_input" type="text" ng-model="msg.message" ng-focus="scrollTo()">
-                <input type="submit">
+                <input id="message_input_submit" type="submit">
             </form>
         </div>
 </div>

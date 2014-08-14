@@ -9,7 +9,7 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
             //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
             function() {
                 var gProm = Restangular.all("users").getList();
-                gPromMaster.then(function(success) {
+                gProm.then(function(success) {
                     success = Restangular.stripRestangular(success);
                     allUsers = success;
                 }, function(fail) {
@@ -437,7 +437,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         editTask:
             function(id, task) {
-                 return Restangular.all("tasks").all(id).post(task);
+                 return Restangular.all("tasks").all(id).doPUT(task);
             },
         deleteTask:
             function(tid) {
@@ -460,7 +460,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
     }
 }]);
 
-vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', function(Restangular, $q, $filter, vmaGroupService) {
+vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', 'vmaUserService', function(Restangular, $q, $filter, vmaGroupService, vmaUserService) {
     var allPosts = [];
     var allPostsPlain = [];
     var myGroupPosts = [];
@@ -501,6 +501,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     allPosts.forEach(function(post) {
                         post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                        vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
                         resultPosts.push(post);
                     });
                     return resultPosts;
@@ -514,6 +515,8 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     myGroupPosts.forEach(function(post) {
                         post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                        vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
+//                        console.log(post);
                         resultPosts.push(post);
                     });
                     return resultPosts;
@@ -528,9 +531,12 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     success.forEach(function(post) {
                         post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                        vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
+                        console.log(post);
                         resultPosts.push(post);
                     });
-                    resultPosts = Restangular.stripRestangular(resultPosts);
+//                    resultPosts = Restangular.stripRestangular(resultPosts);
+//                    console.log(resultPosts);
                     return resultPosts;
                 }, function(fail) {
         //            console.log(fail);
