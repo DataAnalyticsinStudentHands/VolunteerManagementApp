@@ -2,7 +2,7 @@
     <snap-drawer id="snap_drawer">
         <tabset>
             <tab heading="Groups" style="width:50%; text-align: center;">
-                <button class="btn btn-default" ng-click="addGroup()">Add Group</button>
+                <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
                 <div id="groups" ng-repeat="group in metaJoinedGroups">
                     <a ng-click="displayDetail(group.id, true)">
                         <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
@@ -23,7 +23,7 @@
                 </div>
             </tab>
             <tab heading="Search" style="width:50%; text-align: center;">
-                <input ng-model="query" placeholder="Search">
+                <input id="search_gf" ng-model="query" placeholder="Search">
                 <div id="groups" ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp">
                     <a ng-click="displayDetail(group.id, false)">
                         <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
