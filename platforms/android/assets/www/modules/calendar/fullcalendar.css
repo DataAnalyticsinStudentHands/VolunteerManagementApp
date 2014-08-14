@@ -41,7 +41,7 @@ html .fc,
 	}
 	
 .fc-header-center {
-	text-align: center;
+	text-align:center;
 	}
 	
 .fc-header-right {
@@ -57,7 +57,10 @@ html .fc,
 .fc-header-title h2 {
 	margin-top: 0;
 	white-space: nowrap;
-	}
+    position: relative;
+    margin-left: -80px;
+    margin-right: -80px;
+}
 	
 .fc .fc-header-space {
 	padding-left: 10px;
@@ -67,7 +70,7 @@ html .fc,
 	margin-bottom: 1em;
 	vertical-align: top;
 	}
-	
+
 /* buttons edges butting together */
 
 .fc-header .fc-button {

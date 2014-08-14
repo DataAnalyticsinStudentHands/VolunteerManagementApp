@@ -1,2 +1,2 @@
-D:\SoA\ExampleProjects\VMA\platforms\android\CordovaLib\ant-build\AndroidManifest.xml : \
-D:\SoA\ExampleProjects\VMA\platforms\android\CordovaLib\AndroidManifest.xml \
+D:\SoA\VMA\VMA_DEV\platforms\android\CordovaLib\ant-build\AndroidManifest.xml : \
+D:\SoA\VMA\VMA_DEV\platforms\android\CordovaLib\AndroidManifest.xml \

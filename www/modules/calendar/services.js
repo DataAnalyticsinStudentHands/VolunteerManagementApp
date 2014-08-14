@@ -1,28 +1,14 @@
-//to store a json file in a variable:
-var cjson = (function () {
-    var cjson = null;
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': "json/events.json",
-        'dataType': "json",
-        'success': function (data) {
-            cjson = data;
-        }
-    });
-    return cjson;
-})(); 
-
 //loads the generic full calendar
-function myFunction() {
-	
+function displayFullCalendar(eventsFromScope) {
+//    console.log(eventsFromScope);
+	   var dateToday = new Date(); //TODAY
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2014-06-12',
+			defaultDate: dateToday,
     //this is to add an event by selecting hours or days in a selected view through a pop up
 		    selectable: false,
 			selectHelper: true,
@@ -41,8 +27,8 @@ $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
         	},    
             
     //allows the events to be draggable or not. 
-            editable: true,
-			events: cjson
+            editable: false,
+			events: eventsFromScope
 		
 	       });
     

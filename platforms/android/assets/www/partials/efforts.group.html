@@ -1,10 +1,12 @@
-<div> {{title}} </div>
-<div> {{effort.description}} </div>
-<button class="btn btn-default" ng-click="joinGroup()">Join Group</button>
+<button onclick="goBack()"> < Back </button>
+<div> {{group.name}} </div>
+<div> {{group.description}} </div>
+<button ng-hide="group.joined" class="btn btn-default" ng-click="joinGroup()">Join Group</button>
+<button ng-show="group.joined" class="btn btn-default" ng-click="leaveGroup()">Already Joined</button>
 <div id="task_c">
     <div id="task" ng-repeat="task in tasks">
-        <a ui-sref="home.task({id:{{task.id}}})">
-            <input type="checkbox" name="approval"> <label>{{task.description}}</label>
-        </a>
+        <div name="approval"> <a ng-click="viewTask(task.id)">{{task.name}}</a> </div>
+        <button ng-hide="task.joined" class="btn btn-default" ng-click="joinTask(task.id)">Join Task</button>
+        <button ng-show="task.joined" class="btn btn-default" ng-click="leaveTask(task.id)">Already Joined</button>
     </div>
 </div>

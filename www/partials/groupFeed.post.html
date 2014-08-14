@@ -1,22 +1,23 @@
 <div id="scrollable_g">
-    <button class="btn btn-default" ng-click="addPost()">Add Post</button>
-<!--    <p>For testing purposes: {{id}}</p>-->
+    <button ng-show="{{detail}}" class="btn btn-default" ng-click="addPost()">Add Post</button>
     <div id="groupPost" ng-repeat="post in posts">
-<!--        <div id="{{post.type}}">-->
-<!--            <a href="">-->
-                <div><img src="img/group_feed.icon.png" width="65" height="60"/></div>
-                <!--Below should only display if present-->
-                <div id="groupPost_content">
-<!--                    <div id="groupfeed_img">&nbsp;</div> REMOVE POST IMG THIS LINE-->
-<!--                    <div id="groupfeed_img">Post IMG: <img ng-src="{{post.img}}" width="20" height="20"/></div>-->
-                    <div id="groupfeed_a"> Author: {{post.author}} </div>
-                    <div id="groupfeed_c"> Content: {{post.content}} </div>
-                    <div id="groupfeed_l"> Likes: {{post.likes}} </div>
-                    <div id="groupfeed_t"> Time: {{post.time}} </div>
-                    <div id="groupfeed_cc"> Comment Count: {{post.comment_count}} </div>
-                </div>    
-<!--            </a>-->
-<!--        </div>-->
+        <div><img src="img/group_feed.icon.png" width="65" height="60"/></div>
+        <div id="groupPost_content">
+            <!--<div id="groupfeed_img">Post IMG: <img ng-src="{{post.img}}" width="20" height="20"/></div>-->
+            <div id="groupfeed_a"> {{post.user.username}} </div>
+            <div id="groupfeed_c"> {{post.content}} </div>
+<!--            <div id="groupfeed_l"> Likes {{post.likes}} </div>-->
+            <div id="groupfeed_t"> {{post.time}} </div>
+            <div id="groupfeed_cc"> Comments {{post.comment_count}} </div>
+        </div>
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="editPost(post.id)">Edit</a></li>
+                <li><a ng-click="deletePost(post.id)">Delete</a></li>
+            </ul>
+        </div>
     </div>
 </div>
-

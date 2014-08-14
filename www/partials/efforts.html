@@ -1,13 +1,21 @@
 <tabset>
-    <tab id="task_tab" heading="Tasks" style="width:50%">
-        <div id="task_e" ng-repeat="task in tasks">
-            <a ui-sref="home.task({id:{{task.id}}})">
+    <tab heading="Tasks" style="width:50%; text-align: center;">
+        <div id="task_e" ng-repeat="task in joinTasks">
+            <a ng-click="viewTask(task.id)">
                 <div><img src="img/effort_group.icon.png" width="70" height="50"/></div>
-                <div>{{task.task_name}} </div>
+                <div>{{task.name}} </div>
             </a>
+            <div id="bs" class="btn-group" dropdown>
+                <button type="button" class="btn dropdown-toggle">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="leaveTask(task.id)">Leave</a></li>
+                </ul>
+            </div>
         </div>
     </tab>
-    <tab heading="Invites" style="width:50%">
+    <tab heading="Invites" style="width:50%; text-align: center;">
         <div id="invite" ng-repeat="invite in invites">
                 <a href="">
                     <div>Group Icon: <img src="img/effort_invite_t.icon.png" width="70" height="60"/></div>

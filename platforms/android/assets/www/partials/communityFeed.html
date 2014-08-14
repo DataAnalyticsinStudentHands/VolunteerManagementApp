@@ -4,20 +4,22 @@
         <carousel interval="5000">
           <slide ng-repeat="slide in slides" active="slide.active">
             <img class="slide_image" ng-src="{{slide.image}}" >
+<!--
             <div class="carousel-caption">
               <h4>Slide {{$index}}</h4>
               <p>{{slide.text}}</p>
             </div>
+-->
           </slide>
         </carousel>
       </div>
 </div>
 
 <div id="post" ng-repeat="post in posts">    
-    <a ui-sref="home.group({id:{{post.id}}})">
-        <div id="author"> Author: {{post.author}} > Group: {{post.group}} at:{{post.time}} </div>
+    <a ui-sref="home.group({id:{{post.group_id}}})">
+        <div id="author"> Author {{post.author}} > {{post.group.name}} at:{{post.date}} </div>
         <div id="boxicon"><img src="img/effort_task.icon.png" width="15%" /></div>
-        <div id="contentbox"> Content: {{post.content}} </div>
-        <div id="likeicon"> Likes: {{post.likes}} Followers:{{post.followers}} </div>
+        <div id="contentbox"> {{post.content}} </div>
+        <div id="likeicon"> Followers:{{post.followers}} </div>
     </a>
 </div>

@@ -1,6 +1,6 @@
 /* app css stylesheet */
 * { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
-input, textarea { -webkit-user-select:text; }
+input, textarea { -webkit-user-select:text; height: 100%;}
 body { background-color:white; color:black }
 
 body {
@@ -56,18 +56,59 @@ body {
     padding: 2%; 
     margin-bottom: 30px;
     z-index:0;
-    opacity:0;  /* make things invisible upon start */
-    -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
- 
-    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
- 
-    -webkit-animation-duration:.8s;
-    -moz-animation-duration:.8s;
-    animation-duration:.8s;
+    animation-name: slideDown;
+	-webkit-animation-name: slideDown;	
+
+	animation-duration: .5s;	
+	-webkit-animation-duration: .5s;
+
+	animation-timing-function: ease;	
+	-webkit-animation-timing-function: ease;	
+
+	visibility: visible !important;	
+}
+
+
+@keyframes slideDown {
+	0% {
+/*		transform: translateY(-100%);*/
+	}
+	50%{
+/*		transform: translateY(8%);*/
+	}
+	65%{
+/*		transform: translateY(-4%);*/
+	}
+	80%{
+/*		transform: translateY(4%);*/
+	}
+	95%{
+/*		transform: translateY(-2%);*/
+	}			
+	100% {
+		transform: translateY(0%);
+	}		
+}
+
+@-webkit-keyframes slideDown {
+	0% {
+		-webkit-transform: translateY(100%);
+	}
+	50%{
+/*		-webkit-transform: translateY(8%);*/
+	}
+	65%{
+/*		-webkit-transform: translateY(-4%);*/
+	}
+	80%{
+/*		-webkit-transform: translateY(4%);*/
+	}
+	95%{
+/*		-webkit-transform: translateY(-2%);*/
+	}			
+	100% {
+		-webkit-transform: translateY(0%);
+	}	
 }
 
 
@@ -108,14 +149,11 @@ body {
     -moz-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
  
-    -webkit-animation-duration:.6s;
-    -moz-animation-duration:.6s;
-    animation-duration:.6s;
+    -webkit-animation-duration:.4s;
+    -moz-animation-duration:.4s;
+    animation-duration:.4s;
 }
-
-.menuBar_active:active{
-background:white; 
-}
+/*
 
 /*** bounce****/
 /*-webkit-animation: bounce 800ms ease-out;*/
@@ -338,18 +376,7 @@ background:white;
 }
 
 /********bottom menu************/
-/*
-#b_menu{
-    position:fixed;
-    bottom: 0px;
-    padding:0px;
-    width:100%;
-    height: 40px;
-    z-index: 2;
-    background: #ffffff;
-    opacity: .9;
-}
-*/
+
 
 .b_menu{
     position:relative;
@@ -362,12 +389,13 @@ background:white;
     text-align: center;
 }
 
-.b_menu:hover{
--webkit-animation: bounce 1s ease-out;
+
+/*
+.b_menu:hover{-webkit-animation: bounce 1s ease-out;
 	-moz-animation: bounce 1s ease-out;
 	-o-animation: bounce 1s ease-out;
-	animation: bounce 1s ease-out;
-}
+	animation: bounce 1s ease-out;}
+*/
 
 /*********loging page**********/
 
@@ -375,6 +403,7 @@ background:white;
     position:fixed;
     width: 100%;
     margin: 0px 0px 0px 0px;
+    padding: 10%;
 }
 
 .log{
@@ -437,8 +466,9 @@ background:white;
     width:100%;    
     bottom:80px;
     height:0%;
-    padding-bottom: auto;
-    padding: 0% 2% 0% 2%;
+    padding: 0% 0% 0% 0%;
+    background-color: #eeeeee;
+    z-index: -3;
 }
 
 
@@ -459,9 +489,15 @@ background:white;
 .carousel{
   position:relative;
     width: 100%;
-    height: 100%;
+    height: 155px;
+    overflow: hidden;
 /*  z-index: 10;*/
-  bottom:80px;     
+    bottom:80px;     
+}
+
+.slide_image{
+    width: 100%;
+    overflow: hidden;
 }
 
 #author{
@@ -482,14 +518,13 @@ background:white;
 #contentbox{
     position:absolute; 
     background-color:#EEEEEE;
-    top:20px;
-    width: 96%;
-    height: 100%;
+    top:40px;
+    right: 10px;
+    width: 80%;
+    height: 40%;
     margin: auto;
     z-index: -1;
-    padding-left:auto;
-    border-radius: 0px 0px 0px 0px;
-    overflow: auto;
+    text-overflow: ellipsis;
     font-family: Roboto medium;
     font-size: 12pt;
     color: #000000;
@@ -514,10 +549,6 @@ background:white;
     
 }
 
-
-.slide_image{
-    width: 100%;
-}
 /***group message******/
 
 #messageicon{
@@ -532,7 +563,6 @@ background:white;
 #group_content{
     position:relative;
     width: 50%;
-    padding:auto;
     bottom:55px;
     margin-left:30%;   
     text-overflow:    ellipsis;   
@@ -570,9 +600,8 @@ background:white;
 }
 
 #message_i{
-position:relative;    
+    position:relative;    
     width: 100%;
-    height: 75px;
     margin:0% 0% 1.5% 0%;
     background-color:#ffffff;
     padding: 0% 5% 0% 5%;  
@@ -581,30 +610,81 @@ position:relative;
     box-shadow: 0 5px 10px -7px black;
 }
 
+#scrollable_m{
+    position: relative;
+    overflow: hidden;
+}
+
+#scrollable_wrap{
+    position: relative;
+}
+
+#messaging_input{
+    position: relative;
+    bottom: 10px;
+    width: 100%
+}
+
+#message_input_input{
+    width:73%;
+}
+#message_input_submit{
+    width:25%;
+}
+
 #message_ic{
+    position: relative;
+    width: 100%;    
+    bottom:40px;
+    left: 60px;    
+    text-align:left;
+    width: 250px;
+    overflow: hidden;
+/*=======*/
+/*
 position: relative;
-width: 100%;    
+width: 60%;    
 bottom:40px;
 left: 60px;    
 text-align:left;
-width: 250px;
-  overflow: hidden;    
+overflow: auto;
+*/
 }
 
 #message_icc{
-position: relative;
-width: 100%;    
-top:10px;
-    
+    position: relative;
+    width: 100%;    
+    top:10px;
 }
 
 #message_ia{
-position: relative;
-bottom:40px; 
-text-align:left;
-font-size: 16pt;    
-color:#0ba1f4; 
-left: 60px;        
+    position: relative;
+    bottom:40px; 
+    text-align:left;
+    font-size: 16pt;    
+    color:#0ba1f4; 
+    left: 60px;        
+}
+
+.btn_name {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;    
+    -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+    opacity: .7;    
+    border: 1px solid transparent;
+    background:rgba(238, 238, 238, 0);
+    border-radius: 4px;
 }
 
 #bs{
@@ -666,8 +746,6 @@ left: 60px;
 
 #bottom{
     position:relative;
-    
-    
 }
 /***groupfeed****/
 
@@ -686,20 +764,19 @@ left: 60px;
     bottom:50px;              
     font-family:sans-serif;
     font-size:10pt;
-    width: 40%;
-    left: 80px;
-    z-index: 3;
+    width:45%;
+    left:80px;
+    z-index:3;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
 #groupcon{
     position:relative;
-    height: 60px;    
-    padding:0px 0px 0px 10px;
-    margin:0px 0px 0px 0px;    
-    background-color:#ffffff;
-    border-radius: 0px 0px 0px 0px;    
+    height: 60px;      
+    background-color:#ffffff;   
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 0px 6px -6px black;
     box-shadow: 0 5px 10px -7px black;
@@ -711,7 +788,7 @@ left: 60px;
     padding: 0% 0% 10% 0%;
 /*    top: 20px;*/
     width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
     background:#eeeeee;
 }
 
@@ -719,6 +796,7 @@ left: 60px;
 /****group feed post****/
 #groupPost{
     position: relative;
+    height: 150px;
     background:#ffffff;    
     margin:10px 10px 10px 10px;
     top: 10px;
@@ -748,6 +826,16 @@ left: 60px;
     top: 65px;
     padding-bottom: 30px;
     background:url(../img/01.jpg) fixed;
+    animation-name: slideDown;
+	-webkit-animation-name: slideDown;	
+
+	animation-duration: .5s;	
+	-webkit-animation-duration: .5s;
+
+	animation-timing-function: ease;	
+	-webkit-animation-timing-function: ease;	
+
+	visibility: visible !important;	
 }
 #snap_page{
     background-color: #ffffff;
@@ -784,10 +872,10 @@ left: 60px;
 
 #groupfeed_c{
     position:absolute;
-    height: 90px;
-    width: 70%;
+    height: 60px;
+    width: 60%;
     bottom: 30px;
-    left: 80px;
+    left: 70px;
     
 }
 
@@ -800,7 +888,7 @@ left: 60px;
 
 #groupfeed_t{
     position: relative;
-    bottom: 105px;
+    bottom: 80px;
     width: 100px;
     left: 70%;
 }
@@ -808,8 +896,10 @@ left: 60px;
 
 #groupfeed_cc{
     position: relative;
+    width:40%;
     top:0;
-    left: 70px;
+    left: 30px;
+    text-overflow: ellipsis;
 }
 
 
@@ -845,25 +935,265 @@ left: 60px;
 
 #invite{
     position: relative;
-    background: black;
+    background: #ffffff;
 }
 
 .google-maps {
     width: 100%;
     height: 400px;
+    z-index: 10000;
 }
 
 #task{
-position: relative;    
-background:#ffffff;
-margin: 1px 0px 0px 0px;
-height: 60px;    
-width: 100%;
-font-size: 14pt;
-text-align:center;
+    position: relative;    
+    background:#ffffff;
+    margin: 1px 0px 0px 0px;
+    height: 60px;    
+    width: 100%;
+    font-size: 14pt;
+    text-align:center;
 }
 
 
-#task_c{position: relative;
-background:#f96806;
+#task_c{
+    position: relative;
+    background:#f96806;
+}
+
+
+#task_e{
+    position: relative;
+    background: #ffffff;    
+}
+
+
+/******* hours*******/
+
+#entry{
+    position: relative;
+    background: #ffffff;
+    height: 80px;    
+    margin:1px;
+    padding: 5px;
+    border-bottom:solid #f96806;    
+}
+
+#approve{
+    position:relative;
+    width: 15%;
+    height:100% ;    
+    left: 80%;
+    bottom: 40px;
+    text-align: center;    
+}
+
+#pend{
+    position: relative;
+    color:#f96806;    
+}
+
+#submit_hours{
+    position: relative;
+    background-color:#ffffff;
+    width: 100%;
+    margin-bottom: 30px;
+/*    bottom: 9px;*/
+/*    padding: 30px 10px 10px 30px;*/
+    overflow: hidden;
+}
+
+/*****settings*****/
+
+#setting_p{
+
+}
+
+
+
+/* spin animation css
+*********************************************************************************************/
+
+
+
+.wrapanimate {
+    margin: 0 100px;
+    -webkit-perspective:800px;
+    -webkit-perspective-origin: 50% 100px;
+    /*border: 1px solid red;*/
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    margin-top: 50px;
+}
+
+.cube {
+	position: relative;
+    margin: 0 auto;
+	width: 200px;
+	-webkit-transform-style: preserve-3d;
+    -webkit-animation: spin 4s  1 ;
+    -webkit-animation-delay: 3s; /* Chrome, Safari, Opera */
+    animation-delay: 3s;
+    /*border: 1px solid blue;*/
+}
+
+.cube div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+    top: 100px;
+  
+    /*border: 1px solid green;*/
+
+    text-align: center;
+    font-family: sans-serif;
+    line-height: 200px;
+    transition: background-color 1s ease;
+}
+
+
+
+.back_cube {
+	-webkit-transform: translateZ(-100px) rotateY(180deg);
+}
+
+.right_cube {
+	-webkit-transform: rotateY(-270deg) translateX(100px);
+	-webkit-transform-origin: top right;
+}
+
+.left_cube {
+	-webkit-transform: rotateY(270deg) translateX(-100px);
+	-webkit-transform-origin: center left;
+}
+
+.top {
+	-webkit-transform: rotateX(-90deg) translateY(-100px);
+	-webkit-transform-origin: top center;
+}
+
+.bottom {
+	-webkit-transform: rotateX(90deg) translateY(100px);
+	-webkit-transform-origin: bottom center;
+}
+
+.front_cube {
+
+	-webkit-transform: translateZ(100px);
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotateY(0) }
+  to { -webkit-transform: rotateY(360deg) }
+}
+
+
+
+
+/* image css
+*********************************************************************************************/
+
+.front_image{
+   
+    width: 200px;
+	height: 200px;
+}
+
+
+.back_image{
+    
+    width: 200px;
+	height: 200px;
+}
+
+
+
+.right_image{
+    
+    width: 200px;
+	height: 200px;
+}
+
+
+
+.left_image{
+     
+    width: 200px;
+	height: 200px;
+}
+
+
+/***CALENDAR***/
+#calendar{
+    background-color: white;
+    overflow: hidden;
+}
+
+
+/*** FADE ANIMATION CSS ***/
+
+#div_1 {
+   position:relative;
+/*    top:0px;*/
+/*    left:100px;*/
+    z-index: 1;
+
+    -webkit-animation: myfirst 20s ; /* Chrome, Safari, Opera */
+    animation: myfirst 20s ;
+
+    animation-iteration-count: 1 ;
+     -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+
+    -webkit-animation-delay: 9s; /*Safari and Chrome*/
+    animation-delay: 9s;
+
+    -webkit-animation-fill-mode: backwards;  /* Safari and Chrome */
+      animation-fill-mode: backwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+    0%  {animation-timing-function: ease-in-out; opacity: 0}
+    20% {animation-timing-function: ease-in-out; opacity: 1}
+    100% {animation-timing-function: ease-in-out; opacity: 1}
+}
+
+/*Standard syntax */
+@keyframes myfirst {
+    0%  {left: 0px; top:0px;}
+    100% {left: -960px;}
+}
+
+#div_2 {
+/*    position: relative;*/
+    margin: auto;
+    top: 20%;
+    z-index: 12;
+
+    -webkit-animation: mysecound 12s ; /* Chrome, Safari, Opera */
+    animation: mysecound 12s ;
+
+    animation-iteration-count: 1 ;
+     -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+
+    -webkit-animation-fill-mode: forwards;  /* Safari and Chrome */
+      animation-fill-mode: forwards;
+    
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mysecound {
+0% {animation-timing-function: ease-out; opacity: 1}
+60%{animation-timing-function: ease-out; opacity: 1}    
+70%{animation-timing-function: ease-out; opacity: 0}
+100% {animation-timing-function: ease-out; opacity: 0}
+ 
+    
+}
+
+ /*Standard syntax */
+@keyframes mysecound {
+ 0%  {animation-timing-function: ease-out; opacity: 1}
+20% {animation-timing-function: ease-out; opacity: 0}
+100% {animation-timing-function: ease-out; opacity: 0}
 }
