@@ -401,9 +401,8 @@ body {
 
 #logo_O{
     position:fixed;
-    width:70%;
+    width:100%;
     top:80px;
-    left:65px;
     margin: 0px 0px 0px 0px;
     z-index: 1;
 }

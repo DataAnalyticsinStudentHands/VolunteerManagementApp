@@ -403,7 +403,7 @@ body {
     position:fixed;
     width:70%;
     top:80px;
-    left:60px;
+    left:65px;
     margin: 0px 0px 0px 0px;
     z-index: 1;
 }
@@ -467,9 +467,8 @@ body {
 #post{
     position:relative;
     width:100%;    
-    bottom:80px;
+    bottom:90px;
     height:0%;
-    padding: 0% 0% 0% 0%;
     background-color: #eeeeee;
     z-index: -3;
 }
@@ -537,12 +536,17 @@ body {
 
 #likeicon{
     position:relative;
-    background:#f96806;
+    background:#eeeeee;
     top:20px;
     width: 100%;
     margin: auto;
+    border:solid 2px;
+    border-top-color: #e0e0e0;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
 /*  bottom:100px;*/
-    color: white;
+    color:#000000;
 /*  width:100%;*/
 /*  border-radius:0px 0px 0px 0px;*/
     text-align:left;
@@ -779,7 +783,8 @@ overflow: auto;
 #groupcon{
     position:relative;
     height: 60px;      
-    background-color:#ffffff;   
+    background-color:#ffffff;
+    top:2px; 
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 0px 6px -6px black;
     box-shadow: 0 5px 10px -7px black;
@@ -840,6 +845,14 @@ overflow: auto;
 
 	visibility: visible !important;	
 }
+
+#ad{
+    position: relative;
+    width: 100%;
+    border-radius: none;
+    color:#f96806;
+}
+
 #snap_page{
     background-color: #ffffff;
     top: 65px;
@@ -969,6 +982,9 @@ overflow: auto;
     background: #ffffff;    
 }
 
+#search_gf{
+width: 100%;
+}
 
 /******* hours*******/
 
@@ -995,15 +1011,24 @@ overflow: auto;
     color:#f96806;    
 }
 
+/*
 #submit_hours{
     position: relative;
     background-color:#ffffff;
     width: 100%;
+<<<<<<< .merge_file_a15396
+    height:200px;
+    right:10px;
+    bottom:10px;
+    padding: 30px 0px 0px 30px;
+=======
     margin-bottom: 30px;
-/*    bottom: 9px;*/
-/*    padding: 30px 10px 10px 30px;*/
+    bottom: 9px;
+    padding: 30px 10px 10px 30px;
     overflow: hidden;
+>>>>>>> .merge_file_a05220
 }
+*/
 
 /*****settings*****/
 
@@ -1081,7 +1106,6 @@ overflow: auto;
 }
 
 .front_cube {
-
 	-webkit-transform: translateZ(100px);
 }
 
@@ -1200,3 +1224,31 @@ overflow: auto;
 20% {animation-timing-function: ease-out; opacity: 0}
 100% {animation-timing-function: ease-out; opacity: 0}
 }
+
+/*******modal*****************************************/
+
+.modal_a{
+    border-radius: 5px;
+}
+
+#name{
+position:relative;    
+left: 5px;
+    
+}
+
+#description{
+position:relative;    
+left: 5px;
+}
+
+#submit_ag{
+background: #ffffff;
+color:#f96806;     
+}
+
+
+.modal_d{}
+
+
+.modal_e{}

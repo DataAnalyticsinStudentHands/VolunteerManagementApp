@@ -23,6 +23,8 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'ui.bootstrap.timepicker',
     'mgcrea.ngStrap.tooltip',
     'mgcrea.ngStrap.popover',
+    'mgcrea.ngStrap.datepicker',
+    'mgcrea.ngStrap.timepicker',
     'highcharts-ng',
     'adaptive.googlemaps'
 ]);
