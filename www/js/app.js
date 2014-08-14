@@ -3,23 +3,33 @@
 /* App Module */
 
 var volunteerManagementApp = angular.module('volunteerManagementApp', [
-    'vmaServicesModule',
+    'ui.router',
     'vmaControllerModule',
+    'databaseServicesModule',
+    'vmaServicesModule',
     'vmaDirectiveModule',
     'vmaFilterModule',
-    'databaseServicesModule',
+    'restangular',
     'ngTouch',
     'ngNotify',
-    'ui.router',
-    'ui.bootstrap',
-    'restangular',
-    'snap',
-    'highcharts-ng',
     'headroom',
+    'snap',
+    'ui.bootstrap.tpls',
+    'ui.bootstrap.carousel',
+    'ui.bootstrap.tabs',
+    'ui.bootstrap.modal',
+    'ui.bootstrap.dropdown',
+    'ui.bootstrap.datepicker',
+    'ui.bootstrap.timepicker',
+    'mgcrea.ngStrap.tooltip',
+    'mgcrea.ngStrap.popover',
+    'mgcrea.ngStrap.datepicker',
+    'mgcrea.ngStrap.timepicker',
+    'highcharts-ng',
     'adaptive.googlemaps'
 ]);
 
-volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
+volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -138,10 +148,13 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           authenticate: false
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+    angular.extend($popoverProvider.defaults, {
+        html: true
+    });
 });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
-//    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
+//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     
     $rootScope.Restangular = function() {

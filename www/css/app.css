@@ -673,6 +673,27 @@ overflow: auto;
     left: 60px;        
 }
 
+.btn_name {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;    
+    -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+    opacity: .7;    
+    border: 1px solid transparent;
+    background:rgba(238, 238, 238, 0);
+    border-radius: 4px;
+}
+
 #bs{
     position:relative;
     bottom: 70px;
@@ -957,8 +978,8 @@ overflow: auto;
 
 
 #task_e{
-position: relative;
-background: #ffffff;    
+    position: relative;
+    background: #ffffff;    
 }
 
 #search_gf{
@@ -968,37 +989,46 @@ width: 100%;
 /******* hours*******/
 
 #entry{
-position: relative;
-background: #ffffff;
-height: 80px;    
-margin:1px;
-padding: 5px;
-border-bottom:solid #f96806;    
+    position: relative;
+    background: #ffffff;
+    height: 80px;    
+    margin:1px;
+    padding: 5px;
+    border-bottom:solid #f96806;    
 }
 
 #approve{
-position:relative;
-width: 15%;
-height:100% ;    
-left: 80%;
-bottom: 40px;
-text-align: center;    
+    position:relative;
+    width: 15%;
+    height:100% ;    
+    left: 80%;
+    bottom: 40px;
+    text-align: center;    
 }
 
 #pend{
-position: relative;
-color:#f96806;    
+    position: relative;
+    color:#f96806;    
 }
 
+/*
 #submit_hours{
     position: relative;
     background-color:#ffffff;
     width: 100%;
+<<<<<<< .merge_file_a15396
     height:200px;
     right:10px;
     bottom:10px;
     padding: 30px 0px 0px 30px;
+=======
+    margin-bottom: 30px;
+    bottom: 9px;
+    padding: 30px 10px 10px 30px;
+    overflow: hidden;
+>>>>>>> .merge_file_a05220
 }
+*/
 
 /*****settings*****/
 
@@ -1076,7 +1106,6 @@ color:#f96806;
 }
 
 .front_cube {
-
 	-webkit-transform: translateZ(100px);
 }
 
@@ -1121,41 +1150,33 @@ color:#f96806;
 }
 
 
-/*******calender*****************************************************/
-
+/***CALENDAR***/
 #calendar{
     background-color: white;
     overflow: hidden;
 }
 
 
-/* fade animation css
-*********************************************************************************************/
-
+/*** FADE ANIMATION CSS ***/
 
 #div_1 {
    position:relative;
 /*    top:0px;*/
 /*    left:100px;*/
     z-index: 1;
-    
-    
+
     -webkit-animation: myfirst 20s ; /* Chrome, Safari, Opera */
     animation: myfirst 20s ;
-    
+
     animation-iteration-count: 1 ;
      -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
-   
+
     -webkit-animation-delay: 9s; /*Safari and Chrome*/
     animation-delay: 9s;
-    
+
     -webkit-animation-fill-mode: backwards;  /* Safari and Chrome */
       animation-fill-mode: backwards;
 }
-
-
-
-
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes myfirst {
@@ -1164,10 +1185,10 @@ color:#f96806;
     100% {animation-timing-function: ease-in-out; opacity: 1}
 }
 
- /*Standard syntax */
+/*Standard syntax */
 @keyframes myfirst {
- 0%  {left: 0px; top:0px;}
-  100% {left: -960px;}
+    0%  {left: 0px; top:0px;}
+    100% {left: -960px;}
 }
 
 #div_2 {
@@ -1175,13 +1196,13 @@ color:#f96806;
     margin: auto;
     top: 20%;
     z-index: 12;
-    
+
     -webkit-animation: mysecound 12s ; /* Chrome, Safari, Opera */
     animation: mysecound 12s ;
-    
+
     animation-iteration-count: 1 ;
      -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
-   
+
     -webkit-animation-fill-mode: forwards;  /* Safari and Chrome */
       animation-fill-mode: forwards;
     

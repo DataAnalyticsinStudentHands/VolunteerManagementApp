@@ -1,18 +1,3 @@
-//to store a json file in a variable:
-//var cjson = (function () {
-//    var cjson = null;
-//    $.ajax({
-//        'async': false,
-//        'global': false,
-//        'url': "json/events.json",
-//        'dataType': "json",
-//        'success': function (data) {
-//            cjson = data;
-//        }
-//    });
-//    return cjson;
-//})(); 
-
 //loads the generic full calendar
 function displayFullCalendar(eventsFromScope) {
 //    console.log(eventsFromScope);
