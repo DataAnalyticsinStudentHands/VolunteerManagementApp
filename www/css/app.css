@@ -413,7 +413,7 @@ body {
     border-radius:5px;
     height:50px; 
     width:70%;
-    top:330px;
+    top:390px;
     margin: 0% 15% 0% 15%;
     text-align: center;
     background-color:#0BA1F4;
@@ -440,7 +440,7 @@ body {
     position: relative;
     margin-top: 5%;
     margin-left: 50%;
-    top: 310px;
+    top: 370px;
     z-index: 3;
 }
 
