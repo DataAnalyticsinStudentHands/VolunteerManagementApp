@@ -522,7 +522,7 @@ background:white;
     text-overflow: ellipsis;
     font-family: Roboto medium;
     font-size: 12pt;
-    color: #007;
+    color: #000074;
 }
 
 
@@ -553,6 +553,7 @@ background:white;
 #messageicon{
     position: relative;
     height: 80px;
+    background: rgba(255, 249, 249, 0.28);
 }
 
 #gmessageicon{
@@ -921,14 +922,17 @@ background: #ffffff;
 
 #entry{
 position: relative;
-background: #ffffff;
-margin:1px     
-border-bottom:solid #000000;    
+background: #fff9f9;
+margin:1px;     
+/*border-bottom:solid #000000;*/
 }
 
 
 /*****settings*****/
 
 #setting_p{
-
+position: relative;
+background: #fff9f9;
+margin:1px;     
+border-bottom:solid #007;  
 }
