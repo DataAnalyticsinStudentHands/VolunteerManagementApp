@@ -995,15 +995,17 @@ overflow: auto;
     color:#f96806;    
 }
 
+/*
 #submit_hours{
     position: relative;
     background-color:#ffffff;
     width: 100%;
     margin-bottom: 30px;
-/*    bottom: 9px;*/
-/*    padding: 30px 10px 10px 30px;*/
+    bottom: 9px;
+    padding: 30px 10px 10px 30px;
     overflow: hidden;
 }
+*/
 
 /*****settings*****/
 
@@ -1081,7 +1083,6 @@ overflow: auto;
 }
 
 .front_cube {
-
 	-webkit-transform: translateZ(100px);
 }
 

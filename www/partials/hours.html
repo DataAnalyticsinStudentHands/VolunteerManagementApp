@@ -4,9 +4,19 @@
             <button ng-click="checkIn()" type="button">Check in!</button>
             <button ng-click="checkOut()" type="button">Check out!</button>
             <p ng-show="checkInTimeDisplay"> Checked in at: {{checkInTimeDisplay}}</p>
-            <p ng-show="checkOutTimeDisplay"> Checked out at: {{checkOutTimeDisplay}}</p>
+<!--            <p ng-show="checkOutTimeDisplay"> Checked out at: {{checkOutTimeDisplay}}</p>-->
             <form ng-submit="ok()">
                 <input id="name" type="text" name="name" ng-model="$parent.entry.name" placeholder="Task Name" required/>
+                <br/>
+<!--  <div class="form-group">-->
+    <label class="control-label"><i class="fa fa-calendar"></i> Check-In Time</label><br>
+    <div style="display: inline-block;">
+      <input style="width: 50%; display: inline-block;" type="text" size="10" ng-model="$parent.entry.inTime" data-autoclose="1" placeholder="Date" bs-datepicker>
+<!--    </div>-->
+<!--    <div class="form-group">-->
+      <input style="width: 50%; display: inline-block;" type="text" size="8" ng-model="$parent.entry.inTime" data-autoclose="1" placeholder="Time" bs-timepicker>
+    </div>
+<!--  </div>-->
                 <br/>
                 <input id="duration" type="number" step="any" ng-model="$parent.entry.duration" placeholder="Duration (Minutes)"/>
                 <br/>

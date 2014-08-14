@@ -1335,26 +1335,26 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
         {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
     ];
-    
+    $scope.entry = [];
     $scope.ok = function() {
-        $rootScope.entries.unshift({title: $scope.entry.name, start: "6/21 4:22PM", end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $rootScope.entries.unshift({title: $scope.entry.name, start: $scope.entry.startTime, end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
         $scope.entry = [];
     }
     
     $scope.checkIn = function() {
-        $scope.checkInTime = new Date();
-        $scope.checkInTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
-        console.log($scope.checkInTime);
+        $scope.entry.inTime = new Date();
+        $scope.checkInTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
+        console.log($scope.entry.inTime);
         ngNotify.set("Successfully checked in!", "success");
     }
     
     $scope.checkOut = function() {
         if(!$scope.entry) $scope.entry = [];
         $scope.checkOutTime = new Date();
-        $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + new Date().toLocaleTimeString();
+        $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         console.log($scope.checkOutTime);
         $scope.entry.duration = ($scope.checkOutTime - $scope.checkInTime)/1000/60;
-        console.log($scope.entry.duration);
+//        console.log($scope.entry.duration);
         ngNotify.set("Successfully checked out!", "success");
     }
 }]);
