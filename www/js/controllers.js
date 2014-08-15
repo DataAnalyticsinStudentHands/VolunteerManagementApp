@@ -230,7 +230,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         $scope.id = $stateParams.id;
         $scope.groupMSGs = [];
         $scope.updateMessages = function() {
-            console.log($scope.id);
+//            console.log($scope.id);
             var prom = vmaMessageService.getTaskMessages(null, null, $scope.id);
             prom.then(function(success) {
 //                console.log(success);
@@ -243,7 +243,9 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         $scope.updateMessages();
 
         $scope.addMsg = function() {
-            vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) { $scope.updateMessages() });
+            vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) {
+                $scope.updateMessages()
+            });
             $scope.msg = "";
         }
 
@@ -278,10 +280,10 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         //Controller for the Modal PopUp Delete
         var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
             $scope.ok = function () {
-                var promise = vmaGroupService.deleteGroup(deleteId);
+                var promise = vmaMessageService.deleteMessage(deleteId);
                 promise.then(function(success) {
-                    window_scope.updateGroups();
-                    ngNotify.set("Group deleted successfully!", 'success');
+                    window_scope.updateMessages();
+                    ngNotify.set("Message deleted successfully!", 'success');
                     $modalInstance.close();
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');

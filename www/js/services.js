@@ -583,7 +583,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
                 return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
                     allMessagesPlain = success;
-                    console.log(allMessagesPlain);
+//                    console.log(allMessagesPlain);
                     var resultMessages = [];
                     success.forEach(function(message) {
 //                        message.time =  new Date(message.creation_timestamp).toDateString() + " " + new Date(message.creation_timestamp).getHours() + ":" + new Date(message.creation_timestamp).getMinutes();
@@ -619,12 +619,10 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
         addMessage:
             function(message, uid, tid) {
                 var msg = {"content" : message.message, "sender_id": uid, "task_id": tid};
-                console.log(msg);
                 return Restangular.all("messages").post(msg);
             },
         editMessage:
             function(id, message) {
-                console.log(message);
                  return Restangular.all("messages").all(id).post(message);
             },
         deleteMessage:
