@@ -10,7 +10,7 @@
             <div id="groupfeed_t"> {{post.time}} </div>
             <div id="groupfeed_cc"> Comments {{post.comment_count}} </div>
         </div>
-        <div id="bs" class="btn-group" dropdown>
+        <div ng-show="post.user_id == uid" id="bs" class="btn-group" dropdown>
             <button type="button" class="btn dropdown-toggle">
                 <span class="caret"></span>
             </button>

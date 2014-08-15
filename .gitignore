@@ -3,6 +3,7 @@
 *.keystore
 *.sw*
 platforms/^.*
+platforms/
 www/dist
 www/vendor
 node_modules
