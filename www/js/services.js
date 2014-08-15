@@ -577,67 +577,29 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
     var metaMessages = [];
     var refresh = true;
     return {
-        updateMessages:
-            //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
-            function() {
-                if(refresh) {
-                    console.log("POSTS UPDATED");
-                    var gPromAll = Restangular.all("messages").getList();
-                    gPromAll.then(function(success) {
-                        success = Restangular.stripRestangular(success);
-                        allMessages = success;
-                    }, function(fail) {
-            //            console.log(fail);
-                    });
-                    var gPromByMe = Restangular.all("messages").one("myMessages").getList();
-                    gPromByMe.then(function(success) {
-                        success = Restangular.stripRestangular(success);
-                        myTaskMessages = success;
-                    }, function(fail) {
-            //            console.log(fail);
-                    });
-                    return $q.all([gPromAll, gPromByMe]);
-                }
-                else {
-                    var deferred = $q.defer();
-                    deferred.resolve("DONE");
-                    return deferred.promise;                    
-                }
-            },
-        getAllMessages: 
-            function() {
-                var updateMessagePromise = this.updateMessages().then(function(success) {
-                    var resultMessages = [];
-                    allMessages.forEach(function(message) {
-                        message.date =  new Date(message.creation_timestamp).toDateString() + " " + new Date(message.creation_timestamp).getHours() + ":" + new Date(message.creation_timestamp).getMinutes();
-                        vmaTaskService.getTask(message.task_id).then(function(success) { message.task = success });
-                        vmaUserService.getUser(message.user_id).then(function(success) { message.user = success });
-                        resultMessages.push(message);
-                    });
-                    return resultMessages;
-                });
-                return updateMessagePromise;
-            },
         getTaskMessagesPromise:
             function(numMessages, startindex, tid) {
-                var gPromAll = Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
-                return gPromAll.then(function(success) {
+                var promAll = Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
+                return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
+                    allMessagesPlain = success;
+                    console.log(allMessagesPlain);
                     var resultMessages = [];
                     success.forEach(function(message) {
 //                        message.time =  new Date(message.creation_timestamp).toDateString() + " " + new Date(message.creation_timestamp).getHours() + ":" + new Date(message.creation_timestamp).getMinutes();
-//                        vmaTaskService.getTask(message.task_id).then(function(success) { message.task = success });
                         vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
                         message.img = "img/temp_icon.png";
-                        console.log(message);
+//                        console.log(message);
                         resultMessages.push(message);
                     });
-//                    resultMessages = Restangular.stripRestangular(resultMessages);
-//                    console.log(resultMessages);
                     return resultMessages;
                 }, function(fail) {
-        //            console.log(fail);
+                    
                 });
+            },
+        getTaskMessagesPlain:
+            function(numMessages, startindex, tid) {
+                return Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
             },
         getTaskMessages:
             function(num, ind, tid) {
@@ -646,9 +608,12 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
                 });
             },
         getMessage:
-            function(message_id) {
-                return this.updateMessages().then(function(success) {
-                    return $filter('getById')(allMessages, message_id);
+            function(message_id, task_id) {
+                return this.getTaskMessagesPlain(null, null, task_id).then(function(success) {
+//                    success = success.stripRestangular(success);
+                    var message = $filter('getById')(success, message_id);
+                    console.log(message);
+                    return Restangular.stripRestangular(message);
                 });
             },
         addMessage:
@@ -659,6 +624,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
             },
         editMessage:
             function(id, message) {
+                console.log(message);
                  return Restangular.all("messages").all(id).post(message);
             },
         deleteMessage:
