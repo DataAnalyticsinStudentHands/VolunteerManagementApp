@@ -48,8 +48,7 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
             },function(fail) {
                 Auth.clearCredentials();
                 ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
-            }
-        );
+        });
 
         Auth.clearCredentials();
     }
@@ -220,12 +219,6 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
     var snapper = new Snap({
       element: document.getElementById('content')
     });
-
-        
-    $scope.popover = {
-        "title": "Carl",
-        "content": "<B> BADGES </B> <BR/> MEMBER SINCE"
-    };
     
     
     snapRemote.getSnapper().then(function(snapper) {
@@ -233,47 +226,32 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', 'vmaMessageService', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, vmaMessageService) {
         $scope.id = $stateParams.id;
-        $scope.groupMSGs = [
-            {id:'1', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'2', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'3', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'4', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'5', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"},
-            {id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: "BLAH BLAH"}
-        ];
+        $scope.groupMSGs = [];
+        $scope.updateMessages = function() {
+            console.log($scope.id);
+            var prom = vmaMessageService.getTaskMessages(null, null, $scope.id);
+            prom.then(function(success) {
+                console.log(success);
+                $scope.groupMSGs = success;
+                $scope.scrollTo();
+            }, function(fail) {
+//                console.log(fail);
+            });
+        }
+        $scope.updateMessages();
+
+        $scope.addMsg = function() {
+            vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) { $scope.updateMessages() });
+            $scope.msg = "";
+        }
+        
+        //THE SCROLLING HEADACHE FOR INPUT
         $timeout(function() {
             $location.hash('messaging_input');
             $anchorScroll();
         });
-        $scope.addMsg = function() {
-            $scope.groupMSGs.push({id:'6', img: "img/temp_icon.png", time: "4:00AM", author: "me", content: $scope.msg.message});
-            $scope.msg = "";
-            $scope.scrollToAdd();
-        }
-
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
             $scope.scrollTo = function() { }
