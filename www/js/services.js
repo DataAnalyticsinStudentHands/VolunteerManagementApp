@@ -362,15 +362,22 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
         getMetaTasksGroup:
             function(gid) {
                 return this.getMetaTasks().then(function(success) {
-//                    console.log(success);
-                    
                     var manGroups = [];
                     return vmaGroupService.isManager(gid).then(function(isMan) {
+                        var result = $filter('getTasksByGroupId')(success, gid);
+                        //FORMATTING DATE/TIME
+                        result.forEach(function(obj) {
+                            if(obj.time) {
+                                obj.datetime = new Date(obj.time).toDateString() + " " + new Date(obj.time).getHours() + ":" + new Date(obj.time).getMinutes();
+                            } else {
+                                obj.time = "No Time Specified";
+                            }
+                        });
                         if(!isMan) {
-                            return $filter('getTasksByGroupId')(success, gid);
+                            return result;
                         } else {
-                            var result = $filter('getTasksByGroupId')(success, gid);
                             result.forEach(function(obj) {
+                                // SETTING PERMISSIONS METADATA
                                 obj.isMember = false;
                                 obj.isManager = false;
                                 obj.isTask = false;
@@ -532,7 +539,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                         post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
-                        console.log(post);
+//                        console.log(post);
                         resultPosts.push(post);
                     });
 //                    resultPosts = Restangular.stripRestangular(resultPosts);
