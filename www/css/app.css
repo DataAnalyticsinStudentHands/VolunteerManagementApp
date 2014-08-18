@@ -2,10 +2,11 @@
 * { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
 input, textarea { -webkit-user-select:text; height: 100%;}
 /*body { background-color:white; color:black }*/
-
-body {
-    overflow-x: hidden;
-}
+body { overflow-x: hidden; }
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
 
 .headroom {
     position: fixed;
