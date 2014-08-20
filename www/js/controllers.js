@@ -1157,7 +1157,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
             snapper.expand('right');
         });
         console.log("BROADCASTING");
-        $state.go("home.groupFeed.detail.right_pane", {"task_id" : $scope.task.id}, {reload: false});
+        $state.go("home.groupFeed.detail.right_pane", {"task_id" : JSON.stringify($scope.task)}, {reload: false});
 //        $rootScope.$broadcast("RIGHT_SNAP", $scope.task);
     }
     
@@ -1190,7 +1190,8 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
-    console.log($stateParams);
+    console.log(JSON.parse($stateParams.task_id));
+    $scope.task = JSON.parse($stateParams.task_id);
 //    $scope.task = task;
     $scope.map = {
         sensor: true,

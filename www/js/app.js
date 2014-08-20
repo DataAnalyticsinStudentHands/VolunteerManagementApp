@@ -99,12 +99,18 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           authenticate: true
       }).
       state('home.groupFeed.detail.right_pane', {
-          url: ":task_id",
+          url: "/:task_id",
           views: {
             "right_pane@home.groupFeed": {
               templateUrl: "partials/viewTask.html",
               controller: 'task'
             }
+//            resolve: {
+//              task: function() {
+//                console.log($stateParams);
+//                return "TEST";
+//              }
+//            }
           },
           authenticate: true
       }).
