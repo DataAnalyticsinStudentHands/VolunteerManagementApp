@@ -226,18 +226,16 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', '$uiViewScroll', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, $uiViewScroll) {
         $scope.id = $stateParams.id;
         $scope.groupMSGs = [];
         $scope.updateMessages = function() {
-//            console.log($scope.id);
             var prom = vmaMessageService.getTaskMessages(null, null, $scope.id);
             prom.then(function(success) {
-//                console.log(success);
                 $scope.groupMSGs = success;
                 $scope.scrollTo();
             }, function(fail) {
-//                console.log(fail);
+                
             });
         }
         $scope.updateMessages();
@@ -351,44 +349,33 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         };
 
         //THE SCROLLING HEADACHE FOR INPUT
-        $timeout(function() {
-            $location.hash('messaging_input');
-            $anchorScroll();
-        });
+            //$timeout(function() {
+            //  $location.hash('messaging_input');
+            //  $anchorScroll();
+            //});
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
             $scope.scrollTo = function() { }
-            $scope.scrollToAdd = function() { }
         }
-        else if(userAgent.match(/Android/i)) {        
-            $scope.scrollToAdd = function() {
-                $timeout(function() {
-                    $location.hash('messaging_input');
-                    $anchorScroll();
-                });
-            }
+        else if(userAgent.match(/Android/i)) {
             $scope.scrollTo = function() {
                 $timeout(function() {
                     $location.hash('messaging_input');
                     $anchorScroll();
                 }, 500);
+                
                 $timeout(function() {
                     $location.hash('messaging_input');
                     $anchorScroll();
                 }, 2000);
             }
-        } else {        
-            $scope.scrollToAdd = function() {
-                $timeout(function() {
-                    $location.hash('messaging_input');
-                    $anchorScroll();
-                });
-            }
+        } else {
             $scope.scrollTo = function() {
                 $timeout(function() {
                     $location.hash('messaging_input');
                     $anchorScroll();
                 }, 500);
+                
                 $timeout(function() {
                     $location.hash('messaging_input');
                     $anchorScroll();
@@ -658,7 +645,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     });
 }]);
 
-vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaPostService, ngNotify) {
+vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'ngNotify', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaPostService, ngNotify, snapRemote) {
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
@@ -690,7 +677,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     //OPEN ADD
     $scope.addPost = function() {
         $scope.open();
-}
+    }
 
     $scope.open = function (size) {
         var modalInstance = $modal.open({
@@ -850,6 +837,15 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             event.preventDefault();
         });
     };
+    
+    //VIEW POST
+    $scope.viewPost = function(pid) {
+        console.log("viewing post");
+        snapRemote.getSnapper().then(function(snapper) {
+            snapper.expand('right');
+        });
+        $state.go("home.groupFeed.detail.right_pane_post", {"post_id" : pid}, [{reload: false}]);
+    }
 }]);
 
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', '$rootScope', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify, $rootScope, snapRemote) {
@@ -1152,18 +1148,11 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
         $scope.task = vmaTaskService.getTaskView(click_id);
-//        console.log($scope.task);
         snapRemote.getSnapper().then(function(snapper) {
             snapper.expand('right');
         });
-        console.log("BROADCASTING");
-        $state.go("home.groupFeed.detail.right_pane", {"task_id" : JSON.stringify($scope.task)}, {reload: false});
-//        $rootScope.$broadcast("RIGHT_SNAP", $scope.task);
+        $state.go("home.groupFeed.detail.right_pane_task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
     }
-    
-    $rootScope.$on("RIGHT_SNAP", function(event, task) {
-//        $state.go("home.groupFeed.detail.right_pane");
-    });
 
     //JOINING A TASK
     $scope.joinTask = function(task_id) {
@@ -1189,9 +1178,14 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     }
 }]);
 
-vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
-    console.log(JSON.parse($stateParams.task_id));
-    $scope.task = JSON.parse($stateParams.task_id);
+vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', function($scope, $state, $stateParams, $modal, vmaPostService) {
+    var post_id = $stateParams.post_id;
+    vmaPostService.getPostView(post_id).then(function(success) { $scope.post = success; console.log($scope.post); });
+}]);
+
+vmaControllerModule.controller('home.groupFeed.detail.right_pane_task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+    console.log(JSON.parse($stateParams.task));
+    $scope.task = JSON.parse($stateParams.task);
 //    $scope.task = task;
     $scope.map = {
         sensor: true,

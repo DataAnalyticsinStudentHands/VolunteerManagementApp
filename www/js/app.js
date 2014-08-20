@@ -98,19 +98,17 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           },
           authenticate: true
       }).
-      state('home.groupFeed.detail.right_pane', {
-          url: "/:task_id",
+      state('home.groupFeed.detail.right_pane_task', {
+          url: "/task/:task",
           views: {
-            "right_pane@home.groupFeed": {
-              templateUrl: "partials/viewTask.html",
-              controller: 'task'
-            }
-//            resolve: {
-//              task: function() {
-//                console.log($stateParams);
-//                return "TEST";
-//              }
-//            }
+            "right_pane@home.groupFeed": {templateUrl: "partials/viewTask.html", controller: 'home.groupFeed.detail.right_pane_task'}
+          },
+          authenticate: true
+      }).
+      state('home.groupFeed.detail.right_pane_post', {
+          url: "/post/:post_id",
+          views: {
+            "right_pane@home.groupFeed": {templateUrl: "partials/viewPost.html", controller: 'home.groupFeed.detail.right_pane_post'}
           },
           authenticate: true
       }).

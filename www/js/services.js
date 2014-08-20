@@ -555,6 +555,17 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return success;
                 });
             },
+        getPostView:
+            function(post_id) {
+                return this.updatePosts().then(function(success) {
+                    var post = $filter('getById')(allPosts, post_id);
+                    post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                    vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                    vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
+                    console.log(post);
+                    return post;
+                });
+            },
         getPost:
             function(post_id) {
                 return this.updatePosts().then(function(success) {
