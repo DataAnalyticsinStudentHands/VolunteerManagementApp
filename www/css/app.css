@@ -849,6 +849,24 @@ overflow: auto;
 
 	visibility: visible !important;	
 }
+#snap_drawer-right{
+/*    background-color: #eeeeee;*/
+    top: 65px;
+    padding-bottom: 30px;
+    width: 266px;
+    right; 0px;
+    background:url(../img/01.jpg) fixed;
+    animation-name: slideDown;
+	-webkit-animation-name: slideDown;	
+
+	animation-duration: .5s;	
+	-webkit-animation-duration: .5s;
+
+	animation-timing-function: ease;	
+	-webkit-animation-timing-function: ease;	
+
+	visibility: visible !important;	
+}
 
 #ad{
     position: relative;

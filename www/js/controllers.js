@@ -397,7 +397,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }
 }]);
 
-vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify) {
+vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify, $rootScope) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
     $scope.displayDetail = function(click_id, detail_bool) {
         console.log(detail_bool);
@@ -638,7 +638,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     $scope.settings = {
 //        element: null,
 //        dragger: null,
-        disable: 'right',
+//        disable: 'right',
 //        addBodyClasses: true,
         hyperextensible: false
 //        resistance: 0.5,
@@ -652,10 +652,6 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 //        slideIntent: 40,
 //        minDragDistance: 5
     }
-
-    var snapper = new Snap({
-        element: document.getElementById('content')
-    });
 
     snapRemote.getSnapper().then(function(snapper) {
         snapper.open('left');
@@ -856,9 +852,8 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     };
 }]);
 
-vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify) {
+vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', '$rootScope', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify, $rootScope, snapRemote) {
     $scope.id = $stateParams.id;
-//    console.log($stateParams.detail);
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
 
@@ -1154,45 +1149,21 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
         });
     };
 
-    //OPENING THE MODAL TO VIEW A TASK
+    //VIEW A TASK
     $scope.viewTask = function(click_id) {
-        var task = vmaTaskService.getTaskView(click_id);
-        $scope.openView(task);
-    }
-
-    $scope.openView = function (task) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/efforts.task.html',
-          controller: ModalInstanceCtrlView,
-          resolve: {
-              task: function() {
-                  return task;
-              }
-          }
+        $scope.task = vmaTaskService.getTaskView(click_id);
+//        console.log($scope.task);
+        snapRemote.getSnapper().then(function(snapper) {
+            snapper.expand('right');
         });
-    };
-
-    //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task, vmaTaskService, $modalInstance) {
-        $scope.task = task;
-        $scope.map = {
-            sensor: true,
-            size: '500x300',
-            zoom: 15,
-            center: $scope.task.location,
-            markers: [$scope.task.location], //marker locations
-            mapevents: {redirect: true, loadmap: false}
-        };
-        $scope.ok = function () {
-            $modalInstance.close();
-        };
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
+        console.log("BROADCASTING");
+        $state.go("home.groupFeed.detail.right_pane", {"task_id" : $scope.task.id}, {reload: false});
+//        $rootScope.$broadcast("RIGHT_SNAP", $scope.task);
     }
+    
+    $rootScope.$on("RIGHT_SNAP", function(event, task) {
+//        $state.go("home.groupFeed.detail.right_pane");
+    });
 
     //JOINING A TASK
     $scope.joinTask = function(task_id) {
@@ -1216,6 +1187,19 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
                 ngNotify.set(fail.data.message, 'error');
         });
     }
+}]);
+
+vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+    console.log($stateParams);
+//    $scope.task = task;
+    $scope.map = {
+        sensor: true,
+        size: '500x300',
+        zoom: 15,
+        center: $scope.task.location,
+        markers: [$scope.task.location], //marker locations
+        mapevents: {redirect: true, loadmap: false}
+    };
 }]);
 
 vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {

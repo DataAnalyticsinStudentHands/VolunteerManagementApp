@@ -1,54 +1,59 @@
 <div id="snap">
-    <snap-drawer id="snap_drawer">
-        <tabset>
-            <tab heading="Groups" style="width:50%; text-align: center;">
-                <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
-                <div id="groups" ng-repeat="group in metaJoinedGroups">
-                    <a ng-click="displayDetail(group.id, true)">
-                        <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-                        <div id="groupname"> {{group.name}} </div>
-                    </a>
-                    <div id="bs" class="btn-group" dropdown>
-                        <button type="button" class="btn dropdown-toggle">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
-                            <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
-                            <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-                            
-                            <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-                        </ul>
+    <snap-drawers>
+        <div snap-drawer id="snap_drawer">
+            <tabset>
+                <tab heading="Groups" style="width:50%; text-align: center;">
+                    <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
+                    <div id="groups" ng-repeat="group in metaJoinedGroups">
+                        <a ng-click="displayDetail(group.id, true)">
+                            <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+                            <div id="groupname"> {{group.name}} </div>
+                        </a>
+                        <div id="bs" class="btn-group" dropdown>
+                            <button type="button" class="btn dropdown-toggle">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
+                                <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
+                                <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                                <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </tab>
-            <tab heading="Search" style="width:50%; text-align: center;">
-                <input id="search_gf" ng-model="query" placeholder="Search">
-                <div id="groups" ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp">
-                    <a ng-click="displayDetail(group.id, false)">
-                        <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-                        <div id="groupname"> {{group.name}} </div>
-                    </a>
-                    <div id="bs" class="btn-group" dropdown>
-                        <button type="button" class="btn dropdown-toggle">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
-                            <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
-                            <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-                            
-                            <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-                            
-                            <li><a ng-show="group.isGroup" ng-click="joinGroup(group.id)">Join Group</a></li>
-                        </ul>
+                </tab>
+                <tab heading="Search" style="width:50%; text-align: center;">
+                    <input id="search_gf" ng-model="query" placeholder="Search">
+                    <div id="groups" ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp">
+                        <a ng-click="displayDetail(group.id, false)">
+                            <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+                            <div id="groupname"> {{group.name}} </div>
+                        </a>
+                        <div id="bs" class="btn-group" dropdown>
+                            <button type="button" class="btn dropdown-toggle">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
+                                <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
+                                <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                                <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                                <li><a ng-show="group.isGroup" ng-click="joinGroup(group.id)">Join Group</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </tab>
-        </tabset>        
+                </tab>
+            </tabset>
+        </div>
+        <div snap-drawer="right" id="snap_drawer-right">
+            <div ui-view="right_pane">Click on a Effort Above to View Posts Here</div>
+        </div>
     </snap-drawer>
     <snap-content id="snap_page" snap-options="settings">
-        <tabset ng-show="state.is('home.groupFeed.detail')">
+        <tabset ng-show="state.is('home.groupFeed.detail') || state.is('home.groupFeed.detail.right_pane')">
             <tab heading="Posts" active="pActiv" id="groupfeed_post" style="width:33%; text-align: center;">
                 <div ui-view="post">Click on a Effort Above to View Posts Here</div>
             </tab>
@@ -59,7 +64,7 @@
                 <div ui-view="group.user">Users from group will be shown here</div>
             </tab>
         </tabset>
-        <div ng-hide="state.is('home.groupFeed.detail')" ng-controller="groupFeed.post">
+        <div ng-hide="state.is('home.groupFeed.detail') || state.is('home.groupFeed.detail.right_pane')" ng-controller="groupFeed.post">
             <br/>
             <br/>
             <div id="post" ng-repeat="post in posts">    
