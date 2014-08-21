@@ -1,5 +1,7 @@
-<div> {{task.title}} </div>
-<div> {{task.date}} </div>
-<div> {{task.location}} </div>
-<p> <googlemaps class="google-maps" options="map"></googlemaps> </p>
-<div> {{task.description}} </div>
+<div class="modal-body" stop-event="touchend">
+    <div> {{task.name}} </div>
+    <div> {{task.time}} </div>
+    <div ng-show="task.show_map"> {{task.location}} </div>
+    <p ng-show="task.show_map"> <googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps> </p>
+    <div> {{task.description}} </div>
+</div>

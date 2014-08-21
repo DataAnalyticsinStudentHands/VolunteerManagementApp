@@ -1,10 +1,9 @@
-<div style="margin: 10px">
-    <form>
-        <input id="name" type="text" name="name" ng-model="$parent.name" placeholder="Name"/>
+<div class="modal_a" stop-event="touchend">
+    <form ng-submit="ok()">
+        <input id="name"        type="text" ng-model="$parent.newGroup.name"        placeholder="Name" required/>
         <br/>
-        <input id="description" type="text" ng-model="$parent.description" placeholder="Description"/>
+        <input id="description" type="text" ng-model="$parent.newGroup.description" placeholder="Description"/>
         <br/>
-        <input type="submit" ng-click="ok()" name="id" placeholder="Name"/>
+        <input id="submit_ag" type="submit"/>
     </form>
-    <p>{{message}}</p>
 </div>

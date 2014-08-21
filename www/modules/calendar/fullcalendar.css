@@ -57,7 +57,10 @@ html .fc,
 .fc-header-title h2 {
 	margin-top: 0;
 	white-space: nowrap;
-	}
+    position: relative;
+    margin-left: -80px;
+    margin-right: -80px;
+}
 	
 .fc .fc-header-space {
 	padding-left: 10px;
