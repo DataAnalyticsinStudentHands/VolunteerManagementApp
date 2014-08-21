@@ -660,7 +660,8 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
 //                    console.log(allMessagesPlain);
                     var resultMessages = [];
                     success.forEach(function(message) {
-                        message.time =  new Date(message.creation_timestamp).toDateString() + " " + new Date(message.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                        console.log(message);
+                        message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
                         message.img = "img/temp_icon.png";
 //                        console.log(message);
