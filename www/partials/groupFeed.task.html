@@ -4,9 +4,9 @@
         <div ng-click="viewTask(task.id)">
             <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
             <div id="t_t"> {{task.name}} </div>
-            <div id="t"> {{task.date}} </div>
-            <div id="t"> {{task.location}} </div>
-            <div id="t"> {{task.duration}} Hours </div>
+            <div id="t" ng-show="task.datetime"> {{task.datetime}} </div>
+            <div id="t" ng-show="task.location"> {{task.location}} </div>
+            <div id="t" ng-show="task.duration"> {{task.duration}} Hours </div>
         </div>
         <div id="bs" class="btn-group" dropdown>
             <button type="button" class="btn dropdown-toggle">

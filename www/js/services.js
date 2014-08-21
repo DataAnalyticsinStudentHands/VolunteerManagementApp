@@ -362,15 +362,22 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
         getMetaTasksGroup:
             function(gid) {
                 return this.getMetaTasks().then(function(success) {
-//                    console.log(success);
-                    
                     var manGroups = [];
                     return vmaGroupService.isManager(gid).then(function(isMan) {
+                        var result = $filter('getTasksByGroupId')(success, gid);
+                        //FORMATTING DATE/TIME
+                        result.forEach(function(obj) {
+                            if(obj.time) {
+                                obj.datetime = new Date(obj.time).toDateString() + " " + new Date(obj.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                            } else {
+                                obj.time = "No Time Specified";
+                            }
+                        });
                         if(!isMan) {
-                            return $filter('getTasksByGroupId')(success, gid);
+                            return result;
                         } else {
-                            var result = $filter('getTasksByGroupId')(success, gid);
                             result.forEach(function(obj) {
+                                // SETTING PERMISSIONS METADATA
                                 obj.isMember = false;
                                 obj.isManager = false;
                                 obj.isTask = false;
@@ -420,7 +427,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             function(task_id) {
                 var viewTask = $filter('getById')(allTasks, task_id);
                 if(viewTask.time) {
-                    viewTask.time = new Date(viewTask.time).toDateString() + " " + new Date(viewTask.time).getHours() + ":" + new Date(viewTask.time).getMinutes();
+                    viewTask.time = new Date(viewTask.time).toDateString() + " " + new Date(viewTask.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                 } else {
                     viewTask.time = "No Time Specified";
                 }
@@ -460,7 +467,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
     }
 }]);
 
-vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', 'vmaUserService', function(Restangular, $q, $filter, vmaGroupService, vmaUserService) {
+vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', 'vmaUserService', 'vmaCommentService', function(Restangular, $q, $filter, vmaGroupService, vmaUserService, vmaCommentService) {
     var allPosts = [];
     var allPostsPlain = [];
     var myGroupPosts = [];
@@ -499,7 +506,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                 var updatePostPromise = this.updatePosts().then(function(success) {
                     var resultPosts = [];
                     allPosts.forEach(function(post) {
-                        post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
                         resultPosts.push(post);
@@ -513,7 +520,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                 return this.updatePosts().then(function(success) {
                     var resultPosts = [];
                     myGroupPosts.forEach(function(post) {
-                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
 //                        console.log(post);
@@ -529,14 +536,11 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     success = Restangular.stripRestangular(success);
                     var resultPosts = [];
                     success.forEach(function(post) {
-                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
-                        console.log(post);
                         resultPosts.push(post);
                     });
-//                    resultPosts = Restangular.stripRestangular(resultPosts);
-//                    console.log(resultPosts);
                     return resultPosts;
                 }, function(fail) {
         //            console.log(fail);
@@ -546,6 +550,18 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
             function(num, ind, gid) {
                 return this.getGroupPostsPromise(num, ind, gid).then(function(success) {
                     return success;
+                });
+            },
+        getPostView:
+            function(post_id) {
+                return this.updatePosts().then(function(success) {
+                    var post = $filter('getById')(allPosts, post_id);
+                    post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                    vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
+                    vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
+                    vmaCommentService.getPostComments(null, null, post.id).then(function(success) { post.comments =success; });
+                    console.log(post);
+                    return post;
                 });
             },
         getPost:
@@ -566,6 +582,127 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
         deletePost:
             function(pid) {
                 return Restangular.all("posts").all(pid).remove();
+            },
+    }
+}]);
+
+vmaServices.factory('vmaCommentService', ['Restangular', '$q', '$filter', 'vmaUserService', function(Restangular, $q, $filter, vmaUserService) {
+    var allComments = [];
+    var allCommentsPlain = [];
+    var myPostComments = [];
+    var metaComments = [];
+    var refresh = true;
+    return {
+        getPostCommentsPromise:
+            function(numComments, startindex, pid) {
+                var promAll = Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
+                return promAll.then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    allCommentsPlain = success;
+//                    console.log(allCommentsPlain);
+                    var resultComments = [];
+                    success.forEach(function(comment) {
+                        comment.time =   new Date(comment.creation_timestamp).toDateString() + " " + new Date(comment.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                        vmaUserService.getUser(comment.user_id).then(function(success) { comment.user = success;});
+                        comment.img = "img/temp_icon.png";
+//                        console.log(comment);
+                        resultComments.push(comment);
+                    });
+                    return resultComments;
+                }, function(fail) {
+                    
+                });
+             },
+        getPostCommentsPlain:
+            function(numComments, startindex, pid) {
+                return Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
+            },
+        getPostComments:
+            function(num, ind, pid) {
+                return this.getPostCommentsPromise(num, ind, pid).then(function(success) {
+                    return success;
+                });
+            },
+        getComment:
+            function(comment_id) {
+                return Restangular.all("comments").get(comment_id);
+            },
+        addComment:
+            function(content, pid, uid) {
+                var cmt = {"content" : content, "user_id": uid, "post_id": pid};
+                console.log(cmt);
+                return Restangular.all("comments").post(cmt);
+            },
+        editComment:
+            function(id, comment) {
+                 return Restangular.all("comments").all(id).post(comment);
+            },
+        deleteComment:
+            function(cid) {
+                return Restangular.all("comments").all(cid).remove();
+            },
+    }
+}]);
+
+vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTaskService', 'vmaUserService', function(Restangular, $q, $filter, vmaTaskService, vmaUserService) {
+    var allMessages = [];
+    var allMessagesPlain = [];
+    var myTaskMessages = [];
+    var metaMessages = [];
+    var refresh = true;
+    return {
+        getTaskMessagesPromise:
+            function(numMessages, startindex, tid) {
+                var promAll = Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
+                return promAll.then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    allMessagesPlain = success;
+//                    console.log(allMessagesPlain);
+                    var resultMessages = [];
+                    success.forEach(function(message) {
+                        console.log(message);
+                        message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                        vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
+                        message.img = "img/temp_icon.png";
+//                        console.log(message);
+                        resultMessages.push(message);
+                    });
+                    return resultMessages;
+                }, function(fail) {
+                    
+                });
+            },
+        getTaskMessagesPlain:
+            function(numMessages, startindex, tid) {
+                return Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
+            },
+        getTaskMessages:
+            function(num, ind, tid) {
+                return this.getTaskMessagesPromise(num, ind, tid).then(function(success) {
+                    return success;
+                });
+            },
+        getMessage:
+            function(message_id, task_id) {
+                return this.getTaskMessagesPlain(null, null, task_id).then(function(success) {
+//                    success = success.stripRestangular(success);
+                    var message = $filter('getById')(success, message_id);
+                    console.log(message);
+                    return Restangular.stripRestangular(message);
+                });
+            },
+        addMessage:
+            function(message, uid, tid) {
+                var msg = {"content" : message.message, "sender_id": uid, "task_id": tid};
+                return Restangular.all("messages").post(msg);
+            },
+        editMessage:
+            function(id, message) {
+                 return Restangular.all("messages").all(id).post(message);
+            },
+        deleteMessage:
+            function(mid) {
+                return Restangular.all("messages").all(mid).remove();
             },
     }
 }]);

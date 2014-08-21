@@ -1,0 +1,32 @@
+<div>
+    <!--THE POST-->
+    <div>
+        <div> {{post.user.username}} > {{post.group.name}} </div>
+        <div> {{post.content}} </div>
+        <div> {{post.date}} </div>
+    </div>
+    <!--COMMENT INPUT-->
+    <div id="comment_input">
+        <form ng-submit="addComment()">
+            <input id="comment_input_input" type="text" ng-model="comment.content">
+            <input id="comment_input_submit" type="submit">
+        </form>
+    </div>
+    <!--THE COMMENTS-->
+    <div>
+        <div ng-repeat="comment in post.comments">
+            <div>{{comment.user.username}}</div>
+            <div>{{comment.time}}</div>
+            <div>{{comment.content}}</div>
+            <div ng-show="comment.user_id == uid" id="bs" class="btn-group" dropdown>
+                <button type="button" class="btn dropdown-toggle">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="editComment(comment.id)">Edit</a></li>
+                    <li><a ng-click="deleteComment(comment.id)">Delete</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

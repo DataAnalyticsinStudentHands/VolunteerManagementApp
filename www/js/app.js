@@ -98,6 +98,20 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           },
           authenticate: true
       }).
+      state('home.groupFeed.detail.right_pane_task', {
+          url: "/task/:task",
+          views: {
+            "right_pane@home.groupFeed": {templateUrl: "partials/viewTask.html", controller: 'home.groupFeed.detail.right_pane_task'}
+          },
+          authenticate: true
+      }).
+      state('home.groupFeed.detail.right_pane_post', {
+          url: "/post/:post_id",
+          views: {
+            "right_pane@home.groupFeed": {templateUrl: "partials/viewPost.html", controller: 'home.groupFeed.detail.right_pane_post'}
+          },
+          authenticate: true
+      }).
       state('home.group', {
           url: "/group:id",
           views: {
@@ -155,6 +169,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
+//    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost at UH for Carl's Laptop's local tomcat server
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     
     $rootScope.Restangular = function() {
