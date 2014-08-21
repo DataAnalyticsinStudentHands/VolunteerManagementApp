@@ -1315,7 +1315,7 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_task', ['$scope
     };
 }]);
 
-vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify) {
     $scope.invites = [
         {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
         {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
@@ -1342,6 +1342,16 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
     }
     $scope.updateTasks();
+    
+    //LEAVING A TASK
+    $scope.leaveTask = function(task_id) {
+        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid).then(function(success) {
+                ngNotify.set("Task left successfully!", 'success');
+                $scope.updateTasks();
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+    }
 
     //OPENING THE MODAL TO VIEW A TASK
     $scope.viewTask = function(click_id) {
@@ -1367,7 +1377,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
     //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-
     //Controller for the Modal PopUp View
     var ModalInstanceCtrlView = function($scope, task, $modalInstance) {
         $scope.task = task;
@@ -1388,18 +1397,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
             $modalInstance.dismiss('cancel');
             //Prevents the switching of the state
             event.preventDefault();
-        });
-    }
-
-    //LEAVING A TASK
-    $scope.leaveTask = function(task_id) {
-        var promise = $scope.$parent.Restangular().all("tasks").all(task_id).all("MANAGER").all($scope.uid).remove();
-
-        promise.then(function(success) {
-                console.log(success);
-                $scope.updateTasks();
-            }, function(fail) {
-//                $scope.message = "DELETE FAILED";
         });
     }
 }]);
