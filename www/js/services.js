@@ -559,7 +559,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
                     vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                     vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
-                    vmaCommentService.getPostCommentsPlain(null, null, post.id).then(function(success) { post.comments = Restangular.stripRestangular(success); });
+                    vmaCommentService.getPostComments(null, null, post.id).then(function(success) { post.comments =success; });
                     console.log(post);
                     return post;
                 });
@@ -602,8 +602,8 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', '$filter', 'vmaUs
 //                    console.log(allCommentsPlain);
                     var resultComments = [];
                     success.forEach(function(comment) {
-//                        comment.time =  new Date(comment.creation_timestamp).toDateString() + " " + new Date(comment.creation_timestamp).getHours() + ":" + new Date(comment.creation_timestamp).getMinutes();
-                        vmaUserService.getUser(comment.sender_id).then(function(success) { comment.user = success; comment.username = success.username; });
+                        comment.time =   new Date(comment.creation_timestamp).toDateString() + " " + new Date(comment.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                        vmaUserService.getUser(comment.user_id).then(function(success) { comment.user = success;});
                         comment.img = "img/temp_icon.png";
 //                        console.log(comment);
                         resultComments.push(comment);

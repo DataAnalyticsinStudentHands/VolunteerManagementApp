@@ -1180,11 +1180,14 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
 vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService) {
     var post_id = $stateParams.post_id;
-    vmaPostService.getPostView(post_id).then(function(success) { $scope.post = success; });
-    
+    $scope.updateComments = function() {
+        vmaPostService.getPostView(post_id).then(function(success) { $scope.post = success; });
+    }
+    $scope.updateComments();
     $scope.addComment = function() {
         vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid);
-        console.log("adding");
+        $scope.updateComments();
+        $scope.comment.content = "";
     }
 }]);
 
