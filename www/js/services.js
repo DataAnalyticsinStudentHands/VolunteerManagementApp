@@ -368,7 +368,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         //FORMATTING DATE/TIME
                         result.forEach(function(obj) {
                             if(obj.time) {
-                                obj.datetime = new Date(obj.time).toDateString() + " " + new Date(obj.time).getHours() + ":" + new Date(obj.time).getMinutes();
+                                obj.datetime = new Date(obj.time).toDateString() + " " + new Date(obj.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                             } else {
                                 obj.time = "No Time Specified";
                             }
@@ -427,7 +427,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             function(task_id) {
                 var viewTask = $filter('getById')(allTasks, task_id);
                 if(viewTask.time) {
-                    viewTask.time = new Date(viewTask.time).toDateString() + " " + new Date(viewTask.time).getHours() + ":" + new Date(viewTask.time).getMinutes();
+                    viewTask.time = new Date(viewTask.time).toDateString() + " " + new Date(viewTask.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                 } else {
                     viewTask.time = "No Time Specified";
                 }
@@ -506,7 +506,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                 var updatePostPromise = this.updatePosts().then(function(success) {
                     var resultPosts = [];
                     allPosts.forEach(function(post) {
-                        post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
                         resultPosts.push(post);
@@ -520,7 +520,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                 return this.updatePosts().then(function(success) {
                     var resultPosts = [];
                     myGroupPosts.forEach(function(post) {
-                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
 //                        console.log(post);
@@ -556,7 +556,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
             function(post_id) {
                 return this.updatePosts().then(function(success) {
                     var post = $filter('getById')(allPosts, post_id);
-                    post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                    post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                     vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                     vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
                     vmaCommentService.getPostComments(null, null, post.id).then(function(success) { post.comments =success; });
@@ -660,7 +660,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', '$filter', 'vmaTa
 //                    console.log(allMessagesPlain);
                     var resultMessages = [];
                     success.forEach(function(message) {
-//                        message.time =  new Date(message.creation_timestamp).toDateString() + " " + new Date(message.creation_timestamp).getHours() + ":" + new Date(message.creation_timestamp).getMinutes();
+                        message.time =  new Date(message.creation_timestamp).toDateString() + " " + new Date(message.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
                         message.img = "img/temp_icon.png";
 //                        console.log(message);

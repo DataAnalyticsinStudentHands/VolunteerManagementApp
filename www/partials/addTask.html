@@ -2,13 +2,10 @@
     <form ng-submit="ok()">
         <input id="name" type="text" ng-model="$parent.newTask.name" placeholder="Name" required/>
         <br/>
-        <center ng-show="showTime">
-            <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-            <br/>
-            <div style="display:inline-block; min-height:290px;">
-                <datepicker ng-model="$parent.mytime" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
-            </div>
-        </center>
+        <div ng-show="showTime">
+            <input style="width: 50%; display: inline-block;" type="text" size="10" ng-model="$parent.mytime" data-autoclose="1" placeholder="Date" bs-datepicker>
+            <input style="width: 50%; display: inline-block;" type="text" size="8" ng-model="$parent.mytime" data-autoclose="1" placeholder="Time" bs-timepicker>
+        </div>
         <button type="button" ng-click="clear()">Toggle Time</button>
         <br/>
         <input id="duration" type="number" ng-model="$parent.newTask.duration" step="any" placeholder="Duration"/>
