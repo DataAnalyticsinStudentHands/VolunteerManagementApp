@@ -5,8 +5,18 @@
         <div> {{post.content}} </div>
         <div> {{post.date}} </div>
     </div>
+    <!--COMMENT INPUT-->
+    <div id="comment_input">
+        <form ng-submit="addComment()">
+            <input id="comment_input_input" type="text" ng-model="comment.content">
+            <input id="comment_input_submit" type="submit">
+        </form>
+    </div>
     <!--THE COMMENTS-->
     <div>
-        
+        <div ng-repeat="comment in post.comments">
+            <div>{{comment.content}}</div>
+            <div>{{comment.time}}</div>
+        </div>
     </div>
 </div>

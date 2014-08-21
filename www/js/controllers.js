@@ -1178,9 +1178,14 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     }
 }]);
 
-vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', function($scope, $state, $stateParams, $modal, vmaPostService) {
+vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService) {
     var post_id = $stateParams.post_id;
-    vmaPostService.getPostView(post_id).then(function(success) { $scope.post = success; console.log($scope.post); });
+    vmaPostService.getPostView(post_id).then(function(success) { $scope.post = success; });
+    
+    $scope.addComment = function() {
+        vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid);
+        console.log("adding");
+    }
 }]);
 
 vmaControllerModule.controller('home.groupFeed.detail.right_pane_task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {

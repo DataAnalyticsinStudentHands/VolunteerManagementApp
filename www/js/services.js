@@ -467,7 +467,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
     }
 }]);
 
-vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', 'vmaUserService', function(Restangular, $q, $filter, vmaGroupService, vmaUserService) {
+vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroupService', 'vmaUserService', 'vmaCommentService', function(Restangular, $q, $filter, vmaGroupService, vmaUserService, vmaCommentService) {
     var allPosts = [];
     var allPostsPlain = [];
     var myGroupPosts = [];
@@ -536,14 +536,11 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     success = Restangular.stripRestangular(success);
                     var resultPosts = [];
                     success.forEach(function(post) {
-                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
+                        post.time =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                         vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
-//                        console.log(post);
                         resultPosts.push(post);
                     });
-//                    resultPosts = Restangular.stripRestangular(resultPosts);
-//                    console.log(resultPosts);
                     return resultPosts;
                 }, function(fail) {
         //            console.log(fail);
@@ -562,6 +559,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
                     post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).getHours() + ":" + new Date(post.creation_timestamp).getMinutes();
                     vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                     vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
+                    vmaCommentService.getPostCommentsPlain(null, null, post.id).then(function(success) { post.comments = Restangular.stripRestangular(success); });
                     console.log(post);
                     return post;
                 });
@@ -584,6 +582,69 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', '$filter', 'vmaGroup
         deletePost:
             function(pid) {
                 return Restangular.all("posts").all(pid).remove();
+            },
+    }
+}]);
+
+vmaServices.factory('vmaCommentService', ['Restangular', '$q', '$filter', 'vmaUserService', function(Restangular, $q, $filter, vmaUserService) {
+    var allComments = [];
+    var allCommentsPlain = [];
+    var myPostComments = [];
+    var metaComments = [];
+    var refresh = true;
+    return {
+        getPostCommentsPromise:
+            function(numComments, startindex, pid) {
+                var promAll = Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
+                return promAll.then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    allCommentsPlain = success;
+//                    console.log(allCommentsPlain);
+                    var resultComments = [];
+                    success.forEach(function(comment) {
+//                        comment.time =  new Date(comment.creation_timestamp).toDateString() + " " + new Date(comment.creation_timestamp).getHours() + ":" + new Date(comment.creation_timestamp).getMinutes();
+                        vmaUserService.getUser(comment.sender_id).then(function(success) { comment.user = success; comment.username = success.username; });
+                        comment.img = "img/temp_icon.png";
+//                        console.log(comment);
+                        resultComments.push(comment);
+                    });
+                    return resultComments;
+                }, function(fail) {
+                    
+                });
+            },
+        getPostCommentsPlain:
+            function(numComments, startindex, pid) {
+                return Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
+            },
+        getPostComments:
+            function(num, ind, pid) {
+                return this.getPostCommentsPromise(num, ind, pid).then(function(success) {
+                    return success;
+                });
+            },
+        getComment:
+            function(comment_id, post_id) {
+                return this.getPostCommentsPlain(null, null, post_id).then(function(success) {
+//                    success = success.stripRestangular(success);
+                    var comment = $filter('getById')(success, comment_id);
+                    console.log(comment);
+                    return Restangular.stripRestangular(comment);
+                });
+            },
+        addComment:
+            function(content, pid, uid) {
+                var cmt = {"content" : content, "user_id": uid, "post_id": pid};
+                console.log(cmt);
+                return Restangular.all("comments").post(cmt);
+            },
+        editComment:
+            function(id, comment) {
+                 return Restangular.all("comments").all(id).post(comment);
+            },
+        deleteComment:
+            function(cid) {
+                return Restangular.all("comments").all(cid).remove();
             },
     }
 }]);
