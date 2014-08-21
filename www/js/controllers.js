@@ -1178,17 +1178,127 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     }
 }]);
 
-vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService) {
+vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService, ngNotify) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
         vmaPostService.getPostView(post_id).then(function(success) { $scope.post = success; });
     }
     $scope.updateComments();
     $scope.addComment = function() {
-        vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid);
-        $scope.updateComments();
-        $scope.comment.content = "";
+        vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
+            $scope.updateComments();
+            $scope.comment.content = "";
+            document.activeElement.blur();
+            ngNotify.set("Commented successfully!", "success");
+        }, function(fail) {
+            ngNotify.set(fail.data.message, 'error');
+        });
     }
+
+    $scope.editComment = function(cid) {
+        $scope.openEdit(cid);
+    }
+
+    $scope.openEdit = function (cid) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editComment.html',
+          controller: ModalInstanceCtrlEdit,
+          resolve: {
+              window_scope: function() {
+                  return $scope;
+              },
+              comment_id: function() {
+                  return cid;
+              }
+          }  
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+};
+
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, comment_id) {
+        var getCommentProm = vmaCommentService.getComment(comment_id);
+        getCommentProm.then(function(success) {
+            $scope.comment = success;
+        });
+        $scope.ok = function () {
+            var prom = vmaCommentService.editComment(comment_id, $scope.comment);
+            prom.then(function(success) {
+                ngNotify.set("Comment edited successfully!", 'success');
+                window_scope.updateComments();
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };    
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
+
+    //OPEN DELETE
+    $scope.deleteComment = function(cid) {
+        $scope.openDelete(cid);
+    }
+
+    $scope.openDelete = function (cid) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteComment.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              window_scope: function() {
+                  return $scope;
+              },
+              comment_id: function() {
+                  return cid;
+              }
+          }  
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+};
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, comment_id) {
+        $scope.ok = function () {
+            var prom = vmaCommentService.deleteComment(comment_id);
+            prom.then(function(success) {
+                $modalInstance.close();
+                window_scope.updateComments();
+                ngNotify.set("Comment deleted successfully!", 'success');
+            }, function(fail) {
+//                console.log(fail)
+                ngNotify.set(fail.data.message, 'error');
+            });
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
 }]);
 
 vmaControllerModule.controller('home.groupFeed.detail.right_pane_task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {

@@ -612,7 +612,7 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', '$filter', 'vmaUs
                 }, function(fail) {
                     
                 });
-            },
+             },
         getPostCommentsPlain:
             function(numComments, startindex, pid) {
                 return Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
@@ -624,13 +624,8 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', '$filter', 'vmaUs
                 });
             },
         getComment:
-            function(comment_id, post_id) {
-                return this.getPostCommentsPlain(null, null, post_id).then(function(success) {
-//                    success = success.stripRestangular(success);
-                    var comment = $filter('getById')(success, comment_id);
-                    console.log(comment);
-                    return Restangular.stripRestangular(comment);
-                });
+            function(comment_id) {
+                return Restangular.all("comments").get(comment_id);
             },
         addComment:
             function(content, pid, uid) {
