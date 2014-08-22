@@ -8,7 +8,7 @@
             <div id="t" ng-show="task.location"> {{task.location}} </div>
             <div id="t" ng-show="task.duration"> {{task.duration}} Hours </div>
         </div>
-        <div id="bs" class="btn-group" dropdown>
+        <div ng-show="{{detail}}" id="bs" class="btn-group" dropdown>
             <button type="button" class="btn dropdown-toggle">
                 <span class="caret"></span>
             </button>

@@ -47,21 +47,12 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           },
           authenticate: false
       }).
-      state('login.help', {
-          url: ":msg",
-          templateUrl: "partials/login.help.html",
-          controller: 'lHelpCtrl'
-      }).
       state('register', {
           url: "/register",
           views: {
             "app": { templateUrl: "partials/register.html", controller: 'registerCtrl'}
           },
           authenticate: false
-      }).
-      state('register.help', {
-          url: "",
-          templateUrl: "partials/register.help.html"
       }).
       state('home.cfeed', {
           url: "/cfeed",
@@ -80,7 +71,8 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       state('home.groupMessages.message', {
           url: ":id",
           views: {
-            "app-snap-msg": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}},
+            "app-snap-msg": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
+          },
           authenticate: true
       }).
       state('home.groupFeed', {
@@ -162,29 +154,32 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           authenticate: false
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
-    angular.extend($popoverProvider.defaults, {
-        html: true
-    });
+    angular.extend($popoverProvider.defaults, { html: true });
 });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
-//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //Just localhost for devices to get to my local server
-//    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //Just localhost at UH for Carl's Laptop's local tomcat server
+    //Just localhost for devices to get to local server
+    //Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");
+    //Just localhost at UH for Carl's Laptop's local tomcat server
+    //Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/");
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");
     
+    //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
     $rootScope.Restangular = function() {
         return Restangular;
     }
-
+    
+    //CHECKING IF AUTHENTICATED ON STATE CHANGE - Called in $stateChangeStart
     $rootScope.isAuthenticated = function(authenticate) {
         //BELOW - Trying to get promises to work to verify auth
         vmaUserService.getMyUser().then(function(result) {
             console.log("authed");
             result = Restangular.stripRestangular(result)[0];
+            //USERNAME & ID TO BE USED IN CONTROLLERS
             $rootScope.uid = result.id.toString();
             $rootScope.uin = result.username.toString();
         }, function(error) {
-            if(error.status === 0) {
+            if(error.status === 0) { // NO NETWORK CONNECTION
                 console.log("error-0");
             } else {
                 Auth.clearCredentials();
@@ -195,14 +190,15 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
         return Auth.hasCredentials();
     }
     
+    //AUTHENTICATE ON CHANGE STATE
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-      console.log("$stateChangeStart");
-      if (toState.authenticate && !$rootScope.isAuthenticated(toState.authenticate)){
-        console.log("non-authed");
-        // User isn’t authenticated
-        $state.go("login");
-        //Prevents the switching of the state
-        event.preventDefault(); 
-      }
+        console.log("$stateChangeStart");
+        if (toState.authenticate && !$rootScope.isAuthenticated(toState.authenticate)){
+            console.log("non-authed");
+            // User isn’t authenticated
+            $state.go("login");
+            //Prevents the switching of the state
+            event.preventDefault(); 
+        }
     });
 }]);
