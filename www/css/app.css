@@ -509,7 +509,7 @@ a:active { text-decoration: none; }
     width: 100%;    
     margin: 15% 0% 10% 0%;    
     text-align: center;
-    font-family: roboto black;
+    font-family:cursive;
     font-size:12pt ;
     background-color: #e0e0e0;
     z-index:4;
@@ -527,6 +527,7 @@ a:active { text-decoration: none; }
     height: 40%;
     margin: auto;
     z-index: -1;
+    overflow: hidden;
     text-overflow: ellipsis;
     font-family: Roboto medium;
     font-size: 12pt;
@@ -898,13 +899,20 @@ overflow: auto;
 }
 
 
+.btn_add{
+color:orange;
+}
+
 #groupfeed_a{
     position: relative;
     bottom: 60px;
     width: 40%;
     left: 20%;
     color:#f96806;
+    font-family: cursive;
     font-size: 16pt;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -914,6 +922,8 @@ overflow: auto;
     width: 60%;
     bottom: 30px;
     left: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
 }
 
@@ -928,7 +938,7 @@ overflow: auto;
     position: relative;
     bottom: 80px;
     width: 100px;
-    left: 70%;
+    left: 50%;
 }
 
 
@@ -962,6 +972,65 @@ overflow: auto;
     position: relative;
     margin-bottom: -40px;
 }
+
+
+/***********viewpost**************
+**********************/
+
+#view_post{
+background-color:rgba(255, 254, 254, 0.40);
+padding: 10px;    
+}
+
+
+#view_postn{
+color: orange;
+font-size:14pt;
+font-family: cursive;    
+}
+
+
+#view_postd{
+color: white;
+}
+
+#comment_input{
+background-color:rgb(255, 254, 254); 
+}
+
+
+#comment_input_submit{
+background-color: rgb(255, 255, 255);
+color: orange;    
+}
+
+
+
+#comment_name{
+position:relative;
+color: white;
+font-size: 14pt;
+padding: 5px;    
+}
+
+
+#comment_time{
+position: relative;
+padding: 5px;    
+}
+
+
+#comment_content{
+position: relative;
+padding: 5px;    
+}
+
+
+#comment_bs{
+position: relative;
+left: 200px;    
+}
+
 
 /**** Efforts******/
 
@@ -1255,13 +1324,11 @@ width: 100%;
 
 #name{
 position:relative;    
-left: 5px;
     
 }
 
 #description{
 position:relative;    
-left: 5px;
 }
 
 #submit_ag{
