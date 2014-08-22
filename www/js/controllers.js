@@ -4,7 +4,7 @@ var vmaControllerModule = angular.module('vmaControllerModule', []);
 
 vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', '$timeout', function($scope, Auth, $state, ngNotify, $timeout) {
      if($scope.isAuthenticated() === true) {
-         //Point to logged in page of app
+         //IF SUCCESSFULLY AUTH-ED USER IS TRYING TO GO TO LOGIN PAGE => SEND TO HOME PAGE OF APP
          $state.go('home');
      }
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
@@ -102,17 +102,6 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
 //        });
     };
     
-    //DELETE THE USER
-    $scope.delUser = function() {
-        $scope.Restangular().all("users").one($scope.uid).remove().then(
-                function(success) {
-                    $state.go("home", {}, {reload: true});
-                }, function(failure) {
-                    console.log(failure)
-                }
-        );
-    }
-
     //OPENING THE MODAL TO DELETE A USER
     $scope.deleteUser = function(id) {
         $scope.openDelete(id);
@@ -158,7 +147,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
 vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', function($scope, $state, vmaPostService) {
     $scope.posts = [];
     $scope.updatePosts = function() {
-        var gProm = vmaPostService.getAllPosts();
+        var gProm = vmaPostService.getGroupPosts(1000, null, null);
         gProm.then(function(success) {
             $scope.posts = success;
         }, function(fail) {
@@ -167,13 +156,27 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     }
     $scope.updatePosts();
 
+    $scope.loadMore = function() {
+        console.log("LOADING MORE");
+        console.log($scope.posts[$scope.posts.length -1].id + 3);
+        
+        vmaPostService.getGroupPosts(1000, $scope.posts[$scope.posts.length -1].id + 3, null).then(
+            function(success) {
+                $scope.posts = $scope.posts.concat(success);
+                console.log($scope.posts);
+            }, function(fail) {
+                //console.log(fail);
+            }
+        );
+    }    
+
     $scope.carousel_images = [
         {id:'1', caption: "GROUP 1", image: "img/image13.png"},
         {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
         {id:'3', caption: "GROUP 3", image: "img/image13.png"},
         {id:'6', caption: "GROUP 6", image: "img/image13.png"}
     ];
-    
+
     var slides = $scope.slides = [];
     $scope.addSlide = function(post) {
         var newWidth = 600 + slides.length;
@@ -649,30 +652,48 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;
     $scope.$parent.pActiv = true;
-    
+
     if($scope.id) {
         $scope.updatePosts = function() {
-            var gProm = vmaPostService.getGroupPosts(null, null, $scope.id);
+            var gProm = vmaPostService.getGroupPosts(1000, null, $scope.id);
             gProm.then(function(success) {
-                console.log(success);
                 $scope.posts = success;
             }, function(fail) {
 //                console.log(fail);
+            });
+        }
+        $scope.loadMore = function() {
+            console.log("LOADING MORE");
+            console.log($scope.posts);
+            vmaPostService.getGroupPosts(1000, $scope.posts[$scope.posts.length -1].id + 3, $scope.id).then(
+            function(success) {
+                $scope.posts = $scope.posts.concat(success);
+            }, function(fail) {
+                //console.log(fail);
             });
         }
     } else {
         $scope.updatePosts = function() {
-            var gProm = vmaPostService.getMyGroupPosts();
+            var gProm = vmaPostService.getMyGroupPosts(1000, null);
             gProm.then(function(success) {
-//                console.log(success);
                 $scope.posts = success;
             }, function(fail) {
 //                console.log(fail);
             });
         }
+        $scope.loadMore = function() {
+            console.log("LOADING MORE");
+            vmaPostService.getGroupPosts(1000, $scope.posts[$scope.posts.length -1].id + 3, null).then(
+            function(success) {
+                $scope.posts = $scope.posts.concat(success);
+            }, function(fail) {
+                //console.log(fail);
+            });
+        }
     }
-
     $scope.updatePosts();
+
+ 
 
     //OPEN ADD
     $scope.addPost = function() {
@@ -837,7 +858,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             event.preventDefault();
         });
     };
-    
+
     //VIEW POST
     $scope.viewPost = function(pid) {
         console.log("viewing post");
