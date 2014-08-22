@@ -3,7 +3,7 @@
         <div id="task_e" ng-repeat="task in joinTasks">
             <a ng-click="viewTask(task.id)">
                 <div><img src="img/effort_group.icon.png" width="70" height="50"/></div>
-                <div>{{task.name}} </div>
+                <div id="task_name">{{task.name}} </div>
             </a>
             <div id="bs" class="btn-group" dropdown>
                 <button type="button" class="btn dropdown-toggle">
