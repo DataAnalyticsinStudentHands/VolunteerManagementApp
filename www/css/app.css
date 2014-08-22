@@ -421,9 +421,9 @@ width: 100%;
     top:390px;
     margin: 0% 15% 0% 15%;
     text-align: center;
+    color: white;
     background-color:rgb(150, 12, 34);
     z-index: 2;
-    opacity: .8;
 }
 
 
@@ -880,7 +880,7 @@ left: 60px;
     position: relative;
     width: 100%;
     border-radius: none;
-    color:#f96806;
+    color:red;
 }
 
 #snap_page{
@@ -907,7 +907,7 @@ left: 60px;
 
 
 .btn_add{
-color:orange;
+color:red;
 }
 
 #groupfeed_a{
@@ -994,7 +994,7 @@ padding: 10px;
 
 
 #view_postn{
-color: orange;
+color: red;
 font-size:14pt;
 font-family: cursive;    
 }
@@ -1011,7 +1011,7 @@ background-color:rgb(255, 254, 254);
 
 #comment_input_submit{
 background-color: rgb(255, 255, 255);
-color: orange;    
+color: red;    
 }
 
 
