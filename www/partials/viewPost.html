@@ -1,9 +1,9 @@
 <div>
     <!--THE POST-->
-    <div>
-        <div> {{post.user.username}} > {{post.group.name}} </div>
+    <div id="view_post" >
+        <div id="view_postn"> {{post.user.username}} > {{post.group.name}} </div>
         <div> {{post.content}} </div>
-        <div> {{post.date}} </div>
+        <div id="view_postd"> {{post.date}} </div>
     </div>
     <!--COMMENT INPUT-->
     <div id="comment_input">
@@ -14,11 +14,11 @@
     </div>
     <!--THE COMMENTS-->
     <div>
-        <div ng-repeat="comment in post.comments">
-            <div>{{comment.user.username}}</div>
-            <div>{{comment.time}}</div>
-            <div>{{comment.content}}</div>
-            <div ng-show="comment.user_id == uid" id="bs" class="btn-group" dropdown>
+        <div id="comment_post" ng-repeat="comment in post.comments">
+            <div id="comment_name">{{comment.user.username}}</div>
+            <div id="comment_time">{{comment.time}}</div>
+            <div id="comment_content">{{comment.content}}</div>
+            <div ng-show="comment.user_id == uid" id="comment_bs" class="btn-group" dropdown>
                 <button type="button" class="btn dropdown-toggle">
                     <span class="caret"></span>
                 </button>
