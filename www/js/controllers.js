@@ -147,7 +147,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
 vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', function($scope, $state, vmaPostService) {
     $scope.posts = [];
     $scope.updatePosts = function() {
-        var gProm = vmaPostService.getGroupPosts(1000, null, null);
+        var gProm = vmaPostService.getGroupPosts(10, null, null);
         gProm.then(function(success) {
             $scope.posts = success;
         }, function(fail) {
@@ -158,17 +158,16 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
 
     $scope.loadMore = function() {
         console.log("LOADING MORE");
-        console.log($scope.posts[$scope.posts.length -1].id + 3);
-        
-        vmaPostService.getGroupPosts(1000, $scope.posts[$scope.posts.length -1].id + 3, null).then(
+        vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
             function(success) {
+                console.log(success);
                 $scope.posts = $scope.posts.concat(success);
                 console.log($scope.posts);
             }, function(fail) {
                 //console.log(fail);
             }
         );
-    }    
+    }
 
     $scope.carousel_images = [
         {id:'1', caption: "GROUP 1", image: "img/image13.png"},
@@ -655,7 +654,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 
     if($scope.id) {
         $scope.updatePosts = function() {
-            var gProm = vmaPostService.getGroupPosts(1000, null, $scope.id);
+            var gProm = vmaPostService.getGroupPosts(10, null, $scope.id);
             gProm.then(function(success) {
                 $scope.posts = success;
             }, function(fail) {
@@ -664,8 +663,8 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         }
         $scope.loadMore = function() {
             console.log("LOADING MORE");
-            console.log($scope.posts);
-            vmaPostService.getGroupPosts(1000, $scope.posts[$scope.posts.length -1].id + 3, $scope.id).then(
+            console.log($scope.posts[$scope.posts.length -1].id);
+            vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
             function(success) {
                 $scope.posts = $scope.posts.concat(success);
             }, function(fail) {
@@ -674,7 +673,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         }
     } else {
         $scope.updatePosts = function() {
-            var gProm = vmaPostService.getMyGroupPosts(1000, null);
+            var gProm = vmaPostService.getMyGroupPosts(10, null);
             gProm.then(function(success) {
                 $scope.posts = success;
             }, function(fail) {
@@ -683,7 +682,8 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         }
         $scope.loadMore = function() {
             console.log("LOADING MORE");
-            vmaPostService.getGroupPosts(1000, $scope.posts[$scope.posts.length -1].id + 3, null).then(
+            console.log($scope.posts[$scope.posts.length -1].id);
+            vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
             function(success) {
                 $scope.posts = $scope.posts.concat(success);
             }, function(fail) {
