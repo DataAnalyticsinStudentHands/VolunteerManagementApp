@@ -159,7 +159,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
     //Just localhost for devices to get to local server
-    //Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");
+    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");
     //Just localhost at UH for Carl's Laptop's local tomcat server
     //Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/");
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerAppBonnerBeta/");
