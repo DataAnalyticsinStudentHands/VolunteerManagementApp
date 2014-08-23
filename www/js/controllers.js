@@ -170,10 +170,11 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     }
 
     $scope.carousel_images = [
-        {id:'1', caption: "GROUP 1", image: "img/image13.png"},
-        {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
-        {id:'3', caption: "GROUP 3", image: "img/image13.png"},
-        {id:'6', caption: "GROUP 6", image: "img/image13.png"}
+        {id:'1', caption: "GROUP 1", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-08-13-at-11.39.43-PM.png"},
+        {id:'1', caption: "GROUP 1", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/bonner_leaders_program_logo_m.png"},
+        {id:'2', caption: "GROUP 2", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-01-21-at-6.45.43-PM.png"},
+        {id:'3', caption: "GROUP 3", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2014/02/bonstill6.jpg"},
+        {id:'6', caption: "GROUP 6", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-05-20-at-5.27.22-PM.png"}
     ];
 
     var slides = $scope.slides = [];
