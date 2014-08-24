@@ -396,9 +396,9 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 
     $scope.state = $state;
 
-    var updateGroups = $scope.updateGroups = function() {
-        vmaGroupService.getMetaGroups().then(function(success) { $scope.metaGroups = success; });
-        vmaGroupService.getMetaJoinedGroups().then(function(success) { $scope.metaJoinedGroups = success; });
+    var updateGroups = $scope.updateGroups = function(update) {
+        vmaGroupService.getMetaGroups(update).then(function(success) { $scope.metaGroups = success; });
+        vmaGroupService.getMetaJoinedGroups(update).then(function(success) { $scope.metaJoinedGroups = success; });
     }
 
     $timeout(function() { updateGroups(); }, 5);
@@ -433,7 +433,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
             var promise = vmaGroupService.addGroup($scope.newGroup);
             console.log($scope.newGroup);
             promise.then(function(success) {
-                window_scope.updateGroups();
+                window_scope.updateGroups(true);
                 $modalInstance.close();
                 ngNotify.set("Group created successfully!", 'success');
             }, function(fail) {
@@ -486,7 +486,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
         $scope.ok = function () {
             var promise = vmaGroupService.deleteGroup(deleteId);
             promise.then(function(success) {
-                window_scope.updateGroups();
+                window_scope.updateGroups(true);
                 ngNotify.set("Group deleted successfully!", 'success');
                 $modalInstance.close();
             }, function(fail) {
@@ -539,7 +539,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
             var promise = vmaGroupService.editGroup(editId, $scope.group);
             promise.then(function(success) {
                 ngNotify.set("Group edited successfully!", 'success');
-                window_scope.updateGroups();
+                window_scope.updateGroups(true);
                 console.log(success);
                 $modalInstance.close();
             }, function(fail) {
@@ -592,7 +592,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
             var promise = vmaGroupService.leaveGroupMember(deleteId, $scope.uid);
 
             promise.then(function(success) {
-                window_scope.updateGroups();
+                window_scope.updateGroups(true);
                 ngNotify.set("Group left successfully!", 'success');
                 console.log(success);
                 $modalInstance.close();
@@ -615,7 +615,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     $scope.joinGroup = function(id) {
         var jProm = vmaGroupService.joinGroup(id, $scope.uid);
         jProm.then(function(success) {
-            $scope.updateGroups();
+            $scope.updateGroups(t);
             ngNotify.set("Group joined successfully!", 'success');
         }, function(fail) {
             console.log(fail);
