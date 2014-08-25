@@ -179,10 +179,18 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
             $rootScope.uid = result.id.toString();
             $rootScope.uin = result.username.toString();
         }, function(error) {
-            if(error.status === 0) { // NO NETWORK CONNECTION
-                console.log("error-0");
-                ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
-            } else {
+            if(error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
+//                console.log("error-0");
+//                Restangular.allUrl('CHECKSITE', 'http://google.com').getList().then(
+//                    function(success) {
+//                        ngNotify.set("SERVER IS DOWN", {type : "error", sticky : true});
+//                    },
+//                    function(fail) {
+//                        ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
+//                    }
+//                );
+                ngNotify.set("INTERNET OR SERVER UNAVAILABLE", {type : "error", sticky : true});
+            } else { // LOG THEM OUT
                 Auth.clearCredentials();
                 console.log("not-authed");
                 if(authenticate) $state.go("login");

@@ -228,7 +228,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', '$uiViewScroll', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, $uiViewScroll) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify) {
         $scope.id = $stateParams.id;
         $scope.groupMSGs = [];
         $scope.updateMessages = function() {
@@ -1202,8 +1202,8 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService, ngNotify) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
-        if($scope.post.comments) { var count = $scope.post.comments.length; } else { var count = 0; }
-        vmaPostService.getPostView(10, null, post_id).then(function(success) { $scope.post = success; });
+        if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
+        vmaPostService.getPostView(count, null, post_id).then(function(success) { $scope.post = success; });
     }
     $scope.loadMore = function() {
         vmaCommentService.getPostComments(10, $scope.post.comments[$scope.post.comments.length -1].id, post_id).then(

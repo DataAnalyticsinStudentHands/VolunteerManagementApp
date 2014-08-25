@@ -10,10 +10,12 @@
     
     <icon src="icon.png"/>
     
-    <preference name="SplashScreen" value="splash" />
-    <preference name="SplashScreenDelay" value="3200" />
+    <preference name="SplashScreen"         value="splash" />
+    <preference name="SplashScreenDelay"    value="3200" />
     
-    <preference name="Orientation" value="default" />
+    <preference name="Orientation"          value="default" />
+    
+    <preference name="permissions"          value="none"/>
     
     <content src="index.html" />
     <access origin="*" />
