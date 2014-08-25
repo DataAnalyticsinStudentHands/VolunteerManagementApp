@@ -157,7 +157,7 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
     angular.extend($popoverProvider.defaults, { html: true });
 });
 
-volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService) {
+volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
     //Just localhost for devices to get to local server
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");
     //Just localhost at UH for Carl's Laptop's local tomcat server
@@ -181,6 +181,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
         }, function(error) {
             if(error.status === 0) { // NO NETWORK CONNECTION
                 console.log("error-0");
+                ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
             } else {
                 Auth.clearCredentials();
                 console.log("not-authed");

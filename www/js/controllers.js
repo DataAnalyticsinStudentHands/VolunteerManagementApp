@@ -232,7 +232,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         $scope.id = $stateParams.id;
         $scope.groupMSGs = [];
         $scope.updateMessages = function() {
-            var prom = vmaMessageService.getTaskMessages(null, null, $scope.id);
+            var prom = vmaMessageService.getTaskMessages(10, null, $scope.id);
             prom.then(function(success) {
                 $scope.groupMSGs = success;
                 $scope.scrollTo();
@@ -615,7 +615,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     $scope.joinGroup = function(id) {
         var jProm = vmaGroupService.joinGroup(id, $scope.uid);
         jProm.then(function(success) {
-            $scope.updateGroups(t);
+            $scope.updateGroups(true);
             ngNotify.set("Group joined successfully!", 'success');
         }, function(fail) {
             console.log(fail);

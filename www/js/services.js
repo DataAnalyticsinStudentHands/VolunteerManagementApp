@@ -73,7 +73,6 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
             function(update) {
                 if(update || ((!allGroups || !manGroups || !memGroups) && !updating)) {
-                    console.log("GROUPS UPDATED");
                     updating = true;
                     var gProm = Restangular.all("groups").one("byMembership").getList();
                     gProm.then(function(success) {
@@ -99,10 +98,8 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     promAllGroups = $q.all([gProm, gPromByMan, gPromMaster]).then(function() {updating = false;});
                     return promAllGroups;
                 } else if (updating){
-                    console.log("GROUPS !UPDATED");
                     return promAllGroups;
                 } else {
-                    console.log("GROUPS !!UPDATED");
                     var defer = $q.defer();
                     defer.resolve("DONE");
                     return defer.promise;
@@ -503,8 +500,8 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
     var metaPosts = [];
     var refresh = true;
     return {
+        //NOT USED
         updatePosts:
-            //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function() {
                 if(refresh) {
                     console.log("POSTS UPDATED");
@@ -530,6 +527,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return deferred.promise;                    
                 }
             },
+        //NOT USED
         getAllPosts: 
             function() {
                 return this.updatePosts().then(function(success) {
@@ -686,13 +684,11 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                 return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
                     allMessagesPlain = success;
-//                    console.log(allMessagesPlain);
                     var resultMessages = [];
                     success.forEach(function(message) {
                         message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
                         message.img = "img/temp_icon.png";
-//                        console.log(message);
                         resultMessages.push(message);
                     });
                     return resultMessages;
