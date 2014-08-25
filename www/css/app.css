@@ -703,6 +703,7 @@ overflow: auto;
     position:relative;
     bottom: 70px;
     left:85%;
+    z-index: 3;
 }
 
 
@@ -938,7 +939,7 @@ color:orange;
     position: relative;
     bottom: 80px;
     width: 100px;
-    left: 50%;
+    left: 68%;
 }
 
 

@@ -582,13 +582,13 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                 });
             },
         getPostView:
-            function(post_id) {
+            function(count, start, post_id) {
                 return  Restangular.all("posts").get(post_id).then(function(success) {
                     var post = success;
                     post.date =  new Date(post.creation_timestamp).toDateString() + " " + new Date(post.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                     vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                     vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
-                    vmaCommentService.getPostComments(null, null, post.id).then(function(success) { post.comments =success; });
+                    vmaCommentService.getPostComments(count, start, post.id).then(function(success) { post.comments =success; });
                     console.log(post);
                     return post;
                 });
