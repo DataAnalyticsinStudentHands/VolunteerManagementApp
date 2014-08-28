@@ -251,19 +251,23 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                 if(refresh) {
                     console.log("TASKS UPDATED");
                     var gProm = Restangular.all("tasks").one("byMembership").getList();
+                    
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
                         memTasks = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
+                    
                     var gPromByMan = Restangular.all("tasks").one("byManager").getList();
+                    
                     gPromByMan.then(function(success) {
                         success = Restangular.stripRestangular(success);
                         manTasks = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
+                    
                     var gPromMaster = Restangular.all("tasks").getList();
                     gPromMaster.then(function(success) {
                         success = Restangular.stripRestangular(success);
@@ -271,6 +275,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     }, function(fail) {
             //            console.log(fail);
                     });
+                    
                     return $q.all([gProm, gPromByMan, gPromMaster]);
                 } else {
                     var deferred = $q.defer();

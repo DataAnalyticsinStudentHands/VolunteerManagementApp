@@ -6,7 +6,11 @@
             <p ng-show="checkInTimeDisplay"> Checked in at: {{checkInTimeDisplay}}</p>
 <!--            <p ng-show="checkOutTimeDisplay"> Checked out at: {{checkOutTimeDisplay}}</p>-->
             <form ng-submit="ok()">
-                <input id="name" type="text" name="name" ng-model="$parent.entry.name" placeholder="Task Name" required/>
+<!--                <input id="name" type="text" name="name" ng-model="$parent.entry.name" placeholder="Task Name" required/>-->
+                <label class="control-label"><i class="fa fa-calendar"></i>Task Name</label><br>
+                <select ng-model="$parent.entry.name">
+                    <option ng-repeat="task in joinTasks">{{task.name}}</option>
+                </select>
                 <br/>
                 <label class="control-label"><i class="fa fa-calendar"></i> Start Time</label><br>
                 <div style="display: inline-block;">

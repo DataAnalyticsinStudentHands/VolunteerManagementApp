@@ -158,7 +158,7 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     $scope.updatePosts();
 
     $scope.loadMore = function() {
-        console.log("LOADING MORE");
+//        console.log("LOADING MORE");
         vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
             function(success) {
                 console.log(success);
@@ -663,8 +663,8 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             });
         }
         $scope.loadMore = function() {
-            console.log("LOADING MORE");
-            console.log($scope.posts[$scope.posts.length -1].id);
+//            console.log("LOADING MORE");
+//            console.log($scope.posts[$scope.posts.length -1].id);
             vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
             function(success) {
                 $scope.posts = $scope.posts.concat(success);
@@ -682,8 +682,8 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
             });
         }
         $scope.loadMore = function() {
-            console.log("LOADING MORE");
-            console.log($scope.posts[$scope.posts.length -1].id);
+//            console.log("LOADING MORE");
+//            console.log($scope.posts[$scope.posts.length -1].id);
             vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
             function(success) {
                 $scope.posts = $scope.posts.concat(success);
@@ -862,7 +862,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
 
     //VIEW POST
     $scope.viewPost = function(pid) {
-        console.log("viewing post");
+//        console.log("viewing post");
         snapRemote.getSnapper().then(function(snapper) {
             snapper.expand('right');
         });
@@ -877,7 +877,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
 
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasks = function() {
-        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success; console.log(success); });
+        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success;});
     }
     $scope.updateTasks();
 
@@ -1345,20 +1345,6 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_task', ['$scope
 
 vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify) {
     $scope.invites = [
-        {id:'1', group_name: "GROUP 1", icon: "img/temp_icon.png"},
-        {id:'2', group_name: "GROUP 2", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
-        {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
-        {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
-        {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
         {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
@@ -1370,7 +1356,7 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
     }
     $scope.updateTasks();
-    
+
     //LEAVING A TASK
     $scope.leaveTask = function(task_id) {
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid).then(function(success) {
@@ -1529,7 +1515,12 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
     
 }]);
 
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify) {
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService) {
+    $scope.updateTasks = function() {
+        vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
+    }
+    $scope.updateTasks();
+
     if(!$rootScope.entries)
     $rootScope.entries = [
         {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
@@ -1538,8 +1529,11 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
         {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
     ];
+
     $scope.entry = [];
+    
     $scope.ok = function() {
+        console.log($scope.entry.name);
         $rootScope.entries.unshift({title: $scope.entry.name, start: $scope.entry.startTime, end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
         $scope.entry = [];
     }
@@ -1568,11 +1562,10 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
 vmaControllerModule.controller('awards', function ($scope) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Grunt Badge", 42],
-        ["Other Badge", 35],
-        ["Other Badge", 32],
-        ["Other Badge", 12],
-        ["Other Badge", 21]
+        ["Creator", 42],
+        ["Leadership", 35],
+        ["Organizer", 32],
+        ["Grunt", 21]
     ];
     
     $scope.total_hours = 42 + 35 + 32 + 12 + 21;
@@ -1580,7 +1573,6 @@ vmaControllerModule.controller('awards', function ($scope) {
     $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
     $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
     $scope.badge4_percent = Math.round($scope.badges[3][1]/$scope.total_hours * 100);
-    $scope.badge5_percent = Math.round($scope.badges[4][1]/$scope.total_hours * 100);
     
     $scope.chartConfig = {
         options: {
@@ -1592,14 +1584,14 @@ vmaControllerModule.controller('awards', function ($scope) {
 
             },
             title: {
-                text: ''
+                text: 'Engagement Breakdown'
             },
             plotOptions: {
                 pie: {
                     dataLabels: {
-                        enabled: false
+                        enabled: true
                     },
-                    showInLegend: true
+                    showInLegend: false
                 }
             }
         },
