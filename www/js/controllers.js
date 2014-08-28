@@ -20,9 +20,9 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
                  $scope.loginResultPromise.then(function(result) {
                     $scope.loginResult = result;
                     $scope.loginMsg = "You have logged in successfully!";
+                    Auth.confirmCredentials();
                     $state.go("home.cfeed", {}, {reload: true});
                     ngNotify.set($scope.loginMsg, 'success');
-                    Auth.confirmCredentials();
                  }, function(error) {
                     $scope.loginMsg = "Incorrect username or password.";
                     ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});

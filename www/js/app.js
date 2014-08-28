@@ -196,6 +196,7 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
                 if(authenticate) $state.go("login");
             }
         });
+        console.log(Auth.hasCredentials());
         return Auth.hasCredentials();
     }
     
