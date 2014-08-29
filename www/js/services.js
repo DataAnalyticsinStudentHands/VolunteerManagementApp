@@ -188,8 +188,8 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                 });
             },
         getGroupMeta:
-            function(group_id) {
-                return this.updateGroups().then(function(success) {
+            function(group_id, update) {
+                return this.updateGroups(update).then(function(success) {
                     var group = $filter('getById')(allGroups, group_id);
                     if($filter('getById')(memGroups.concat(manGroups), group_id)) {
                         group.joined = true;
@@ -693,7 +693,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                     success.forEach(function(message) {
                         message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                         vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
-                        message.img = "img/temp_icon.png";
+                        message.img = "img/avatar.icon.png";
                         resultMessages.push(message);
                     });
                     return resultMessages;
@@ -733,5 +733,13 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
             function(mid) {
                 return Restangular.all("messages").all(mid).remove();
             },
+    }
+}]);
+
+vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUserService', function(Restangular, vmaTasksService, vmaUserService) {
+    return {
+        getHours: function() {
+            return "NO";
+        }
     }
 }]);

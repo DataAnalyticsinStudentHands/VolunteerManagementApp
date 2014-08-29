@@ -390,7 +390,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify, $rootScope) {
     //OPENS THE SNAPPER TO DISPLAY DETAILS
     $scope.displayDetail = function(click_id, detail_bool) {
-        console.log(detail_bool);
         $state.go('home.groupFeed.detail', {id: click_id, detail: detail_bool}, {reload: false});
         snapRemote.close();
     }
@@ -1417,16 +1416,16 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
 
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ngNotify', 'vmaGroupService', 'vmaTaskService', '$modal', function($scope, $state, $stateParams, ngNotify, vmaGroupService, vmaTaskService, $modal) {
     $scope.id = $stateParams.id;
-    $scope.update = function(){
-        vmaGroupService.getGroupMeta($scope.id).then(function(success) { $scope.group = success; });
+    $scope.update = function(update){
+        vmaGroupService.getGroupMeta($scope.id, update).then(function(success) { $scope.group = success; });
         vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
     }
-    $scope.update();
+    $scope.update(true);
     
     //JOINING A GROUP
     $scope.joinGroup = function() {
         vmaGroupService.joinGroup($scope.id, $scope.uid).then(function(success) {
-            $scope.update();
+            $scope.update(true);
             ngNotify.set("Group joined successfully", "success");
         }, function(fail) {
             ngNotify.set(fail.data.message, 'error');
@@ -1435,7 +1434,7 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
     //LEAVE A GROUP
     $scope.leaveGroup = function() {
         vmaGroupService.leaveGroupMember($scope.id, $scope.uid).then(function(success) {
-            $scope.update();
+            $scope.update(true);
             ngNotify.set("Group left successfully", "success");
         }, function(fail) {
             ngNotify.set(fail.data.message, 'error');
@@ -1515,7 +1514,7 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
     
 }]);
 
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService) {
+vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.updateTasks = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
     }
