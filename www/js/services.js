@@ -409,9 +409,9 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         } else {
                             result.forEach(function(obj) {
                                 // SETTING PERMISSIONS METADATA
-                                obj.isMember = false;
-                                obj.isManager = false;
-                                obj.isTask = false;
+//                                obj.isMember = false;
+//                                obj.isManager = false;
+//                                obj.isTask = false;
                                 obj.isGroupManager = true;
                             });
                             return result;
@@ -740,6 +740,15 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
     return {
         getHours: function() {
             return "NO";
+        },
+        addHours: function(hour) {
+            return Restangular.all("hours").post(hour);
+        },
+        editHours: function(id, hour) {
+            return Restangular.all("hours").all(id).post(hour);
+        },
+        deleteHours: function(id) {
+            return Restangular.all("hours").all(id).remove();
         }
     }
 }]);
