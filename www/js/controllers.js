@@ -1517,25 +1517,21 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
 vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getHours().then(function(success) { $scope.entries = success;});
+        vmaHourService.getMyHours().then(function(success) { $scope.entries = success;});
     }
     $scope.update();
-
-    if(!$rootScope.entries)
-    $rootScope.entries = [
-        {title: "Name of Completed Task 1", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "4", badge_type: "1", approved: true},    
-        {title: "Name of Completed Task 2", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "2", badge_type: "3", approved: false},
-        {title: "Name of Completed Task 3", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "1", badge_type: "1", approved: false},
-        {title: "Name of Completed Task 4", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "6", badge_type: "2", approved: true},
-        {title: "Name of Completed Task 6", start: "6/21 4:22PM", end: "6/21 7:22PM", duration: "5", badge_type: "4", approved: false}
-    ];
 
     $scope.entry = [];
     
     $scope.ok = function() {
         $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
         console.log($scope.hourEntry);
-        vmaHourService.addHours($scope.hourEntry).then(function(success) { $scope.update() });
+        vmaHourService.addHours($scope.hourEntry).then(function(success) {
+            $scope.update();
+            ngNotify.set("Successfully submitted hour entry!", "success");
+        },function(fail){
+            ngNotify.set("Error :(", "error");
+        });
         $scope.entry = [];
     }
     
