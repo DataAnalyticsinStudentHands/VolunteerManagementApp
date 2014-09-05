@@ -738,17 +738,21 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
 
 vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUserService', function(Restangular, vmaTasksService, vmaUserService) {
     return {
-        getHours: function() {
-            return "NO";
-        },
-        addHours: function(hour) {
-            return Restangular.all("hours").post(hour);
-        },
-        editHours: function(id, hour) {
-            return Restangular.all("hours").all(id).post(hour);
-        },
-        deleteHours: function(id) {
-            return Restangular.all("hours").all(id).remove();
-        }
+        getHours:
+            function(numHours, startindex, gid, pending) {
+                return Restangular.all("hours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending});
+            },
+        addHours:
+            function(hour) {
+                return Restangular.all("hours").post(hour);
+            },
+        editHours:
+            function(id, hour) {
+                return Restangular.all("hours").all(id).post(hour);
+            },
+        deleteHours:
+            function(id) {
+                return Restangular.all("hours").all(id).remove();
+            }
     }
 }]);

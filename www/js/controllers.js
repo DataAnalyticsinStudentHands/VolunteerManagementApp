@@ -1515,10 +1515,11 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
 }]);
 
 vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
-    $scope.updateTasks = function() {
+    $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
+        vmaHourService.getHours().then(function(success) { $scope.entries = success;});
     }
-    $scope.updateTasks();
+    $scope.update();
 
     if(!$rootScope.entries)
     $rootScope.entries = [
@@ -1532,8 +1533,9 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
     $scope.entry = [];
     
     $scope.ok = function() {
-        console.log($scope.entry.name);
-        $rootScope.entries.unshift({title: $scope.entry.name, start: $scope.entry.startTime, end: "6/21 7:22PM", duration: $scope.entry.duration, approved: false});
+        $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
+        console.log($scope.hourEntry);
+        vmaHourService.addHours($scope.hourEntry).then(function(success) { $scope.update() });
         $scope.entry = [];
     }
     
@@ -1550,7 +1552,7 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         $scope.checkOutTime = new Date();
         $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         console.log($scope.checkOutTime);
-        $scope.entry.duration = ($scope.checkOutTime - $scope.entry.inTime)/1000/60;
+        $scope.entry.duration = Math.ceil(($scope.checkOutTime - $scope.entry.inTime)/1000/60);
         console.log($scope.entry.inTime);
         console.log($scope.checkOutTime);
         console.log($scope.checkOutTime - $scope.inTime);

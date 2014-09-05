@@ -10,7 +10,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'vmaDirectiveModule',
     'vmaFilterModule',
     'restangular',
-//    'ngTouch',
+    'ngTouch',
     'ngNotify',
     'headroom',
     'snap',
@@ -158,9 +158,9 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
 });
 
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCALHOST
+//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCAL HOST
     Restangular.setBaseUrl("http://172.25.71.247:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
-//    Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/"); //CARL'S LAPTOP
+//    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
 //    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
     
     //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
