@@ -1554,6 +1554,60 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
     }
+    
+    
+    //OPENING THE MODAL TO DELETE A MESSAGE
+    $scope.delete = function(h_id) {
+        $scope.openDelete(h_id);
+    }
+
+    $scope.openDelete = function (id) {
+        console.log(id);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteHour.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              deleteId: function() {
+                  return id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+//          $scope.selected = selectedItem;
+        }, function () {
+//          What to do on dismiss
+//          $log.info('Modal dismissed at: ' + new Date());
+        });
+};
+
+    //Controller for the Modal PopUp Delete
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
+        $scope.ok = function () {
+            var promise = vmaHourService.deleteHour(deleteId);
+            promise.then(function(success) {
+                window_scope.update();
+                ngNotify.set("Hour entry deleted successfully!", 'success');
+                $modalInstance.close();
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
 }]);
 
 vmaControllerModule.controller('awards', function ($scope) {

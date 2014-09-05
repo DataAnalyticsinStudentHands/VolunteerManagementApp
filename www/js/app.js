@@ -1,8 +1,7 @@
 'use strict';
 
-/* App Module */
-
-var volunteerManagementApp = angular.module('volunteerManagementApp', [
+/* VMA App Module */
+angular.module('volunteerManagementApp', [
     'ui.router',
     'vmaControllerModule',
     'databaseServicesModule',
@@ -27,9 +26,9 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'mgcrea.ngStrap.timepicker',
     'highcharts-ng',
     'adaptive.googlemaps'
-]);
+]).
 
-volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -155,13 +154,13 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
     angular.extend($popoverProvider.defaults, { html: true });
-});
+}).
 
-volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
+run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCAL HOST
-    Restangular.setBaseUrl("http://172.25.71.247:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
+//    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
 //    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
-//    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
     
     //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
     $rootScope.Restangular = function() {

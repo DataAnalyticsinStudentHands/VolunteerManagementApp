@@ -750,7 +750,7 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
             function(id, hour) {
                 return Restangular.all("hours").all(id).post(hour);
             },
-        deleteHours:
+        deleteHour:
             function(id) {
                 return Restangular.all("hours").all(id).remove();
             }
