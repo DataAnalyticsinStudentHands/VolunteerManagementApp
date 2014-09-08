@@ -704,10 +704,24 @@ left: 60px;
     border-radius: 4px;
 }
 
+#bs_hour{
+    position:relative;
+    bottom: 40px;
+    right: -85%;
+    z-index: 3;
+}
+#bs_mod{
+    position:relative;
+    bottom: 40px;
+    right: -75%;
+    z-index: 3;
+}
+
 #bs{
     position:relative;
     bottom: 70px;
     left:85%;
+    z-index: 3;
 }
 
 
@@ -946,8 +960,12 @@ color:red;
     position: relative;
     bottom: 80px;
     width: 100px;
+<<<<<<< HEAD
     color: #007;
     left: 50%;
+=======
+    left: 68%;
+>>>>>>> 2769cb26f2e659ba5ce8c68aba3906d9da5ede08
 }
 
 

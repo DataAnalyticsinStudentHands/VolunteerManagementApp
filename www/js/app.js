@@ -1,8 +1,7 @@
 'use strict';
 
-/* App Module */
-
-var volunteerManagementApp = angular.module('volunteerManagementApp', [
+/* VMA App Module */
+angular.module('volunteerManagementApp', [
     'ui.router',
     'vmaControllerModule',
     'databaseServicesModule',
@@ -10,7 +9,7 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'vmaDirectiveModule',
     'vmaFilterModule',
     'restangular',
-//    'ngTouch',
+    'ngTouch',
     'ngNotify',
     'headroom',
     'snap',
@@ -27,9 +26,9 @@ var volunteerManagementApp = angular.module('volunteerManagementApp', [
     'mgcrea.ngStrap.timepicker',
     'highcharts-ng',
     'adaptive.googlemaps'
-]);
+]).
 
-volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -132,6 +131,13 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
           },
           authenticate: true
       }).
+      state('home.hours_mod', {
+          url: "/hours_mod",
+          views: {
+            "app": { templateUrl: "partials/hours.moderation.html", controller: "hours.moderation"}
+          },
+          authenticate: true
+      }).
       state('home.settings', {
           url: "/settings",
           views: {
@@ -155,14 +161,22 @@ volunteerManagementApp.config(function($stateProvider, $urlRouterProvider, $comp
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
     angular.extend($popoverProvider.defaults, { html: true });
-});
+}).
 
+<<<<<<< HEAD
 volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
     //Just localhost for devices to get to local server
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");
     //Just localhost at UH for Carl's Laptop's local tomcat server
     //Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/");
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerAppBonnerBeta/");
+=======
+run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
+//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCAL HOST
+//    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
+//    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
+>>>>>>> 2769cb26f2e659ba5ce8c68aba3906d9da5ede08
     
     //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
     $rootScope.Restangular = function() {
@@ -179,15 +193,24 @@ volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state',
             $rootScope.uid = result.id.toString();
             $rootScope.uin = result.username.toString();
         }, function(error) {
-            if(error.status === 0) { // NO NETWORK CONNECTION
-                console.log("error-0");
-                ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
-            } else {
+            if(error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
+//                console.log("error-0");
+//                Restangular.allUrl('CHECKSITE', 'http://google.com').getList().then(
+//                    function(success) {
+//                        ngNotify.set("SERVER IS DOWN", {type : "error", sticky : true});
+//                    },
+//                    function(fail) {
+//                        ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
+//                    }
+//                );
+                ngNotify.set("INTERNET OR SERVER UNAVAILABLE", {type : "error", sticky : true});
+            } else { // LOG THEM OUT
                 Auth.clearCredentials();
                 console.log("not-authed");
                 if(authenticate) $state.go("login");
             }
         });
+//        console.log(Auth.hasCredentials());
         return Auth.hasCredentials();
     }
     
