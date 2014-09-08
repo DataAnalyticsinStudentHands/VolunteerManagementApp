@@ -131,6 +131,13 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
+      state('home.hours_mod', {
+          url: "/hours_mod",
+          views: {
+            "app": { templateUrl: "partials/hours.moderation.html", controller: "hours.moderation"}
+          },
+          authenticate: true
+      }).
       state('home.settings', {
           url: "/settings",
           views: {

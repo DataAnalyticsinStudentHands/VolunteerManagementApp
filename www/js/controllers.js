@@ -1517,17 +1517,19 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getMyHours(10).then(function(success) { $scope.entries = success;});
+        vmaHourService.getHours(10).then(function(success) { $scope.entries = success;});
     }
     $scope.update();
 
     $scope.entry = [];
 
     $scope.approve = function(h_id) {
+//        console.log("attempt approve");
         vmaHourService.approveHour(h_id);
     }
 
     $scope.deny = function(h_id) {
+//        console.log("attempt deny");
         vmaHourService.denyHour(h_id);
     }
 }]);

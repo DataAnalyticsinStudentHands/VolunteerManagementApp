@@ -699,6 +699,19 @@ overflow: auto;
     border-radius: 4px;
 }
 
+#bs_hour{
+    position:relative;
+    bottom: 40px;
+    right: -85%;
+    z-index: 3;
+}
+#bs_mod{
+    position:relative;
+    bottom: 40px;
+    right: -75%;
+    z-index: 3;
+}
+
 #bs{
     position:relative;
     bottom: 70px;

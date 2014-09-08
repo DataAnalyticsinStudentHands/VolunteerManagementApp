@@ -742,6 +742,10 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
             function(numHours, startindex, gid, pending) {
                 return Restangular.all("hours").all("myHours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending});
             },
+        getHours:
+            function(numHours, startindex, gid, pending) {
+                return Restangular.all("hours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending});
+            },
         addHours:
             function(hour) {
                 return Restangular.all("hours").post(hour);
