@@ -753,6 +753,14 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
         deleteHour:
             function(id) {
                 return Restangular.all("hours").all(id).remove();
+            },
+        approveHour:
+            function(id) {
+//                return Restangular.all("hours").all(id).remove();
+            },
+        denyHour:
+            function(id) {
+//                return Restangular.all("hours").all(id).remove();
             }
     }
 }]);

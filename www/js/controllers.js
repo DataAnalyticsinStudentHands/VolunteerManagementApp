@@ -1514,10 +1514,28 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
     
 }]);
 
+vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
+    $scope.update = function() {
+        vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
+        vmaHourService.getMyHours(10).then(function(success) { $scope.entries = success;});
+    }
+    $scope.update();
+
+    $scope.entry = [];
+
+    $scope.approve = function(h_id) {
+        vmaHourService.approveHour(h_id);
+    }
+
+    $scope.deny = function(h_id) {
+        vmaHourService.denyHour(h_id);
+    }
+}]);
+
 vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getMyHours().then(function(success) { $scope.entries = success;});
+        vmaHourService.getMyHours(10).then(function(success) { $scope.entries = success;});
     }
     $scope.update();
 
@@ -1554,7 +1572,6 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$m
         console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
     }
-    
     
     //OPENING THE MODAL TO DELETE A MESSAGE
     $scope.delete = function(h_id) {
