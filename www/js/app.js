@@ -85,7 +85,8 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           url: ":id/:detail",
           views: {
             "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'},
-            "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'}
+            "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'},
+            "right_pane@home.groupFeed": {templateUrl: "partials/groupFeed.right_pane.html", controller: 'groupFeed.right_pane'}
           },
           authenticate: true
       }).
@@ -194,7 +195,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 //                        ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
 //                    }
 //                );
-                ngNotify.set("INTERNET OR SERVER UNAVAILABLE", {type : "error", sticky : true});
+                ngNotify.set("Internet or Server Unavailable", {type : "error", sticky : true});
             } else { // LOG THEM OUT
                 Auth.clearCredentials();
                 console.log("not-authed");
