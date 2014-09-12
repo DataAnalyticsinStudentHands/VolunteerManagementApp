@@ -163,20 +163,12 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
     angular.extend($popoverProvider.defaults, { html: true });
 }).
 
-<<<<<<< HEAD
-volunteerManagementApp.run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-    //Just localhost for devices to get to local server
-//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");
-    //Just localhost at UH for Carl's Laptop's local tomcat server
-    //Restangular.setBaseUrl("http://172.25.240.82:8080/VolunteerApp/");
-    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerAppBonnerBeta/");
-=======
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCAL HOST
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
 //    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
->>>>>>> 2769cb26f2e659ba5ce8c68aba3906d9da5ede08
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerAppBonnerBeta/");
     
     //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
     $rootScope.Restangular = function() {
