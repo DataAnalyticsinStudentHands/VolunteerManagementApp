@@ -45,6 +45,10 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
                     return $filter('getById')(allUsers, user_id);
                 });
             },
+        getMyRole:
+            function() {
+                return Restangular.all("users").all("myRole").getList().then(function(success) { return success[0]; });
+            },
         addUser:
             function(user) {
                 return Restangular.all("users").post(user);

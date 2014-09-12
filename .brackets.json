@@ -3,6 +3,9 @@
         "D:/SoA/VMA/VMA_DEV/plugins/org.apache.cordova.device/src/ubuntu/device.js",
         "moment.js",
         "D:/SoA/VMA/VMA_DEV/plugins/org.apache.cordova.device/src/windows8/DeviceProxy.js",
-        "D:/SoA/VMA/VMA_DEV/plugins/org.apache.cordova.splashscreen/www/windows8/SplashScreenProxy.js"
+        "D:/SoA/VMA/VMA_DEV/plugins/org.apache.cordova.splashscreen/www/windows8/SplashScreenProxy.js",
+        "D:/SoA/VMA/VMA_DEV/test/karma.conf.js",
+        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular/angular.min.js",
+        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
     ]
 }

@@ -169,7 +169,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
 //    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
-    
+        
     //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
     $rootScope.Restangular = function() {
         return Restangular;
@@ -202,7 +202,8 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
                 if(authenticate) $state.go("login");
             }
         });
-//        console.log(Auth.hasCredentials());
+        
+        vmaUserService.getMyRole().then(function(success){ $rootScope.role = success; $rootScope.isMod = (success == "ROLE_MODERATOR"); });
         return Auth.hasCredentials();
     }
     
