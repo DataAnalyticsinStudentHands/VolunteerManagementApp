@@ -6,6 +6,7 @@
         "D:/SoA/VMA/VMA_DEV/plugins/org.apache.cordova.splashscreen/www/windows8/SplashScreenProxy.js",
         "D:/SoA/VMA/VMA_DEV/test/karma.conf.js",
         "D:/SoA/VMA/VMA_DEV/www/bower_components/angular/angular.min.js",
-        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-snap/angular-snap.js"
     ]
 }
