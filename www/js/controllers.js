@@ -1756,3 +1756,8 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.state = $state;
 }]);
+
+vmaControllerModule.controller('rootCtrl', ['$scope', '$state', function($scope, $state) {
+    $scope.state = $state;
+    $scope.title = "VMA APP";
+}]);

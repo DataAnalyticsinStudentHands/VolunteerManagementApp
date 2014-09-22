@@ -7,6 +7,10 @@
         "D:/SoA/VMA/VMA_DEV/test/karma.conf.js",
         "D:/SoA/VMA/VMA_DEV/www/bower_components/angular/angular.min.js",
         "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-snap/angular-snap.js"
+        "D:/SoA/VMA/VMA_DEV/www/bower_components/angular-snap/angular-snap.js",
+        "D:/SoA/VMA/VMA_IONIC/plugins/org.apache.cordova.network-information/www/network.js",
+        "D:/SoA/VMA/VMA_IONIC/www/bower_components/ng-notify/src/scripts/ng-notify.js",
+        "D:/SoA/VMA/VMA_IONIC/Gruntfile.js",
+        "D:/SoA/VMA/VMA_IONIC/www/modules/sha512.js"
     ]
 }
