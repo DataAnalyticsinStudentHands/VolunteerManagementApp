@@ -63,21 +63,21 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.groupMessages', {
           url: "/groupMessages",
           views: {
-            "app-nowrap": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
+            "app@home": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
           },
           authenticate: true
       }).
       state('home.groupMessages.message', {
           url: ":id",
           views: {
-            "app-snap-msg": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
+            "app@home": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
           },
           authenticate: true
       }).
       state('home.groupFeed', {
           url: "/groupFeed",
           views: {
-            "app-nowrap": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'}
+            "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'}
           },
           authenticate: true
       }).
