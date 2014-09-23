@@ -1,10 +1,10 @@
 <ion-view title="Group Messages">
-    <div id="snap">
-        <div id="message" ng-repeat="tasks in joinTasks">
-            <a ng-click="displayMessages(tasks.id)">
+    <div class="list">
+<!--        <div id="message" >-->
+            <a class="item item-avatar" ng-repeat="tasks in joinTasks" ng-click="displayMessages(tasks.id)">
                 <div><img id="gmessageicon" src="img/group_feed_small.icon.png" width="20%"/></div>
                 <div id="groupmsg"> {{tasks.name}} </div>
             </a>
-        </div>
+<!--        </div>-->
     </div>
 </ion-view>
