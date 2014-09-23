@@ -1,5 +1,5 @@
 <tabset>
-    <tab heading="Submit" style="width:50%; text-align: center;">
+    <tab heading="New Hour" style="width:50%; text-align: center;">
         <div id="submit_hours">
             <button ng-click="checkIn()" type="button">Check in!</button>
             <button ng-click="checkOut()" type="button">Check out!</button>
@@ -25,7 +25,7 @@
             </form>
         </div>
     </tab>
-    <tab heading="Record" style="width:50%; text-align: center;">
+    <tab heading="My Hours" style="width:50%; text-align: center;">
         <div id="entry" ng-repeat="entry in entries">
             <div> <!-- Link this to modal window from in depth -->
                 <div> {{entry.title}} </div>

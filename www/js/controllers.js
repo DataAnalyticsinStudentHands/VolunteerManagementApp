@@ -229,8 +229,13 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, vmaTaskService) {
         $scope.id = $stateParams.id;
+        vmaTaskService.getTask($scope.id).then(
+            function(success) {
+                $scope.task = success;
+            }
+        );
         $scope.groupMSGs = [];
         $scope.updateMessages = function() {
             var prom = vmaMessageService.getTaskMessages(10, null, $scope.id);
