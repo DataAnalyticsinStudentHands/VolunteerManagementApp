@@ -1673,7 +1673,7 @@ vmaControllerModule.controller('awards', function ($scope) {
 
             },
             title: {
-                text: 'Engagement Breakdown'
+                text: ''
             },
             plotOptions: {
                 pie: {
