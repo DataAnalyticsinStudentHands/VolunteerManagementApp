@@ -1,6 +1,4 @@
-<div id="snap">
-    <snap-drawers>
-        <div snap-drawer id="snap_drawer">
+<!--
             <tabset>
                 <tab heading="Groups" style="width:50%; text-align: center;">
                     <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
@@ -17,7 +15,7 @@
                                 <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
                                 <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
                                 <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-<!--                                <li class="divider"></li>-->
+                                <li class="divider"></li>
                                 <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
                             </ul>
                         </div>
@@ -48,11 +46,8 @@
                 </tab>
             </tabset>
         </div>
-        <div snap-drawer="right" id="snap_drawer-right">
-            <div ui-view="right_pane"> There's nothing here for the time being. </div>
-        </div>
-    </snap-drawers>
-    <snap-content id="snap_page" snap-options="settings">
+-->
+<!--
         <tabset ng-show="state.includes('home.groupFeed.detail')">
             <tab heading="Posts" active="pActiv" id="groupfeed_post" style="width:50%; text-align: center;">
                 <div ui-view="post">Click on a Effort Above to View Posts Here</div>
@@ -61,18 +56,29 @@
                 <div ui-view="task">Tasks from group will be shown here</div>
             </tab>
         </tabset>
-        <div ng-hide="state.includes('home.groupFeed.detail')" ng-controller="groupFeed.post">
-            <br/>
-            <br/>
-            <div id="post" ng-repeat="post in posts">    
-                <a ui-sref="home.group({id:{{post.id}}})">
-                    <div id="author"> {{post.user.username}} > {{post.group.name}}</div>
-                    <div id="boxicon"><img src="img/effort_task.icon.png" width="15%" /></div>
-                    <div id="contentbox"> {{post.content}} </div>
-                    <div id="likeicon"> {{post.time}} </div>
+-->
+<ion-view title="Group Feed">
+    <div ng-hide="state.includes('home.groupFeed.detail')" ng-controller="groupFeed.post">
+        <div class="list card" ng-repeat="post in posts">
+            <div ui-sref="home.group({id:{{post.id}}})" class="item item-avatar">
+                <div><img src="img/effort_task.icon.png" width="15%" /></div>
+                <h2>{{post.user.username}} > {{post.group.name}}</h2>
+                <p>{{post.time}}</p>
+            </div>
+            <div class="item item-body">
+                <p>{{post.content}}</p>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" href="#">
+                    <i class="icon ion-chatbox"></i>
+                    Comment
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    View Group
                 </a>
             </div>
-            <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
         </div>
-    </snap-content>
-</div>
+        <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
+    </div>
+</ion-view>

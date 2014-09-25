@@ -81,33 +81,31 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
-      state('home.groupFeed.detail', {
-          url: ":id/:detail",
+      state('home.myGroups', {
+          url: "/myGroups",
           views: {
-            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'},
-            "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'},
-            "right_pane@home.groupFeed": {templateUrl: "partials/groupFeed.right_pane.html", controller: 'groupFeed.right_pane'}
-          },
-          authenticate: true
-      }).
-      state('home.groupFeed.detail.right_pane_task', {
-          url: "/task/:task",
-          views: {
-            "right_pane@home.groupFeed": {templateUrl: "partials/viewTask.html", controller: 'home.groupFeed.detail.right_pane_task'}
-          },
-          authenticate: true
-      }).
-      state('home.groupFeed.detail.right_pane_post', {
-          url: "/post/:post_id",
-          views: {
-            "right_pane@home.groupFeed": {templateUrl: "partials/viewPost.html", controller: 'home.groupFeed.detail.right_pane_post'}
+            "app": { templateUrl: "partials/myGroups.html", controller: 'groupFeed'}
           },
           authenticate: true
       }).
       state('home.group', {
-          url: "/group:id",
+          url: "/group/:id",
           views: {
             "app": { templateUrl: "partials/efforts.group.html", controller: 'group'}
+          },
+          authenticate: true
+      }).
+      state('home.group.posts', {
+          url: "/posts",
+          views: {
+            "app@home": { templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
+          },
+          authenticate: true
+      }).
+      state('home.group.tasks', {
+          url: "/tasks",
+          views: {
+            "app@home": { templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'}
           },
           authenticate: true
       }).
@@ -170,7 +168,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 //    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
     Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
         
-    //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
+    //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
         return Restangular;
     }

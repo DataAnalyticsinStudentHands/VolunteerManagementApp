@@ -13,24 +13,16 @@
 -->
 
 
-<div ng-repeat="post in posts">    
-    <div class="list card" ui-sref="home.group({id:{{post.group_id}}})">
-        <div class="item item-avatar">
-            <img src="img/effort_task.icon.png" width="15%" />
-            <h2>{{post.user.username}} > {{post.group.name}}</h2>
-            <p>{{post.time}}</p>
-        </div>
-        <div class="item item-body">
-            <p>{{post.content}}</p>
-        </div>
-        
+<div class="list card" ng-repeat="post in posts" ui-sref="home.group({id:{{post.group_id}}})">
+    <div class="item item-avatar">
+        <img src="img/effort_task.icon.png" width="15%" />
+        <h2>{{post.user.username}} > {{post.group.name}}</h2>
+        <p>{{post.time}}</p>
+    </div>
+    <div class="item item-body">
+        <p>{{post.content}}</p>
+    </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
-<!--
-        <a class="tab-item" href="#">
-            <i class="icon ion-thumbsup"></i>
-            Like
-        </a>
--->
         <a class="tab-item" href="#">
             <i class="icon ion-chatbox"></i>
             Comment
@@ -40,13 +32,9 @@
             View Group
         </a>
     </div>
-    </div>
 </div>
 
 <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
     
     
 </ion-view>
-<p>
-    
-</p>

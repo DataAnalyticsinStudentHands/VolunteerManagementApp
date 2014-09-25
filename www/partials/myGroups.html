@@ -1,0 +1,79 @@
+<ion-view title="My Groups">
+<tabset>
+    <tab heading="Groups" style="width:50%; text-align: center;">
+        <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
+        <div class="list card" ng-repeat="group in metaJoinedGroups">
+            <div class="item item-avatar">
+                <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+                <h2> {{group.name}} </h2>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" ui-sref="home.group.posts({id: group.id})">
+                    <i class="icon ion-chatbox"></i>
+                    View Posts
+                </a>
+                <a class="tab-item" ui-sref="home.group.tasks({id: group.id})">
+                    <i class="icon ion-share"></i>
+                    View Tasks
+                </a>
+            </div>
+        </div>
+<!--
+            <div id="bs" class="btn-group" dropdown>
+                <button type="button" class="btn dropdown-toggle">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
+                    <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
+                    <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+                </ul>
+            </div>
+-->
+    </tab>
+    <tab heading="Search" style="width:50%; text-align: center;">
+        <input id="search_gf" ng-model="query" placeholder="Search">
+        <ion-list class="list" ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp"  show-delete="false" show-reorder="false" can-swipe="true">
+<!--            <a ng-click="displayDetail(group.id, false)">-->
+            <ion-item class="item"> 
+<!--                 item-thumbnail-left-->
+<!--                <img src="img/group_feed.icon.png"/>-->
+                <h2> {{group.name}} </h2>
+<!--                <p>&nbsp;</p>-->
+                <ion-option-button class="button-positive" ng-click="share(item)">
+                  Join
+                </ion-option-button>
+            </ion-item>
+<!--            </a>-->
+<!--
+            <div id="bs" class="btn-group" dropdown>
+                <button type="button" class="btn dropdown-toggle">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
+                    <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
+                    <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                    <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                    <li><a ng-show="group.isGroup" ng-click="joinGroup(group.id)">Join Group</a></li>
+                </ul>
+            </div>
+-->
+        </ion-list>
+    </tab>
+</tabset>
+</ion-view>
+<!--
+        <tabset ng-show="state.includes('home.groupFeed.detail')">
+            <tab heading="Posts" active="pActiv" id="groupfeed_post" style="width:50%; text-align: center;">
+                <div ui-view="post">Click on a Effort Above to View Posts Here</div>
+            </tab>
+            <tab heading="Tasks" active="tActiv" id="groupfeed_tasks" style="width:50%; text-align: center;">
+                <div ui-view="task">Tasks from group will be shown here</div>
+            </tab>
+        </tabset>
+-->
