@@ -1,14 +1,14 @@
 <ion-view title="Tasks">
-<div id="scrollable_g">
-    <button ng-show="{{detail}}" class="btn btn-default" ng-click="addTask()">Add Task</button>    
-    <div id="groupPost" ng-repeat="task in metaTasks">
-        <div ng-click="viewTask(task.id)">
-            <div><img src="img/avatar.icon.png" width="60" height="50"/></div>
-            <div id="t_t"> {{task.name}} </div>
+<button class="btn btn-default" ng-click="addTask()">Add Task</button>
+<div class="list">
+    <div class="item item-avatar" ng-repeat="task in metaTasks" ng-click="viewTask(task.id)">
+            <img src="img/avatar.icon.png" width="60" height="50"/>
+            <h2> {{task.name}} </h2>
+<!--
             <div id="t" ng-show="task.datetime"> {{task.datetime}} </div>
             <div id="t" ng-show="task.location"> {{task.location}} </div>
             <div id="t" ng-show="task.duration"> {{task.duration}} Hours </div>
-        </div>
+-->
         <div ng-show="{{detail}}" id="bs" class="btn-group" dropdown>
             <button type="button" class="btn dropdown-toggle">
                 <span class="caret"></span>

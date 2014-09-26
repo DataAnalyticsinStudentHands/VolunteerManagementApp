@@ -1188,10 +1188,7 @@ vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$statePar
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
         $scope.task = vmaTaskService.getTaskView(click_id);
-        snapRemote.getSnapper().then(function(snapper) {
-            snapper.expand('right');
-        });
-        $state.go("home.groupFeed.detail.right_pane_task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
+        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
     }
 
     //JOINING A TASK
@@ -1347,7 +1344,7 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
     };
 }]);
 
-vmaControllerModule.controller('home.groupFeed.detail.right_pane_task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
     console.log(JSON.parse($stateParams.task));
     $scope.task = JSON.parse($stateParams.task);
 //    $scope.task = task;
