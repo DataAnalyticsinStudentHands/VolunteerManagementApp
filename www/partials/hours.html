@@ -27,12 +27,13 @@
         </div>
     </tab>
     <tab heading="My Hours" style="width:50%; text-align: center;">
-        <div id="entry" ng-repeat="entry in entries">
-            <div> <!-- Link this to modal window from in depth -->
-                <div> {{entry.title}} </div>
-                <div ng-show={{entry.duration}}> {{entry.duration}} Minutes </div>
-                <div id="approve" ng-show={{entry.approved}}><img src="img/check.png" width="80%" height="80%"></div>
-                <div id="pend" ng-show=!{{entry.approved}}>Pending...</div>
+        <div class="list">
+            <div class="item" ng-repeat="entry in entries">
+                <h2> {{entry.title}} </h2>
+                <p ng-show={{entry.duration}}> {{entry.duration}} Minutes </p>
+                <p id="approve" ng-show={{entry.approved}}><img src="img/check.png" width="80%" height="80%"></p>
+                <p id="pend" ng-show=!{{entry.approved}}>Pending...</p>
+<!--
                 <div id="bs_hour" class="btn-group" dropdown>
                     <button type="button" class="btn dropdown-toggle">
                         <span class="caret"></span>
@@ -41,6 +42,7 @@
                         <li><a ng-show="!{{entry.approved}}" ng-click="delete(entry.id)">Delete</a></li>
                     </ul>
                 </div>
+-->
             </div>
         </div>
     </tab>

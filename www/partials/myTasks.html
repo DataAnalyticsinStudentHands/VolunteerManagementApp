@@ -1,9 +1,11 @@
 <ion-view title="My Tasks">
-<div class="list" ng-repeat="task in joinTasks">
-    <div class="item item-avatar" ng-click="viewTask(task.id)">
-        <img src="img/effort_group.icon.png" width="70" height="50"/>
-        <h2>{{task.name}}</h2>
+    <div class="list">
+        <div class="item item-avatar" ng-repeat="task in joinTasks" ng-click="viewTask(task.id)">
+            <img src="img/effort_group.icon.png"/>
+            <h2>{{task.name}}</h2>
+        </div>
     </div>
+</ion-view>
 <!--
     <div id="bs" class="btn-group" dropdown>
         <button type="button" class="btn dropdown-toggle">
@@ -14,5 +16,3 @@
         </ul>
     </div>
 -->
-</div>
-</ion-view>
