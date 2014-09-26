@@ -1,11 +1,4 @@
-
-
-
-/* spin animation css
-*********************************************************************************************/
-
-
-
+/* spin animation css */
 .wrapanimate {
     margin: 0 100px;
     -webkit-perspective:800px;
@@ -42,8 +35,6 @@
     transition: background-color 1s ease;
 }
 
-
-
 .back_cube {
 	-webkit-transform: translateZ(-100px) rotateY(180deg);
 }
@@ -77,64 +68,43 @@
   to { -webkit-transform: rotateY(360deg) }
 }
 
-
-
-
-/* image css
-*********************************************************************************************/
-
+/* image css */
 .front_image{
-   
     width: 200px;
-	height: 200px;
+    height: 200px;
 }
-
 
 .back_image{
-    
     width: 200px;
-	height: 200px;
+    height: 200px;
 }
-
-
 
 .right_image{
-    
     width: 200px;
-	height: 200px;
+    height: 200px;
 }
-
-
 
 .left_image{
-     
     width: 200px;
-	height: 200px;
+    height: 200px;
 }
 
-
-
-
-
 /*** FADE ANIMATION CSS ***/
-
 #div_1 {
-   position:relative;
-/*    top:0px;*/
-/*    left:100px;*/
+    position:relative;
     z-index: 1;
 
     -webkit-animation: myfirst 20s ; /* Chrome, Safari, Opera */
     animation: myfirst 20s ;
 
     animation-iteration-count: 1 ;
-     -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+    -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
 
     -webkit-animation-delay: 9s; /*Safari and Chrome*/
     animation-delay: 9s;
 
     -webkit-animation-fill-mode: backwards;  /* Safari and Chrome */
-      animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
 }
 
 /* Chrome, Safari, Opera */
@@ -151,7 +121,7 @@
 }
 
 #div_2 {
-/*    position: relative;*/
+    /*    position: relative;*/
     margin: auto;
     top: 20%;
     z-index: 12;
@@ -160,28 +130,26 @@
     animation: mysecound 12s ;
 
     animation-iteration-count: 1 ;
-     -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+    -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
 
     -webkit-animation-fill-mode: forwards;  /* Safari and Chrome */
-      animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
     
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mysecound {
-0% {animation-timing-function: ease-out; opacity: 1}
-60%{animation-timing-function: ease-out; opacity: 1}    
-70%{animation-timing-function: ease-out; opacity: 0}
-100% {animation-timing-function: ease-out; opacity: 0}
- 
-    
+    0% {animation-timing-function: ease-out; opacity: 1}
+    60%{animation-timing-function: ease-out; opacity: 1}    
+    70%{animation-timing-function: ease-out; opacity: 0}
+    100% {animation-timing-function: ease-out; opacity: 0}
 }
 
- /*Standard syntax */
+/*Standard syntax */
 @keyframes mysecound {
- 0%  {animation-timing-function: ease-out; opacity: 1}
-20% {animation-timing-function: ease-out; opacity: 0}
-100% {animation-timing-function: ease-out; opacity: 0}
+    0%  {animation-timing-function: ease-out; opacity: 1}
+    20% {animation-timing-function: ease-out; opacity: 0}
+    100% {animation-timing-function: ease-out; opacity: 0}
 }
 
 /*********loging page**********/
@@ -206,7 +174,6 @@
     z-index: 2;
     opacity: .8;
 }
-
 
 .log_r{
     position:relative;
