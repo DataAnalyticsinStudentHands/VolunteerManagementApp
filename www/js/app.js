@@ -102,6 +102,13 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
+      state('home.group.posts.comments', {
+          url: "/posts",
+          views: {
+            "app@home": { templateUrl: "partials/viewPost.html", controller: 'home.groupFeed.detail.right_pane_post'}
+          },
+          authenticate: true
+      }).
       state('home.group.tasks', {
           url: "/tasks",
           views: {

@@ -698,8 +698,6 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     }
     $scope.updatePosts();
 
- 
-
     //OPEN ADD
     $scope.addPost = function() {
         $scope.open();
@@ -782,6 +780,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     //          $log.info('Modal dismissed at: ' + new Date());
         });
 };
+
     //Controller for the Modal PopUp
     var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope, post_id) {
     //        $scope.group_id = group_id;
@@ -870,7 +869,7 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
         snapRemote.getSnapper().then(function(snapper) {
             snapper.expand('right');
         });
-        $state.go("home.groupFeed.detail.right_pane_post", {"post_id" : pid}, [{reload: false}]);
+        $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
 }]);
 
