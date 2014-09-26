@@ -188,6 +188,11 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     $scope.carousel_images.forEach(function(imgPost) {
         $scope.addSlide(imgPost);
     });
+
+    //VIEW POST
+    $scope.viewPost = function(pid) {
+        $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
+    }
 }]);
 
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
@@ -650,6 +655,11 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
     snapRemote.getSnapper().then(function(snapper) {
         snapper.open('left');
     });
+
+    //VIEW POST
+    $scope.viewPost = function(pid) {
+        $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
+    }
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'ngNotify', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaPostService, ngNotify, snapRemote) {
