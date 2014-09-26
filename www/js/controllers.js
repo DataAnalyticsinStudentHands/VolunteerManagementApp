@@ -1382,51 +1382,10 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
             });
     }
 
-    //OPENING THE MODAL TO VIEW A TASK
+    //VIEW A TASK
     $scope.viewTask = function(click_id) {
-        var task = vmaTaskService.getTaskView(click_id);
-        $scope.openView(task);
-    }
-
-    $scope.openView = function (task) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/efforts.task.html',
-          controller: ModalInstanceCtrlView,
-          resolve: {
-              task: function() {
-                  return task;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-    //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task, $modalInstance) {
-        $scope.task = task;
-        $scope.map = {
-            sensor: true,
-            size: '500x300',
-            zoom: 15,
-            center: $scope.task.location,
-            markers: [$scope.task.location], //marker locations
-            mapevents: {redirect: true, loadmap: false}
-        };
-        $scope.ok = function () {
-            $modalInstance.close();
-        };
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
+        $scope.task = vmaTaskService.getTaskView(click_id);
+        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
     }
 }]);
 
@@ -1706,52 +1665,10 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
     
     $scope.updateTasksAndDisplayCalendar();
     
-    //OPENING THE MODAL TO VIEW A TASK
+    //VIEW A TASK
     $scope.viewTask = function(click_id) {
-        var task = vmaTaskService.getTaskView(click_id);
-        $scope.openView(task);
-    }
-
-    $scope.openView = function (task) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/efforts.task.html',
-          controller: ModalInstanceCtrlView,
-          resolve: {
-              task: function() {
-                  return task;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-
-    //Controller for the Modal PopUp View
-    var ModalInstanceCtrlView = function($scope, task, $modalInstance) {
-        $scope.task = task;
-//        console.log($scope.task.time);
-        $scope.map = {
-            sensor: true,
-            size: '500x300',
-            zoom: 15,
-            center: $scope.task.location,
-            markers: [$scope.task.location], //marker locations
-            mapevents: {redirect: true, loadmap: false}
-        };
-        $scope.ok = function () {
-            $modalInstance.close();
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
+        $scope.task = vmaTaskService.getTaskView(click_id);
+        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
     }
 }]);
 
