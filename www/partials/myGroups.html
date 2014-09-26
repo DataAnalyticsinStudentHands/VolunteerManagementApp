@@ -3,7 +3,7 @@
     <tab heading="Groups" style="width:50%; text-align: center;">
         <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
         <div class="list card" ng-repeat="group in metaJoinedGroups">
-            <div class="item item-avatar">
+            <div class="item item-avatar" ui-sref="home.group({id:group.id})">
                 <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
                 <h2> {{group.name}} </h2>
             </div>

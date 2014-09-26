@@ -116,10 +116,17 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
-      state('home.efforts', {
-          url: "/efforts",
+      state('home.myTasks', {
+          url: "/myTasks",
           views: {
-            "app": { templateUrl: "partials/efforts.html", controller: 'efforts'}
+            "app": { templateUrl: "partials/myTasks.html", controller: 'efforts'}
+          },
+          authenticate: true
+      }).
+      state('home.myInvites', {
+          url: "/myInvites",
+          views: {
+            "app": { templateUrl: "partials/myInvites.html", controller: 'efforts'}
           },
           authenticate: true
       }).
