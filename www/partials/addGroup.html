@@ -1,9 +1,15 @@
-<div class="modal_a" stop-event="touchend">
-    <form ng-submit="ok()">
-        <input id="name"        type="text" ng-model="$parent.newGroup.name"        placeholder="Name" required/>
-        <br/>
-        <input id="description" type="text" ng-model="$parent.newGroup.description" placeholder="Description"/>
-        <br/>
-        <input id="submit_ag" type="submit"/>
+<!--
+<ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">My Modal title</h1>
+    </ion-header-bar>
+    <ion-content>
+-->
+    <form class="list" ng-submit="ok()">
+        <input class="item item-input" type="text" ng-model="$parent.newGroup.name" placeholder="Name" required/>
+        <input class="item item-input" type="text" ng-model="$parent.newGroup.description" placeholder="Description"/>
+        <input class="item item-input" type="submit"/>
     </form>
-</div>
+<!--
+    </ion-content>
+</ion-modal-view>-->

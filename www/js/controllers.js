@@ -145,7 +145,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
     };
 }]);
 
-vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', function($scope, $state, vmaPostService) {
+vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', function($scope, $state, vmaPostService, $ionicActionSheet) {
     $scope.posts = [];
     $scope.updatePosts = function() {
         var gProm = vmaPostService.getGroupPosts(10, null, null);
@@ -193,6 +193,33 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     $scope.viewPost = function(pid) {
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
+    
+    //ACTION SHEET
+    $scope.showActions = function() {
+        $ionicActionSheet.show({
+            buttons: [
+                { text: 'Edit' }
+            ],
+            destructiveText: 'Delete',
+            titleText: 'Update Post',
+            cancelText: 'Cancel',
+            destructiveButtonClicked: function(){
+                console.log("del");
+                return true;
+            },
+            buttonClicked: function(index) {
+                console.log(index);
+                return true;
+            }
+        });
+    }
+    $scope.destructiveButtonClicked = function() {
+        // Check if the destructive button click event returned true, which means
+        // we can close the action sheet
+        if((opts.destructiveButtonClicked && opts.destructiveButtonClicked()) === true) {
+            console.log("DEL");
+        }
+    };
 }]);
 
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
