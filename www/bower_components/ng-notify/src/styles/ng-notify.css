@@ -15,10 +15,7 @@
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
-  z-index: 999999999;
-  margin-bottom: 40px;
-}
+  user-select: none; }
 
 .ngn-top {
   top: 0; }
