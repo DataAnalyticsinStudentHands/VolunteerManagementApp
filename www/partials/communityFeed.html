@@ -29,7 +29,7 @@
             <i class="icon ion-share" ui-sref="home.group({id:{{post.group_id}}})"></i>
             {{post.group.name}}
         </a>
-        <a class="tab-item" ng-click="showActions()">
+        <a class="tab-item" ng-click="showActions(post.id)">
             <i class="icon ion-ios7-more"></i>
         </a>
     </div>

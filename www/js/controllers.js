@@ -145,7 +145,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
     };
 }]);
 
-vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', function($scope, $state, vmaPostService, $ionicActionSheet) {
+vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$modal', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $modal) {
     $scope.posts = [];
     $scope.updatePosts = function() {
         var gProm = vmaPostService.getGroupPosts(10, null, null);
@@ -194,8 +194,68 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
     
+    //OPEN EDIT
+    $scope.editPost = function(pid) {
+        $scope.openEdit(pid);
+    }
+
+    $scope.openEdit = function (pid) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addPost.html',
+          controller: ModalInstanceCtrlEdit,
+          resolve: {
+              group_id: function() {
+                  return 0;
+              },
+              window_scope: function() {
+                  return $scope;
+              },
+              post_id: function() {
+                  return pid;
+              }
+          }  
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    //Controller for the Modal PopUp
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope, post_id) {
+        var getPostProm = vmaPostService.getPost(post_id);
+        getPostProm.then(function(success) {
+            $scope.post = success;
+        });
+
+        $scope.ok = function () {
+            var prom = vmaPostService.editPost(post_id, $scope.post);
+            prom.then(function(success) {
+                ngNotify.set("Post edited successfully!", 'success');
+                window_scope.updatePosts();
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };    
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
+
     //ACTION SHEET
-    $scope.showActions = function() {
+    $scope.showActions = function(post_id) {
         $ionicActionSheet.show({
             buttons: [
                 { text: 'Edit' }
@@ -209,17 +269,19 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
             },
             buttonClicked: function(index) {
                 console.log(index);
+                switch(index) {
+                    case 0:
+                        $scope.editPost(post_id);
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        return true;
+                }
                 return true;
             }
         });
     }
-    $scope.destructiveButtonClicked = function() {
-        // Check if the destructive button click event returned true, which means
-        // we can close the action sheet
-        if((opts.destructiveButtonClicked && opts.destructiveButtonClicked()) === true) {
-            console.log("DEL");
-        }
-    };
 }]);
 
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
