@@ -145,60 +145,89 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$modal'
     };
 }]);
 
-vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$modal', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $modal) {
+vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$modal', '$stateParams', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $modal, $stateParams) {
     $scope.posts = [];
-    $scope.updatePosts = function() {
-        var gProm = vmaPostService.getGroupPosts(10, null, null);
-        gProm.then(function(success) {
-            $scope.posts = success;
-        }, function(fail) {
-            console.log(fail);
-        });
-    }
-    $scope.updatePosts();
-
-    $scope.loadMore = function() {
-//        console.log("LOADING MORE");
-        vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
-            function(success) {
-                console.log(success);
-                $scope.posts = $scope.posts.concat(success);
-                console.log($scope.posts);
-            }, function(fail) {
-                //console.log(fail);
+    var state = $state.current.name;
+    switch(state) {
+        case "home.cfeed":
+            $scope.updatePosts = function() {
+                var gProm = vmaPostService.getGroupPosts(10, null, null);
+                gProm.then(function(success) {
+                    $scope.posts = success;
+                }, function(fail) {
+                    console.log(fail);
+                });
             }
-        );
+            $scope.loadMore = function() {
+                vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
+                    function(success) {
+                        console.log(success);
+                        $scope.posts = $scope.posts.concat(success);
+                        console.log($scope.posts);
+                    }, function(fail) {
+                    }
+                );
+            }
+            break;
+        case "home.group.posts":
+            $scope.id = $stateParams.id;
+            $scope.updatePosts = function() {
+                var gProm = vmaPostService.getGroupPosts(10, null, $scope.id);
+                gProm.then(function(success) {
+                    $scope.posts = success;
+                }, function(fail) {
+    //                console.log(fail);
+                });
+            }
+            $scope.loadMore = function() {
+        //            console.log("LOADING MORE");
+        //            console.log($scope.posts[$scope.posts.length -1].id);
+                    vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
+                    function(success) {
+                        $scope.posts = $scope.posts.concat(success);
+                    }, function(fail) {
+                        //console.log(fail);
+                    });
+                }
+            break;
+        case "home.groupFeed":
+            $scope.updatePosts = function() {
+                var gProm = vmaPostService.getMyGroupPosts(10, null);
+                gProm.then(function(success) {
+                    $scope.posts = success;
+                }, function(fail) {
+    //                console.log(fail);
+                });
+            }
+            $scope.loadMore = function() {
+    //            console.log("LOADING MORE");
+    //            console.log($scope.posts[$scope.posts.length -1].id);
+                vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
+                function(success) {
+                    $scope.posts = $scope.posts.concat(success);
+                }, function(fail) {
+                    //console.log(fail);
+                });
+            }
+            break;
+        default:
+            $scope.updatePosts = function(){}
+            $scope.loadMore = function(){}
+            console.log("ERROR: UNCAUGHT STATE: ", state);
+            return true;
     }
 
-    $scope.carousel_images = [
-        {id:'1', caption: "GROUP 1", image: "img/image13.png"},
-        {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
-        {id:'3', caption: "GROUP 3", image: "img/image13.png"},
-        {id:'6', caption: "GROUP 6", image: "img/image13.png"}
-    ];
-
-    var slides = $scope.slides = [];
-    $scope.addSlide = function(post) {
-        var newWidth = 600 + slides.length;
-        slides.push({
-            image: post.image,
-            text: post.caption
-        });
-    };
-    $scope.carousel_images.forEach(function(imgPost) {
-        $scope.addSlide(imgPost);
-    });
+    $scope.updatePosts();
 
     //VIEW POST
     $scope.viewPost = function(pid) {
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
-    
-    //OPEN EDIT
+
+    //OPEN EDIT FUNCTION, OPEN, and CONTROLLER
     $scope.editPost = function(pid) {
         $scope.openEdit(pid);
     }
-
     $scope.openEdit = function (pid) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/addPost.html',
@@ -223,8 +252,6 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
     //          $log.info('Modal dismissed at: ' + new Date());
         });
     };
-
-    //Controller for the Modal PopUp
     var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope, post_id) {
         var getPostProm = vmaPostService.getPost(post_id);
         getPostProm.then(function(success) {
@@ -254,26 +281,82 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
         });
     };
 
+    //OPEN ADD FUNCTION, OPEN, and CONTROLLER
+    $scope.addPost = function() {
+        $scope.open();
+    }
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addPost.html',
+          controller: ModalInstanceCtrl,
+          size: size,
+          resolve: {
+              group_id: function() {
+                  return $scope.id;
+              },
+              window_scope: function() {
+                  return $scope;
+              }
+          }  
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+};
+    var ModalInstanceCtrl = function ($scope, $modalInstance, group_id, window_scope) {
+        $scope.group_id = group_id;
+        $scope.ok = function () {
+            $scope.post["group_id"] = $scope.group_id;
+            var prom = vmaPostService.addPost($scope.post, $scope.uid);
+            prom.then(function(success) {
+                console.log(success);
+                window_scope.updatePosts();
+                ngNotify.set("Posted successfully!", 'success');
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+            $modalInstance.close();
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };             
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
+
+    //PERMISSIONS
+    $scope.generateActions = function(post_id) {
+        var ionicActionArray = [
+            { text: 'Edit' },
+            { text: 'Delete' }
+        ];
+        return ionicActionArray;
+    }
+
     //ACTION SHEET
     $scope.showActions = function(post_id) {
+        var ionicActions = $scope.generateActions();
         $ionicActionSheet.show({
-            buttons: [
-                { text: 'Edit' }
-            ],
-            destructiveText: 'Delete',
+            buttons: ionicActions,
             titleText: 'Update Post',
             cancelText: 'Cancel',
-            destructiveButtonClicked: function(){
-                console.log("del");
-                return true;
-            },
             buttonClicked: function(index) {
-                console.log(index);
-                switch(index) {
-                    case 0:
+//                console.log(index);
+                var action = ionicActions[index];
+                switch(action.text) {
+                    case "Edit":
                         $scope.editPost(post_id);
                         break;
-                    case 1:
+                    case "Delete":
+                        console.log(action);
                         break;
                     default:
                         return true;
@@ -282,6 +365,26 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
             }
         });
     }
+}]);
+
+vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$modal', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $modal) {
+    $scope.carousel_images = [
+        {id:'1', caption: "GROUP 1", image: "img/image13.png"},
+        {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
+        {id:'3', caption: "GROUP 3", image: "img/image13.png"},
+        {id:'6', caption: "GROUP 6", image: "img/image13.png"}
+    ];
+    var slides = $scope.slides = [];
+    $scope.addSlide = function(post) {
+        var newWidth = 600 + slides.length;
+        slides.push({
+            image: post.image,
+            text: post.caption
+        });
+    };
+    $scope.carousel_images.forEach(function(imgPost) {
+        $scope.addSlide(imgPost);
+    });
 }]);
 
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
@@ -316,8 +419,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
     var snapper = new Snap({
       element: document.getElementById('content')
     });
-    
-    
+
     snapRemote.getSnapper().then(function(snapper) {
         snapper.open('left');
     });
@@ -752,224 +854,7 @@ vmaControllerModule.controller('groupFeed', ['$scope', '$state', '$modal', 'snap
 }]);
 
 vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'ngNotify', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaPostService, ngNotify, snapRemote) {
-    $scope.id = $stateParams.id;
-    $scope.detail = $stateParams.detail;
-    $scope.$parent.pActiv = true;
-
-    if($scope.id) {
-        $scope.updatePosts = function() {
-            var gProm = vmaPostService.getGroupPosts(10, null, $scope.id);
-            gProm.then(function(success) {
-                $scope.posts = success;
-            }, function(fail) {
-//                console.log(fail);
-            });
-        }
-        $scope.loadMore = function() {
-//            console.log("LOADING MORE");
-//            console.log($scope.posts[$scope.posts.length -1].id);
-            vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
-            function(success) {
-                $scope.posts = $scope.posts.concat(success);
-            }, function(fail) {
-                //console.log(fail);
-            });
-        }
-    } else {
-        $scope.updatePosts = function() {
-            var gProm = vmaPostService.getMyGroupPosts(10, null);
-            gProm.then(function(success) {
-                $scope.posts = success;
-            }, function(fail) {
-//                console.log(fail);
-            });
-        }
-        $scope.loadMore = function() {
-//            console.log("LOADING MORE");
-//            console.log($scope.posts[$scope.posts.length -1].id);
-            vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
-            function(success) {
-                $scope.posts = $scope.posts.concat(success);
-            }, function(fail) {
-                //console.log(fail);
-            });
-        }
-    }
-    $scope.updatePosts();
-
-    //OPEN ADD
-    $scope.addPost = function() {
-        $scope.open();
-    }
-
-    $scope.open = function (size) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/addPost.html',
-          controller: ModalInstanceCtrl,
-          size: size,
-          resolve: {
-              group_id: function() {
-                  return $scope.id;
-              },
-              window_scope: function() {
-                  return $scope;
-              }
-          }  
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-};
-    //Controller for the Modal PopUp
-    var ModalInstanceCtrl = function ($scope, $modalInstance, group_id, window_scope) {
-        $scope.group_id = group_id;
-        $scope.ok = function () {
-            $scope.post["group_id"] = $scope.group_id;
-            var prom = vmaPostService.addPost($scope.post, $scope.uid);
-            prom.then(function(success) {
-                console.log(success);
-                window_scope.updatePosts();
-                ngNotify.set("Posted successfully!", 'success');
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-            });
-            $modalInstance.close();
-        };
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };             
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //OPEN EDIT
-    $scope.editPost = function(pid) {
-        $scope.openEdit(pid);
-    }
-
-    $scope.openEdit = function (pid) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/addPost.html',
-          controller: ModalInstanceCtrlEdit,
-          resolve: {
-              group_id: function() {
-                  return $scope.id;
-              },
-              window_scope: function() {
-                  return $scope;
-              },
-              post_id: function() {
-                  return pid;
-              }
-          }  
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-};
-
-    //Controller for the Modal PopUp
-    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, group_id, window_scope, post_id) {
-    //        $scope.group_id = group_id;
-        var getPostProm = vmaPostService.getPost(post_id);
-        getPostProm.then(function(success) {
-            $scope.post = success;});
-        $scope.ok = function () {
-            var prom = vmaPostService.editPost(post_id, $scope.post);
-            prom.then(function(success) {
-                ngNotify.set("Post edited successfully!", 'success');
-                window_scope.updatePosts();
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-            });
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };    
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //OPEN DELETE
-    $scope.deletePost = function(pid) {
-        $scope.openDelete(pid);
-    }
-
-    $scope.openDelete = function (pid) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deletePost.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              group_id: function() {
-                  return $scope.id;
-              },
-              window_scope: function() {
-                  return $scope;
-              },
-              post_id: function() {
-                  return pid;
-              }
-          }  
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-};
-    //Controller for the Modal PopUp
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, group_id, window_scope, post_id) {
-        $scope.ok = function () {
-            var prom = vmaPostService.deletePost(post_id);
-            prom.then(function(success) {
-                $modalInstance.close();
-                window_scope.updatePosts();
-                ngNotify.set("Post deleted successfully!", 'success');
-            }, function(fail) {
-//                console.log(fail)
-                ngNotify.set(fail.data.message, 'error');
-            });
-        };
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //VIEW POST
-    $scope.viewPost = function(pid) {
-//        console.log("viewing post");
-        snapRemote.getSnapper().then(function(snapper) {
-            snapper.expand('right');
-        });
-        $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
-    }
+    
 }]);
 
 vmaControllerModule.controller('groupFeed.right_pane', ['$scope', '$state', '$stateParams', '$modal', 'vmaGroupService', function($scope, $state, $stateParams, $modal, vmaGroupService) {

@@ -1,4 +1,7 @@
-<ion-view title="Post">
+<ion-view title="Post" ng-controller="postController">
+    <ion-nav-buttons side='right'>
+        <button class="button ion-plus-round" ng-click="addPost()"></button>
+    </ion-nav-buttons>
 <button class="btn_add" ng-click="addPost()">New Post</button>
 <div class="list card" ng-repeat="post in posts">
     <div ui-sref="home.group({id:{{post.id}}})" class="item item-avatar">
@@ -18,7 +21,7 @@
             <i class="icon ion-share"></i>
             {{post.group.name}}
         </a>
-        <a class="tab-item">
+        <a class="tab-item" ng-click="showActions(post.id)">
             <i class="icon ion-ios7-more"></i>
         </a>
     </div>
