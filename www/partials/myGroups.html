@@ -1,6 +1,6 @@
-<ion-view title="My Groups">
+<ion-view title="Groups">
 <tabset>
-    <tab heading="Groups" style="width:50%; text-align: center;">
+    <tab heading="My Groups" style="width:50%; text-align: center;">
         <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
         <div class="list card" ng-repeat="group in metaJoinedGroups">
             <div class="item item-avatar" ui-sref="home.group({id:group.id})">

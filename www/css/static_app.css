@@ -196,3 +196,10 @@
     top: 370px;
     z-index: 3;
 }
+
+
+.google-maps {
+    width: 100%;
+    height: 400px;
+    z-index: 10000;
+}

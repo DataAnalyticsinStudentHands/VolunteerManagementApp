@@ -119,7 +119,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.task', {
           url: "/task:task",
           views: {
-            "app": { templateUrl: "partials/efforts.task.html", controller: 'task'}
+            "app": { templateUrl: "partials/viewTask.html", controller: 'task'}
           },
           authenticate: true
       }).

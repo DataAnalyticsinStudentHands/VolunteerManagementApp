@@ -857,20 +857,6 @@ vmaControllerModule.controller('groupFeed.post', ['$scope', '$state', '$statePar
     
 }]);
 
-vmaControllerModule.controller('groupFeed.right_pane', ['$scope', '$state', '$stateParams', '$modal', 'vmaGroupService', function($scope, $state, $stateParams, $modal, vmaGroupService) {
-    $scope.id = $stateParams.id;
-    $scope.detail = $stateParams.detail;
-    
-    vmaGroupService.getGroup($scope.id).then(
-        function(success) {
-            $scope.group = success;
-            console.log($scope.group);
-        }, function(fail) {
-            console.log(fail);
-        }
-    );
-}]);
-
 vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', '$rootScope', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify, $rootScope, snapRemote) {
     $scope.id = $stateParams.id;
     $scope.detail = $stateParams.detail;

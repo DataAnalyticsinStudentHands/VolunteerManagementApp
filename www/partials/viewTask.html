@@ -1,5 +1,5 @@
 <div> {{task.name}} </div>
 <div> {{task.time}} </div>
-<div ng-show="task.show_map"> {{task.location}} </div>
-<p ng-show="task.show_map"> <googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps> </p>
+{{task.location}}
+<googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps>
 <div> {{task.description}} </div>
