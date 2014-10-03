@@ -387,7 +387,6 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal',
             $scope.id = $stateParams.id;
             $scope.update = function(update){
                 vmaGroupService.getGroupMeta($scope.id, update).then(function(success) { $scope.group = success; });
-                vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
             }
             break;
         default:
@@ -612,7 +611,6 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal',
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
 
-    
     //PERMISSIONS
     $scope.generateActions = function(id) {
         var ionicActionArray = [
@@ -657,22 +655,21 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
     var state = $state.current.name;
     switch(state) {
         case "home.myTasks":
-            $scope.update = function() {
+            $scope.updateTasks = function() {
                 vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
             }
             break;
-        case "home.groupMessages":
-            $scope.update = function() {
-                vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
+        case "home.group":
+            $scope.updateTasks = function(update){
+                vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
             }
             break;
         default:
             $scope.update = function(){}
             console.log("ERROR: UNCAUGHT STATE: ", state);
-            return true;
+            break;
     }
-    $scope.updateTasks = $scope.update;
-    $scope.update();
+    $scope.updateTasks();
     
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
@@ -684,6 +681,69 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
     $scope.displayMessages = function(click_id) {
         $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
         snapRemote.close();
+    }
+
+    //JOINING A TASK
+    $scope.joinTask = function(task_id) {
+        var promise = vmaTaskService.joinTask(task_id, $scope.uid);
+        promise.then(function(success) {
+                $scope.updateTasks();
+                ngNotify.set("Task joined successfully", "success");
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+        });
+    }
+
+    //LEAVING A TASK
+    $scope.leaveTask = function(task_id) {
+        console.log("HI");
+        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
+        promise.then(function(success) {
+                $scope.updateTasks();
+                ngNotify.set("Task left successfully", "success");
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+        });
+    }
+    
+    
+    //PERMISSIONS
+    $scope.generateActions = function(id) {
+        var ionicActionArray = [
+            { text: 'Edit' },
+            { text: 'Delete' },
+            { text: 'Leave' }
+        ];
+        return ionicActionArray;
+    }
+
+    //ACTION SHEET
+    $scope.showActions = function(id) {
+        var ionicActions = $scope.generateActions(id);
+        $ionicActionSheet.show({
+            buttons: ionicActions,
+            titleText: 'Update Group',
+            cancelText: 'Cancel',
+            buttonClicked: function(index) {
+//                console.log(index);
+                var action = ionicActions[index];
+                switch(action.text) {
+                    case "Edit":
+                        $scope.editTask(id);
+                        break;
+                    case "Delete":
+                        $scope.deleteTask(id);
+                        break;
+                    case "Leave":
+                        $scope.leaveTask(id);
+                        break;
+                    default:
+                        console.log("BUG");
+                        return true;
+                }
+                return true;
+            }
+        });
     }
 }]);
 
@@ -1383,16 +1443,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         {id:'5', group_name: "GROUP 5", icon: "img/temp_icon.png"},
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
     ];
-
-    //LEAVING A TASK
-    $scope.leaveTask = function(task_id) {
-        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid).then(function(success) {
-                ngNotify.set("Task left successfully!", 'success');
-                $scope.updateTasks();
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-            });
-    }
 }]);
 
 /*
