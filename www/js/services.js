@@ -156,14 +156,14 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                         obj.isGroup = true;
                         result.push(obj);
                     });
-                    memGroups.forEach(function(obj){
-                        obj.isMember = true;
-                        result.push(obj);
-                    });
-                    manGroups.forEach(function(obj){
-                        obj.isManager = true;
-                        result.push(obj);
-                    });
+//                    memGroups.forEach(function(obj){
+//                        obj.isMember = true;
+//                        result.push(obj);
+//                    });
+//                    manGroups.forEach(function(obj){
+//                        obj.isManager = true;
+//                        result.push(obj);
+//                    });
                     metaGroups = result;
                     return result;
                 });

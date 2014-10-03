@@ -1,5 +1,6 @@
-<div> {{task.name}} </div>
-<div> {{task.time}} </div>
-{{task.location}}
-<googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps>
-<div> {{task.description}} </div>
+<ion-view title="{{task.name}}">
+    <div> {{task.time}} </div>
+    {{task.location}}
+    <googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps>
+    <div> {{task.description}} </div>
+</ion-view>

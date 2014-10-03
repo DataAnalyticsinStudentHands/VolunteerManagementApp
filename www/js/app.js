@@ -56,7 +56,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.cfeed', {
           url: "/cfeed",
           views: {
-            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeed'}
+            "app": { templateUrl: "partials/communityFeed.html", controller: 'postController'}
           },
           authenticate: true
       }).
@@ -77,28 +77,35 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.groupFeed', {
           url: "/groupFeed",
           views: {
-            "app": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'}
+            "app": { templateUrl: "partials/groupFeed.html", controller: 'postController'}
           },
           authenticate: true
       }).
       state('home.myGroups', {
           url: "/myGroups",
           views: {
-            "app": { templateUrl: "partials/myGroups.html", controller: 'groupFeed'}
+            "app": { templateUrl: "partials/myGroups.html", controller: 'groupController'}
+          },
+          authenticate: true
+      }).
+      state('home.joinGroups', {
+          url: "/joinGroups",
+          views: {
+            "app": { templateUrl: "partials/groups.html", controller: 'groupController'}
           },
           authenticate: true
       }).
       state('home.group', {
           url: "/group/:id",
           views: {
-            "app": { templateUrl: "partials/efforts.group.html", controller: 'group'}
+            "app": { templateUrl: "partials/efforts.group.html", controller: 'groupController'}
           },
           authenticate: true
       }).
       state('home.group.posts', {
           url: "/posts",
           views: {
-            "app@home": { templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'}
+            "app@home": { templateUrl: "partials/groupFeed.post.html", controller: 'postController'}
           },
           authenticate: true
       }).

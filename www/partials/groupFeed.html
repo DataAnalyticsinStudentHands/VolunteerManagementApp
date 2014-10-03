@@ -57,8 +57,8 @@
             </tab>
         </tabset>
 -->
-<ion-view title="Group Feed" ng-controller="postController">
-    <div ng-hide="state.includes('home.groupFeed.detail')" ng-controller="groupFeed.post">
+<ion-view title="Group Feed">
+    <div ng-hide="state.includes('home.groupFeed.detail')">
         <div class="list card" ng-repeat="post in posts">
             <div ui-sref="home.group({id:{{post.id}}})" class="item item-avatar">
                 <div><img src="img/effort_task.icon.png" width="15%" /></div>

@@ -1,0 +1,26 @@
+<ion-view title="Find Groups">
+    <input ng-model="query" placeholder="Search">
+    <ion-list class="list">
+<!--        <ion-item  collection-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" collection-item-width="'100%'" collection-item-height="50" class="item item-button-right my-item" ui-sref="home.group({id:group.id})"> -->
+        <div  ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" class="item item-button-right"> 
+            <h2 ui-sref="home.group({id:group.id})"> {{group.name}} </h2>
+            <button class="button button-positive" ng-click="joinGroup(group.id)"> Join </button>
+        </div>
+        <!--
+        <div id="bs" class="btn-group" dropdown>
+            <button type="button" class="btn dropdown-toggle">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
+                <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
+                <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
+
+                <li><a ng-show="group.isGroup" ng-click="joinGroup(group.id)">Join Group</a></li>
+            </ul>
+        </div>
+        -->
+    </ion-list>
+</ion-view>
