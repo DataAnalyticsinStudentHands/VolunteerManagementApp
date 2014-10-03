@@ -367,8 +367,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     }
 }]);
 
-vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter) {
-    $scope.posts = [];
+vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet) {
     var state = $state.current.name;
     switch(state) {
         case "home.myGroups":
@@ -398,7 +397,6 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal',
     }
     $scope.updateGroups = $scope.update;
     $scope.update(true);
-    
 
     //OPENING MODAL TO ADD A GROUP
     $scope.addGroup = function() {
@@ -596,7 +594,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal',
             event.preventDefault();
         });
     };
-    
+
     //JOINING A GROUP
     $scope.joinGroup = function(id) {
         var jProm = vmaGroupService.joinGroup(id, $scope.uid);
@@ -608,19 +606,94 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$modal',
             ngNotify.set(fail.data.message, 'error');
         });
     }
-    
+
     //VIEW POSTS
     $scope.viewPost = function(pid) {
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
+
+    
+    //PERMISSIONS
+    $scope.generateActions = function(id) {
+        var ionicActionArray = [
+            { text: 'Edit' },
+            { text: 'Delete' },
+            { text: 'Leave' }
+        ];
+        return ionicActionArray;
+    }
+
+    //ACTION SHEET
+    $scope.showActions = function(id) {
+        var ionicActions = $scope.generateActions(id);
+        $ionicActionSheet.show({
+            buttons: ionicActions,
+            titleText: 'Update Group',
+            cancelText: 'Cancel',
+            buttonClicked: function(index) {
+//                console.log(index);
+                var action = ionicActions[index];
+                switch(action.text) {
+                    case "Edit":
+                        $scope.editGroup(id);
+                        break;
+                    case "Delete":
+                        $scope.deleteGroup(id);
+                        break;
+                    case "Leave":
+                        $scope.leaveGroup(id);
+                        break;
+                    default:
+                        console.log("BUG");
+                        return true;
+                }
+                return true;
+            }
+        });
+    }
 }]);
 
+vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 'snapRemote', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', function($scope, $state, $modal, snapRemote, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet) {
+    var state = $state.current.name;
+    switch(state) {
+        case "home.myTasks":
+            $scope.update = function() {
+                vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
+            }
+            break;
+        case "home.groupMessages":
+            $scope.update = function() {
+                vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
+            }
+            break;
+        default:
+            $scope.update = function(){}
+            console.log("ERROR: UNCAUGHT STATE: ", state);
+            return true;
+    }
+    $scope.updateTasks = $scope.update;
+    $scope.update();
+    
+    //VIEW A TASK
+    $scope.viewTask = function(click_id) {
+        $scope.task = vmaTaskService.getTaskView(click_id);
+        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
+    }
+    
+    //VIEW MESSAGES
+    $scope.displayMessages = function(click_id) {
+        $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
+        snapRemote.close();
+    }
+}]);
+
+/*
 vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$modal', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $modal) {
     $scope.carousel_images = [
-        {id:'1', caption: "GROUP 1", image: "img/image13.png"},
-        {id:'2', caption: "GROUP 2", image: "http://hdwallpaper.freehdw.com/0009/cars_widewallpaper_honda-fc-high-res_83370.jpg"},
-        {id:'3', caption: "GROUP 3", image: "img/image13.png"},
-        {id:'6', caption: "GROUP 6", image: "img/image13.png"}
+        {id:'1', caption: "GROUP 1", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-08-13-at-11.39.43-PM.png"},
+        {id:'2', caption: "GROUP 2", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-01-21-at-6.45.43-PM.png"},
+        {id:'3', caption: "GROUP 3", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2014/02/bonstill6.jpg"},
+        {id:'6', caption: "GROUP 6", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-05-20-at-5.27.22-PM.png"}
     ];
     var slides = $scope.slides = [];
     $scope.addSlide = function(post) {
@@ -634,17 +707,14 @@ vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostSer
         $scope.addSlide(imgPost);
     });
 }]);
-
+*/
+/*
 vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
     $scope.updateTasks = function() {
         vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
     }
     $scope.updateTasks();
 
-    $scope.displayMessages = function(click_id) {
-        $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
-        snapRemote.close();
-    }
 
     $scope.settings = {
 //        element: null,
@@ -672,7 +742,7 @@ vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote
         snapper.open('left');
     });
 }]);
-
+*/
 vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, vmaTaskService) {
         $scope.id = $stateParams.id;
         vmaTaskService.getTask($scope.id).then(
@@ -1314,12 +1384,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
     ];
 
-    //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
-    $scope.updateTasks = function() {
-        vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
-    }
-    $scope.updateTasks();
-
     //LEAVING A TASK
     $scope.leaveTask = function(task_id) {
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid).then(function(success) {
@@ -1329,14 +1393,9 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
                 ngNotify.set(fail.data.message, 'error');
             });
     }
-
-    //VIEW A TASK
-    $scope.viewTask = function(click_id) {
-        $scope.task = vmaTaskService.getTaskView(click_id);
-        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
-    }
 }]);
 
+/*
 vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ngNotify', 'vmaGroupService', 'vmaTaskService', '$modal', function($scope, $state, $stateParams, ngNotify, vmaGroupService, vmaTaskService, $modal) {
     $scope.id = $stateParams.id;
     $scope.update = function(update){
@@ -1368,6 +1427,7 @@ vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ng
         });
     }
 }]);
+*/
 
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {

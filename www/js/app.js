@@ -63,7 +63,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.groupMessages', {
           url: "/groupMessages",
           views: {
-            "app@home": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
+            "app@home": { templateUrl: "partials/groupMessages.html", controller: 'taskController'}
           },
           authenticate: true
       }).
@@ -133,7 +133,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.myTasks', {
           url: "/myTasks",
           views: {
-            "app": { templateUrl: "partials/myTasks.html", controller: 'efforts'}
+            "app": { templateUrl: "partials/myTasks.html", controller: 'taskController'}
           },
           authenticate: true
       }).

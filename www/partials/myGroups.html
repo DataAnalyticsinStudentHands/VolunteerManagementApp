@@ -1,7 +1,9 @@
 <ion-view title="My Groups">
 <ion-nav-buttons side='right'>
-    <button class="button button-dark" ui-sref="home.joinGroups"> <i class="icon ion-search"> </i> </button>
     <button class="button button-dark" ng-click="addGroup()"> <i class="icon ion-plus-round"> </i> </button>
+</ion-nav-buttons>
+<ion-nav-buttons side='right'>
+    <button class="button button-dark" ui-sref="home.joinGroups"> <i class="icon ion-search"> </i> </button>
 </ion-nav-buttons>
 <div class="list card" ng-repeat="group in metaJoinedGroups">
     <div class="item item-avatar" ui-sref="home.group({id:group.id})">
@@ -17,9 +19,12 @@
             <i class="icon ion-share"></i>
             View Tasks
         </a>
+        <a class="tab-item" ng-click="showActions(group.id)">
+            <i class="icon ion-ios7-more"></i>
+        </a>
     </div>
 </div>
-    <!--
+<!--
         <div id="bs" class="btn-group" dropdown>
             <button type="button" class="btn dropdown-toggle">
                 <span class="caret"></span>
