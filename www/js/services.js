@@ -410,7 +410,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         });
                         if(!isMan) {
                             return result;
-                        } else {
+                        } else { 
                             result.forEach(function(obj) {
                                 // SETTING PERMISSIONS METADATA
 //                                obj.isMember = false;

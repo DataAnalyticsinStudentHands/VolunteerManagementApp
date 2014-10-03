@@ -3,7 +3,7 @@
     <ion-list class="list">
         <div  ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" class="item item-button-right"> 
             <h2 ui-sref="home.group({id:group.id})"> {{group.name}} </h2>
-            <button class="button button-positive" ng-click="joinGroup(group.id)"> Join </button>
+            <button class="button button-dark" ng-click="joinGroup(group.id)"> Join </button>
         </div>
         <!--
         <div id="bs" class="btn-group" dropdown>

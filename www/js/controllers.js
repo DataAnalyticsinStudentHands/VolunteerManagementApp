@@ -664,6 +664,13 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
                 vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
             }
             break;
+        case "home.group.tasks":
+            $scope.id = $stateParams.id;
+            $scope.updateTasks = function() {
+                vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success;});
+            }
+            $scope.updateTasks();
+            break;
         default:
             $scope.update = function(){}
             console.log("ERROR: UNCAUGHT STATE: ", state);
@@ -683,9 +690,280 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
         snapRemote.close();
     }
 
+    //OPENING THE MODAL TO ADD A TASK
+    $scope.addTask = function() {
+        $scope.openAdd();
+    }
+    $scope.openAdd = function () {
+    var modalInstance = $modal.open({
+      templateUrl: 'partials/addTask.html',
+      controller: ModalInstanceCtrlAdd,
+      resolve: {
+          group_id: function() {
+              return $scope.id;
+          },
+          window_scope: function() {
+            return $scope;
+          }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+    //          $scope.selected = selectedItem;
+        }, function () {
+    //          What to do on dismiss
+    //          $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+    var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id, vmaTaskService) {
+          $scope.showTime = true;
+          $scope.today = function() {
+            $scope.mytime = new Date();
+            $scope.dt = new Date();
+          };
+          $scope.today();
+          $scope.toggleMin = function() {
+              $scope.minDate = $scope.minDate ? null : new Date();
+          };
+          $scope.toggleMin();
+        
+          $scope.hstep = 1;
+          $scope.mstep = 5;
+
+          $scope.ismeridian = true;
+
+          $scope.changed = function () {
+            console.log('Time changed to: ' + $scope.mytime);
+          };
+
+          $scope.clear = function() {
+            $scope.showTime = !$scope.showTime;
+            $scope.mytime = null;
+            $scope.dt = null;
+          };
+
+          // Disable weekend selection
+          $scope.disabled = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+          };
+
+          $scope.toggleMin = function() {
+            $scope.minDate = $scope.minDate ? null : new Date();
+          };
+          $scope.toggleMin();
+
+          $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+          };
+
+          $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+          };
+
+          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+          $scope.format = $scope.formats[0];
+
+        $scope.ok = function () {            
+            $scope.newTask.group_id = group_id;
+            $scope.newTask.time = $scope.mytime;
+
+            var promise = vmaTaskService.addTask($scope.newTask);
+
+            promise.then(function(success) {
+                $scope.message = "ADD SUCCESS!";
+                    console.log(success);
+                    window_scope.updateTasks();
+                    $modalInstance.close();
+                    ngNotify.set("Task added successfully", "success");
+                }, function(fail) {
+                    ngNotify.set(fail.data.message, 'error');
+                });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
+
+    //OPENING THE MODAL TO DELETE A TASK
+    $scope.deleteTask = function(task_id) {
+        console.log(task_id);
+        $scope.openDelete(task_id);
+    }
+    $scope.openDelete = function (task_id) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/deleteTask.html',
+          controller: ModalInstanceCtrlDelete,
+          resolve: {
+              task_id: function() {
+                  return task_id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+        //          $scope.selected = selectedItem;
+            }, function () {
+        //          What to do on dismiss
+        //          $log.info('Modal dismissed at: ' + new Date());
+            });
+    };
+    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
+        $scope.ok = function () {
+            var promise = vmaTaskService.deleteTask(task_id);
+            promise.then(function(success) {
+                    console.log(success);
+                    window_scope.updateTasks();
+                    $modalInstance.close();
+                    ngNotify.set("Task deleted successfully", "success");
+                }, function(fail) {
+                    ngNotify.set(fail.data.message, 'error');
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+                
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
+
+    //OPENING THE MODAL TO EDIT A TASK
+    $scope.editTask = function(task_id) {
+        $scope.openEdit(task_id);
+    }
+    $scope.openEdit = function (task_id) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editTask.html',
+          controller: ModalInstanceCtrlEdit,
+          resolve: {
+              task_id: function() {
+                  return task_id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
+          }
+        });
+    };
+    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
+        var setup = function(st) {
+            $scope.showTime = st;
+            $scope.today = function() {
+                $scope.mytime = new Date($scope.editTask.time);
+            };
+            $scope.today();
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
+
+            $scope.hstep = 1;
+            $scope.mstep = 5;
+
+            $scope.ismeridian = true;
+
+            $scope.changed = function () {
+                console.log('Time changed to: ' + $scope.mytime);
+            };
+
+            // Disable weekend selection
+            $scope.disabled = function(date, mode) {
+                return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+            };
+
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
+
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened = true;
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+
+            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            $scope.format = $scope.formats[0];
+        }
+        vmaTaskService.getTask(task_id).then(function(success) {
+            $scope.editTask = success;
+            console.log($scope.editTask.time);
+            if(!$scope.editTask.time) {
+                console.log("SHOWTIME = FALSE");
+                $scope.showTime = false;
+            } else {
+                console.log("SHOWTIME = TRUE");
+                $scope.showTime = true;
+            }
+            setup($scope.showTime);
+        });
+
+        $scope.ok = function () {
+            if($scope.showTime)
+                $scope.editTask.time = new Date($scope.mytime).toISOString();
+            else {
+                $scope.editTask.time = null;
+            }
+            console.log($scope.editTask);
+            var promise = vmaTaskService.editTask(task_id, $scope.editTask);
+
+            promise.then(function(success) {
+                    ngNotify.set("Task edited successfully", "success");
+                    window_scope.updateTasks();
+                    $modalInstance.close();
+                }, function(fail) {
+                    ngNotify.set(fail.data.message, 'error');
+            });
+        };
+
+        $scope.clear = function() {
+            $scope.showTime = !$scope.showTime;
+            if($scope.showTime) $scope.editTask.time = new Date(); else $scope.editTask.time = null;
+            console.log($scope.showTime);
+            setup($scope.showTime);
+        };
+        
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+        
+        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            console.log("SCOPE - $stateChangeStart");
+            $modalInstance.dismiss('cancel');
+            //Prevents the switching of the state
+            event.preventDefault();
+        });
+    };
+
     //JOINING A TASK
     $scope.joinTask = function(task_id) {
         var promise = vmaTaskService.joinTask(task_id, $scope.uid);
+
         promise.then(function(success) {
                 $scope.updateTasks();
                 ngNotify.set("Task joined successfully", "success");
@@ -696,7 +974,6 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
 
     //LEAVING A TASK
     $scope.leaveTask = function(task_id) {
-        console.log("HI");
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
                 $scope.updateTasks();
@@ -722,7 +999,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
         var ionicActions = $scope.generateActions(id);
         $ionicActionSheet.show({
             buttons: ionicActions,
-            titleText: 'Update Group',
+            titleText: 'Update Task',
             cancelText: 'Cancel',
             buttonClicked: function(index) {
 //                console.log(index);
@@ -747,62 +1024,6 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
     }
 }]);
 
-/*
-vmaControllerModule.controller('communityFeed', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$modal', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $modal) {
-    $scope.carousel_images = [
-        {id:'1', caption: "GROUP 1", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-08-13-at-11.39.43-PM.png"},
-        {id:'2', caption: "GROUP 2", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-01-21-at-6.45.43-PM.png"},
-        {id:'3', caption: "GROUP 3", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2014/02/bonstill6.jpg"},
-        {id:'6', caption: "GROUP 6", image: "http://innovate.uh.edu/service/wp-content/uploads/sites/43/2013/01/Screen-Shot-2014-05-20-at-5.27.22-PM.png"}
-    ];
-    var slides = $scope.slides = [];
-    $scope.addSlide = function(post) {
-        var newWidth = 600 + slides.length;
-        slides.push({
-            image: post.image,
-            text: post.caption
-        });
-    };
-    $scope.carousel_images.forEach(function(imgPost) {
-        $scope.addSlide(imgPost);
-    });
-}]);
-*/
-/*
-vmaControllerModule.controller('groupMessages', ['$scope', '$state', 'snapRemote', 'vmaTaskService', function($scope, $state, snapRemote, vmaTaskService) {
-    $scope.updateTasks = function() {
-        vmaTaskService.getJoinTasks($scope.id).then(function(success) { $scope.joinTasks = success; });
-    }
-    $scope.updateTasks();
-
-
-    $scope.settings = {
-//        element: null,
-//        dragger: null,
-        disable: 'right',
-//            addBodyClasses: true,
-        hyperextensible: false
-//            resistance: 0.5,
-//            flickThreshold: 50,
-//            transitionSpeed: 0.3,
-//            easing: 'ease',
-//        maxPosition: 266,
-//        minPosition: -266,
-//            tapToClose: true,
-//            touchToDrag: true,
-//            slideIntent: 40,
-//            minDragDistance: 5
-    }
-
-    var snapper = new Snap({
-      element: document.getElementById('content')
-    });
-
-    snapRemote.getSnapper().then(function(snapper) {
-        snapper.open('left');
-    });
-}]);
-*/
 vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, vmaTaskService) {
         $scope.id = $stateParams.id;
         vmaTaskService.getTask($scope.id).then(
@@ -966,333 +1187,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }
 }]);
 
-vmaControllerModule.controller('groupFeed.task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', 'ngNotify', '$rootScope', 'snapRemote', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify, $rootScope, snapRemote) {
-    $scope.id = $stateParams.id;
-    $scope.detail = $stateParams.detail;
-    $scope.$parent.pActiv = true;
-
-    //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
-    $scope.updateTasks = function() {
-        vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success;});
-    }
-    $scope.updateTasks();
-
-    //OPENING THE MODAL TO ADD A TASK
-    $scope.addTask = function() {
-        $scope.openAdd();
-    }
-
-    $scope.openAdd = function () {
-    var modalInstance = $modal.open({
-      templateUrl: 'partials/addTask.html',
-      controller: ModalInstanceCtrlAdd,
-      resolve: {
-          group_id: function() {
-              return $scope.id;
-          },
-          window_scope: function() {
-            return $scope;
-          }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-
-    //Controller for the Modal PopUp Add
-    var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id, vmaTaskService) {
-          $scope.showTime = true;
-          $scope.today = function() {
-            $scope.mytime = new Date();
-            $scope.dt = new Date();
-          };
-          $scope.today();
-          $scope.toggleMin = function() {
-              $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
-        
-          $scope.hstep = 1;
-          $scope.mstep = 5;
-
-          $scope.ismeridian = true;
-
-          $scope.changed = function () {
-            console.log('Time changed to: ' + $scope.mytime);
-          };
-
-          $scope.clear = function() {
-            $scope.showTime = !$scope.showTime;
-            $scope.mytime = null;
-            $scope.dt = null;
-          };
-
-          // Disable weekend selection
-          $scope.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-          };
-
-          $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
-
-          $scope.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            $scope.opened = true;
-          };
-
-          $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-          };
-
-          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-          $scope.format = $scope.formats[0];
-
-        $scope.ok = function () {            
-            $scope.newTask.group_id = group_id;
-            $scope.newTask.time = $scope.mytime;
-
-            var promise = vmaTaskService.addTask($scope.newTask);
-
-            promise.then(function(success) {
-                $scope.message = "ADD SUCCESS!";
-                    console.log(success);
-                    window_scope.updateTasks();
-                    $modalInstance.close();
-                    ngNotify.set("Task added successfully", "success");
-                }, function(fail) {
-                    ngNotify.set(fail.data.message, 'error');
-                });
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //OPENING THE MODAL TO DELETE A TASK
-    $scope.deleteTask = function(task_id) {
-        console.log(task_id);
-        $scope.openDelete(task_id);
-    }
-
-    $scope.openDelete = function (task_id) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteTask.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              task_id: function() {
-                  return task_id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-        //          $scope.selected = selectedItem;
-            }, function () {
-        //          What to do on dismiss
-        //          $log.info('Modal dismissed at: ' + new Date());
-            });
-    };
-
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
-        $scope.ok = function () {
-            var promise = vmaTaskService.deleteTask(task_id);
-            promise.then(function(success) {
-                    console.log(success);
-                    window_scope.updateTasks();
-                    $modalInstance.close();
-                    ngNotify.set("Task deleted successfully", "success");
-                }, function(fail) {
-                    ngNotify.set(fail.data.message, 'error');
-            });
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //OPENING THE MODAL TO EDIT A TASK
-    $scope.editTask = function(task_id) {
-        $scope.openEdit(task_id);
-    }
-
-    $scope.openEdit = function (task_id) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/editTask.html',
-          controller: ModalInstanceCtrlEdit,
-          resolve: {
-              task_id: function() {
-                  return task_id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
-        var setup = function(st) {
-            $scope.showTime = st;
-            $scope.today = function() {
-                $scope.mytime = new Date($scope.editTask.time);
-            };
-            $scope.today();
-            $scope.toggleMin = function() {
-                $scope.minDate = $scope.minDate ? null : new Date();
-            };
-            $scope.toggleMin();
-
-            $scope.hstep = 1;
-            $scope.mstep = 5;
-
-            $scope.ismeridian = true;
-
-            $scope.changed = function () {
-                console.log('Time changed to: ' + $scope.mytime);
-            };
-
-            // Disable weekend selection
-            $scope.disabled = function(date, mode) {
-                return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-            };
-
-            $scope.toggleMin = function() {
-                $scope.minDate = $scope.minDate ? null : new Date();
-            };
-            $scope.toggleMin();
-
-            $scope.open = function($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
-                $scope.opened = true;
-            };
-
-            $scope.dateOptions = {
-                formatYear: 'yy',
-                startingDay: 1
-            };
-
-            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-            $scope.format = $scope.formats[0];
-        }
-        vmaTaskService.getTask(task_id).then(function(success) {
-            $scope.editTask = success;
-            console.log($scope.editTask.time);
-            if(!$scope.editTask.time) {
-                console.log("SHOWTIME = FALSE");
-                $scope.showTime = false;
-            } else {
-                console.log("SHOWTIME = TRUE");
-                $scope.showTime = true;
-            }
-            setup($scope.showTime);
-        });
-
-        $scope.ok = function () {
-            if($scope.showTime)
-                $scope.editTask.time = new Date($scope.mytime).toISOString();
-            else {
-                $scope.editTask.time = null;
-            }
-            console.log($scope.editTask);
-            var promise = vmaTaskService.editTask(task_id, $scope.editTask);
-
-            promise.then(function(success) {
-                    ngNotify.set("Task edited successfully", "success");
-                    window_scope.updateTasks();
-                    $modalInstance.close();
-                }, function(fail) {
-                    ngNotify.set(fail.data.message, 'error');
-            });
-        };
-
-        $scope.clear = function() {
-            $scope.showTime = !$scope.showTime;
-            if($scope.showTime) $scope.editTask.time = new Date(); else $scope.editTask.time = null;
-            console.log($scope.showTime);
-            setup($scope.showTime);
-        };
-        
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //VIEW A TASK
-    $scope.viewTask = function(click_id) {
-        $scope.task = vmaTaskService.getTaskView(click_id);
-        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
-    }
-
-    //JOINING A TASK
-    $scope.joinTask = function(task_id) {
-        var promise = vmaTaskService.joinTask(task_id, $scope.uid);
-
-        promise.then(function(success) {
-                $scope.updateTasks();
-                ngNotify.set("Task joined successfully", "success");
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-        });
-    }
-
-    //LEAVING A TASK
-    $scope.leaveTask = function(task_id) {
-        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
-        promise.then(function(success) {
-                $scope.updateTasks();
-                ngNotify.set("Task left successfully", "success");
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-        });
-    }
-}]);
-
 vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService, ngNotify) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
@@ -1444,40 +1338,6 @@ vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '
         {id:'6', group_name: "GROUP 6", icon: "img/temp_icon.png"}
     ];
 }]);
-
-/*
-vmaControllerModule.controller('group', ['$scope', '$state', '$stateParams', 'ngNotify', 'vmaGroupService', 'vmaTaskService', '$modal', function($scope, $state, $stateParams, ngNotify, vmaGroupService, vmaTaskService, $modal) {
-    $scope.id = $stateParams.id;
-    $scope.update = function(update){
-        vmaGroupService.getGroupMeta($scope.id, update).then(function(success) { $scope.group = success; });
-        vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
-    }
-    $scope.update(true);
-
-    //JOINING A TASK
-    $scope.joinTask = function(task_id) {
-        var promise = vmaTaskService.joinTask(task_id, $scope.uid);
-
-        promise.then(function(success) {
-                $scope.update();
-                ngNotify.set("Task joined successfully", "success");
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-        });
-    }
-
-    //LEAVING A TASK
-    $scope.leaveTask = function(task_id) {
-        var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
-        promise.then(function(success) {
-                $scope.update();
-                ngNotify.set("Task left successfully", "success");
-            }, function(fail) {
-                ngNotify.set(fail.data.message, 'error');
-        });
-    }
-}]);
-*/
 
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$modal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {

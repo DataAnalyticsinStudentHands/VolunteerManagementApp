@@ -5,19 +5,13 @@
         <div> {{post.content}} </div>
         <div id="view_postd"> {{post.date}} </div>
     </div>
-    <!--COMMENT INPUT-->
-    <div id="comment_input">
-        <form ng-submit="addComment()">
-            <input id="comment_input_input" type="text" ng-model="comment.content">
-            <input id="comment_input_submit" type="submit">
-        </form>
-    </div>
     <!--THE COMMENTS-->
     <div>
         <div id="comment_post" ng-repeat="comment in post.comments">
             <div id="comment_name">{{comment.user.username}}</div>
             <div id="comment_time">{{comment.time}}</div>
             <div id="comment_content">{{comment.content}}</div>
+<!--
             <div ng-show="comment.user_id == uid" id="comment_bs" class="btn-group" dropdown>
                 <button type="button" class="btn dropdown-toggle">
                     <span class="caret"></span>
@@ -27,8 +21,16 @@
                     <li><a ng-click="deleteComment(comment.id)">Delete</a></li>
                 </ul>
             </div>
+-->
         </div>
-        <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
+<!--        <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>-->
+    <!--COMMENT INPUT-->
+    <div id="comment_input">
+        <form ng-submit="addComment()">
+            <input id="comment_input_input" type="text" ng-model="comment.content">
+            <input id="comment_input_submit" type="submit">
+        </form>
+    </div>
         <br>
     </div>
 </ion-view>
