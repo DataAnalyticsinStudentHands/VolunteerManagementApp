@@ -25,11 +25,25 @@
     <button class="btn_name" id="message_ia" data-placement="right-center" title="<div>{{groupMSG.user.username}}</div>" data-content="<div>{{groupMSG.user.username}}'s Badges Coming Soon!</div>" data-trigger="focus" bs-popover>
 -->            
     <!--</button>-->
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Message">
+        </label>
+        <button class="button button-small">
+          Submit
+        </button>
+      </div>
+    </div>
+<!--
     <div id="messaging_input">
-        <form ng-submit="addMsg()">
-            <input id="message_input_input" type="text" ng-model="msg.message" ng-focus="scrollTo()">
+        <form ng-submit="addMsg()" class="list">
+            <input class="item item-input" id="message_input_input" type="text" ng-model="msg.message" ng-focus="scrollTo()">
             <input id="message_input_submit" type="submit">
         </form>
     </div>
     <div id="messaging_input_scrollto"></div>
+-->
 </ion-view>
+
+    
