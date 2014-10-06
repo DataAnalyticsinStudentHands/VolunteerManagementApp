@@ -9,26 +9,24 @@ angular.module('volunteerManagementApp', [
     'vmaDirectiveModule',
     'vmaFilterModule',
     'restangular',
-    'ngTouch',
     'ngNotify',
-    'headroom',
-    'snap',
-    'ui.bootstrap.tpls',
-    'ui.bootstrap.carousel',
-    'ui.bootstrap.tabs',
-    'ui.bootstrap.modal',
-    'ui.bootstrap.dropdown',
-    'ui.bootstrap.datepicker',
-    'ui.bootstrap.timepicker',
-    'mgcrea.ngStrap.tooltip',
-    'mgcrea.ngStrap.popover',
-    'mgcrea.ngStrap.datepicker',
-    'mgcrea.ngStrap.timepicker',
+//    'headroom',
+//    'snap',
+//    'ui.bootstrap.tpls',
+//    'ui.bootstrap.carousel',
+//    'ui.bootstrap.tabs',
+//    'ui.bootstrap.dropdown',
+//    'ui.bootstrap.datepicker',
+//    'ui.bootstrap.timepicker',
+//    'mgcrea.ngStrap.tooltip',
+//    'mgcrea.ngStrap.popover',
+//    'mgcrea.ngStrap.datepicker',
+//    'mgcrea.ngStrap.timepicker',
     'highcharts-ng',
     'adaptive.googlemaps'
 ]).
 
-config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -180,7 +178,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           authenticate: false
       });    
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
-    angular.extend($popoverProvider.defaults, { html: true });
+//    angular.extend($popoverProvider.defaults, { html: true });
 }).
 
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
