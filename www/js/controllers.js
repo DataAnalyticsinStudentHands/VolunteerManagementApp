@@ -634,20 +634,20 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.openAdd();
     }
     $scope.openAdd = function () {
-    var modalInstance = $modal.open({
-      templateUrl: 'partials/addTask.html',
-      controller: ModalInstanceCtrlAdd,
-      resolve: {
-          group_id: function() {
-              return $scope.id;
-          },
-          window_scope: function() {
-            return $scope;
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/addTask.html',
+          controller: ModalInstanceCtrlAdd,
+          resolve: {
+              group_id: function() {
+                  return $scope.id;
+              },
+              window_scope: function() {
+                return $scope;
+              }
           }
-      }
-    });
+        });
 
-    modalInstance.result.then(function (selectedItem) {
+        modalInstance.result.then(function (selectedItem) {
     //          $scope.selected = selectedItem;
         }, function () {
     //          What to do on dismiss
