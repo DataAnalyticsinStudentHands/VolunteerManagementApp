@@ -1,15 +1,26 @@
-<!--
 <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">My Modal title</h1>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Add Group</h1>
+        <button class="button button-clear button-primary" ng-click="modalAdd.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content>
--->
+
+    <div class="list">
+        <label class="item item-input">
+            <input type="text" ng-model="newGroup.name" placeholder="First Name">
+        </label>
+        <label class="item item-input">
+            <input type="text" ng-model="newGroup.description" placeholder="First Name">
+        </label>
+        <button class="button button-full button-dark" ng-click="ok()">Submit</button>
+    </div>
+<!--
     <form class="list" ng-submit="ok()">
         <input class="item item-input" type="text" ng-model="$parent.newGroup.name" placeholder="Name" required/>
         <input class="item item-input" type="text" ng-model="$parent.newGroup.description" placeholder="Description"/>
         <input class="item item-input" type="submit"/>
     </form>
-<!--
+-->
+
     </ion-content>
-</ion-modal-view>-->
+</ion-modal-view>

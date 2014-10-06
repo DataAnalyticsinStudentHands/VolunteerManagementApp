@@ -1,10 +1,26 @@
-<div class="modal_e" stop-event="touchend">
-    <form ng-submit="ok()">
-        <input id="name" type="text" name="name" ng-model="$parent.group.name" placeholder="Name" required/>
-        <br/>
-        <input id="description" type="text" ng-model="$parent.group.description" placeholder="Description"/>
-        <br/>
-        <input type="submit"/>
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Edit Group</h1>
+        <button class="button button-clear button-primary" ng-click="modalAdd.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+
+    <div class="list">
+        <label class="item item-input">
+            <input type="text" ng-model="group.name" placeholder="First Name">
+        </label>
+        <label class="item item-input">
+            <input type="text" ng-model="group.description" placeholder="First Name">
+        </label>
+        <button class="button button-full button-dark" ng-click="ok()">Submit</button>
+    </div>
+<!--
+    <form class="list" ng-submit="ok()">
+        <input class="item item-input" type="text" ng-model="$parent.newGroup.name" placeholder="Name" required/>
+        <input class="item item-input" type="text" ng-model="$parent.newGroup.description" placeholder="Description"/>
+        <input class="item item-input" type="submit"/>
     </form>
-    <p>{{message}}</p>
-</div>
+-->
+
+    </ion-content>
+</ion-modal-view>

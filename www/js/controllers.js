@@ -377,7 +377,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     }
 }]);
 
-vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', function($scope, $state, $modal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet) {
+vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $ionicModal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet, $ionicPopup) {
     var state = $state.current.name;
     switch(state) {
         case "home.myGroups":
@@ -412,46 +412,36 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         $scope.openAdd();
     }
     $scope.openAdd = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/addGroup.html',
-          controller: ModalInstanceCtrl,
-          resolve: {
-              window_scope: function() {
-                return $scope;
-              }
-          }
+        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        $ionicModal.fromTemplateUrl('partials/addGroup.html', {
+            scope : $scope
+        }).then(function (modal) {
+            $scope.modalAdd = modal;
+            $scope.newGroup = {};
+            $scope.modalAdd.show();
         });
-
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
+        $scope.openModal = function() {
+            $scope.modalAdd.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modalAdd.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modalAdd.remove();
         });
-    };
-    var ModalInstanceCtrl = function ($scope, $modalInstance, window_scope, vmaGroupService) {
+        
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
             console.log($scope.newGroup);
             promise.then(function(success) {
-                window_scope.updateGroups(true);
-                $modalInstance.close();
+                $scope.updateGroups(true);
+                $scope.closeModal();
                 ngNotify.set("Group created successfully!", 'success');
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-                        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //OPENING THE MODAL TO DELETE A GROUP
@@ -459,48 +449,27 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         $scope.openDelete(id);
     }
     $scope.openDelete = function (id) {
-        console.log(id);
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteGroup.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              deleteId: function() {
-                  return id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Delete Group',
+         template: 'Are you sure you want delete this group?'
+       });
+       confirmPopup.then(function(res) {
+         if(res) {
+             $scope.ok();
+         } else {
 
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
-        $scope.ok = function () {
-            var promise = vmaGroupService.deleteGroup(deleteId);
+         }
+       });
+       $scope.ok = function () {
+            var promise = vmaGroupService.deleteGroup(id);
             promise.then(function(success) {
-                window_scope.updateGroups(true);
+                $scope.updateGroups(true);
                 ngNotify.set("Group deleted successfully!", 'success');
                 $modalInstance.close();
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //OPENING THE MODAL TO EDIT A GROUP
@@ -508,100 +477,61 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         $scope.openEdit(id);
     }
     $scope.openEdit = function (id) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/editGroup.html',
-          controller: ModalInstanceCtrlEdit,
-          resolve: {
-              editId: function() {
-                  return id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
+        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        $ionicModal.fromTemplateUrl('partials/editGroup.html', {
+            scope : $scope
+        }).then(function (modal) {
+            $scope.modalAdd = modal;
+            vmaGroupService.getGroup(id).then(function(success) { $scope.group = success });
+            $scope.modalAdd.show();
         });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
+        $scope.openModal = function() {
+            $scope.modalAdd.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modalAdd.hide();
+        };
+        $scope.$on('$destroy', function() {
+            $scope.modalAdd.remove();
         });
-    };
-    var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope, vmaGroupService) {
-        vmaGroupService.getGroup(editId).then(function(success) { $scope.group = success });
         $scope.ok = function () {
-            var promise = vmaGroupService.editGroup(editId, $scope.group);
+            var promise = vmaGroupService.editGroup(id, $scope.group);
             promise.then(function(success) {
                 ngNotify.set("Group edited successfully!", 'success');
-                window_scope.updateGroups(true);
-                console.log(success);
-                $modalInstance.close();
+                $scope.updateGroups(true);
+                $scope.closeModal();
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
-
+    
     //OPENING THE MODAL TO LEAVE A GROUP
     $scope.leaveGroup = function(id) {
         $scope.openLeave(id);
     }
     $scope.openLeave = function (id) {
-        console.log(id);
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/leaveGroup.html',
-          controller: ModalInstanceCtrlLeave,
-          resolve: {
-              deleteId: function() {
-                  return id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Leave Group',
+         template: 'Are you sure you want to leave this group?'
+       });
+       confirmPopup.then(function(res) {
+         if(res) {
+             $scope.ok();
+         } else {
 
-        modalInstance.result.then(function (selectedItem) {
-//          $scope.selected = selectedItem;
-        }, function () {
-//          What to do on dismiss
-//          $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-    var ModalInstanceCtrlLeave = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
-        $scope.ok = function () {
-            var promise = vmaGroupService.leaveGroupMember(deleteId, $scope.uid);
-
+         }
+       });
+       $scope.ok = function () {
+            var promise = vmaGroupService.leaveGroupMember(id, $scope.uid);
             promise.then(function(success) {
-                window_scope.updateGroups(true);
+                $scope.updateGroups(true);
                 ngNotify.set("Group left successfully!", 'success');
                 console.log(success);
-                $modalInstance.close();
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //JOINING A GROUP
