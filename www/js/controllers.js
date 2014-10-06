@@ -145,7 +145,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     };
 }]);
 
-vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$ionicModal', '$stateParams', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $ionicModal, $stateParams) {
+vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $ionicModal, $stateParams, $ionicPopup) {
     $scope.posts = [];
     var state = $state.current.name;
     switch(state) {
@@ -241,7 +241,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     $scope.editPost = function(pid) {
         $scope.openEdit(pid);
     }
-    $scope.openEdit = function (pid) {
+    $scope.openEdit = function(pid) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/addPost.html', {
             scope : $scope
@@ -274,14 +274,14 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
         var getPostProm = vmaPostService.getPost(pid);
         getPostProm.then(function(success) {
             $scope.post = success;
-        });  
+        });
     };
 
     //OPEN ADD FUNCTION AND DELETE
     $scope.addPost = function() {
         $scope.openAdd();
     }
-    $scope.openAdd = function () {
+    $scope.openAdd = function() {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/addPost.html', {
             scope : $scope
@@ -316,10 +316,30 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
 
     //OPEN DELETE FUNCTION AND DELETE
     $scope.deletePost = function(pid) {
-        console.log("DELETE");
+        $scope.openDelete(pid);
     };
     $scope.openDelete = function(pid) {
-        console.log("DELETE");
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Delete Post',
+         template: 'Are you sure you want delete this post?'
+       });
+       confirmPopup.then(function(res) {
+         if(res) {
+             $scope.ok();
+         } else {
+
+         }
+       });
+        
+        $scope.ok = function () {
+            var prom = vmaPostService.deletePost(pid);
+            prom.then(function(success) {
+                ngNotify.set("Post deleted successfully!", 'success');
+                $scope.updatePosts();
+            }, function(fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+        };
     };
 
     //PERMISSIONS
