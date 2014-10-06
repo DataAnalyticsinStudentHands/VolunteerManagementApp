@@ -112,7 +112,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.group.posts.comments', {
           url: "/:post_id",
           views: {
-            "app@home": { templateUrl: "partials/viewPost.html", controller: 'home.groupFeed.detail.right_pane_post'}
+            "app@home": { templateUrl: "partials/viewPost.html", controller: 'comments'}
           },
           authenticate: true
       }).

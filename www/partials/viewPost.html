@@ -1,17 +1,38 @@
 <ion-view title="Comments">
     <!--THE POST-->
+<!--    <div class="list">-->
+        <div class="item item-avatar">
+            <div><img src="img/effort_task.icon.png" width="15%" /></div>
+            <h2>{{post.user.username}} > {{post.group.name}}</h2>
+            <p>{{post.date}}</p>
+        </div>
+        <div class="item item-body">
+            <p>{{post.content}}</p>
+        </div>
+<!--    </div>-->
+<!--
     <div id="view_post" >
         <div id="view_postn"> {{post.user.username}} > {{post.group.name}} </div>
         <div> {{post.content}} </div>
         <div id="view_postd"> {{post.date}} </div>
     </div>
+-->
+    <div class="item item-divider">
+        Comments
+    </div>
     <!--THE COMMENTS-->
-    <div>
-        <div id="comment_post" ng-repeat="comment in post.comments">
-            <div id="comment_name">{{comment.user.username}}</div>
-            <div id="comment_time">{{comment.time}}</div>
-            <div id="comment_content">{{comment.content}}</div>
-<!--
+    <div class="list">
+        <div class="item item-icon-right" ng-repeat="comment in post.comments">
+            <h2>{{comment.user.username}}</h2>
+<!--            <p>{{comment.time}}</p>-->
+            <p>{{comment.content}}</p>
+            <a class="tab-item" ng-click="showActions(comment.id)">
+                <i class="icon ion-ios7-more"></i>
+            </a>
+        </div>
+    </div>
+    <!--<center> <button ng-click="loadMore()"> LOAD MORE </button> </center>-->
+    <!--
             <div ng-show="comment.user_id == uid" id="comment_bs" class="btn-group" dropdown>
                 <button type="button" class="btn dropdown-toggle">
                     <span class="caret"></span>
@@ -21,16 +42,12 @@
                     <li><a ng-click="deleteComment(comment.id)">Delete</a></li>
                 </ul>
             </div>
--->
-        </div>
-<!--        <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>-->
+            -->
     <!--COMMENT INPUT-->
     <div id="comment_input">
         <form ng-submit="addComment()">
-            <input id="comment_input_input" type="text" ng-model="comment.content">
-            <input id="comment_input_submit" type="submit">
+            <input type="text" ng-model="comment.content">
+            <input type="submit">
         </form>
-    </div>
-        <br>
     </div>
 </ion-view>

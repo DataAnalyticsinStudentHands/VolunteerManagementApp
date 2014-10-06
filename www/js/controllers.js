@@ -1024,13 +1024,12 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$modal', 
     }
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, vmaTaskService) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$modal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $modal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet) {
         $scope.id = $stateParams.id;
         vmaTaskService.getTask($scope.id).then(
             function(success) {
                 $scope.task = success;
-            }
-        );
+            });
         $scope.groupMSGs = [];
         $scope.updateMessages = function() {
             var prom = vmaMessageService.getTaskMessages(10, null, $scope.id);
@@ -1054,7 +1053,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         $scope.deleteMessage = function(id) {
             $scope.openDelete(id);
         }
-
         $scope.openDelete = function (id) {
             console.log(id);
             var modalInstance = $modal.open({
@@ -1070,15 +1068,13 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
               }
             });
 
-            modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-            }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-            });
-    };
-
-        //Controller for the Modal PopUp Delete
+                modalInstance.result.then(function (selectedItem) {
+        //          $scope.selected = selectedItem;
+                }, function () {
+        //          What to do on dismiss
+        //          $log.info('Modal dismissed at: ' + new Date());
+                });
+        };
         var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
             $scope.ok = function () {
                 var promise = vmaMessageService.deleteMessage(deleteId);
@@ -1106,7 +1102,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         $scope.editMessage = function(id) {
             $scope.openEdit(id);
         }
-
         $scope.openEdit = function (id) {
             var modalInstance = $modal.open({
               templateUrl: 'partials/editMessage.html',
@@ -1121,8 +1116,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
               }
             });
         };
-
-        //Controller for the Modal PopUp Edit
         var ModalInstanceCtrlEdit = function ($scope, $filter, $modalInstance, editId, window_scope, vmaMessageService) {
             vmaMessageService.getMessage(editId, window_scope.id).then(function(success) {
                 $scope.message_edit = success;
@@ -1185,9 +1178,44 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
                 }, 2000);
             }
         }
+
+        //PERMISSIONS
+        $scope.generateActions = function(id) {
+            var ionicActionArray = [
+                { text: 'Edit' },
+                { text: 'Delete' }
+            ];
+            return ionicActionArray;
+        }
+
+        //ACTION SHEET
+        $scope.showActions = function(id) {
+            var ionicActions = $scope.generateActions(id);
+            $ionicActionSheet.show({
+                buttons: ionicActions,
+                titleText: 'Update Message',
+                cancelText: 'Cancel',
+                buttonClicked: function(index) {
+    //                console.log(index);
+                    var action = ionicActions[index];
+                    switch(action.text) {
+                        case "Edit":
+                            $scope.editMessage(id);
+                            break;
+                        case "Delete":
+                            $scope.deleteMessage(id);
+                            break;
+                        default:
+                            console.log("BUG");
+                            return true;
+                    }
+                    return true;
+                }
+            });
+        }
 }]);
 
-vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService, ngNotify) {
+vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$modal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
@@ -1199,6 +1227,7 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
         );
     };
     $scope.updateComments();
+    
     $scope.addComment = function() {
         vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
             $scope.updateComments();
@@ -1213,7 +1242,6 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
     $scope.editComment = function(cid) {
         $scope.openEdit(cid);
     }
-
     $scope.openEdit = function (cid) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/editComment.html',
@@ -1235,8 +1263,6 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
     //          $log.info('Modal dismissed at: ' + new Date());
         });
 };
-
-    //Controller for the Modal PopUp
     var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, comment_id) {
         var getCommentProm = vmaCommentService.getComment(comment_id);
         getCommentProm.then(function(success) {
@@ -1269,7 +1295,6 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
     $scope.deleteComment = function(cid) {
         $scope.openDelete(cid);
     }
-
     $scope.openDelete = function (cid) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/deleteComment.html',
@@ -1291,7 +1316,6 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
     //          $log.info('Modal dismissed at: ' + new Date());
         });
 };
-    //Controller for the Modal PopUp
     var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, comment_id) {
         $scope.ok = function () {
             var prom = vmaCommentService.deleteComment(comment_id);
@@ -1314,12 +1338,46 @@ vmaControllerModule.controller('home.groupFeed.detail.right_pane_post', ['$scope
             event.preventDefault();
         });
     };
+
+    //PERMISSIONS
+    $scope.generateActions = function(id) {
+        var ionicActionArray = [
+            { text: 'Edit' },
+            { text: 'Delete' }
+        ];
+        return ionicActionArray;
+    }
+
+    //ACTION SHEET
+    $scope.showActions = function(id) {
+        var ionicActions = $scope.generateActions(id);
+        $ionicActionSheet.show({
+            buttons: ionicActions,
+            titleText: 'Update Message',
+            cancelText: 'Cancel',
+            buttonClicked: function(index) {
+//                console.log(index);
+                var action = ionicActions[index];
+                switch(action.text) {
+                    case "Edit":
+                        $scope.editComment(id);
+                        break;
+                    case "Delete":
+                        $scope.deleteComment(id);
+                        break;
+                    default:
+                        console.log("BUG");
+                        return true;
+                }
+                return true;
+            }
+        });
+    }
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$modal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
     console.log(JSON.parse($stateParams.task));
     $scope.task = JSON.parse($stateParams.task);
-//    $scope.task = task;
     $scope.map = {
         sensor: true,
         size: '500x300',
