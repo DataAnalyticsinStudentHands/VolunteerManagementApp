@@ -10,20 +10,9 @@ angular.module('volunteerManagementApp', [
     'vmaFilterModule',
     'restangular',
     'ngNotify',
-//    'headroom',
-//    'snap',
-//    'ui.bootstrap.tpls',
-//    'ui.bootstrap.carousel',
-//    'ui.bootstrap.tabs',
-//    'ui.bootstrap.dropdown',
-//    'ui.bootstrap.datepicker',
-//    'ui.bootstrap.timepicker',
-//    'mgcrea.ngStrap.tooltip',
-//    'mgcrea.ngStrap.popover',
-//    'mgcrea.ngStrap.datepicker',
-//    'mgcrea.ngStrap.timepicker',
     'highcharts-ng',
-    'adaptive.googlemaps'
+    'adaptive.googlemaps',
+    'ui.bootstrap.datetimepicker'
 ]).
 
 config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {

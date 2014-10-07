@@ -3,10 +3,10 @@
     <button class="button button-dark" ng-click="addTask()"> <i class="icon ion-plus-round"> </i> </button>
 </ion-nav-buttons>
 <div class="list">
-    <div class="item item-avatar item-button-right" ng-repeat="task in metaTasks" ng-click="viewTask(task.id)">
+    <div class="item item-avatar item-button-right" ng-repeat="task in metaTasks">
         <img src="img/avatar.icon.png" width="60" height="50"/>
-        <h2> {{task.name}} </h2>
-        <button class="button button-dark" ng-click="joinGroup(group.id)"> <i class="icon ion-ios7-more"></i> </button>
+        <h2 ng-click="viewTask(task.id)"> {{task.name}} </h2>
+        <button class="button button-dark" ng-click="showActions(task.id)"> <i class="icon ion-ios7-more"></i> </button>
         <!--
                     <div id="t" ng-show="task.datetime"> {{task.datetime}} </div>
                     <div id="t" ng-show="task.location"> {{task.location}} </div>

@@ -14,6 +14,7 @@
         "D:/SoA/VMA/VMA_IONIC/www/modules/sha512.js",
         "D:/SoA/VMA/VMA_IONIC/www/bower_components/ionic/release/js/ionic.bundle.js",
         "D:/SoA/VMA/VMA_IONIC/www/modules/dbServices.js",
-        "D:/SoA/VMA/VMA_IONIC/www/bower_components/ionic/release/js/ionic.min.js"
+        "D:/SoA/VMA/VMA_IONIC/www/bower_components/ionic/release/js/ionic.min.js",
+        "D:/SoA/VMA/VMA_IONIC/www/bower_components/ionic/release/js/ionic.js"
     ]
 }

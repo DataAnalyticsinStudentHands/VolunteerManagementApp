@@ -56,93 +56,31 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
 }]);
 
 vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicModal', function($scope, $state, Auth, $modal) {
-    $scope.out = function() {
-        Auth.clearCredentials();
-        console.log("HERE");
-        $state.go("home", {}, {reload: true});
-//        ngNotify.set("Successfully logged out!", {"type" : "success", "position" : "top" });
-    }
-    
     //OPENING THE MODAL TO LOG OUT A USER
     $scope.logOutUser = function(id) {
         $scope.openLogOut(id);
     }
-
     $scope.openLogOut = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/logOutUser.html',
-          controller: ModalInstanceCtrlLogOut,
-          resolve: {
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
+        var confirmPopup = $ionicPopup.confirm({
+                title: 'Log Out',
+                template: 'Are you sure you would like to log out?'
+            });
+                confirmPopup.then(function(res) {
+            if(res) {
+                 $scope.ok();
+            } else {
 
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
+            }
         });
-    };
-
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlLogOut = function ($scope, $modalInstance, window_scope) {
         $scope.ok = function () {
-            $modalInstance.close();
-            window_scope.out();
+            $scope.out();
         };
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-//        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-//            console.log("SCOPE - $stateChangeStart");
-//            $modalInstance.dismiss('cancel');
-//            //Prevents the switching of the state
-//            event.preventDefault();
-//        });
     };
-    
-    //OPENING THE MODAL TO DELETE A USER
-    $scope.deleteUser = function(id) {
-        $scope.openDelete(id);
+    $scope.out = function() {
+        Auth.clearCredentials();
+        console.log("HERE");
+        $state.go("home", {}, {reload: true});
     }
-
-    $scope.openDelete = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteUser.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-        });
-    };
-
-    //Controller for the Modal PopUp Delete
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope) {
-        $scope.ok = function () {
-            window_scope.delUser();
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
 }]);
 
 vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $ionicModal, $stateParams, $ionicPopup) {
@@ -465,7 +403,6 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             promise.then(function(success) {
                 $scope.updateGroups(true);
                 ngNotify.set("Group deleted successfully!", 'success');
-                $modalInstance.close();
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
@@ -591,7 +528,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     }
 }]);
 
-vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', function($scope, $state, $modal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet) {
+vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $ionicModal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet, $ionicPopup) {
     var state = $state.current.name;
     switch(state) {
         case "home.myTasks":
@@ -634,156 +571,39 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.openAdd();
     }
     $scope.openAdd = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/addTask.html',
-          controller: ModalInstanceCtrlAdd,
-          resolve: {
-              group_id: function() {
-                  return $scope.id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
+        $scope.newTask = {}
+        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        $ionicModal.fromTemplateUrl('partials/addTask.html', {
+            scope : $scope
+        }).then(function (modal) {
+            $scope.modalAdd = modal;
+            $scope.newGroup = {};
+            $scope.modalAdd.show();
         });
-
-        modalInstance.result.then(function (selectedItem) {
-    //          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
+        $scope.openModal = function() {
+            $scope.modalAdd.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modalAdd.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modalAdd.remove();
         });
-    };
-    var ModalInstanceCtrlAdd = function ($scope, $modalInstance, window_scope, group_id, vmaTaskService) {
-          $scope.showTime = true;
-          $scope.today = function() {
-            $scope.mytime = new Date();
-            $scope.dt = new Date();
-          };
-          $scope.today();
-          $scope.toggleMin = function() {
-              $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
-        
-          $scope.hstep = 1;
-          $scope.mstep = 5;
-
-          $scope.ismeridian = true;
-
-          $scope.changed = function () {
-            console.log('Time changed to: ' + $scope.mytime);
-          };
-
-          $scope.clear = function() {
-            $scope.showTime = !$scope.showTime;
-            $scope.mytime = null;
-            $scope.dt = null;
-          };
-
-          // Disable weekend selection
-          $scope.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-          };
-
-          $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
-          };
-          $scope.toggleMin();
-
-          $scope.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            $scope.opened = true;
-          };
-
-          $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-          };
-
-          $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-          $scope.format = $scope.formats[0];
-
-        $scope.ok = function () {            
-            $scope.newTask.group_id = group_id;
-            $scope.newTask.time = $scope.mytime;
-
+        $scope.ok = function () {           
+            $scope.newTask.group_id = $scope.id;
+//            $scope.newTask.time = $scope.mytime;
+            console.log($scope);
             var promise = vmaTaskService.addTask($scope.newTask);
-
             promise.then(function(success) {
                 $scope.message = "ADD SUCCESS!";
-                    console.log(success);
-                    window_scope.updateTasks();
-                    $modalInstance.close();
+                    $scope.updateTasks();
+                    $scope.closeModal();
                     ngNotify.set("Task added successfully", "success");
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
-                });
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
-    };
-
-    //OPENING THE MODAL TO DELETE A TASK
-    $scope.deleteTask = function(task_id) {
-        console.log(task_id);
-        $scope.openDelete(task_id);
-    }
-    $scope.openDelete = function (task_id) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteTask.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              task_id: function() {
-                  return task_id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-        //          $scope.selected = selectedItem;
-            }, function () {
-        //          What to do on dismiss
-        //          $log.info('Modal dismissed at: ' + new Date());
-            });
-    };
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
-        $scope.ok = function () {
-            var promise = vmaTaskService.deleteTask(task_id);
-            promise.then(function(success) {
-                    console.log(success);
-                    window_scope.updateTasks();
-                    $modalInstance.close();
-                    ngNotify.set("Task deleted successfully", "success");
-                }, function(fail) {
-                    ngNotify.set(fail.data.message, 'error');
             });
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //OPENING THE MODAL TO EDIT A TASK
@@ -899,10 +719,40 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         });
     };
 
+    //OPENING THE MODAL TO DELETE A TASK
+    $scope.deleteTask = function(task_id) {
+        console.log(task_id);
+        $scope.openDelete(task_id);
+    }
+    $scope.openDelete = function (task_id) {
+        var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete Message',
+                template: 'Are you sure you want delete this message?'
+            });
+                confirmPopup.then(function(res) {
+            if(res) {
+                 $scope.ok();
+            } else {
+
+            }
+        });
+
+        $scope.ok = function () {
+            var promise = vmaTaskService.deleteTask(task_id);
+            promise.then(function(success) {
+                    console.log(success);
+                    window_scope.updateTasks();
+                    $modalInstance.close();
+                    ngNotify.set("Task deleted successfully", "success");
+                }, function(fail) {
+                    ngNotify.set(fail.data.message, 'error');
+            });
+        };
+    };
+
     //JOINING A TASK
     $scope.joinTask = function(task_id) {
         var promise = vmaTaskService.joinTask(task_id, $scope.uid);
-
         promise.then(function(success) {
                 $scope.updateTasks();
                 ngNotify.set("Task joined successfully", "success");
@@ -921,8 +771,29 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                 ngNotify.set(fail.data.message, 'error');
         });
     }
-    
-    
+
+    //OPENING DATE/TIME PICKER
+    $scope.openDatePicker = function () {
+        $scope.tmp = {};
+        $scope.tmp.newDate = $scope.newTask.time;
+        
+        var birthDatePopup = $ionicPopup.show({
+            template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
+            title: "Task Date & Time",
+            scope: $scope,
+            buttons: [
+                { text: 'Cancel' },
+                {
+                    text: '<b>Save</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        $scope.newTask.time = $scope.tmp.newDate;
+                    }
+                }
+            ]
+        });
+    };
+
     //PERMISSIONS
     $scope.generateActions = function(id) {
         var ionicActionArray = [
@@ -1014,18 +885,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
                     ngNotify.set(fail.data.message, 'error');
                 });
             };
-        };
-        var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };                
-            $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-                console.log("SCOPE - $stateChangeStart");
-                $modalInstance.dismiss('cancel');
-                //Prevents the switching of the state
-                event.preventDefault();
-            });
         };
 
         //OPENING THE MODAL TO EDIT A MESSAGE
