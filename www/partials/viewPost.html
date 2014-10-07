@@ -37,10 +37,23 @@
             </div>
             -->
     <!--COMMENT INPUT-->
+<!--
     <div id="comment_input">
         <form ng-submit="addComment()">
             <input type="text" ng-model="comment.content">
             <input type="submit">
         </form>
+    </div>
+-->
+    
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" ng-model="comment.content" placeholder="Message">
+        </label>
+        <button class="button button-small" ng-click="addComment()">
+          Submit
+        </button>
+      </div>
     </div>
 </ion-view>
