@@ -1135,7 +1135,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }
 }]);
 
-vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', function($scope, $state, $stateParams, $modal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet) {
+vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $stateParams, $ionicModal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet, $ionicPopup) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
@@ -1163,52 +1163,35 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         $scope.openEdit(cid);
     }
     $scope.openEdit = function (cid) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/editComment.html',
-          controller: ModalInstanceCtrlEdit,
-          resolve: {
-              window_scope: function() {
-                  return $scope;
-              },
-              comment_id: function() {
-                  return cid;
-              }
-          }  
+        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        $ionicModal.fromTemplateUrl('partials/editComment.html', {
+            scope : $scope
+        }).then(function (modal) {
+            $scope.modalEdit = modal;
+            vmaCommentService.getComment(cid).then(function(success) { $scope.comment = success; });
+            $scope.modalEdit.show();
         });
-
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
-        });
-};
-    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, comment_id) {
-        var getCommentProm = vmaCommentService.getComment(comment_id);
-        getCommentProm.then(function(success) {
-            $scope.comment = success;
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modalEdit.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modalEdit.remove();
         });
         $scope.ok = function () {
-            var prom = vmaCommentService.editComment(comment_id, $scope.comment);
+            var prom = vmaCommentService.editComment(cid, $scope.comment);
             prom.then(function(success) {
                 ngNotify.set("Comment edited successfully!", 'success');
-                window_scope.updateComments();
+                $scope.comment = null;
+                $scope.updateComments();
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
-            $modalInstance.close();
+            $scope.closeModal();
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };    
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //OPEN DELETE
@@ -1216,47 +1199,27 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         $scope.openDelete(cid);
     }
     $scope.openDelete = function (cid) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/deleteComment.html',
-          controller: ModalInstanceCtrlDelete,
-          resolve: {
-              window_scope: function() {
-                  return $scope;
-              },
-              comment_id: function() {
-                  return cid;
-              }
-          }  
-        });
+        var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete Comment',
+                template: 'Are you sure you want delete this comment?'
+            });
+                confirmPopup.then(function(res) {
+            if(res) {
+                 $scope.ok();
+            } else {
 
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-    //          What to do on dismiss
-    //          $log.info('Modal dismissed at: ' + new Date());
+            }
         });
-};
-    var ModalInstanceCtrlDelete = function ($scope, $modalInstance, window_scope, comment_id) {
         $scope.ok = function () {
-            var prom = vmaCommentService.deleteComment(comment_id);
+            var prom = vmaCommentService.deleteComment(cid);
             prom.then(function(success) {
-                $modalInstance.close();
-                window_scope.updateComments();
+                $scope.updateComments();
                 ngNotify.set("Comment deleted successfully!", 'success');
             }, function(fail) {
 //                console.log(fail)
                 ngNotify.set(fail.data.message, 'error');
             });
         };
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };                
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //PERMISSIONS

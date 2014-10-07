@@ -1,8 +1,25 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Edit Group</h1>
+        <button class="button button-clear button-primary" ng-click="modalAdd.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+
+    <div class="list">
+        <label class="item item-input">
+            <textarea type="text" ng-model="$parent.comment.content" placeholder="Comment Content" rows="4"/>
+        </label>
+        <button class="button button-full button-dark" ng-click="ok()">Submit</button>
+    </div>
+    </ion-content>
+</ion-modal-view>
+
+<!--
+
 <div class="modal_a" stop-event="touchend">
     <form ng-submit="ok()">
-        <input type="text" ng-model="$parent.comment.content" placeholder="Comment Content" required/>
         <br/>
         <br/>
         <input id="submit_ag" type="submit"/>
     </form>
-</div>
+</div>-->
