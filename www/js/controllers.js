@@ -567,7 +567,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     }
 
     //OPENING THE MODAL TO ADD A TASK
-    $scope.addTask = function() {
+    $scope.addTask = function () {
         $scope.openAdd();
     }
     $scope.openAdd = function () {
@@ -607,121 +607,47 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     };
 
     //OPENING THE MODAL TO EDIT A TASK
-    $scope.editTask = function(task_id) {
+    $scope.editTask = function (task_id) {
         $scope.openEdit(task_id);
     }
     $scope.openEdit = function (task_id) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/editTask.html',
-          controller: ModalInstanceCtrlEdit,
-          resolve: {
-              task_id: function() {
-                  return task_id;
-              },
-              window_scope: function() {
-                return $scope;
-              }
-          }
+        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        $ionicModal.fromTemplateUrl('partials/editTask.html', {
+            scope : $scope
+        }).then(function (modal) {
+            $scope.modalAdd = modal;
+            vmaTaskService.getTask(task_id).then(function(success) {
+                $scope.editTask = success;
+                if($scope.editTask.time)
+                    $scope.editTask.time = new Date($scope.editTask.time);
+                else
+                    $scope.editTask.time = null;
+            });
+            $scope.modalAdd.show();
         });
-    };
-    var ModalInstanceCtrlEdit = function ($scope, $modalInstance, window_scope, task_id, vmaTaskService) {
-        var setup = function(st) {
-            $scope.showTime = st;
-            $scope.today = function() {
-                $scope.mytime = new Date($scope.editTask.time);
-            };
-            $scope.today();
-            $scope.toggleMin = function() {
-                $scope.minDate = $scope.minDate ? null : new Date();
-            };
-            $scope.toggleMin();
-
-            $scope.hstep = 1;
-            $scope.mstep = 5;
-
-            $scope.ismeridian = true;
-
-            $scope.changed = function () {
-                console.log('Time changed to: ' + $scope.mytime);
-            };
-
-            // Disable weekend selection
-            $scope.disabled = function(date, mode) {
-                return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-            };
-
-            $scope.toggleMin = function() {
-                $scope.minDate = $scope.minDate ? null : new Date();
-            };
-            $scope.toggleMin();
-
-            $scope.open = function($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
-                $scope.opened = true;
-            };
-
-            $scope.dateOptions = {
-                formatYear: 'yy',
-                startingDay: 1
-            };
-
-            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-            $scope.format = $scope.formats[0];
-        }
-        vmaTaskService.getTask(task_id).then(function(success) {
-            $scope.editTask = success;
-            console.log($scope.editTask.time);
-            if(!$scope.editTask.time) {
-                console.log("SHOWTIME = FALSE");
-                $scope.showTime = false;
-            } else {
-                console.log("SHOWTIME = TRUE");
-                $scope.showTime = true;
-            }
-            setup($scope.showTime);
+        $scope.openModal = function() {
+            $scope.modalAdd.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modalAdd.hide();
+        };
+        $scope.$on('$destroy', function() {
+            $scope.modalAdd.remove();
         });
-
         $scope.ok = function () {
-            if($scope.showTime)
-                $scope.editTask.time = new Date($scope.mytime).toISOString();
-            else {
-                $scope.editTask.time = null;
-            }
-            console.log($scope.editTask);
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
-
             promise.then(function(success) {
                     ngNotify.set("Task edited successfully", "success");
-                    window_scope.updateTasks();
-                    $modalInstance.close();
+                    $scope.updateTasks();
+                    $scope.closeModal();
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
             });
         };
-
-        $scope.clear = function() {
-            $scope.showTime = !$scope.showTime;
-            if($scope.showTime) $scope.editTask.time = new Date(); else $scope.editTask.time = null;
-            console.log($scope.showTime);
-            setup($scope.showTime);
-        };
-        
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-        
-        $scope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-            console.log("SCOPE - $stateChangeStart");
-            $modalInstance.dismiss('cancel');
-            //Prevents the switching of the state
-            event.preventDefault();
-        });
     };
 
     //OPENING THE MODAL TO DELETE A TASK
-    $scope.deleteTask = function(task_id) {
-        console.log(task_id);
+    $scope.deleteTask = function (task_id) {
         $scope.openDelete(task_id);
     }
     $scope.openDelete = function (task_id) {
@@ -776,8 +702,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.openDatePicker = function () {
         $scope.tmp = {};
         $scope.tmp.newDate = $scope.newTask.time;
-        
-        var birthDatePopup = $ionicPopup.show({
+        $ionicPopup.show({
             template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
             title: "Task Date & Time",
             scope: $scope,
@@ -788,6 +713,27 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                     type: 'button-positive',
                     onTap: function (e) {
                         $scope.newTask.time = $scope.tmp.newDate;
+                    }
+                }
+            ]
+        });
+    };
+
+    //OPENING DATE/TIME PICKER
+    $scope.openDatePickerEdit = function () {
+        $scope.tmp = {};
+        $scope.tmp.newDate = $scope.editTask.time;
+        $ionicPopup.show({
+            template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
+            title: "Task Date & Time",
+            scope: $scope,
+            buttons: [
+                { text: 'Cancel' },
+                {
+                    text: '<b>Save</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        $scope.editTask.time = $scope.tmp.newDate;
                     }
                 }
             ]
