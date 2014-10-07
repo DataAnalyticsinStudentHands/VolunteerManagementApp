@@ -28,9 +28,9 @@
     <div class="list">
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
-          <input type="text" placeholder="Message">
+          <input type="text" ng-model="msg.message" placeholder="Message">
         </label>
-        <button class="button button-small">
+        <button class="button button-small" ng-click="addMsg()">
           Submit
         </button>
       </div>
