@@ -2,9 +2,9 @@
     <div class="list">
         <div class="item item-avatar item-icon-right item-text-wrap" ng-repeat="groupMSG in groupMSGs">
             <img ng-src="{{groupMSG.img}}" width="40" height="40"/>
-            <h2>{{groupMSG.user.username}}</h2>
-            <p> {{groupMSG.content}}</p>
-            <p> {{groupMSG.time}}</p>
+            <h4 id="vma_groupMSGuser">{{groupMSG.user.username}}</h2>
+            <p id="vma_groupMSGcontent"> {{groupMSG.content}}</p>
+            <p id="vma_groupMSG"> {{groupMSG.time}}</p>
             <a class="tab-item" ng-click="showActions(groupMSG.id)">
                 <i class="icon ion-ios7-more"></i>
             </a>
