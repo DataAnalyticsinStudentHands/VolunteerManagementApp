@@ -3,8 +3,8 @@
         <div class="item item-avatar item-icon-right" ng-repeat="groupMSG in groupMSGs">
             <img ng-src="{{groupMSG.img}}" width="40" height="40"/>
             <h2>{{groupMSG.user.username}}</h2>
-            <p> {{groupMSG.time}}</p>
             <p> {{groupMSG.content}}</p>
+            <p> {{groupMSG.time}}</p>
             <a class="tab-item" ng-click="showActions(groupMSG.id)">
                 <i class="icon ion-ios7-more"></i>
             </a>

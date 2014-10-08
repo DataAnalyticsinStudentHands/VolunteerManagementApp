@@ -19,8 +19,8 @@
         <div class="item item-icon-right item-text-wrap" ng-repeat="comment in post.comments">
 <!--        <div class="item item-icon-right item-text-wrap" ng-repeat="comment in post.comments">-->
             <h2>{{comment.user.username}}</h2>
-<!--            <p>{{comment.time}}</p>-->
             <p>{{comment.content}}</p>
+            <p>{{comment.time}}</p>
             <a class="tab-item" ng-click="showActions(comment.id)">
                 <i class="icon ion-ios7-more"></i>
             </a>

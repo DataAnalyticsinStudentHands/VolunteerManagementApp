@@ -171,16 +171,16 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
 }).
 
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCAL HOST
-//    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
-//    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
-    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
-        
+//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
+//    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
+//    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/");         //CARL'S LAPTOP
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
+
     //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
         return Restangular;
     }
-    
+
     //CHECKING IF AUTHENTICATED ON STATE CHANGE - Called in $stateChangeStart
     $rootScope.isAuthenticated = function(authenticate) {
         //BELOW - Trying to get promises to work to verify auth
@@ -208,16 +208,13 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
                 if(authenticate) $state.go("login");
             }
         });
-        
-        vmaUserService.getMyRole().then(
-            function(success){
+        vmaUserService.getMyRole().then(function(success){
                 $rootScope.role = success;
                 $rootScope.isMod = (success == "ROLE_MODERATOR");
-            }
-        );
+        });
         return Auth.hasCredentials();
     }
-    
+
     //AUTHENTICATE ON CHANGE STATE
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
         console.log("$stateChangeStart");
