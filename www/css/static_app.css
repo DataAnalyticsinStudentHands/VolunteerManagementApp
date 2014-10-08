@@ -314,3 +314,14 @@
     pointer-events: none; }
   .popup-open .popup-backdrop, .popup-open .popup {
     pointer-events: auto; }
+/****************comments*******************************/
+#vma_date{
+    position: relative;
+    color: blue;
+    font-size:8pt;
+    top: 20px;
+    }
+#vma_content{
+    position: relative;
+    bottom: 30px;
+}
