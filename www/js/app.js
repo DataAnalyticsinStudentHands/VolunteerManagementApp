@@ -162,10 +162,17 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.hours', {
           url: "/hours",
           views: {
-            "app": { templateUrl: "partials/hours.html", controller: "hours"}
+            "app": { templateUrl: "partials/hours.html", controller: "hoursController"}
           },
-          authenticate: false
-      });    
+          authenticate: true
+      }).
+      state('home.hours.myHours', {
+          url: "/hours",
+          views: {
+            "app@home": { templateUrl: "partials/hours.myHours.html", controller: "hoursController"}
+          },
+          authenticate: true
+      });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
 //    angular.extend($popoverProvider.defaults, { html: true });
 }).

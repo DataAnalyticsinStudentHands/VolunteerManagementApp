@@ -1105,7 +1105,7 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
     }
 }]);
 
-vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
+vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
         vmaHourService.getMyHours(10).then(function(success) { $scope.entries = success;});
@@ -1138,7 +1138,6 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$i
         console.log($scope.entry.inTime);
         $scope.checkOutTime = new Date();
         $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
-        console.log($scope.checkOutTime);
         $scope.entry.duration = Math.ceil(($scope.checkOutTime - $scope.entry.inTime)/1000/60);
         console.log($scope.entry.inTime);
         console.log($scope.checkOutTime);
@@ -1150,7 +1149,6 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$i
     $scope.delete = function(h_id) {
         $scope.openDelete(h_id);
     }
-
     $scope.openDelete = function (id) {
         console.log(id);
         var modalInstance = $modal.open({
@@ -1173,7 +1171,6 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$i
 //          $log.info('Modal dismissed at: ' + new Date());
         });
 };
-
     //Controller for the Modal PopUp Delete
     var ModalInstanceCtrlDelete = function ($scope, $modalInstance, deleteId, window_scope, vmaGroupService) {
         $scope.ok = function () {
@@ -1196,6 +1193,26 @@ vmaControllerModule.controller('hours', ['$scope', '$state', '$stateParams', '$i
             $modalInstance.dismiss('cancel');
             //Prevents the switching of the state
             event.preventDefault();
+        });
+    };
+    
+    $scope.openDatePicker = function () {
+        $scope.tmp = {};
+//        $scope.tmp.newDate = $scope.newTask.time;
+        $ionicPopup.show({
+            template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
+            title: "Task Date & Time",
+            scope: $scope,
+            buttons: [
+                { text: 'Cancel' },
+                {
+                    text: '<b>Save</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        $scope.entry.inTime = $scope.tmp.newDate;
+                    }
+                }
+            ]
         });
     };
 }]);
