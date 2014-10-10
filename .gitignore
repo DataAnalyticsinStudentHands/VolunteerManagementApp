@@ -4,7 +4,6 @@
 *.sw*
 platforms/^.*
 platforms/
-www/dist
 www/vendor
 www/bower_components
 node_modules
