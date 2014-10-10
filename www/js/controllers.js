@@ -120,6 +120,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                     loadSize = $scope.posts.length;
                     console.log(loadSize);
                 }
+                if(loadSize < 10) loadSize = 10;
                 var gProm = vmaPostService.getGroupPosts(loadSize, null, $scope.id);
                 gProm.then(function(success) {
                     $scope.posts = success;
@@ -991,6 +992,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
+        if(count <10 ) count = 10;
         vmaPostService.getPostView(count, null, post_id).then(function(success) { $scope.post = success; });
     }
     $scope.loadMore = function() {
