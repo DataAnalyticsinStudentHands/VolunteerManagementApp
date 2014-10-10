@@ -83,7 +83,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     }
 }]);
 
-vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $ionicModal, $stateParams, $ionicPopup) {
+vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter) {
     $scope.posts = [];
     var state = $state.current.name;
     switch(state) {
@@ -120,7 +120,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                     loadSize = $scope.posts.length;
                     console.log(loadSize);
                 }
-                var gProm = vmaPostService.getGroupPosts(loadSize, null, null);
+                var gProm = vmaPostService.getGroupPosts(loadSize, null, $scope.id);
                 gProm.then(function(success) {
                     $scope.posts = success;
                 }, function(fail) {
@@ -282,16 +282,25 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
 
     //PERMISSIONS
     $scope.generateActions = function(post_id) {
-        var ionicActionArray = [
-            { text: 'Edit' },
-            { text: 'Delete' }
-        ];
+        var postActionObj = $filter('getById')($scope.posts, post_id);
+        var ionicActionArray = [];
+        if(postActionObj.user_id == $scope.uid) {
+            var ionicActionArray = [
+                { text: 'Edit' },
+                { text: 'Delete' }
+            ];
+        }
         return ionicActionArray;
+    }
+
+    //PERMISSION SHOW CHECK
+    $scope.actionCount = function(post_id) {
+        if($scope.generateActions(post_id).length > 0) return true; else return false;
     }
 
     //ACTION SHEET
     $scope.showActions = function(post_id) {
-        var ionicActions = $scope.generateActions();
+        var ionicActions = $scope.generateActions(post_id);
         $ionicActionSheet.show({
             buttons: ionicActions,
             titleText: 'Update Post',
@@ -490,12 +499,28 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
-        var ionicActionArray = [
-            { text: 'Edit' },
-            { text: 'Delete' },
-            { text: 'Leave' }
-        ];
+        var actionObj = $filter('getById')($scope.metaJoinedGroups, id);
+        var ionicActionArray = [];
+        if(actionObj.isManager) {
+            ionicActionArray.push(
+                { text: 'Edit' },
+                { text: 'Delete' }
+            );
+        } else if(actionObj.isMember){
+            ionicActionArray.push(
+                { text: 'Leave' }
+            );
+        } else {
+            ionicActionArray.push(
+                { text: 'Join' }
+            );
+        }
         return ionicActionArray;
+    }
+    
+    //PERMISSION SHOW CHECK
+    $scope.actionCount = function(id) {
+        if($scope.generateActions(id).length > 0) return true; else return false;
     }
 
     //ACTION SHEET

@@ -35,7 +35,7 @@
             <i class="icon ion-share"></i>
             {{post.group.name}}
         </a>
-        <a class="tab-item" ng-click="showActions(post.id)">
+        <a class="tab-item" ng-click="showActions(post.id)" ng-show="actionCount(post.id)">
             <i class="icon ion-ios7-more"></i>
         </a>
     </div>

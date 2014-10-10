@@ -21,33 +21,10 @@
             <i class="icon ion-share"></i>
             {{post.group.name}}
         </a>
-        <a class="tab-item" ng-click="showActions(post.id)">
+        <a class="tab-item" ng-click="showActions(post.id)" ng-show="actionCount(post.id)">
             <i class="icon ion-ios7-more"></i>
         </a>
     </div>
 </div>
-<!--
-    <div id="groupPost" ng-repeat="post in posts">
-        <div>
-            <div><img src="img/group_feed.icon.png" width="65" height="60"/></div>
-            <div ng-click="viewPost(post.id)" id="groupPost_content">
-                <div id="groupfeed_img">Post IMG: <img ng-src="{{post.img}}" width="20" height="20"/></div>
-                <div id="groupfeed_a"> {{post.user.username}} </div>
-                <div id="groupfeed_c"> {{post.content}} </div>
-                <div id="groupfeed_t"> {{post.time}} </div>
-                <div id="groupfeed_cc"> &nbsp; </div>
-            </div>
-            <div ng-show="{{detail}}" ng-show="post.user_id == uid" id="bs" class="btn-group" dropdown>
-                <button type="button" class="btn dropdown-toggle">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="editPost(post.id)">Edit</a></li>
-                    <li><a ng-click="deletePost(post.id)">Delete</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
--->
 <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
 </ion-view>
