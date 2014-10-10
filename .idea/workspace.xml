@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c1e1dc4-a480-4851-8db1-3d4723429591" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addGroup.html" afterPath="$PROJECT_DIR$/www/partials/addGroup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.task.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.task.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/menuBar.html" afterPath="$PROJECT_DIR$/www/partials/menuBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/myTasks.html" afterPath="$PROJECT_DIR$/www/partials/myTasks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.html" afterPath="$PROJECT_DIR$/www/partials/hours.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.moderation.html" afterPath="$PROJECT_DIR$/www/partials/hours.moderation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.myHours.html" afterPath="$PROJECT_DIR$/www/partials/hours.myHours.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/login.html" afterPath="$PROJECT_DIR$/www/partials/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/viewPost.html" afterPath="$PROJECT_DIR$/www/partials/viewPost.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VMA_DEV.iws" />
@@ -45,18 +44,28 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3359" max-vertical-offset="3978">
-              <caret line="204" column="27" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2832" max-vertical-offset="3978">
+              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="viewPost.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partials/viewPost.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.153846" vertical-offset="142" max-vertical-offset="748">
+              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08077545" vertical-offset="358" max-vertical-offset="1904">
-              <caret line="112" column="13" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+              <caret line="1114" column="39" selection-start-line="1114" selection-start-column="39" selection-end-line="1114" selection-end-column="39" />
               <folding>
                 <element signature="e#14#31#0" expanded="false" />
                 <element signature="e#146#1878#0" expanded="false" />
@@ -82,6 +91,8 @@
                 <element signature="e#3361#3377#0" expanded="false" />
                 <element signature="e#3422#3459#0" expanded="false" />
                 <element signature="e#3496#3612#0" expanded="false" />
+                <element signature="e#3916#12272#0" expanded="false" />
+                <element signature="e#3982#7312#0" expanded="false" />
                 <element signature="e#4390#4453#0" expanded="false" />
                 <element signature="e#4470#4528#0" expanded="false" />
                 <element signature="e#4586#4990#0" expanded="false" />
@@ -391,6 +402,36 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="hours.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/partials/hours.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.38283828" vertical-offset="6" max-vertical-offset="612">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hours.moderation.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partials/hours.moderation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="323">
+              <caret line="9" column="109" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="109" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hours.myHours.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partials/hours.myHours.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="425">
+              <caret line="6" column="67" selection-start-line="6" selection-start-column="67" selection-end-line="6" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -408,8 +449,13 @@
         <option value="$PROJECT_DIR$/www/css/app.css" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/partials/communityFeed.html" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
+        <option value="$PROJECT_DIR$/www/partials/login.html" />
+        <option value="$PROJECT_DIR$/www/partials/viewPost.html" />
+        <option value="$PROJECT_DIR$/www/partials/hours.moderation.html" />
+        <option value="$PROJECT_DIR$/www/partials/hours.myHours.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/partials/hours.html" />
       </list>
     </option>
   </component>
@@ -571,7 +617,7 @@
     <initial>false</initial>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="55" />
+    <option name="x" value="98" />
     <option name="width" value="1268" />
     <option name="height" value="768" />
   </component>
@@ -774,7 +820,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="0" width="1268" height="768" extended-state="0" />
+    <frame x="98" y="0" width="1268" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -785,7 +831,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19408946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -864,6 +910,8 @@
             <element signature="e#3361#3377#0" expanded="false" />
             <element signature="e#3422#3459#0" expanded="false" />
             <element signature="e#3496#3612#0" expanded="false" />
+            <element signature="e#3916#12272#0" expanded="false" />
+            <element signature="e#3982#7312#0" expanded="false" />
             <element signature="e#4390#4453#0" expanded="false" />
             <element signature="e#4470#4528#0" expanded="false" />
             <element signature="e#4586#4990#0" expanded="false" />
@@ -1222,6 +1270,8 @@
             <element signature="e#3361#3377#0" expanded="false" />
             <element signature="e#3422#3459#0" expanded="false" />
             <element signature="e#3496#3612#0" expanded="false" />
+            <element signature="e#3916#12272#0" expanded="false" />
+            <element signature="e#3982#7312#0" expanded="false" />
             <element signature="e#4390#4453#0" expanded="false" />
             <element signature="e#4470#4528#0" expanded="false" />
             <element signature="e#4586#4990#0" expanded="false" />
@@ -1571,18 +1621,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+    <entry file="file://$PROJECT_DIR$/www/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3359" max-vertical-offset="3978">
-          <caret line="204" column="27" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
+        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="612">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/hours.moderation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="323">
+          <caret line="9" column="109" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="109" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08077545" vertical-offset="358" max-vertical-offset="1904">
-          <caret line="112" column="13" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <caret line="1114" column="39" selection-start-line="1114" selection-start-column="39" selection-end-line="1114" selection-end-column="39" />
           <folding>
             <element signature="e#14#31#0" expanded="false" />
             <element signature="e#146#1878#0" expanded="false" />
@@ -1608,6 +1666,8 @@
             <element signature="e#3361#3377#0" expanded="false" />
             <element signature="e#3422#3459#0" expanded="false" />
             <element signature="e#3496#3612#0" expanded="false" />
+            <element signature="e#3916#12272#0" expanded="false" />
+            <element signature="e#3982#7312#0" expanded="false" />
             <element signature="e#4390#4453#0" expanded="false" />
             <element signature="e#4470#4528#0" expanded="false" />
             <element signature="e#4586#4990#0" expanded="false" />
@@ -1913,6 +1973,38 @@
             <element signature="e#48976#49053#0" expanded="false" />
             <element signature="e#49022#49052#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/viewPost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.153846" vertical-offset="142" max-vertical-offset="748">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/hours.myHours.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="425">
+          <caret line="6" column="67" selection-start-line="6" selection-start-column="67" selection-end-line="6" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2832" max-vertical-offset="3978">
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/hours.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38283828" vertical-offset="6" max-vertical-offset="612">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>

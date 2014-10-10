@@ -12,7 +12,7 @@
         <div class="item" ng-show="checkInTimeDisplay"> Checked in at: {{checkInTimeDisplay}}</div>
         <label class="item item-input item-select">
             <div class="input-label"> Task Name </div>
-            <select ng-model="$parent.entry.name" required> 
+            <select ng-model="entry.name" required>
                 <option></option>
                 <option ng-repeat="task in joinTasks">{{task.name}}</option>
             </select>

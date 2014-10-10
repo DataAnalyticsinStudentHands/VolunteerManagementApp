@@ -1,10 +1,10 @@
 <ion-view title="Entered Hours">
     <div class="list">
-        <div class="item" ng-repeat="entry in entries">
+        <div class="item item-icon-right" ng-repeat="entry in entries">
             <h2> {{entry.title}} </h2>
             <p ng-show={{entry.duration}}> {{entry.duration}} Minutes </p>
-            <p id="approve" ng-show={{entry.approved}}><img src="img/check.png" width="80%" height="80%"></p>
-            <p id="pend" ng-show=!{{entry.approved}}>Pending...</p>
+            <i class="icon ion-checkmark" ng-show={{entry.approved}}></i>
+            <i class="icon ion-close-round" ng-show=!{{entry.approved}}></i>
         </div>
     </div>
 </ion-view>

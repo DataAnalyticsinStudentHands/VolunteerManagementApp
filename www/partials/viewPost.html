@@ -26,29 +26,7 @@
             </a>
         </div>
     </div>
-    <!--<center> <button ng-click="loadMore()"> LOAD MORE </button> </center>-->
-    <!--
-            <div ng-show="comment.user_id == uid" id="comment_bs" class="btn-group" dropdown>
-                <button type="button" class="btn dropdown-toggle">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="editComment(comment.id)">Edit</a></li>
-                    <li><a ng-click="deleteComment(comment.id)">Delete</a></li>
-                </ul>
-            </div>
-            -->
-    <!--COMMENT INPUT-->
-<!--
-    <div id="comment_input">
-        <form ng-submit="addComment()">
-            <input type="text" ng-model="comment.content">
-            <input type="submit">
-        </form>
-    </div>
--->
-    
-    <div class="list">
+    <form class="list" ng-action="addComment()">
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
           <input type="text" ng-model="comment.content" placeholder="Message">
@@ -57,5 +35,5 @@
           Submit
         </button>
       </div>
-    </div>
+    </form>
 </ion-view>
