@@ -558,7 +558,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     switch(state) {
         case "home.myTasks":
             $scope.updateTasks = function() {
-                vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success; });
+                vmaTaskService.getJoinTasks().then(function(success) { $scope.tasks = success; });
             }
             break;
         case "home.group":
@@ -569,7 +569,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         case "home.group.tasks":
             $scope.id = $stateParams.id;
             $scope.updateTasks = function() {
-                vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.metaTasks = success;});
+                vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.tasks = success;});
             }
             $scope.updateTasks();
             break;
@@ -767,12 +767,28 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
-        var ionicActionArray = [
-            { text: 'Edit' },
-            { text: 'Delete' },
-            { text: 'Leave' }
-        ];
+        var actionObj = $filter('getById')($scope.tasks, id);
+        var ionicActionArray = [];
+        if(actionObj.isManager || actionObj.isMember) {
+            ionicActionArray.push(
+                { text: 'Leave' }
+            );
+        } else if(actionObj.isManager || actionObj.isGroupManager) {
+            ionicActionArray.push(
+                { text: 'Edit' },
+                { text: 'Delete' }
+            );
+        } else {
+            ionicActionArray.push(
+                { text: 'Join' }
+            );
+        }
         return ionicActionArray;
+    }
+
+    //PERMISSION SHOW CHECK
+    $scope.actionCount = function(id) {
+        if($scope.generateActions(id).length > 0) return true; else return false;
     }
 
     //ACTION SHEET
@@ -794,6 +810,9 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                         break;
                     case "Leave":
                         $scope.leaveTask(id);
+                        break;
+                    case "Join":
+                        $scope.joinTask(id);
                         break;
                     default:
                         console.log("BUG");

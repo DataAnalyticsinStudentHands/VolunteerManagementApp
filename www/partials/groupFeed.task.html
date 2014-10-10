@@ -3,7 +3,7 @@
     <button class="button button-dark" ng-click="addTask()"> <i class="icon ion-plus-round"> </i> </button>
 </ion-nav-buttons>
 <div class="list">
-    <div class="item item-avatar item-button-right" ng-repeat="task in metaTasks">
+    <div class="item item-avatar item-button-right" ng-repeat="task in tasks">
         <img src="img/avatar.icon.png" width="60" height="50"/>
         <h2 ng-click="viewTask(task.id)"> {{task.name}} </h2>
         <button class="button button-dark" ng-click="showActions(task.id)"> <i class="icon ion-ios7-more"></i> </button>

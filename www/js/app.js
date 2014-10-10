@@ -47,13 +47,6 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
-      state('home.groupMessages', {
-          url: "/groupMessages",
-          views: {
-            "app@home": { templateUrl: "partials/groupMessages.html", controller: 'taskController'}
-          },
-          authenticate: true
-      }).
       state('home.groupMessages.message', {
           url: ":id",
           views: {
