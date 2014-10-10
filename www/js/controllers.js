@@ -768,17 +768,20 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     //PERMISSIONS
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.tasks, id);
+        console.log(actionObj);
         var ionicActionArray = [];
         if(actionObj.isManager || actionObj.isMember) {
             ionicActionArray.push(
                 { text: 'Leave' }
             );
-        } else if(actionObj.isManager || actionObj.isGroupManager) {
+        } 
+        if(actionObj.isManager || actionObj.isGroupManager) {
             ionicActionArray.push(
                 { text: 'Edit' },
                 { text: 'Delete' }
             );
-        } else {
+        } 
+        if(!actionObj.isManager && !actionObj.isMember) {
             ionicActionArray.push(
                 { text: 'Join' }
             );
