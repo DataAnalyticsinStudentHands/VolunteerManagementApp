@@ -1,4 +1,5 @@
 <ion-view title="My Groups">
+<ion-content>
 <ion-nav-buttons side='right'>
     <button class="button button-dark" ng-click="addGroup()"> <i class="icon ion-plus-round"> </i> </button>
 </ion-nav-buttons>
@@ -7,7 +8,7 @@
 </ion-nav-buttons>
 <div class="list card" ng-repeat="group in metaJoinedGroups">
     <div class="item item-avatar" ui-sref="home.group({id:group.id})">
-        <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
+        <img id="groupfeed" src="img/group_feed.icon.png"/>
         <h2> {{group.name}} </h2>
     </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
@@ -24,4 +25,5 @@
         </a>
     </div>
 </div>
+</ion-content>
 </ion-view>

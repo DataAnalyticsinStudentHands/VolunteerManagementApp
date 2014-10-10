@@ -1,4 +1,5 @@
 <ion-view title="{{group.name}}" ng-controller="taskController">
+<ion-content>
     <div> {{group.name}} </div>
     <div> {{group.description}} </div>
     <button ng-hide="group.joined" class="btn btn-default" ng-click="joinGroup(group.id)">Join Group</button>
@@ -8,4 +9,5 @@
         <button ng-hide="task.joined" class="btn btn-default" ng-click="joinTask(task.id)">Join Task</button>
         <button ng-show="task.joined" class="btn btn-default" ng-click="leaveTask(task.id)">Already Joined</button>
     </div>
+</ion-content>
 </ion-view>

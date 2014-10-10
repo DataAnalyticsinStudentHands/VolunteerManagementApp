@@ -1,4 +1,5 @@
 <ion-view title="Entered Hours">
+<ion-content>
     <div class="list">
         <div class="item item-icon-right" ng-repeat="entry in entries">
             <h2> {{entry.title}} </h2>
@@ -7,6 +8,7 @@
             <i class="icon ion-close-round" ng-show=!{{entry.approved}}></i>
         </div>
     </div>
+</ion-content>
 </ion-view>
 <!--
 <div id="bs_hour" class="btn-group" dropdown>

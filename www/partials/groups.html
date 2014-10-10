@@ -1,4 +1,5 @@
 <ion-view title="Find Groups">
+<ion-content>
     <input ng-model="query" placeholder="Search">
     <ion-list class="list">
         <div  ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" class="item item-button-right"> 
@@ -6,4 +7,5 @@
             <button class="button button-dark" ng-click="joinGroup(group.id)"> Join </button>
         </div>
     </ion-list>
+</ion-content>
 </ion-view>
