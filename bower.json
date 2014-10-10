@@ -3,22 +3,13 @@
   "appPath": "www",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "latest",
-    "angular-bootstrap": "latest",
-    "angular-ui-router": "latest",
     "restangular": "latest",
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.13",
     "jquery": "latest",
-    "bootstrap": "latest",
-    "headroom.js": "latest",
-    "angular-snap": "latest",
     "highcharts-ng": "latest",
     "lodash": "latest",
     "angular-adaptive-googlemaps": "latest",
-    "angular-touch": "~1.2.21",
-    "ng-notify": "~0.5.0",
-    "angular-strap": "~2.0.5"
-  },
-  "resolutions": {
-    "angular": "1.2.22"
+    "angular-bootstrap-datetimepicker": "latest",
+    "ng-notify": "latest"
   }
 }

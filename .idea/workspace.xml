@@ -2,9 +2,204 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c1e1dc4-a480-4851-8db1-3d4723429591" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.html" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-bootstrap\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-bootstrap\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-bootstrap\ui-bootstrap-tpls.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\LICENSE-MIT" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\angular-snap-only.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\angular-snap-only.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\angular-snap.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\angular-snap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\angular-snap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\angular-snap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-snap\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.bowerrc" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\angular-strap.nuspec" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\dist\angular-strap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\dist\angular-strap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\dist\angular-strap.tpl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\dist\angular-strap.tpl.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\gulpfile.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-strap\package.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-touch\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-touch\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-touch\angular-touch.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-touch\angular-touch.min.js.map" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\angular-touch\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\dist\angular.headroom.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\dist\angular.headroom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\dist\headroom.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\dist\headroom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\dist\jQuery.headroom.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\dist\jQuery.headroom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\headroom.js\package.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\highcharts-ng\dist\highcharts.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\docs.config.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\filters\capital.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\generate-versions.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\ignore.words" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\inline-tag-defs\link.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\processors\index-page.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\processors\keywords.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\processors\latest-version.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\processors\pages-data.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\processors\version-data.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\tag-defs\index.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\api.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\componentGroup.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\controller.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\directive.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\filter.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\function.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\object.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\provider.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\service.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\type.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\api\utility.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\index.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\events.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\macros.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\methods.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\properties.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\returns.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\this.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\lib\yaml.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\pages-data.template.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\docs\templates\version-data.template.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\gulpfile.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\css\ionic.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\css\ionic.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\fonts\ionicons.eot" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\fonts\ionicons.svg" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\fonts\ionicons.ttf" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\fonts\ionicons.woff" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular-ui\angular-ui-router.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular-ui\angular-ui-router.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular-animate.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular-animate.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular-resource.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular-resource.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular-sanitize.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular-sanitize.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\angular\angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\ionic-angular.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\ionic-angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\ionic.bundle.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\ionic.bundle.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\ionic.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\js\ionic.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\ionic\release\version.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\component.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\snap.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\snap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\www\bower_components\snapjs\snap.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-ui-router/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/angular-ui-router/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/ionic/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/jquery/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/jquery/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/lodash/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/lodash/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/.bower.json" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.editorconfig" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.editorconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.gitignore" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.jshintrc" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.travis.yml" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-ui-router/CHANGELOG.md" afterPath="$PROJECT_DIR$/www/bower_components/angular-ui-router/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/CHANGELOG.md" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/CONTRIBUTING.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/Gruntfile.js" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/Gruntfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/lodash/LICENSE.txt" afterPath="$PROJECT_DIR$/www/bower_components/lodash/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/LICENSE" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-ui-router/LICENSE" afterPath="$PROJECT_DIR$/www/bower_components/angular-ui-router/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/LICENSE" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/jquery/MIT-LICENSE.txt" afterPath="$PROJECT_DIR$/www/bower_components/jquery/MIT-LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/README.md" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-ui-router/README.md" afterPath="$PROJECT_DIR$/www/bower_components/angular-ui-router/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/README.md" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/README.md" afterPath="$PROJECT_DIR$/www/bower_components/ionic/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/README.md" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/VMA_DEV.iml" afterPath="$PROJECT_DIR$/.idea/VMA_DEV.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_action-sheet.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_action-sheet.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_animations.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_animations.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_badge.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_badge.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_bar.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_bar.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_button-bar.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_button-bar.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_button.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_button.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_checkbox.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_checkbox.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_form.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_form.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_grid.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_grid.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-animation.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-animation.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-font.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-font.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-icons.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-icons.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-variables.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/_ionicons-variables.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_items.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_items.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_list.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_list.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_menu.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_menu.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_mixins.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_mixins.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_modal.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_modal.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_platform.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_platform.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_popup.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_popup.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_radio.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_radio.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_range.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_range.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_reset.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_reset.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_scaffolding.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_scaffolding.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_slide-box.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_slide-box.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_split-pane.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_split-pane.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_tabs.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_tabs.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_toggle.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_toggle.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_type.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_type.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_util.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_util.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/_variables.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/_variables.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-ui-router/release/angular-ui-router.min.js" afterPath="$PROJECT_DIR$/www/bower_components/angular-ui-router/release/angular-ui-router.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular/angular.min.js.map" afterPath="$PROJECT_DIR$/www/bower_components/angular/angular.min.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular/angular.min.js" afterPath="$PROJECT_DIR$/www/bower_components/angular/angular.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/bootstrap/dist/css/bootstrap.css" afterPath="$PROJECT_DIR$/www/bower_components/bootstrap/dist/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-ui-router/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/angular-ui-router/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/ionic/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/jquery/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/jquery/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/lodash/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/lodash/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/bower.json" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/dist/highcharts-ng.js" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/dist/highcharts-ng.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/dist/highcharts-ng.min.js" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/dist/highcharts-ng.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.css" afterPath="$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionic.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionic.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/ionicons.scss" afterPath="$PROJECT_DIR$/www/bower_components/ionic/scss/ionicons/ionicons.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/jquery/dist/jquery.min.js" afterPath="$PROJECT_DIR$/www/bower_components/jquery/dist/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/karma.conf.js" afterPath="$PROJECT_DIR$/www/bower_components/angular-bootstrap-datetimepicker/karma.conf.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/karma.conf.js" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/karma.conf.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/lodash/dist/lodash.underscore.min.js" afterPath="$PROJECT_DIR$/www/bower_components/lodash/dist/lodash.underscore.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/src/styles/ng-notify.css" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/src/styles/ng-notify.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/src/scripts/ng-notify.js" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/src/scripts/ng-notify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/ng-notify/src/styles/ng-notify.sass" afterPath="$PROJECT_DIR$/www/bower_components/ng-notify/src/styles/ng-notify.sass" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/highcharts-ng/package.json" afterPath="$PROJECT_DIR$/www/bower_components/highcharts-ng/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/restangular/dist/restangular.js" afterPath="$PROJECT_DIR$/www/bower_components/restangular/dist/restangular.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VMA_DEV.iws" />
@@ -31,88 +226,18 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="1751">
-              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+            <state vertical-scroll-proportion="-7.6538463" vertical-offset="73" max-vertical-offset="1343">
+              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groupFeed.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/partials/groupFeed.html">
+      <file leaf-file-name="bower.json" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bower.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10131109" vertical-offset="0" max-vertical-offset="839">
-              <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/js/controllers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="23350" max-vertical-offset="24225">
-              <caret line="400" column="15" selection-start-line="400" selection-start-column="15" selection-end-line="400" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myGroups.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/partials/myGroups.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="578">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myTasks.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/partials/myTasks.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="476">
-              <caret line="4" column="14" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5" vertical-offset="1535" max-vertical-offset="3978">
-              <caret line="101" column="58" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ionic.bundle.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/js/ionic.bundle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="755242">
-              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ionic.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="121729" max-vertical-offset="132906">
-              <caret line="7186" column="41" selection-start-line="7186" selection-start-column="40" selection-end-line="7186" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ionic.min.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="12" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="122470" />
+            <state vertical-scroll-proportion="0.5021097" vertical-offset="0" max-vertical-offset="474">
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -160,8 +285,9 @@
         <option value="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/partials/myGroups.html" />
         <option value="$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.css" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/partials/groupFeed.html" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/www/index.html" />
       </list>
     </option>
   </component>
@@ -323,10 +449,10 @@
     <initial>false</initial>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1276" />
-    <option name="y" value="-722" />
+    <option name="x" value="66" />
+    <option name="y" value="103" />
     <option name="width" value="1251" />
-    <option name="height" value="1024" />
+    <option name="height" value="636" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -456,132 +582,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ionic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ionic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ionic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ionic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -654,8 +654,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1276" y="-722" width="1251" height="1024" extended-state="0" />
-    <editor active="true" />
+    <frame x="66" y="103" width="1251" height="636" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1798,16 +1798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/js/ionic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.68" vertical-offset="612" max-vertical-offset="152813">
-          <caret line="37" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="8983" selection-end-column="5" />
-          <folding>
-            <marker date="1412960165398" expanded="true" signature="-1:-1" placeholder="[...]" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/partials/myInvites.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27272728" vertical-offset="0" max-vertical-offset="561">
@@ -1978,50 +1968,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/groupFeed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5673421" vertical-offset="0" max-vertical-offset="839">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5" vertical-offset="1535" max-vertical-offset="3978">
+        <state vertical-scroll-proportion="0.21487603" vertical-offset="1535" max-vertical-offset="3978">
           <caret line="101" column="58" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/js/ionic.bundle.js">
+    <entry file="file://$PROJECT_DIR$/www/.bowerrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="755242">
-          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="121729" max-vertical-offset="132906">
-          <caret line="7186" column="41" selection-start-line="7186" selection-start-column="40" selection-end-line="7186" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <caret line="12" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="122470" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="865">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="1751">
-          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+        <state vertical-scroll-proportion="-7.6538463" vertical-offset="73" max-vertical-offset="1343">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/partials/groupFeed.html">
+    <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10131109" vertical-offset="0" max-vertical-offset="839">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.5021097" vertical-offset="0" max-vertical-offset="474">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>
