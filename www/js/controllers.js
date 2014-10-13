@@ -9,6 +9,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
      }
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
      $scope.submit = function() {
+         console.log("SUBMIT");
          if ($scope.userName && $scope.passWord) {
              document.activeElement.blur();
              $timeout(function() {
@@ -55,7 +56,7 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
     }
 }]);
 
-vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicModal', function($scope, $state, Auth, $modal) {
+vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicModal', '$ionicPopup', function($scope, $state, Auth, $ionicModal, $ionicPopup) {
     //OPENING THE MODAL TO LOG OUT A USER
     $scope.logOutUser = function(id) {
         $scope.openLogOut(id);
@@ -1336,4 +1337,5 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.state = $state;
+    console.log($scope.state);
 }]);
