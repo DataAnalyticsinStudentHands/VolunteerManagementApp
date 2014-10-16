@@ -3,7 +3,7 @@
     <div class="list">
         <div class="item item-avatar item-icon-right item-text-wrap" ng-repeat="groupMSG in groupMSGs">
             <img ng-src="{{groupMSG.img}}" width="40" height="40"/>
-            <h4 id="vma_groupMSGuser">{{groupMSG.user.username}}</h2>
+            <h2 id="vma_groupMSGuser">{{groupMSG.user.username}}</h2>
             <p id="vma_groupMSGcontent"> {{groupMSG.content}}</p>
             <p id="vma_groupMSG"> {{groupMSG.time}}</p>
             <a class="tab-item" ng-click="showActions(groupMSG.id)">
@@ -22,21 +22,23 @@
                 </ul>
             </div>
 -->
-    <!--                
+    <!--
     <button class="btn_name" id="message_ia" data-placement="right-center" title="<div>{{groupMSG.user.username}}</div>" data-content="<div>{{groupMSG.user.username}}'s Badges Coming Soon!</div>" data-trigger="focus" bs-popover>
--->            
+-->
     <!--</button>-->
+    <form class="list" ng-action="addMsg()">
     <div class="list">
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
-          <input type="text" ng-model="msg.message" placeholder="Message">
+          <input type="text" ng-model="$parent.msg.message" placeholder="Message">
         </label>
         <button class="button button-small" ng-click="addMsg()">
           Submit
         </button>
       </div>
     </div>
-<!--
+    </form>
+    <!--
     <div id="messaging_input">
         <form ng-submit="addMsg()" class="list">
             <input class="item item-input" id="message_input_input" type="text" ng-model="msg.message" ng-focus="scrollTo()">

@@ -590,7 +590,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     
     //VIEW MESSAGES
     $scope.displayMessages = function(click_id) {
-        $state.go('home.groupMessages.message', {id:click_id}, {reload: false});
+        $state.go('home.message', {id:click_id}, {reload: false});
     }
 
     //OPENING THE MODAL TO ADD A TASK

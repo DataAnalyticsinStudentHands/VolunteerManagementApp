@@ -47,8 +47,8 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
-      state('home.groupMessages.message', {
-          url: ":id",
+      state('home.message', {
+          url: "/messages/:id",
           views: {
             "app@home": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
           },
