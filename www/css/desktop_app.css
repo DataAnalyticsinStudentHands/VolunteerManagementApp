@@ -1,0 +1,6 @@
+/*** --- Desktops and Laptops --- ***/
+@media only screen and (min-width : 768px) {
+    #disappear_on_desktop {
+        display: none;
+    }
+}

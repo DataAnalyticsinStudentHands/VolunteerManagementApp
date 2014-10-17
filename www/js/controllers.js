@@ -1337,5 +1337,7 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.state = $state;
-    console.log($scope.state);
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 }]);
