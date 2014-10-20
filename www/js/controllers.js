@@ -300,34 +300,31 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
         if($scope.generateActions(post_id).length > 0) return true; else return false;
     }
 
+
+    $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
     //ACTION SHEET
-    $scope.showActions = function(post_id, event) {
+    $scope.showActions = function(post_id, event0) {
         var ionicActions = $scope.ionicActions = $scope.generateActions(post_id);
-        $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html').then(function(popover) {
-            $scope.popover = popover;
-            $scope.popover.ionicActions = $scope.ionicActions;
-            $scope.popover.show(event);
-        });
-//        $ionicActionSheet.show({
-//            buttons: ionicActions,
-//            titleText: 'Update Post',
-//            cancelText: 'Cancel',
-//            buttonClicked: function(index) {
-////                console.log(index);
-//                var action = ionicActions[index];
-//                switch(action.text) {
-//                    case "Edit":
-//                        $scope.editPost(post_id);
-//                        break;
-//                    case "Delete":
-//                        $scope.deletePost(post_id);
-//                        break;
-//                    default:
-//                        return true;
-//                }
-//                return true;
-//            }
-//        });
+        $scope.popover.show(event0);
+        $scope.popOverClick = function(action) {
+            switch(action) {
+                case "Edit":
+                    $scope.editPost(post_id);
+                    break;
+                case "Delete":
+                    $scope.deletePost(post_id);
+                    break;
+                default:
+                    return true;
+            }
+            $scope.popover.hide();
+            return true;
+        };
     }
 }]);
 
