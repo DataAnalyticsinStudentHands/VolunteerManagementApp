@@ -20,7 +20,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
     $stateProvider.
       state('home', {
           views: {
-            "menuBar": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
+            "menuBar@home": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
             "app": { templateUrl: "partials/home.html"},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html", controller:"menuCtrl"}
           },
