@@ -981,9 +981,8 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             var ionicActions = $scope.ionicActions = $scope.generateActions(id);
             $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
             $scope.popover.show(event0);
-            $scope.popOverClick =   function(index) {
-                var action = ionicActions[index];
-                switch(action.text) {
+            $scope.popOverClick =   function(action) {
+                switch(action) {
                     case "Edit":
                         $scope.editMessage(id);
                         break;
@@ -999,7 +998,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         };
 }]);
 
-vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $stateParams, $ionicModal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet, $ionicPopup) {
+vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', function($scope, $state, $stateParams, $ionicModal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet, $ionicPopup, $ionicPopover) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
@@ -1096,31 +1095,33 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         return ionicActionArray;
     }
 
-    //ACTION SHEET
-    $scope.showActions = function(id) {
-        var ionicActions = $scope.generateActions(id);
-        $ionicActionSheet.show({
-            buttons: ionicActions,
-            titleText: 'Update Message',
-            cancelText: 'Cancel',
-            buttonClicked: function(index) {
-//                console.log(index);
-                var action = ionicActions[index];
-                switch(action.text) {
-                    case "Edit":
-                        $scope.editComment(id);
-                        break;
-                    case "Delete":
-                        $scope.deleteComment(id);
-                        break;
-                    default:
-                        console.log("BUG");
-                        return true;
-                }
-                return true;
+    $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
+    //ACTION POPUP
+    $scope.showActions = function(id, event0) {
+        var ionicActions = $scope.ionicActions = $scope.generateActions(id);
+        $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
+        $scope.popover.show(event0);
+        $scope.popOverClick = function(action) {
+            switch(action) {
+                case "Edit":
+                    $scope.editComment(id);
+                    break;
+                case "Delete":
+                    $scope.deleteComment(id);
+                    break;
+                default:
+                    console.log("BUG");
+                    return true;
             }
-        });
-    }
+            $scope.popover.hide();
+            return true;
+        }
+    };
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {

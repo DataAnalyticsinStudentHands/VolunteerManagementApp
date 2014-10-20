@@ -17,7 +17,7 @@
             <h2>{{comment.user.username}}</h2>
             <p>{{comment.content}}</p>
             <p>{{comment.time}}</p>
-            <a class="tab-item" ng-click="showActions(comment.id)">
+            <a class="tab-item" ng-click="showActions(comment.id, $event)">
                 <i class="icon ion-ios7-more"></i>
             </a>
         </div>
