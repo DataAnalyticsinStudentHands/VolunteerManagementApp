@@ -310,6 +310,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     //ACTION SHEET
     $scope.showActions = function(post_id, event0) {
         var ionicActions = $scope.ionicActions = $scope.generateActions(post_id);
+        $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*50 + "px"};
         $scope.popover.show(event0);
         $scope.popOverClick = function(action) {
             switch(action) {
@@ -535,8 +536,9 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
     //ACTION SHEET
     $scope.showActions = function(id, event0) {
-        $scope.popover.show(event0);
         var ionicActions = $scope.ionicActions = $scope.generateActions(id);
+        $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
+        $scope.popover.show(event0);
         $scope.popOverClick = function(action) {
             switch(action) {
                 case "Edit":

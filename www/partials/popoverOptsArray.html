@@ -1,5 +1,5 @@
-<style>.popover { height:200px; width: 150px; }</style>
-<ion-popover-view>
+<!--<style>.popover { height:200px; width: 150px; }</style>-->
+<ion-popover-view ng-style="popOverStyle">
     <ion-content>
         <div class="list">
             <a class="item" ng-repeat="action in ionicActions" ng-click="popOverClick(action.text)">
