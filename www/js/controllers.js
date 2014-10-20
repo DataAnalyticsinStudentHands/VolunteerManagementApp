@@ -836,7 +836,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     };
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover) {
         $scope.id = $stateParams.id;
         vmaTaskService.getTask($scope.id).then(
             function(success) {
@@ -969,31 +969,34 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             return ionicActionArray;
         }
 
-        //ACTION SHEET
-        $scope.showActions = function(id) {
-            var ionicActions = $scope.generateActions(id);
-            $ionicActionSheet.show({
-                buttons: ionicActions,
-                titleText: 'Update Message',
-                cancelText: 'Cancel',
-                buttonClicked: function(index) {
-    //                console.log(index);
-                    var action = ionicActions[index];
-                    switch(action.text) {
-                        case "Edit":
-                            $scope.editMessage(id);
-                            break;
-                        case "Delete":
-                            $scope.deleteMessage(id);
-                            break;
-                        default:
-                            console.log("BUG");
-                            return true;
-                    }
-                    return true;
+        $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
+            scope: $scope
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        //ACTION POPUP
+        $scope.showActions = function(id, event0) {
+            console.log(event0);
+            var ionicActions = $scope.ionicActions = $scope.generateActions(id);
+            $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
+            $scope.popover.show(event0);
+            $scope.popOverClick =   function(index) {
+                var action = ionicActions[index];
+                switch(action.text) {
+                    case "Edit":
+                        $scope.editMessage(id);
+                        break;
+                    case "Delete":
+                        $scope.deleteMessage(id);
+                        break;
+                    default:
+                        return true;
                 }
-            });
-        }
+                $scope.popover.hide();
+                return true;
+            }
+        };
 }]);
 
 vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $stateParams, $ionicModal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet, $ionicPopup) {
