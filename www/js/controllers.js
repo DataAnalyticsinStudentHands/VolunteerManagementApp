@@ -84,7 +84,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     }
 }]);
 
-vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', '$ionicActionSheet', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', function($scope, $state, vmaPostService, $ionicActionSheet, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter) {
+vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', '$ionicPopover', function($scope, $state, vmaPostService, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter, $ionicPopover) {
     $scope.posts = [];
     var state = $state.current.name;
     switch(state) {
@@ -301,28 +301,33 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     }
 
     //ACTION SHEET
-    $scope.showActions = function(post_id) {
-        var ionicActions = $scope.generateActions(post_id);
-        $ionicActionSheet.show({
-            buttons: ionicActions,
-            titleText: 'Update Post',
-            cancelText: 'Cancel',
-            buttonClicked: function(index) {
-//                console.log(index);
-                var action = ionicActions[index];
-                switch(action.text) {
-                    case "Edit":
-                        $scope.editPost(post_id);
-                        break;
-                    case "Delete":
-                        $scope.deletePost(post_id);
-                        break;
-                    default:
-                        return true;
-                }
-                return true;
-            }
+    $scope.showActions = function(post_id, event) {
+        var ionicActions = $scope.ionicActions = $scope.generateActions(post_id);
+        $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html').then(function(popover) {
+            $scope.popover = popover;
+            $scope.popover.ionicActions = $scope.ionicActions;
+            $scope.popover.show(event);
         });
+//        $ionicActionSheet.show({
+//            buttons: ionicActions,
+//            titleText: 'Update Post',
+//            cancelText: 'Cancel',
+//            buttonClicked: function(index) {
+////                console.log(index);
+//                var action = ionicActions[index];
+//                switch(action.text) {
+//                    case "Edit":
+//                        $scope.editPost(post_id);
+//                        break;
+//                    case "Delete":
+//                        $scope.deletePost(post_id);
+//                        break;
+//                    default:
+//                        return true;
+//                }
+//                return true;
+//            }
+//        });
     }
 }]);
 
@@ -1335,7 +1340,7 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
     }
 }]);
 
-vmaControllerModule.controller('menuCtrl', ['$scope', '$state', function($scope, $state) {
+vmaControllerModule.controller('menuCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', function($scope, $state, $ionicSideMenuDelegate) {
     $scope.state = $state;
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
