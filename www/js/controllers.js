@@ -328,7 +328,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     }
 }]);
 
-vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', '$ionicPopup', function($scope, $state, $ionicModal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet, $ionicPopup) {
+vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', '$ionicPopover', function($scope, $state, $ionicModal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet, $ionicPopover) {
     var state = $state.current.name;
     switch(state) {
         case "home.myGroups":
@@ -527,33 +527,33 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         if($scope.generateActions(id).length > 0) return true; else return false;
     }
 
+    $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
     //ACTION SHEET
-    $scope.showActions = function(id) {
-        var ionicActions = $scope.generateActions(id);
-        $ionicActionSheet.show({
-            buttons: ionicActions,
-            titleText: 'Update Group',
-            cancelText: 'Cancel',
-            buttonClicked: function(index) {
-//                console.log(index);
-                var action = ionicActions[index];
-                switch(action.text) {
-                    case "Edit":
-                        $scope.editGroup(id);
-                        break;
-                    case "Delete":
-                        $scope.deleteGroup(id);
-                        break;
-                    case "Leave":
-                        $scope.leaveGroup(id);
-                        break;
-                    default:
-                        console.log("BUG");
-                        return true;
-                }
-                return true;
+    $scope.showActions = function(id, event0) {
+        $scope.popover.show(event0);
+        var ionicActions = $scope.ionicActions = $scope.generateActions(id);
+        $scope.popOverClick = function(action) {
+            switch(action) {
+                case "Edit":
+                    $scope.editGroup(id);
+                    break;
+                case "Delete":
+                    $scope.deleteGroup(id);
+                    break;
+                case "Leave":
+                    $scope.leaveGroup(id);
+                    break;
+                default:
+                    return true;
             }
-        });
+            $scope.popover.hide();
+            return true;
+        }
     }
 }]);
 
