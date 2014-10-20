@@ -1,0 +1,244 @@
+.my-item {
+  left: 0;
+  right: 0;
+}
+
+/* spin animation css */
+.wrapanimate {
+    margin: 0 100px;
+    -webkit-perspective:800px;
+    -webkit-perspective-origin: 50% 100px;
+    /*border: 1px solid red;*/
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    margin-top: 50px;
+}
+
+.cube {
+	position: relative;
+    margin: 0 auto;
+	width: 200px;
+	-webkit-transform-style: preserve-3d;
+    -webkit-animation: spin 4s  1 ;
+    -webkit-animation-delay: 3s; /* Chrome, Safari, Opera */
+    animation-delay: 3s;
+    /*border: 1px solid blue;*/
+}
+
+.cube div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+    top: 100px;
+  
+    /*border: 1px solid green;*/
+
+    text-align: center;
+    font-family: sans-serif;
+    line-height: 200px;
+    transition: background-color 1s ease;
+}
+
+.back_cube {
+	-webkit-transform: translateZ(-100px) rotateY(180deg);
+}
+
+.right_cube {
+	-webkit-transform: rotateY(-270deg) translateX(100px);
+	-webkit-transform-origin: top right;
+}
+
+.left_cube {
+	-webkit-transform: rotateY(270deg) translateX(-100px);
+	-webkit-transform-origin: center left;
+}
+
+.top {
+	-webkit-transform: rotateX(-90deg) translateY(-100px);
+	-webkit-transform-origin: top center;
+}
+
+.bottom {
+	-webkit-transform: rotateX(90deg) translateY(100px);
+	-webkit-transform-origin: bottom center;
+}
+
+.front_cube {
+	-webkit-transform: translateZ(100px);
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotateY(0) }
+  to { -webkit-transform: rotateY(360deg) }
+}
+
+/* image css */
+.front_image{
+    width: 200px;
+    height: 200px;
+}
+
+.back_image{
+    width: 200px;
+    height: 200px;
+}
+
+.right_image{
+    width: 200px;
+    height: 200px;
+}
+
+.left_image{
+    width: 200px;
+    height: 200px;
+}
+
+/*** FADE ANIMATION CSS ***/
+#div_1 {
+    position:relative;
+    z-index: 1;
+
+    -webkit-animation: myfirst 20s ; /* Chrome, Safari, Opera */
+    animation: myfirst 20s ;
+
+    animation-iteration-count: 1 ;
+    -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+
+    -webkit-animation-delay: 9s; /*Safari and Chrome*/
+    animation-delay: 9s;
+
+    -webkit-animation-fill-mode: backwards;  /* Safari and Chrome */
+    animation-fill-mode: backwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+    0%  {animation-timing-function: ease-in-out; opacity: 0}
+    20% {animation-timing-function: ease-in-out; opacity: 1}
+    100% {animation-timing-function: ease-in-out; opacity: 1}
+}
+
+/*Standard syntax */
+@keyframes myfirst {
+    0%  {left: 0px; top:0px;}
+    100% {left: -960px;}
+}
+
+#div_2 {
+    /*    position: relative;*/
+    margin: auto;
+    top: 20%;
+    z-index: 12;
+
+    -webkit-animation: mysecound 12s ; /* Chrome, Safari, Opera */
+    animation: mysecound 12s ;
+
+    animation-iteration-count: 1 ;
+    -webkit-animation-iteration-count: 1;  /* Safari and Chrome */
+
+    -webkit-animation-fill-mode: forwards;  /* Safari and Chrome */
+    animation-fill-mode: forwards;
+    
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mysecound {
+    0% {animation-timing-function: ease-out; opacity: 1}
+    60%{animation-timing-function: ease-out; opacity: 1}    
+    70%{animation-timing-function: ease-out; opacity: 0}
+    100% {animation-timing-function: ease-out; opacity: 0}
+}
+
+/*Standard syntax */
+@keyframes mysecound {
+    0%  {animation-timing-function: ease-out; opacity: 1}
+    20% {animation-timing-function: ease-out; opacity: 0}
+    100% {animation-timing-function: ease-out; opacity: 0}
+}
+
+/*********loging page**********/
+#logo_O{
+    position:fixed;
+    width:70%;
+    top:80px;
+    left:15%;
+    margin: 0px 0px 0px 0px;
+    z-index: 1;
+}
+
+.log{
+    position:relative;
+    border-radius:5px;
+    height:50px; 
+    width:70%;
+    top:390px;
+    margin: 0% 15% 0% 15%;
+    text-align: center;
+    background-color:#0BA1F4;
+    z-index: 2;
+    opacity: .8;
+}
+
+.log_r{
+    position:relative;
+    border-radius:5px;
+    height:50px; 
+    width:80%;
+    top:50px;
+    margin: 05% 10% 05% 10%;
+    margin: 5% 10% 5% 10%;
+    text-align: center;
+    background-color:#0BA1F4;
+    z-index: 1;
+    opacity: .8;
+}
+
+#register{
+    position: relative;
+    margin-top: 5%;
+    margin-left: 50%;
+    top: 370px;
+    z-index: 3;
+}
+
+
+.google-maps {
+    width: 100%;
+    height: 400px;
+    z-index: 10000;
+}
+
+/****************comments*******************************/
+#vma_date{
+    position: relative;
+    color: lightgray;
+    font-size:8pt;
+    top: 20px;
+    }
+#vma_content{
+    position: relative;
+    bottom: 30px;
+}
+
+/***************group.MSG*******************************/
+#vma_groupMSG{
+position: relative;
+font-size: 7pt;
+color: lightblue;  
+bottom:10px;    
+}
+
+#vma_groupMSGuser{
+color:gray;
+}
+
+#vma_groupMSGcontent{
+color: black;
+}
+
+/***********CommunityFeed*******************************/
+#vma_post_time{
+font-size: 6pt;
+color: lightgray;    
+}

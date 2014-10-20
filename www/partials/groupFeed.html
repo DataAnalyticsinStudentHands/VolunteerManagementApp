@@ -1,78 +1,30 @@
-<div id="snap">
-    <snap-drawers>
-        <div snap-drawer id="snap_drawer">
-            <tabset>
-                <tab heading="Groups" style="width:50%; text-align: center;">
-                    <button class="btn btn-default" id="ad" ng-click="addGroup()">Add Group</button>
-                    <div id="groups" ng-repeat="group in metaJoinedGroups">
-                        <a ng-click="displayDetail(group.id, true)">
-                            <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-                            <div id="groupname"> {{group.name}} </div>
-                        </a>
-                        <div id="bs" class="btn-group" dropdown>
-                            <button type="button" class="btn dropdown-toggle">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
-                                <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
-                                <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-<!--                                <li class="divider"></li>-->
-                                <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </tab>
-                <tab heading="Search" style="width:50%; text-align: center;">
-                    <input id="search_gf" ng-model="query" placeholder="Search">
-                    <div id="groups" ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp">
-                        <a ng-click="displayDetail(group.id, false)">
-                            <div id="groupcon"><img id="groupfeed" src="img/group_feed.icon.png"/></div>
-                            <div id="groupname"> {{group.name}} </div>
-                        </a>
-                        <div id="bs" class="btn-group" dropdown>
-                            <button type="button" class="btn dropdown-toggle">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a ng-show="group.isManager" ng-click="editGroup(group.id)">Edit</a></li>
-                                <li><a ng-show="group.isManager" ng-click="deleteGroup(group.id)">Delete</a></li>
-                                <li><a ng-show="group.isManager" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-
-                                <li><a ng-show="group.isMember" ng-click="leaveGroup(group.id)">Leave Group</a></li>
-
-                                <li><a ng-show="group.isGroup" ng-click="joinGroup(group.id)">Join Group</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </tab>
-            </tabset>
-        </div>
-        <div snap-drawer="right" id="snap_drawer-right">
-            <div ui-view="right_pane"> There's nothing here for the time being. </div>
-        </div>
-    </snap-drawers>
-    <snap-content id="snap_page" snap-options="settings">
-        <tabset ng-show="state.includes('home.groupFeed.detail')">
-            <tab heading="Posts" active="pActiv" id="groupfeed_post" style="width:50%; text-align: center;">
-                <div ui-view="post">Click on a Effort Above to View Posts Here</div>
-            </tab>
-            <tab heading="Tasks" active="tActiv" id="groupfeed_tasks" style="width:50%; text-align: center;">
-                <div ui-view="task">Tasks from group will be shown here</div>
-            </tab>
-        </tabset>
-        <div ng-hide="state.includes('home.groupFeed.detail')" ng-controller="groupFeed.post">
-            <br/>
-            <br/>
-            <div id="post" ng-repeat="post in posts">    
-                <a ui-sref="home.group({id:{{post.id}}})">
-                    <div id="author"> {{post.user.username}} > {{post.group.name}}</div>
-                    <div id="boxicon"><img src="img/effort_task.icon.png" width="15%" /></div>
-                    <div id="contentbox"> {{post.content}} </div>
-                    <div id="likeicon"> {{post.time}} </div>
+<ion-view title="Group Feed">
+<ion-content>
+    <div ng-hide="state.includes('home.groupFeed.detail')">
+        <div class="list card" ng-repeat="post in posts">
+            <div ui-sref="home.group({id:{{post.id}}})" class="item item-avatar">
+                <img src="img/effort_task.icon.png" width="15%" />
+                <h2>{{post.user.username}} > {{post.group.name}}</h2>
+                <p>{{post.time}}</p>
+            </div>
+            <div class="item item-body">
+                <p>{{post.content}}</p>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" ng-click="viewPost(post.id)">
+                    <i class="icon ion-chatbox"></i>
+                    Comment
+                </a>
+                <a class="tab-item" ui-sref="home.group({id:{{post.group_id}}})">
+                    <i class="icon ion-share"></i>
+                    {{post.group.name}}
+                </a>
+                <a class="tab-item" ng-click="showActions(post.id)" ng-show="actionCount(post.id)">
+                    <i class="icon ion-ios7-more"></i>
                 </a>
             </div>
-            <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
         </div>
-    </snap-content>
-</div>
+        <center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
+    </div>
+</ion-content>
+</ion-view>

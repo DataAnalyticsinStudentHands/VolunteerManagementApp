@@ -1,0 +1,15 @@
+/*** --- Desktops and Laptops --- ***/
+@media only screen and (min-width : 768px) {
+    #disappear_on_desktop {
+        display: none;
+    }
+
+    #background {
+        /*margin-left: 100px;*/
+        /*margin-right: 100px;*/
+        /*width: 800px;*/
+        margin-top: 100px;
+        position: fixed;
+        background: url("../img/dashlogo.svg");
+    }
+}

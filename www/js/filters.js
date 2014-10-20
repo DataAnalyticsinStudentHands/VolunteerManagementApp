@@ -41,3 +41,16 @@ vmaFilterModule.filter('getByGroupId', function() {
     return returnArray;
   }
 });
+
+vmaFilterModule.filter('removeJoined', function() {
+    return function(input, id) {
+    var returnArray = [];
+    var i=0, len=input.length;
+    for (; i<len; i++) {
+      if (!input[i].joined) {
+        returnArray.push(input[i]);
+      }
+    }
+    return returnArray;
+  }
+});

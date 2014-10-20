@@ -1,0 +1,22 @@
+<ion-view title="Entered Hours">
+<ion-content>
+    <div class="list">
+        <div class="item item-icon-right" ng-repeat="entry in entries">
+            <h2> {{entry.title}} </h2>
+            <p ng-show={{entry.duration}}> {{entry.duration}} Minutes </p>
+            <i class="icon ion-checkmark" ng-show={{entry.approved}}></i>
+            <i class="icon ion-close-round" ng-show=!{{entry.approved}}></i>
+        </div>
+    </div>
+</ion-content>
+</ion-view>
+<!--
+<div id="bs_hour" class="btn-group" dropdown>
+    <button type="button" class="btn dropdown-toggle">
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a ng-show="!{{entry.approved}}" ng-click="delete(entry.id)">Delete</a></li>
+    </ul>
+</div>
+-->

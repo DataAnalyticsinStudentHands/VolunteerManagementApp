@@ -1,6 +1,21 @@
-<div id="setting_p">Personal Settings</div>
-<div><a href="">Name</a></div>
-<div><a href="">Profile Picture</a></div>
-<div><a ui-sref="home.hours_mod">Hours Moderation</a></div>
-<div><a ng-click="changePassword()">Change Password</a></div>
-<div><a ng-click="logOutUser()">Log Out</a></div>
+<ion-view title="Personal Settings">
+<ion-content>
+    <div class="list">
+        <div class="item">
+            Name
+        </div>
+        <div class="item">
+            Profile Picture
+        </div>
+        <div class="item" ui-sref="home.hours_mod">
+            Hours Moderation
+        </div>
+        <div class="item" ng-click="changePassword()">
+            Change Password
+        </div>
+        <div class="item" ng-click="logOutUser()">
+            Log Out
+        </div>
+    </div>
+</ion-content>
+</ion-view>

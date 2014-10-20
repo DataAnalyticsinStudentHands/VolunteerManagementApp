@@ -2,33 +2,20 @@
 
 /* VMA App Module */
 angular.module('volunteerManagementApp', [
-    'ui.router',
+    'ionic',
     'vmaControllerModule',
     'databaseServicesModule',
     'vmaServicesModule',
     'vmaDirectiveModule',
     'vmaFilterModule',
     'restangular',
-    'ngTouch',
     'ngNotify',
-    'headroom',
-    'snap',
-    'ui.bootstrap.tpls',
-    'ui.bootstrap.carousel',
-    'ui.bootstrap.tabs',
-    'ui.bootstrap.modal',
-    'ui.bootstrap.dropdown',
-    'ui.bootstrap.datepicker',
-    'ui.bootstrap.timepicker',
-    'mgcrea.ngStrap.tooltip',
-    'mgcrea.ngStrap.popover',
-    'mgcrea.ngStrap.datepicker',
-    'mgcrea.ngStrap.timepicker',
     'highcharts-ng',
-    'adaptive.googlemaps'
+    'adaptive.googlemaps',
+    'ui.bootstrap.datetimepicker'
 ]).
 
-config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $popoverProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -56,71 +43,84 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.cfeed', {
           url: "/cfeed",
           views: {
-            "app": { templateUrl: "partials/communityFeed.html", controller: 'communityFeed'}
+            "app": { templateUrl: "partials/communityFeed.html", controller: 'postController'}
           },
           authenticate: true
       }).
-      state('home.groupMessages', {
-          url: "/groupMessages",
+      state('home.message', {
+          url: "/messages/:id",
           views: {
-            "app-nowrap": { templateUrl: "partials/groupMessages.html", controller: 'groupMessages'}
-          },
-          authenticate: true
-      }).
-      state('home.groupMessages.message', {
-          url: ":id",
-          views: {
-            "app-snap-msg": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
+            "app@home": { templateUrl: "partials/groupMessa.message.html", controller: 'message'}
           },
           authenticate: true
       }).
       state('home.groupFeed', {
           url: "/groupFeed",
           views: {
-            "app-nowrap": { templateUrl: "partials/groupFeed.html", controller: 'groupFeed'}
+            "app": { templateUrl: "partials/groupFeed.html", controller: 'postController'}
           },
           authenticate: true
       }).
-      state('home.groupFeed.detail', {
-          url: ":id/:detail",
+      state('home.myGroups', {
+          url: "/myGroups",
           views: {
-            "post": {templateUrl: "partials/groupFeed.post.html", controller: 'groupFeed.post'},
-            "task": {templateUrl: "partials/groupFeed.task.html", controller: 'groupFeed.task'}
+            "app": { templateUrl: "partials/myGroups.html", controller: 'groupController'}
           },
           authenticate: true
       }).
-      state('home.groupFeed.detail.right_pane_task', {
-          url: "/task/:task",
+      state('home.joinGroups', {
+          url: "/joinGroups",
           views: {
-            "right_pane@home.groupFeed": {templateUrl: "partials/viewTask.html", controller: 'home.groupFeed.detail.right_pane_task'}
-          },
-          authenticate: true
-      }).
-      state('home.groupFeed.detail.right_pane_post', {
-          url: "/post/:post_id",
-          views: {
-            "right_pane@home.groupFeed": {templateUrl: "partials/viewPost.html", controller: 'home.groupFeed.detail.right_pane_post'}
+            "app": { templateUrl: "partials/groups.html", controller: 'groupController'}
           },
           authenticate: true
       }).
       state('home.group', {
-          url: "/group:id",
+          url: "/group/:id",
           views: {
-            "app": { templateUrl: "partials/efforts.group.html", controller: 'group'}
+            "app": { templateUrl: "partials/efforts.group.html", controller: 'groupController'}
+          },
+          authenticate: true
+      }).
+      state('home.group.posts', {
+          url: "/posts",
+          views: {
+            "app@home": { templateUrl: "partials/groupFeed.post.html", controller: 'postController'}
+          },
+          authenticate: true
+      }).
+      state('home.group.posts.comments', {
+          url: "/:post_id",
+          views: {
+            "app@home": { templateUrl: "partials/viewPost.html", controller: 'comments'}
+          },
+          authenticate: true
+      }).
+      state('home.group.tasks', {
+          url: "/tasks",
+          views: {
+            "app@home": { templateUrl: "partials/groupFeed.task.html", controller: 'taskController'}
           },
           authenticate: true
       }).
       state('home.task', {
           url: "/task:task",
           views: {
-            "app": { templateUrl: "partials/efforts.task.html", controller: 'task'}
+            "app": { templateUrl: "partials/viewTask.html", controller: 'task'}
           },
           authenticate: true
       }).
-      state('home.efforts', {
-          url: "/efforts",
+      state('home.myTasks', {
+          url: "/myTasks",
           views: {
-            "app": { templateUrl: "partials/efforts.html", controller: 'efforts'}
+            "app": { templateUrl: "partials/myTasks.html", controller: 'taskController'}
+          },
+          authenticate: true
+      }).
+      state('home.myInvites', {
+          url: "/myInvites",
+          views: {
+            "app": { templateUrl: "partials/myInvites.html", controller: 'efforts'}
           },
           authenticate: true
       }).
@@ -155,26 +155,32 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.hours', {
           url: "/hours",
           views: {
-            "app": { templateUrl: "partials/hours.html", controller: "hours"}
+            "app": { templateUrl: "partials/hours.html", controller: "hoursController"}
           },
-          authenticate: false
-      });    
+          authenticate: true
+      }).
+      state('home.hours.myHours', {
+          url: "/hours",
+          views: {
+            "app@home": { templateUrl: "partials/hours.myHours.html", controller: "hoursController"}
+          },
+          authenticate: true
+      });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
-    angular.extend($popoverProvider.defaults, { html: true });
+//    angular.extend($popoverProvider.defaults, { html: true });
 }).
 
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/"); //THE LOCAL HOST
-//    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/"); //THE MAC AT CARL'S DESK
-//    Restangular.setBaseUrl("http://172.25.80.82:8080/VolunteerApp/"); //CARL'S LAPTOP
-    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/"); //HOUSUGGEST FOR VMA CORE
-    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerAppBonnerBeta/");
-    
-    //TO ACCESS RESTANGULAR IN CONTROLLARS WITHOUT INJECTION
+//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
+//    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
+//    Restangular.setBaseUrl("http://172.27.219.241:8080/VolunteerApp/");         //CARL'S LAPTOP
+    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
+
+    //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
         return Restangular;
     }
-    
+
     //CHECKING IF AUTHENTICATED ON STATE CHANGE - Called in $stateChangeStart
     $rootScope.isAuthenticated = function(authenticate) {
         //BELOW - Trying to get promises to work to verify auth
@@ -195,17 +201,20 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 //                        ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
 //                    }
 //                );
-                ngNotify.set("INTERNET OR SERVER UNAVAILABLE", {type : "error", sticky : true});
+                ngNotify.set("Internet or Server Unavailable", {type : "error", sticky : true});
             } else { // LOG THEM OUT
                 Auth.clearCredentials();
                 console.log("not-authed");
                 if(authenticate) $state.go("login");
             }
         });
-//        console.log(Auth.hasCredentials());
+        vmaUserService.getMyRole().then(function(success){
+                $rootScope.role = success;
+                $rootScope.isMod = (success == "ROLE_MODERATOR");
+        });
         return Auth.hasCredentials();
     }
-    
+
     //AUTHENTICATE ON CHANGE STATE
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
         console.log("$stateChangeStart");

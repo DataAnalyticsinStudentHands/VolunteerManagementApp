@@ -1,0 +1,23 @@
+<ion-view title="My Tasks">
+<ion-content>
+    <div class="list card" ng-repeat="task in tasks">
+        <div class="item item-avatar" ng-click="viewTask(task.id)">
+            <img src="img/effort_group.icon.png"/>
+            <h2>{{task.name}}</h2>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+            <a class="tab-item" ng-click="displayMessages(task.id)">
+                <i class="icon ion-chatbox"></i>
+                Messages
+            </a>
+            <a class="tab-item" ng-click="viewTask(task.id)">
+                <i class="icon ion-share"></i>
+                View Details
+            </a>
+            <a class="tab-item" ng-click="showActions(task.id)">
+                <i class="icon ion-ios7-more"></i>
+            </a>
+        </div>
+    </div>
+</ion-content>
+</ion-view>

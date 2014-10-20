@@ -45,6 +45,10 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
                     return $filter('getById')(allUsers, user_id);
                 });
             },
+        getMyRole:
+            function() {
+                return Restangular.all("users").all("myRole").getList().then(function(success) { return success[0]; });
+            },
         addUser:
             function(user) {
                 return Restangular.all("users").post(user);
@@ -152,14 +156,14 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                         obj.isGroup = true;
                         result.push(obj);
                     });
-                    memGroups.forEach(function(obj){
-                        obj.isMember = true;
-                        result.push(obj);
-                    });
-                    manGroups.forEach(function(obj){
-                        obj.isManager = true;
-                        result.push(obj);
-                    });
+//                    memGroups.forEach(function(obj){
+//                        obj.isMember = true;
+//                        result.push(obj);
+//                    });
+//                    manGroups.forEach(function(obj){
+//                        obj.isManager = true;
+//                        result.push(obj);
+//                    });
                     metaGroups = result;
                     return result;
                 });
@@ -350,6 +354,12 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     tasks.forEach(function(task) {
                         if($filter('getById')(memTasks.concat(manTasks), task.id))
                            task.joined = true;
+                        if($filter('getById')(memTasks.concat(manTasks), task.id)) {
+                           task.isMember = true;
+                        }
+                        if($filter('getById')(manTasks, task.id)) {
+                           task.isManager = true;
+                        }
                     });
                     
                     return tasks;
@@ -406,7 +416,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         });
                         if(!isMan) {
                             return result;
-                        } else {
+                        } else { 
                             result.forEach(function(obj) {
                                 // SETTING PERMISSIONS METADATA
 //                                obj.isMember = false;
@@ -423,8 +433,22 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         getJoinTasks:
             function() {
-                return this.updateTasks().then(function(success) {
-                    return memTasks.concat(manTasks);
+                return this.updateTasks().then(function() {
+                    var result = [];
+                    manTasks.forEach(function(obj){
+                        obj.isManager = true;
+                        result.push(obj);
+                    });
+                    memTasks.forEach(function(obj){
+                        obj.isMember = true;
+                        result.push(obj);
+                    });
+//                    subTasks.forEach(function(obj){
+//                        obj.isTask = true;
+//                        result.push(obj);
+//                    });
+//                    metaTasks = result;
+                    return result;
                 });
             },
         getCalTasks:

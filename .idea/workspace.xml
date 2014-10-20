@@ -2,43 +2,262 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c1e1dc4-a480-4851-8db1-3d4723429591" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/VMA_DEV.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/VMA_DEV_node_modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_DEV\platforms\android\assets\www\partials\addHoursEntry.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/addGroup.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/addGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/addPost.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/addPost.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/addTask.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/addTask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/app.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/app.css" afterPath="$PROJECT_DIR$/www/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.brackets.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_action-sheet.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_action-sheet.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_animations.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_animations.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_backdrop.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_backdrop.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_badge.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_badge.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_bar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_bar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_button-bar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_button-bar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_button.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_button.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_checkbox.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_checkbox.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_form.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_form.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_grid.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_grid.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-animation.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-animation.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-font.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-font.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-icons.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-icons.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-variables.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-variables.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_items.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_items.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_list.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_list.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_loading.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_loading.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_menu.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_menu.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_mixins.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_mixins.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_modal.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_modal.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_platform.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_platform.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_popover.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_popover.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_popup.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_popup.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_progress.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_progress.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_radio.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_radio.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_range.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_range.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_reset.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_reset.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_scaffolding.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_scaffolding.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_select.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_select.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_slide-box.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_slide-box.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_split-pane.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_tabs.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_tabs.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_toggle.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_toggle.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_type.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_type.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_util.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_util.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_variables.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_variables.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/angular-bootstrap-datetimepicker/src/js/datetimepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/css/desktop_app.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/groups.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/highcharts-ng/dist/highcharts-ng.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/highcharts/highcharts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/hours.myHours.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic-angular.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic-angular.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.bundle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.bundle.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/css/ionic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/css/ionic.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ionic.project" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionic.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionic.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/ionicons.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/ionicons.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/myGroups.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/myInvites.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/myTasks.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/restangular/dist/restangular.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/css/static_app.css" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\karma.conf.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\runner.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\spec\controller\index.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\spec\service\myservice.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-bootstrap\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-bootstrap\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-bootstrap\ui-bootstrap-tpls.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\LICENSE-MIT" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap-only.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap-only.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.bowerrc" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\angular-strap.nuspec" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.tpl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.tpl.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\gulpfile.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\package.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\angular-touch.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\angular-touch.min.js.map" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\release\angular-ui-router.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular\angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular\angular.min.js.map" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\css\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\css\bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\angular.headroom.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\angular.headroom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\headroom.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\headroom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\jQuery.headroom.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\jQuery.headroom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\package.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\Gruntfile.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\dist\highcharts-ng.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\dist\highcharts-ng.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\dist\highcharts.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\karma.conf.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\package.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\MIT-LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\restangular\dist\restangular.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\component.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\snap.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\snap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\snap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\img\temp_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteComment.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteGroup.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deletePost.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteTask.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteUser.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\efforts.task.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\leaveGroup.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\logOutUser.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\login.help.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\register.help.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/VMA_DEV.iml" afterPath="$PROJECT_DIR$/.idea/VMA_DEV.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addGroup.html" afterPath="$PROJECT_DIR$/www/partials/addGroup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addPost.html" afterPath="$PROJECT_DIR$/www/partials/addPost.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addTask.html" afterPath="$PROJECT_DIR$/www/partials/addTask.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/awards.html" afterPath="$PROJECT_DIR$/www/partials/awards.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/bottomMenu.html" afterPath="$PROJECT_DIR$/www/partials/bottomMenu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/calendar.html" afterPath="$PROJECT_DIR$/www/partials/calendar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/communityFeed.html" afterPath="$PROJECT_DIR$/www/partials/communityFeed.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controllers.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/deleteGroup.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/deleteGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/deletePost.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/deletePost.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/deleteTask.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/deleteTask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/deleteUser.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/deleteUser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/directives.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/editGroup.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/editGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/editTask.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/editTask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/efforts.group.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/efforts.group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/efforts.task.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/efforts.task.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/filters.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/filters.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/groupFeed.task.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/groupFeed.task.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/dashlogo.svg" afterPath="$PROJECT_DIR$/www/img/dashlogo.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editComment.html" afterPath="$PROJECT_DIR$/www/partials/editComment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editGroup.html" afterPath="$PROJECT_DIR$/www/partials/editGroup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editMessage.html" afterPath="$PROJECT_DIR$/www/partials/editMessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editTask.html" afterPath="$PROJECT_DIR$/www/partials/editTask.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/efforts.group.html" afterPath="$PROJECT_DIR$/www/partials/efforts.group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/filters.js" afterPath="$PROJECT_DIR$/www/js/filters.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.post.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.post.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.task.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.task.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupMessages.message.html" afterPath="$PROJECT_DIR$/www/partials/groupMessages.message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/home.html" afterPath="$PROJECT_DIR$/www/partials/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.html" afterPath="$PROJECT_DIR$/www/partials/hours.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.moderation.html" afterPath="$PROJECT_DIR$/www/partials/hours.moderation.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/login.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/register.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/services.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/partials/settings.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/partials/settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/login.html" afterPath="$PROJECT_DIR$/www/partials/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/menuBar.html" afterPath="$PROJECT_DIR$/www/partials/menuBar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/register.html" afterPath="$PROJECT_DIR$/www/partials/register.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services.js" afterPath="$PROJECT_DIR$/www/js/services.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/settings.html" afterPath="$PROJECT_DIR$/www/partials/settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/viewPost.html" afterPath="$PROJECT_DIR$/www/partials/viewPost.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/viewTask.html" afterPath="$PROJECT_DIR$/www/partials/viewTask.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\dist\jquery.min.js" afterPath="$PROJECT_DIR$/www/dist/jquery/dist/jquery.min.js" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\dist\jquery.min.map" afterPath="$PROJECT_DIR$/www/dist/jquery/dist/jquery.min.map" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\dist\lodash.underscore.min.js" afterPath="$PROJECT_DIR$/www/dist/lodash/dist/lodash.underscore.min.js" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\src\scripts\ng-notify.js" afterPath="$PROJECT_DIR$/www/dist/ng-notify/src/scripts/ng-notify.js" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\src\styles\ng-notify.css" afterPath="$PROJECT_DIR$/www/dist/ng-notify/src/styles/ng-notify.css" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\src\styles\ng-notify.sass" afterPath="$PROJECT_DIR$/www/dist/ng-notify/src/styles/ng-notify.sass" />
+      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\css\app.css" afterPath="$PROJECT_DIR$/www/css/app_inactive.bak.css" />
     </list>
     <ignored path="VMA_DEV.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,161 +283,49 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.3461537" vertical-offset="1025" max-vertical-offset="1717">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="1360">
+              <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-              <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-              <folding>
-                <element signature="e#103#399#0" expanded="false" />
-                <element signature="e#603#887#0" expanded="false" />
-                <element signature="e#911#1088#0" expanded="false" />
-                <element signature="e#1117#1234#0" expanded="false" />
-                <element signature="e#1261#1448#0" expanded="false" />
-                <element signature="e#1480#1561#0" expanded="false" />
-                <element signature="e#1590#1779#0" expanded="false" />
-                <element signature="e#1816#2020#0" expanded="false" />
-                <element signature="e#2065#2251#0" expanded="false" />
-                <element signature="e#2284#2476#0" expanded="false" />
-                <element signature="e#2516#2809#0" expanded="false" />
-                <element signature="e#2838#3022#0" expanded="false" />
-                <element signature="e#3050#3233#0" expanded="false" />
-                <element signature="e#3264#3443#0" expanded="false" />
-                <element signature="e#3473#3649#0" expanded="false" />
-                <element signature="e#3681#3863#0" expanded="false" />
-                <element signature="e#3895#4077#0" expanded="false" />
-                <element signature="e#4106#4280#0" expanded="false" />
-                <element signature="e#4550#5983#0" expanded="false" />
-                <element signature="e#4801#4836#0" expanded="false" />
-                <element signature="e#4894#5557#0" expanded="false" />
-                <element signature="e#5660#5979#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="19040" max-vertical-offset="19703">
-              <caret line="1147" column="0" selection-start-line="1147" selection-start-column="0" selection-end-line="1147" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.36220473" vertical-offset="654" max-vertical-offset="3978">
+              <caret line="52" column="59" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20512821" vertical-offset="0" max-vertical-offset="663">
-              <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-              <folding>
-                <element signature="e#228#1591#0" expanded="false" />
-                <element signature="e#273#351#0" expanded="false" />
-                <element signature="e#452#1587#0" expanded="false" />
-                <element signature="e#1725#2581#0" expanded="false" />
-                <element signature="e#2707#4374#0" expanded="false" />
-                <element signature="e#2737#2853#0" expanded="false" />
-                <element signature="e#2887#3402#0" expanded="false" />
-                <element signature="e#3482#3520#0" expanded="false" />
-                <element signature="e#3558#4022#0" expanded="false" />
-                <element signature="e#4151#4371#0" expanded="false" />
-                <element signature="e#4507#5489#0" expanded="false" />
-                <element signature="e#4568#4771#0" expanded="false" />
-                <element signature="e#4832#5161#0" expanded="false" />
-                <element signature="e#5242#5389#0" expanded="false" />
-                <element signature="e#5444#5485#0" expanded="false" />
-                <element signature="e#5648#6662#0" expanded="false" />
-                <element signature="e#5686#5797#0" expanded="false" />
-                <element signature="e#5873#5989#0" expanded="false" />
-                <element signature="e#6013#6480#0" expanded="false" />
-                <element signature="e#6509#6566#0" expanded="false" />
-                <element signature="e#6621#6658#0" expanded="false" />
-                <element signature="e#6863#10082#0" expanded="false" />
-                <element signature="e#6929#9639#0" expanded="false" />
-                <element signature="e#9669#9747#0" expanded="false" />
-                <element signature="e#9785#10080#0" expanded="false" />
-                <element signature="e#10301#17737#0" expanded="false" />
-                <element signature="e#10405#10572#0" expanded="false" />
-                <element signature="e#10662#10877#0" expanded="false" />
-                <element signature="e#11009#11042#0" expanded="false" />
-                <element signature="e#11077#11585#0" expanded="false" />
-                <element signature="e#11722#12239#0" expanded="false" />
-                <element signature="e#12322#12360#0" expanded="false" />
-                <element signature="e#12400#13021#0" expanded="false" />
-                <element signature="e#13177#13751#0" expanded="false" />
-                <element signature="e#13830#13866#0" expanded="false" />
-                <element signature="e#13904#14510#0" expanded="false" />
-                <element signature="e#14669#15340#0" expanded="false" />
-                <element signature="e#15421#15458#0" expanded="false" />
-                <element signature="e#15497#16120#0" expanded="false" />
-                <element signature="e#16274#16821#0" expanded="false" />
-                <element signature="e#16860#17075#0" expanded="false" />
-                <element signature="e#17122#17553#0" expanded="false" />
-                <element signature="e#17582#17641#0" expanded="false" />
-                <element signature="e#17696#17733#0" expanded="false" />
-                <element signature="e#17919#23257#0" expanded="false" />
-                <element signature="e#18052#18396#0" expanded="false" />
-                <element signature="e#18402#18727#0" expanded="false" />
-                <element signature="e#18444#18721#0" expanded="false" />
-                <element signature="e#18803#18829#0" expanded="false" />
-                <element signature="e#18865#19490#0" expanded="false" />
-                <element signature="e#19615#20164#0" expanded="false" />
-                <element signature="e#20219#20252#0" expanded="false" />
-                <element signature="e#20291#20981#0" expanded="false" />
-                <element signature="e#21119#21869#0" expanded="false" />
-                <element signature="e#21928#21967#0" expanded="false" />
-                <element signature="e#22008#22703#0" expanded="false" />
-                <element signature="e#22843#23254#0" expanded="false" />
-                <element signature="e#23439#33615#0" expanded="false" />
-                <element signature="e#23676#23814#0" expanded="false" />
-                <element signature="e#23912#23945#0" expanded="false" />
-                <element signature="e#23980#24540#0" expanded="false" />
-                <element signature="e#24689#26840#0" expanded="false" />
-                <element signature="e#26926#26999#0" expanded="false" />
-                <element signature="e#27044#27679#0" expanded="false" />
-                <element signature="e#27833#28384#0" expanded="false" />
-                <element signature="e#28466#28507#0" expanded="false" />
-                <element signature="e#28550#29161#0" expanded="false" />
-                <element signature="e#29313#31945#0" expanded="false" />
-                <element signature="e#32028#32123#0" expanded="false" />
-                <element signature="e#32163#32435#0" expanded="false" />
-                <element signature="e#32551#32940#0" expanded="false" />
-                <element signature="e#33003#33254#0" expanded="false" />
-                <element signature="e#33318#33613#0" expanded="false" />
-                <element signature="e#33790#36893#0" expanded="false" />
-                <element signature="e#33813#35043#0" expanded="false" />
-                <element signature="e#35134#35236#0" expanded="false" />
-                <element signature="e#35344#35439#0" expanded="false" />
-                <element signature="e#35479#35999#0" expanded="false" />
-                <element signature="e#36099#36488#0" expanded="false" />
-                <element signature="e#36552#36891#0" expanded="false" />
-                <element signature="e#37084#38189#0" expanded="false" />
-                <element signature="e#37149#37361#0" expanded="false" />
-                <element signature="e#37444#37554#0" expanded="false" />
-                <element signature="e#37621#37867#0" expanded="false" />
-                <element signature="e#37935#38187#0" expanded="false" />
-                <element signature="e#38354#39960#0" expanded="false" />
-                <element signature="e#38409#39097#0" expanded="false" />
-                <element signature="e#39131#39321#0" expanded="false" />
-                <element signature="e#39359#39551#0" expanded="false" />
-                <element signature="e#39590#39958#0" expanded="false" />
-                <element signature="e#40024#41359#0" expanded="false" />
-                <element signature="e#40080#40231#0" expanded="false" />
-                <element signature="e#40747#41356#0" expanded="false" />
-                <element signature="e#41526#43277#0" expanded="false" />
-                <element signature="e#42090#42185#0" expanded="false" />
-                <element signature="e#42225#42745#0" expanded="false" />
-                <element signature="e#42845#43275#0" expanded="false" />
-                <element signature="e#43371#43401#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="19006" max-vertical-offset="22916">
+              <caret line="1139" column="25" selection-start-line="1139" selection-start-column="25" selection-end-line="1139" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="efforts.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partials/efforts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="561">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="groupMessages.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partials/groupMessages.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="340">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -238,10 +345,46 @@
       <list>
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/www/css/app.css" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/partials/home.html" />
+        <option value="$PROJECT_DIR$/www/bower_components/ionic/release/js/ionic.js" />
+        <option value="$PROJECT_DIR$/www/bower_components/ionic/release/js/ionic.bundle.js" />
+        <option value="$PROJECT_DIR$/www/partials/calendar.html" />
+        <option value="$PROJECT_DIR$/www/partials/awards.html" />
+        <option value="$PROJECT_DIR$/www/partials/efforts.group.html" />
+        <option value="$PROJECT_DIR$/www/partials/settings.html" />
+        <option value="$PROJECT_DIR$/www/partials/viewTask.html" />
+        <option value="$PROJECT_DIR$/www/partials/myTasks.html" />
+        <option value="$PROJECT_DIR$/www/partials/myInvites.html" />
+        <option value="$PROJECT_DIR$/www/partials/groupFeed.task.html" />
+        <option value="$PROJECT_DIR$/www/partials/groups.html" />
+        <option value="$PROJECT_DIR$/www/partials/hours.html" />
+        <option value="$PROJECT_DIR$/www/partials/hours.moderation.html" />
+        <option value="$PROJECT_DIR$/www/partials/hours.myHours.html" />
+        <option value="$PROJECT_DIR$/platforms/android/assets/www/js/controllers.js" />
+        <option value="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/partials/myGroups.html" />
+        <option value="$PROJECT_DIR$/www/bower_components/ionic/release/css/ionic.css" />
+        <option value="$PROJECT_DIR$/www/partials/groupFeed.html" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/www/css/ionic_override.css" />
+        <option value="$PROJECT_DIR$/www/css/static_app.css" />
+        <option value="$PROJECT_DIR$/www/partials/register.html" />
+        <option value="$PROJECT_DIR$/www/partials/menuBar.html" />
+        <option value="$PROJECT_DIR$/www/partials/groupFeed.post.html" />
+        <option value="$PROJECT_DIR$/www/partials/viewPost.html" />
+        <option value="$PROJECT_DIR$/www/partials/groupMessages.message.html" />
+        <option value="$PROJECT_DIR$/www/partials/addPost.html" />
+        <option value="$PROJECT_DIR$/www/partials/addTask.html" />
+        <option value="$PROJECT_DIR$/www/partials/editComment.html" />
+        <option value="$PROJECT_DIR$/www/partials/editMessage.html" />
+        <option value="$PROJECT_DIR$/www/partials/editTask.html" />
         <option value="$PROJECT_DIR$/www/partials/communityFeed.html" />
+        <option value="$PROJECT_DIR$/www/partials/login.html" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/css/desktop_app.css" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
   </component>
@@ -403,10 +546,10 @@
     <initial>false</initial>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="102" />
-    <option name="y" value="213" />
-    <option name="width" value="1268" />
-    <option name="height" value="834" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -464,7 +607,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemId" value="VMA_BONNER" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -474,7 +617,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemId" value="VMA_BONNER" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -488,7 +631,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemId" value="VMA_BONNER" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -506,7 +649,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemId" value="VMA_BONNER" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -515,24 +658,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VMA_DEV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -545,12 +670,26 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="options.lastSelected" value="liveEdit" />
+    <property name="options.lastSelected" value="preferences.sourceCode.SCSS" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SoA\VMA\VMA_DEV\www\css" />
+    </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -561,12 +700,14 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
       <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -574,16 +715,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
-      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -607,23 +738,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="102" y="213" width="1268" height="834" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19512194" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23352855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -648,10 +779,34 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="1292">
+          <caret line="55" column="45" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="3825">
+          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="22678" max-vertical-offset="29733">
+          <caret line="1334" column="0" selection-start-line="1334" selection-start-column="0" selection-end-line="1334" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1717">
@@ -664,38 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2622" max-vertical-offset="3179">
           <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
-          <folding>
-            <element signature="e#103#399#0" expanded="false" />
-            <element signature="e#603#887#0" expanded="false" />
-            <element signature="e#911#1088#0" expanded="false" />
-            <element signature="e#1117#1234#0" expanded="false" />
-            <element signature="e#1261#1448#0" expanded="false" />
-            <element signature="e#1480#1561#0" expanded="false" />
-            <element signature="e#1590#1779#0" expanded="false" />
-            <element signature="e#1816#2020#0" expanded="false" />
-            <element signature="e#2065#2251#0" expanded="false" />
-            <element signature="e#2284#2476#0" expanded="false" />
-            <element signature="e#2516#2809#0" expanded="false" />
-            <element signature="e#2838#3022#0" expanded="false" />
-            <element signature="e#3050#3233#0" expanded="false" />
-            <element signature="e#3264#3443#0" expanded="false" />
-            <element signature="e#3473#3649#0" expanded="false" />
-            <element signature="e#3681#3863#0" expanded="false" />
-            <element signature="e#3895#4077#0" expanded="false" />
-            <element signature="e#4106#4280#0" expanded="false" />
-            <element signature="e#4550#5983#0" expanded="false" />
-            <element signature="e#4801#4836#0" expanded="false" />
-            <element signature="e#4894#5557#0" expanded="false" />
-            <element signature="e#5660#5979#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="19133" max-vertical-offset="19703">
-          <caret line="1147" column="0" selection-start-line="1147" selection-start-column="0" selection-end-line="1147" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,106 +831,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="680">
           <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#228#1591#0" expanded="false" />
-            <element signature="e#273#351#0" expanded="false" />
-            <element signature="e#452#1587#0" expanded="false" />
-            <element signature="e#1725#2581#0" expanded="false" />
-            <element signature="e#2707#4374#0" expanded="false" />
-            <element signature="e#2737#2853#0" expanded="false" />
-            <element signature="e#2887#3402#0" expanded="false" />
-            <element signature="e#3482#3520#0" expanded="false" />
-            <element signature="e#3558#4022#0" expanded="false" />
-            <element signature="e#4151#4371#0" expanded="false" />
-            <element signature="e#4507#5489#0" expanded="false" />
-            <element signature="e#4568#4771#0" expanded="false" />
-            <element signature="e#4832#5161#0" expanded="false" />
-            <element signature="e#5242#5389#0" expanded="false" />
-            <element signature="e#5444#5485#0" expanded="false" />
-            <element signature="e#5648#6662#0" expanded="false" />
-            <element signature="e#5686#5797#0" expanded="false" />
-            <element signature="e#5873#5989#0" expanded="false" />
-            <element signature="e#6013#6480#0" expanded="false" />
-            <element signature="e#6509#6566#0" expanded="false" />
-            <element signature="e#6621#6658#0" expanded="false" />
-            <element signature="e#6863#10082#0" expanded="false" />
-            <element signature="e#6929#9639#0" expanded="false" />
-            <element signature="e#9669#9747#0" expanded="false" />
-            <element signature="e#9785#10080#0" expanded="false" />
-            <element signature="e#10301#17737#0" expanded="false" />
-            <element signature="e#10405#10572#0" expanded="false" />
-            <element signature="e#10662#10877#0" expanded="false" />
-            <element signature="e#11009#11042#0" expanded="false" />
-            <element signature="e#11077#11585#0" expanded="false" />
-            <element signature="e#11722#12239#0" expanded="false" />
-            <element signature="e#12322#12360#0" expanded="false" />
-            <element signature="e#12400#13021#0" expanded="false" />
-            <element signature="e#13177#13751#0" expanded="false" />
-            <element signature="e#13830#13866#0" expanded="false" />
-            <element signature="e#13904#14510#0" expanded="false" />
-            <element signature="e#14669#15340#0" expanded="false" />
-            <element signature="e#15421#15458#0" expanded="false" />
-            <element signature="e#15497#16120#0" expanded="false" />
-            <element signature="e#16274#16821#0" expanded="false" />
-            <element signature="e#16860#17075#0" expanded="false" />
-            <element signature="e#17122#17553#0" expanded="false" />
-            <element signature="e#17582#17641#0" expanded="false" />
-            <element signature="e#17696#17733#0" expanded="false" />
-            <element signature="e#17919#23257#0" expanded="false" />
-            <element signature="e#18052#18396#0" expanded="false" />
-            <element signature="e#18402#18727#0" expanded="false" />
-            <element signature="e#18444#18721#0" expanded="false" />
-            <element signature="e#18803#18829#0" expanded="false" />
-            <element signature="e#18865#19490#0" expanded="false" />
-            <element signature="e#19615#20164#0" expanded="false" />
-            <element signature="e#20219#20252#0" expanded="false" />
-            <element signature="e#20291#20981#0" expanded="false" />
-            <element signature="e#21119#21869#0" expanded="false" />
-            <element signature="e#21928#21967#0" expanded="false" />
-            <element signature="e#22008#22703#0" expanded="false" />
-            <element signature="e#22843#23254#0" expanded="false" />
-            <element signature="e#23439#33615#0" expanded="false" />
-            <element signature="e#23676#23814#0" expanded="false" />
-            <element signature="e#23912#23945#0" expanded="false" />
-            <element signature="e#23980#24540#0" expanded="false" />
-            <element signature="e#24689#26840#0" expanded="false" />
-            <element signature="e#26926#26999#0" expanded="false" />
-            <element signature="e#27044#27679#0" expanded="false" />
-            <element signature="e#27833#28384#0" expanded="false" />
-            <element signature="e#28466#28507#0" expanded="false" />
-            <element signature="e#28550#29161#0" expanded="false" />
-            <element signature="e#29313#31945#0" expanded="false" />
-            <element signature="e#32028#32123#0" expanded="false" />
-            <element signature="e#32163#32435#0" expanded="false" />
-            <element signature="e#32551#32940#0" expanded="false" />
-            <element signature="e#33003#33254#0" expanded="false" />
-            <element signature="e#33318#33613#0" expanded="false" />
-            <element signature="e#33790#36893#0" expanded="false" />
-            <element signature="e#33813#35043#0" expanded="false" />
-            <element signature="e#35134#35236#0" expanded="false" />
-            <element signature="e#35344#35439#0" expanded="false" />
-            <element signature="e#35479#35999#0" expanded="false" />
-            <element signature="e#36099#36488#0" expanded="false" />
-            <element signature="e#36552#36891#0" expanded="false" />
-            <element signature="e#37084#38189#0" expanded="false" />
-            <element signature="e#37149#37361#0" expanded="false" />
-            <element signature="e#37444#37554#0" expanded="false" />
-            <element signature="e#37621#37867#0" expanded="false" />
-            <element signature="e#37935#38187#0" expanded="false" />
-            <element signature="e#38354#39960#0" expanded="false" />
-            <element signature="e#38409#39097#0" expanded="false" />
-            <element signature="e#39131#39321#0" expanded="false" />
-            <element signature="e#39359#39551#0" expanded="false" />
-            <element signature="e#39590#39958#0" expanded="false" />
-            <element signature="e#40024#41359#0" expanded="false" />
-            <element signature="e#40080#40231#0" expanded="false" />
-            <element signature="e#40747#41356#0" expanded="false" />
-            <element signature="e#41526#43277#0" expanded="false" />
-            <element signature="e#42090#42185#0" expanded="false" />
-            <element signature="e#42225#42745#0" expanded="false" />
-            <element signature="e#42845#43275#0" expanded="false" />
-            <element signature="e#43371#43401#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -815,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="7395">
           <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -823,38 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="7395">
           <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-          <folding>
-            <element signature="e#103#399#0" expanded="false" />
-            <element signature="e#603#887#0" expanded="false" />
-            <element signature="e#911#1088#0" expanded="false" />
-            <element signature="e#1117#1234#0" expanded="false" />
-            <element signature="e#1261#1448#0" expanded="false" />
-            <element signature="e#1480#1561#0" expanded="false" />
-            <element signature="e#1590#1779#0" expanded="false" />
-            <element signature="e#1816#2020#0" expanded="false" />
-            <element signature="e#2065#2251#0" expanded="false" />
-            <element signature="e#2284#2476#0" expanded="false" />
-            <element signature="e#2516#2809#0" expanded="false" />
-            <element signature="e#2838#3022#0" expanded="false" />
-            <element signature="e#3050#3233#0" expanded="false" />
-            <element signature="e#3264#3443#0" expanded="false" />
-            <element signature="e#3473#3649#0" expanded="false" />
-            <element signature="e#3681#3863#0" expanded="false" />
-            <element signature="e#3895#4077#0" expanded="false" />
-            <element signature="e#4106#4280#0" expanded="false" />
-            <element signature="e#4550#5983#0" expanded="false" />
-            <element signature="e#4801#4836#0" expanded="false" />
-            <element signature="e#4894#5557#0" expanded="false" />
-            <element signature="e#5660#5979#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -863,142 +854,263 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/app.css">
+    <entry file="file://$PROJECT_DIR$/www/partials/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="19133" max-vertical-offset="19703">
-          <caret line="1147" column="0" selection-start-line="1147" selection-start-column="0" selection-end-line="1147" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="839">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/partials/communityFeed.html">
+    <entry file="file://$PROJECT_DIR$/www/partials/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3923077" vertical-offset="0" max-vertical-offset="650">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding />
+        <state vertical-scroll-proportion="0.57575756" vertical-offset="0" max-vertical-offset="561">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/viewTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18181819" vertical-offset="0" max-vertical-offset="561">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/awards.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="272">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/calendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/partials/efforts.group.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2876923" vertical-offset="0" max-vertical-offset="650">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/hours.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.461538" vertical-offset="82" max-vertical-offset="646">
+          <caret line="30" column="2" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/groupFeed.task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.115385" vertical-offset="82" max-vertical-offset="646">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/hours.moderation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42424244" vertical-offset="0" max-vertical-offset="561">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/groupFeed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5673421" vertical-offset="0" max-vertical-offset="839">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="865">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43601894" vertical-offset="3440" max-vertical-offset="4284">
+          <caret line="224" column="16" selection-start-line="224" selection-start-column="16" selection-end-line="224" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4987775" vertical-offset="0" max-vertical-offset="818">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25247526" vertical-offset="0" max-vertical-offset="606">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14003295" vertical-offset="0" max-vertical-offset="607">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/group_feed.icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/avatar.icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/groupMessages.message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29862475" vertical-offset="120" max-vertical-offset="663">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/menuBar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31609195" vertical-offset="311" max-vertical-offset="833">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/viewPost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44636014" vertical-offset="175" max-vertical-offset="697">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/groupFeed.post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18007663" vertical-offset="42" max-vertical-offset="629">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/addGroup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5862069" vertical-offset="0" max-vertical-offset="522">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/addPost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0651341" vertical-offset="0" max-vertical-offset="522">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/addTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="34" max-vertical-offset="969">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/editComment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022988506" vertical-offset="5" max-vertical-offset="527">
+          <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/editGroup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="548">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/editMessage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0651341" vertical-offset="0" max-vertical-offset="522">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/editTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40078586" vertical-offset="0" max-vertical-offset="986">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/communityFeed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+          <caret line="0" column="66" selection-start-line="0" selection-start-column="66" selection-end-line="0" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/bottomMenu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3461537" vertical-offset="1025" max-vertical-offset="1717">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="1360">
+          <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/desktop_app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20512821" vertical-offset="0" max-vertical-offset="663">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-          <folding>
-            <element signature="e#228#1591#0" expanded="false" />
-            <element signature="e#273#351#0" expanded="false" />
-            <element signature="e#452#1587#0" expanded="false" />
-            <element signature="e#1725#2581#0" expanded="false" />
-            <element signature="e#2707#4374#0" expanded="false" />
-            <element signature="e#2737#2853#0" expanded="false" />
-            <element signature="e#2887#3402#0" expanded="false" />
-            <element signature="e#3482#3520#0" expanded="false" />
-            <element signature="e#3558#4022#0" expanded="false" />
-            <element signature="e#4151#4371#0" expanded="false" />
-            <element signature="e#4507#5489#0" expanded="false" />
-            <element signature="e#4568#4771#0" expanded="false" />
-            <element signature="e#4832#5161#0" expanded="false" />
-            <element signature="e#5242#5389#0" expanded="false" />
-            <element signature="e#5444#5485#0" expanded="false" />
-            <element signature="e#5648#6662#0" expanded="false" />
-            <element signature="e#5686#5797#0" expanded="false" />
-            <element signature="e#5873#5989#0" expanded="false" />
-            <element signature="e#6013#6480#0" expanded="false" />
-            <element signature="e#6509#6566#0" expanded="false" />
-            <element signature="e#6621#6658#0" expanded="false" />
-            <element signature="e#6863#10082#0" expanded="false" />
-            <element signature="e#6929#9639#0" expanded="false" />
-            <element signature="e#9669#9747#0" expanded="false" />
-            <element signature="e#9785#10080#0" expanded="false" />
-            <element signature="e#10301#17737#0" expanded="false" />
-            <element signature="e#10405#10572#0" expanded="false" />
-            <element signature="e#10662#10877#0" expanded="false" />
-            <element signature="e#11009#11042#0" expanded="false" />
-            <element signature="e#11077#11585#0" expanded="false" />
-            <element signature="e#11722#12239#0" expanded="false" />
-            <element signature="e#12322#12360#0" expanded="false" />
-            <element signature="e#12400#13021#0" expanded="false" />
-            <element signature="e#13177#13751#0" expanded="false" />
-            <element signature="e#13830#13866#0" expanded="false" />
-            <element signature="e#13904#14510#0" expanded="false" />
-            <element signature="e#14669#15340#0" expanded="false" />
-            <element signature="e#15421#15458#0" expanded="false" />
-            <element signature="e#15497#16120#0" expanded="false" />
-            <element signature="e#16274#16821#0" expanded="false" />
-            <element signature="e#16860#17075#0" expanded="false" />
-            <element signature="e#17122#17553#0" expanded="false" />
-            <element signature="e#17582#17641#0" expanded="false" />
-            <element signature="e#17696#17733#0" expanded="false" />
-            <element signature="e#17919#23257#0" expanded="false" />
-            <element signature="e#18052#18396#0" expanded="false" />
-            <element signature="e#18402#18727#0" expanded="false" />
-            <element signature="e#18444#18721#0" expanded="false" />
-            <element signature="e#18803#18829#0" expanded="false" />
-            <element signature="e#18865#19490#0" expanded="false" />
-            <element signature="e#19615#20164#0" expanded="false" />
-            <element signature="e#20219#20252#0" expanded="false" />
-            <element signature="e#20291#20981#0" expanded="false" />
-            <element signature="e#21119#21869#0" expanded="false" />
-            <element signature="e#21928#21967#0" expanded="false" />
-            <element signature="e#22008#22703#0" expanded="false" />
-            <element signature="e#22843#23254#0" expanded="false" />
-            <element signature="e#23439#33615#0" expanded="false" />
-            <element signature="e#23676#23814#0" expanded="false" />
-            <element signature="e#23912#23945#0" expanded="false" />
-            <element signature="e#23980#24540#0" expanded="false" />
-            <element signature="e#24689#26840#0" expanded="false" />
-            <element signature="e#26926#26999#0" expanded="false" />
-            <element signature="e#27044#27679#0" expanded="false" />
-            <element signature="e#27833#28384#0" expanded="false" />
-            <element signature="e#28466#28507#0" expanded="false" />
-            <element signature="e#28550#29161#0" expanded="false" />
-            <element signature="e#29313#31945#0" expanded="false" />
-            <element signature="e#32028#32123#0" expanded="false" />
-            <element signature="e#32163#32435#0" expanded="false" />
-            <element signature="e#32551#32940#0" expanded="false" />
-            <element signature="e#33003#33254#0" expanded="false" />
-            <element signature="e#33318#33613#0" expanded="false" />
-            <element signature="e#33790#36893#0" expanded="false" />
-            <element signature="e#33813#35043#0" expanded="false" />
-            <element signature="e#35134#35236#0" expanded="false" />
-            <element signature="e#35344#35439#0" expanded="false" />
-            <element signature="e#35479#35999#0" expanded="false" />
-            <element signature="e#36099#36488#0" expanded="false" />
-            <element signature="e#36552#36891#0" expanded="false" />
-            <element signature="e#37084#38189#0" expanded="false" />
-            <element signature="e#37149#37361#0" expanded="false" />
-            <element signature="e#37444#37554#0" expanded="false" />
-            <element signature="e#37621#37867#0" expanded="false" />
-            <element signature="e#37935#38187#0" expanded="false" />
-            <element signature="e#38354#39960#0" expanded="false" />
-            <element signature="e#38409#39097#0" expanded="false" />
-            <element signature="e#39131#39321#0" expanded="false" />
-            <element signature="e#39359#39551#0" expanded="false" />
-            <element signature="e#39590#39958#0" expanded="false" />
-            <element signature="e#40024#41359#0" expanded="false" />
-            <element signature="e#40080#40231#0" expanded="false" />
-            <element signature="e#40747#41356#0" expanded="false" />
-            <element signature="e#41526#43277#0" expanded="false" />
-            <element signature="e#42090#42185#0" expanded="false" />
-            <element signature="e#42225#42745#0" expanded="false" />
-            <element signature="e#42845#43275#0" expanded="false" />
-            <element signature="e#43371#43401#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="19006" max-vertical-offset="22916">
+          <caret line="1139" column="25" selection-start-line="1139" selection-start-column="25" selection-end-line="1139" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/efforts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/groupMessages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36220473" vertical-offset="654" max-vertical-offset="3978">
+          <caret line="52" column="59" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>

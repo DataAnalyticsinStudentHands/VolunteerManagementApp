@@ -1,8 +1,16 @@
-<div class="modal_a" stop-event="touchend">
-    <form ng-submit="ok()">
-        <input type="text" ng-model="message_edit.content" placeholder="Message Content" required/>
-        <br/>
-        <br/>
-        <input id="submit_ag" type="submit"/>
-    </form>
-</div>
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Edit Message</h1>
+        <button class="button button-clear button-primary" ng-click="modalEdit.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" ng-model="message_edit.content" placeholder="Message Content" required/>
+          </label>
+        </div>
+        <div class="list">
+          <button class="button button-full button-positive" ng-click="ok()">Submit</button>
+        </div>
+    </ion-content>
+</ion-modal-view>
