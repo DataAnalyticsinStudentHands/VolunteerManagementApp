@@ -7,16 +7,15 @@
 
     <!--CSS-->
         <!--<link rel="stylesheet" href="dist/ng-notify/src/styles/ng-notify.css">-->
-        <!--<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">-->
-        <!--<link rel="stylesheet" href="dist/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">-->
-        <link rel="stylesheet" href="dist/ionic/css/ionic.css">
-        <!--<link rel="stylesheet" href="css/static_app.css">-->
-        <!--<link rel="stylesheet" href="css/desktop_app.css">-->
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+        <link rel="stylesheet" href="dist/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">
+        <!--<link rel="stylesheet" href="dist/ionic/css/ionic.css">-->
+        <link rel="stylesheet" href="dist/ionic/scss/ionic.css">
+        <link rel="stylesheet" href="css/static_app.css">
+        <link rel="stylesheet" href="css/desktop_app.css">
 
     <!--CORE ANGULAR - IONIC - JQUERY-->
         <script src="dist/ionic/js/ionic.bundle.js"></script>
-        <!--<link href="//code.ionicframework.com/1.0.0-beta.12/css/ionic.css" rel="stylesheet">-->
-        <!--<script src="//code.ionicframework.com/1.0.0-beta.12/js/ionic.bundle.js"></script>-->
         <script src="dist/jquery/dist/jquery.min.js"></script>
 
     <!--bootstrap-datetimepicker -->
@@ -48,15 +47,15 @@
         <script src="modules/calendar/moment.min.js"></script>
         <script src="modules/calendar/fullcalendar.js"></script>
         <script src="modules/calendar/services.js"></script>
-        <!--<link rel="stylesheet" href="modules/calendar/fullcalendar.css">-->
+        <link rel="stylesheet" href="modules/calendar/fullcalendar.css">
 
     <!--ADAPTIVE-MAPS MODULE-->
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="modules/map/angular-adaptive-googlemaps.js"></script>
 
     </head>
-    <body id="background">
-    <ion-side-menus ng-controller="menuCtrl">
+    <body id="background" class="background" ng-controller="menuCtrl">
+    <ion-side-menus>
         <ion-side-menu-content animation="slide-left-right">
             <ion-nav-bar class="bar-dark">
                 <button id="disappear_on_desktop" class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>

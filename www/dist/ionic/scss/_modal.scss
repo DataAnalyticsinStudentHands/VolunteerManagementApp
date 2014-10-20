@@ -50,12 +50,6 @@
 
   // remove ios header padding from inset header
   .platform-ios.platform-cordova .modal-wrapper .modal{
-    .bar-header:not(.bar-subheader) {
-      height: $bar-height;
-      > * {
-        margin-top: 0;
-      }
-    }
     .tabs-top > .tabs,
     .tabs.tabs-top {
       top: $bar-height;

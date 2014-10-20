@@ -3,4 +3,14 @@
     #disappear_on_desktop {
         display: none;
     }
+
+    #background {
+        /*margin-left: 100px;*/
+        /*margin-right: 100px;*/
+        /*width: 800px;*/
+        /* THE FOLLOWING KIND OF WORK */
+        /*margin-top: 100px;*/
+        /*position: fixed;*/
+        /*background: url("../img/dashlogo.svg");*/
+    }
 }
