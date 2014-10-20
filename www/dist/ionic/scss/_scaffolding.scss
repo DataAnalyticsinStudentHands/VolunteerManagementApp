@@ -229,11 +229,6 @@ body.grade-c {
   }
 
   &.active {
-    .icon-pulling:not(.pulling-rotation-disabled) {
-      @include animation-name(refresh-spin);
-      -webkit-transform: translate3d(0,0,0) rotate(-180deg);
-      transform: translate3d(0,0,0) rotate(-180deg);
-    }
     &.refreshing {
       @include transition(transform .2s);
       @include transition(-webkit-transform .2s);

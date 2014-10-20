@@ -2,262 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c1e1dc4-a480-4851-8db1-3d4723429591" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.brackets.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_action-sheet.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_action-sheet.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_animations.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_animations.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_backdrop.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_backdrop.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_badge.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_badge.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_bar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_bar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_button-bar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_button-bar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_button.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_button.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_checkbox.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_checkbox.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_form.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_form.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_grid.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_grid.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-animation.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-animation.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-font.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-font.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-icons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-icons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/_ionicons-variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/_ionicons-variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_items.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_items.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_list.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_list.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_loading.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_loading.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_menu.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_menu.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_modal.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_modal.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_platform.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_platform.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_popover.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_popover.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_popup.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_popup.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_progress.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_progress.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_radio.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_radio.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_range.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_range.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_reset.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_reset.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_scaffolding.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_scaffolding.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_select.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_select.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_slide-box.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_slide-box.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_split-pane.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_tabs.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_tabs.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_toggle.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_toggle.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_type.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_type.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_util.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_util.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/angular-bootstrap-datetimepicker/src/js/datetimepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/css/desktop_app.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/groups.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/highcharts-ng/dist/highcharts-ng.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/highcharts/highcharts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/hours.myHours.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic-angular.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic-angular.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.bundle.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/css/ionic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/css/ionic.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/js/ionic.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ionic.project" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionic.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionic.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/ionicons/ionicons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/scss/ionic/ionicons/ionicons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/ionic/fonts/ionicons.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/myGroups.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/myInvites.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/partials/myTasks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/dist/restangular/dist/restangular.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/css/static_app.css" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\runner.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\spec\controller\index.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\test\spec\service\myservice.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-bootstrap\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-bootstrap\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-bootstrap\ui-bootstrap-tpls.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\LICENSE-MIT" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap-only.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap-only.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\angular-snap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-snap\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.bowerrc" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.gitattributes" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.npmignore" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\LICENSE.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\angular-strap.nuspec" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.tpl.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\dist\angular-strap.tpl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-strap\package.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\angular-touch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\angular-touch.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-touch\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular-ui-router\release\angular-ui-router.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular\angular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\angular\angular.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\css\bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\angular.headroom.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\angular.headroom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\headroom.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\headroom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\jQuery.headroom.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\dist\jQuery.headroom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\headroom.js\package.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\dist\highcharts-ng.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\dist\highcharts-ng.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\dist\highcharts.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\highcharts-ng\package.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\MIT-LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\restangular\dist\restangular.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\component.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\snap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\snap.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\snapjs\snap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\img\temp_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteComment.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteGroup.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deletePost.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteTask.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\deleteUser.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\efforts.task.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\leaveGroup.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\logOutUser.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\login.help.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\partials\register.help.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/VMA_DEV.iml" afterPath="$PROJECT_DIR$/.idea/VMA_DEV.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addGroup.html" afterPath="$PROJECT_DIR$/www/partials/addGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addPost.html" afterPath="$PROJECT_DIR$/www/partials/addPost.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/addTask.html" afterPath="$PROJECT_DIR$/www/partials/addTask.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_action-sheet.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_animations.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_backdrop.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_badge.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_bar.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_button-bar.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_button.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_checkbox.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_form.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_grid.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_items.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_list.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_loading.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_menu.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_mixins.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_modal.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_platform.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_popover.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_popup.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_progress.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_radio.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_range.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_reset.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_scaffolding.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_select.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_slide-box.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_tabs.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_toggle.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_type.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_util.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\_variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\ionic.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\ionicons\_ionicons-animation.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\ionicons\_ionicons-font.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\ionicons\_ionicons-icons.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\ionicons\_ionicons-variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\SoA\VMA\VMA_BONNER\www\scss\ionic\ionicons\ionicons.scss" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/dist/ionic/scss/_modal.scss" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_modal.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/dist/ionic/scss/_platform.scss" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_platform.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/dist/ionic/scss/_scaffolding.scss" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_scaffolding.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/dist/ionic/scss/_variables.scss" afterPath="$PROJECT_DIR$/www/dist/ionic/scss/_variables.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/awards.html" afterPath="$PROJECT_DIR$/www/partials/awards.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/bottomMenu.html" afterPath="$PROJECT_DIR$/www/partials/bottomMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/calendar.html" afterPath="$PROJECT_DIR$/www/partials/calendar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/communityFeed.html" afterPath="$PROJECT_DIR$/www/partials/communityFeed.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/dashlogo.svg" afterPath="$PROJECT_DIR$/www/img/dashlogo.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editComment.html" afterPath="$PROJECT_DIR$/www/partials/editComment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editGroup.html" afterPath="$PROJECT_DIR$/www/partials/editGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editMessage.html" afterPath="$PROJECT_DIR$/www/partials/editMessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/editTask.html" afterPath="$PROJECT_DIR$/www/partials/editTask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/efforts.group.html" afterPath="$PROJECT_DIR$/www/partials/efforts.group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/filters.js" afterPath="$PROJECT_DIR$/www/js/filters.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.post.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.post.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupFeed.task.html" afterPath="$PROJECT_DIR$/www/partials/groupFeed.task.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/groupMessages.message.html" afterPath="$PROJECT_DIR$/www/partials/groupMessages.message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/home.html" afterPath="$PROJECT_DIR$/www/partials/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.html" afterPath="$PROJECT_DIR$/www/partials/hours.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/hours.moderation.html" afterPath="$PROJECT_DIR$/www/partials/hours.moderation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/desktop_app.css" afterPath="$PROJECT_DIR$/www/css/desktop_app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/login.html" afterPath="$PROJECT_DIR$/www/partials/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/menuBar.html" afterPath="$PROJECT_DIR$/www/partials/menuBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/register.html" afterPath="$PROJECT_DIR$/www/partials/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services.js" afterPath="$PROJECT_DIR$/www/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/settings.html" afterPath="$PROJECT_DIR$/www/partials/settings.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/viewPost.html" afterPath="$PROJECT_DIR$/www/partials/viewPost.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partials/viewTask.html" afterPath="$PROJECT_DIR$/www/partials/viewTask.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\dist\jquery.min.js" afterPath="$PROJECT_DIR$/www/dist/jquery/dist/jquery.min.js" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\jquery\dist\jquery.min.map" afterPath="$PROJECT_DIR$/www/dist/jquery/dist/jquery.min.map" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\lodash\dist\lodash.underscore.min.js" afterPath="$PROJECT_DIR$/www/dist/lodash/dist/lodash.underscore.min.js" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\src\scripts\ng-notify.js" afterPath="$PROJECT_DIR$/www/dist/ng-notify/src/scripts/ng-notify.js" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\src\styles\ng-notify.css" afterPath="$PROJECT_DIR$/www/dist/ng-notify/src/styles/ng-notify.css" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\bower_components\ng-notify\src\styles\ng-notify.sass" afterPath="$PROJECT_DIR$/www/dist/ng-notify/src/styles/ng-notify.sass" />
-      <change type="MOVED" beforePath="D:\SoA\VMA\VMA_BONNER\www\css\app.css" afterPath="$PROJECT_DIR$/www/css/app_inactive.bak.css" />
     </list>
     <ignored path="VMA_DEV.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -283,8 +73,8 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="1360">
-              <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+            <state vertical-scroll-proportion="-11.115385" vertical-offset="697" max-vertical-offset="1377">
+              <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -294,37 +84,7 @@
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.36220473" vertical-offset="654" max-vertical-offset="3978">
-              <caret line="52" column="59" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="19006" max-vertical-offset="22916">
-              <caret line="1139" column="25" selection-start-line="1139" selection-start-column="25" selection-end-line="1139" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="efforts.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/partials/efforts.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="561">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groupMessages.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/partials/groupMessages.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="52" column="62" selection-start-line="52" selection-start-column="62" selection-end-line="52" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -381,9 +141,15 @@
         <option value="$PROJECT_DIR$/www/partials/editTask.html" />
         <option value="$PROJECT_DIR$/www/partials/communityFeed.html" />
         <option value="$PROJECT_DIR$/www/partials/login.html" />
-        <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/css/desktop_app.css" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
+        <option value="$PROJECT_DIR$/www/css/desktop_app.css" />
+        <option value="$PROJECT_DIR$/www/scss/ionic/_variables.scss" />
+        <option value="$PROJECT_DIR$/www/dist/ionic/scss/ionic.scss" />
+        <option value="$PROJECT_DIR$/www/dist/ionic/scss/_scaffolding.scss" />
+        <option value="$PROJECT_DIR$/www/dist/ionic/scss/_platform.scss" />
+        <option value="$PROJECT_DIR$/www/dist/ionic/scss/_modal.scss" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/dist/ionic/scss/_variables.scss" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
@@ -661,6 +427,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMA_BONNER" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMA_BONNER" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ionic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMA_DEV" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMA_BONNER" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -674,7 +498,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/www" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -738,23 +562,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23352855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23352855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -783,14 +607,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="1292">
-          <caret line="55" column="45" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="3825">
@@ -1067,33 +883,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="1360">
-          <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/desktop_app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="19006" max-vertical-offset="22916">
           <caret line="1139" column="25" selection-start-line="1139" selection-start-column="25" selection-end-line="1139" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partials/efforts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1106,10 +899,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/partials/efforts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/desktop_app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1574074" vertical-offset="0" max-vertical-offset="648">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/dist/ionic/scss/ionic.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="918">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/dist/ionic/scss/_scaffolding.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17555939" vertical-offset="3808" max-vertical-offset="6205">
+          <caret line="230" column="12" selection-start-line="230" selection-start-column="12" selection-end-line="230" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/dist/ionic/scss/_modal.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20096463" vertical-offset="742" max-vertical-offset="1598">
+          <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/dist/ionic/scss/_platform.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20096463" vertical-offset="1592" max-vertical-offset="2465">
+          <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/dist/ionic/scss/_variables.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33497536" vertical-offset="0" max-vertical-offset="12138">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385" vertical-offset="697" max-vertical-offset="1377">
+          <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36220473" vertical-offset="654" max-vertical-offset="3978">
-          <caret line="52" column="59" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
+          <caret line="52" column="62" selection-start-line="52" selection-start-column="62" selection-end-line="52" selection-end-column="62" />
           <folding />
         </state>
       </provider>

@@ -50,7 +50,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('home.message', {
           url: "/messages/:id",
           views: {
-            "app@home": { templateUrl: "partials/groupMessa.message.html", controller: 'message'}
+            "app@home": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
           },
           authenticate: true
       }).
