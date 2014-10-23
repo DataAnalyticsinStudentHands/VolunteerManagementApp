@@ -482,6 +482,13 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return task;
                 });
             },
+        getTaskByName:
+            function(task_name, update) {
+                return this.updateTasks(update).then(function(success) {
+                    var task = $filter('getByName')(allTasks, task_name);
+                    return task;
+                });
+            },
         getTaskView:
             function(task_id) {
                 var viewTask = $filter('getById')(allTasks, task_id);

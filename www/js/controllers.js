@@ -1197,7 +1197,21 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
         });
         $scope.entry = [];
     };
-    
+    $scope.$watch('entry.name', function(taskName) {
+        if(taskName != "Other")
+        vmaTaskService.getTaskByName(taskName).then(function(success){
+            console.log(success);
+            if(success) {
+                if (success.time) {
+                    if(!$scope.tmp)
+                        $scope.tmp = {};
+                    $scope.tmp.newDate = $scope.entry.inTime = new Date(success.time);
+                }
+                if (success.duration)
+                    $scope.entry.duration = success.duration;
+            }
+        })
+    })
     $scope.checkIn = function() {
         $scope.entry.inTime = new Date();
         $scope.checkInTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
@@ -1269,7 +1283,8 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     };
     
     $scope.openDatePicker = function () {
-        $scope.tmp = {};
+        if(!$scope.tmp)
+            $scope.tmp = {};
 //        $scope.tmp.newDate = $scope.newTask.time;
         $ionicPopup.show({
             template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
