@@ -332,8 +332,8 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                 });
             },
         getMetaTasks:
-            function() {
-                return this.getSubtractedTasks().then(function(success) {
+            function(update) {
+                return this.getSubtractedTasks(update).then(function(success) {
                     var result = [];
                     manTasks.forEach(function(obj){
                         obj.isManager = true;
