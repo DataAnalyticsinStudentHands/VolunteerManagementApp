@@ -42,6 +42,7 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
         Auth.setCredentials("Visitor", "test");
         $scope.salt = "nfp89gpe";
         $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+        console.log($scope.register);
         $scope.$parent.Restangular().all("users").post($scope.register).then(
             function(success) {
                 Auth.clearCredentials();
@@ -563,21 +564,20 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     var state = $state.current.name;
     switch(state) {
         case "home.myTasks":
-            $scope.updateTasks = function() {
-                vmaTaskService.getJoinTasks().then(function(success) { $scope.tasks = success; });
+            $scope.updateTasks = function(refresh) {
+                vmaTaskService.getJoinTasks(refresh).then(function(success) { $scope.tasks = success; });
             }
             break;
         case "home.group":
             $scope.updateTasks = function(update){
-                vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
+                vmaTaskService.getAllTasksGroup($scope.id, update).then(function(success) { $scope.tasks = success; });
             }
             break;
         case "home.group.tasks":
             $scope.id = $stateParams.id;
-            $scope.updateTasks = function() {
-                vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.tasks = success;});
+            $scope.updateTasks = function(update) {
+                vmaTaskService.getMetaTasksGroup($scope.id, update).then(function(success) { $scope.tasks = success;});
             }
-            $scope.updateTasks();
             break;
         default:
             $scope.update = function(){}
@@ -624,11 +624,11 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.ok = function () {           
             $scope.newTask.group_id = $scope.id;
 //            $scope.newTask.time = $scope.mytime;
-            console.log($scope);
+            console.log($scope.badge);
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function(success) {
                 $scope.message = "ADD SUCCESS!";
-                    $scope.updateTasks();
+                    $scope.updateTasks(true);
                     $scope.closeModal();
                     ngNotify.set("Task added successfully", "success");
                 }, function(fail) {
@@ -669,7 +669,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
             promise.then(function(success) {
                     ngNotify.set("Task edited successfully", "success");
-                    $scope.updateTasks();
+                    $scope.updateTasks(true);
                     $scope.closeModal();
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -698,7 +698,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
                     console.log(success);
-                    window_scope.updateTasks();
+                    window_scope.updateTasks(true);
                     $modalInstance.close();
                     ngNotify.set("Task deleted successfully", "success");
                 }, function(fail) {
@@ -711,7 +711,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.joinTask = function(task_id) {
         var promise = vmaTaskService.joinTask(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks();
+                $scope.updateTasks(true);
                 ngNotify.set("Task joined successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -722,7 +722,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.leaveTask = function(task_id) {
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks();
+                $scope.updateTasks(true);
                 ngNotify.set("Task left successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -1166,17 +1166,18 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
     }
 }]);
 
-vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup) {
+vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', '$filter', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup, $filter) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getMyHours(10).then(function(success) { $scope.entries = success;});
+        vmaHourService.getMyHours(100000).then(function(success) { $scope.entries = success; console.log(success);});
     }
     $scope.update();
 
     $scope.entry = [];
     
     $scope.ok = function() {
-        $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
+        var taskSelected = $filter('getByName')($scope.joinTasks, $scope.entry.name);
+        $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration), task_id: taskSelected.id};
         console.log($scope.hourEntry);
         vmaHourService.addHours($scope.hourEntry).then(function(success) {
             $scope.update();
@@ -1278,21 +1279,24 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     };
 }]);
 
-vmaControllerModule.controller('awards', function ($scope) {
+vmaControllerModule.controller('awards', ['$scope', 'tasks', '$stateParams', function ($scope, tasks, $stateParams) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Creator", 42],
-        ["Leadership", 35],
-        ["Organizer", 32],
-        ["Grunt", 21]
+        ["Badge 1", tasks[1]],
+        ["Badge 2", tasks[2]],
+        ["Badge 3", tasks[3]],
+        ["Badge 4", tasks[4]],
+        ["General", tasks[5]]
     ];
-    
-    $scope.total_hours = 42 + 35 + 32 + 12 + 21;
+//    console.log(tasks);
+
+    $scope.total_hours = tasks[1] + tasks[2] + tasks[3] + tasks[4] + tasks[5];
     $scope.badge1_percent = Math.round($scope.badges[0][1]/$scope.total_hours * 100);
     $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
     $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
     $scope.badge4_percent = Math.round($scope.badges[3][1]/$scope.total_hours * 100);
-    
+    $scope.badge5_percent = Math.round($scope.badges[4][1]/$scope.total_hours * 100);
+
     $scope.chartConfig = {
         options: {
             chart: {
@@ -1316,13 +1320,13 @@ vmaControllerModule.controller('awards', function ($scope) {
         },
         series: [{
             type: 'pie',
+            name: 'Hours',
             data: $scope.badges
         }],
-
         loading: false
     }
 
-});
+}]);
 
 vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', '$ionicModal', function($scope, $state, vmaTaskService, $compile, $modal) {
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS

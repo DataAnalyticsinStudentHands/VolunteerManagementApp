@@ -129,6 +129,11 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           views: {
             "app": { templateUrl: "partials/awards.html", controller: 'awards'}
           },
+          resolve: {
+              tasks: function(vmaHourService) {
+                  return vmaHourService.getMyHoursWithTasks(100000);
+              }
+          },
           authenticate: true
       }).
       state('home.hours_mod', {
