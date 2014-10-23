@@ -602,7 +602,15 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.openAdd();
     }
     $scope.openAdd = function () {
-        $scope.newTask = {}
+        $scope.newTask = {};
+        $scope.badgeOptions = [
+            "General",
+            "Badge 1",
+            "Badge 2",
+            "Badge 3",
+            "Badge 4"
+        ];
+        $scope.badge = $scope.badgeOptions[0];
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/addTask.html', {
             scope : $scope
