@@ -8,6 +8,8 @@
   opacity: 1;
   padding: 25px 80px;
   position: fixed;
+  height: 50px;
+  bottom: 0;
   right: 0;
   text-align: center;
   -webkit-touch-callout: none;
@@ -15,7 +17,9 @@
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  z-index: 2;
+}
 
 .ngn-top {
   top: 0; }

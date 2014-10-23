@@ -42,6 +42,7 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
         Auth.setCredentials("Visitor", "test");
         $scope.salt = "nfp89gpe";
         $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+        console.log($scope.register);
         $scope.$parent.Restangular().all("users").post($scope.register).then(
             function(success) {
                 Auth.clearCredentials();
@@ -563,21 +564,20 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     var state = $state.current.name;
     switch(state) {
         case "home.myTasks":
-            $scope.updateTasks = function() {
-                vmaTaskService.getJoinTasks().then(function(success) { $scope.tasks = success; });
+            $scope.updateTasks = function(refresh) {
+                vmaTaskService.getJoinTasks(refresh).then(function(success) { $scope.tasks = success; });
             }
             break;
         case "home.group":
             $scope.updateTasks = function(update){
-                vmaTaskService.getAllTasksGroup($scope.id).then(function(success) { $scope.tasks = success; });
+                vmaTaskService.getAllTasksGroup($scope.id, update).then(function(success) { $scope.tasks = success; });
             }
             break;
         case "home.group.tasks":
             $scope.id = $stateParams.id;
-            $scope.updateTasks = function() {
-                vmaTaskService.getMetaTasksGroup($scope.id).then(function(success) { $scope.tasks = success;});
+            $scope.updateTasks = function(update) {
+                vmaTaskService.getMetaTasksGroup($scope.id, update).then(function(success) { $scope.tasks = success;});
             }
-            $scope.updateTasks();
             break;
         default:
             $scope.update = function(){}
@@ -602,8 +602,18 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.openAdd();
     }
     $scope.openAdd = function () {
-        $scope.newTask = {}
-        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        $scope.newTask = {};
+        $scope.badgeOptions = [
+            "Badge 1",
+            "Badge 2",
+            "Badge 3",
+            "Badge 4",
+            "General"
+        ];
+        console.log($scope.badgeOptions);
+        $scope.chosenBadge = {};
+        $scope.chosenBadge.name = $scope.badgeOptions[0];
+
         $ionicModal.fromTemplateUrl('partials/addTask.html', {
             scope : $scope
         }).then(function (modal) {
@@ -617,18 +627,17 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.closeModal = function() {
             $scope.modalAdd.hide();
         };
-        //Cleanup the modal when we're done with it!
+
         $scope.$on('$destroy', function() {
             $scope.modalAdd.remove();
         });
         $scope.ok = function () {           
             $scope.newTask.group_id = $scope.id;
-//            $scope.newTask.time = $scope.mytime;
-            console.log($scope);
+            $scope.newTask.badge_id = $scope.badgeOptions.indexOf($scope.chosenBadge.name);
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function(success) {
                 $scope.message = "ADD SUCCESS!";
-                    $scope.updateTasks();
+                    $scope.updateTasks(true);
                     $scope.closeModal();
                     ngNotify.set("Task added successfully", "success");
                 }, function(fail) {
@@ -669,7 +678,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
             promise.then(function(success) {
                     ngNotify.set("Task edited successfully", "success");
-                    $scope.updateTasks();
+                    $scope.updateTasks(true);
                     $scope.closeModal();
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -698,7 +707,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
                     console.log(success);
-                    window_scope.updateTasks();
+                    window_scope.updateTasks(true);
                     $modalInstance.close();
                     ngNotify.set("Task deleted successfully", "success");
                 }, function(fail) {
@@ -711,7 +720,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.joinTask = function(task_id) {
         var promise = vmaTaskService.joinTask(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks();
+                $scope.updateTasks(true);
                 ngNotify.set("Task joined successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -722,7 +731,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.leaveTask = function(task_id) {
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks();
+                $scope.updateTasks(true);
                 ngNotify.set("Task left successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -774,7 +783,6 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     //PERMISSIONS
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.tasks, id);
-        console.log(actionObj);
         var ionicActionArray = [];
         if(actionObj.isManager || actionObj.isMember) {
             ionicActionArray.push(
@@ -808,7 +816,6 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
 
     //ACTION POPUP
     $scope.showActions = function(id, event0) {
-        console.log(event0);
         var ionicActions = $scope.ionicActions = $scope.generateActions(id);
         $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
         $scope.popover.show(event0);
@@ -977,7 +984,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
         //ACTION POPUP
         $scope.showActions = function(id, event0) {
-            console.log(event0);
             var ionicActions = $scope.ionicActions = $scope.generateActions(id);
             $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
             $scope.popover.show(event0);
@@ -1166,17 +1172,22 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
     }
 }]);
 
-vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup) {
+vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', '$filter', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup, $filter) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getMyHours(10).then(function(success) { $scope.entries = success;});
-    }
+        vmaHourService.getMyHours(100000).then(function(success) { $scope.entries = success;});
+    };
     $scope.update();
 
     $scope.entry = [];
-    
+    $scope.entry.name = "Other";
     $scope.ok = function() {
-        $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
+        if($scope.entry.name != "Other") {
+            var taskSelected = $filter('getByName')($scope.joinTasks, $scope.entry.name);
+            $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration), task_id: taskSelected.id};
+        } else {
+            $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.customName, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
+        }
         console.log($scope.hourEntry);
         vmaHourService.addHours($scope.hourEntry).then(function(success) {
             $scope.update();
@@ -1185,14 +1196,28 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
             ngNotify.set("Error :(", "error");
         });
         $scope.entry = [];
-    }
-    
+    };
+    $scope.$watch('entry.name', function(taskName) {
+        if(taskName != "Other")
+        vmaTaskService.getTaskByName(taskName).then(function(success){
+            console.log(success);
+            if(success) {
+                if (success.time) {
+                    if(!$scope.tmp)
+                        $scope.tmp = {};
+                    $scope.tmp.newDate = $scope.entry.inTime = new Date(success.time);
+                }
+                if (success.duration)
+                    $scope.entry.duration = success.duration;
+            }
+        })
+    })
     $scope.checkIn = function() {
         $scope.entry.inTime = new Date();
         $scope.checkInTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         console.log($scope.entry.inTime);
         ngNotify.set("Successfully checked in!", "success");
-    }
+    };
     
     $scope.checkOut = function() {
 //        if(!$scope.entry) $scope.entry = [];
@@ -1204,12 +1229,12 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
         console.log($scope.checkOutTime);
         console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
-    }
+    };
     
     //OPENING THE MODAL TO DELETE A MESSAGE
     $scope.delete = function(h_id) {
         $scope.openDelete(h_id);
-    }
+    };
     $scope.openDelete = function (id) {
         console.log(id);
         var modalInstance = $modal.open({
@@ -1258,7 +1283,8 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     };
     
     $scope.openDatePicker = function () {
-        $scope.tmp = {};
+        if(!$scope.tmp)
+            $scope.tmp = {};
 //        $scope.tmp.newDate = $scope.newTask.time;
         $ionicPopup.show({
             template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
@@ -1278,21 +1304,24 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     };
 }]);
 
-vmaControllerModule.controller('awards', function ($scope) {
+vmaControllerModule.controller('awards', ['$scope', 'tasks', '$stateParams', function ($scope, tasks, $stateParams) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Creator", 42],
-        ["Leadership", 35],
-        ["Organizer", 32],
-        ["Grunt", 21]
+        ["Badge 1", tasks[0]],
+        ["Badge 2", tasks[1]],
+        ["Badge 3", tasks[2]],
+        ["Badge 4", tasks[3]],
+        ["General", tasks[4]]
     ];
-    
-    $scope.total_hours = 42 + 35 + 32 + 12 + 21;
+//    console.log(tasks);
+
+    $scope.total_hours = tasks[0] + tasks[1] + tasks[2] + tasks[3] + tasks[4];
     $scope.badge1_percent = Math.round($scope.badges[0][1]/$scope.total_hours * 100);
     $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
     $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
     $scope.badge4_percent = Math.round($scope.badges[3][1]/$scope.total_hours * 100);
-    
+    $scope.badge5_percent = Math.round($scope.badges[4][1]/$scope.total_hours * 100);
+
     $scope.chartConfig = {
         options: {
             chart: {
@@ -1316,13 +1345,13 @@ vmaControllerModule.controller('awards', function ($scope) {
         },
         series: [{
             type: 'pie',
+            name: 'Hours',
             data: $scope.badges
         }],
-
         loading: false
     }
 
-});
+}]);
 
 vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', '$ionicModal', function($scope, $state, vmaTaskService, $compile, $modal) {
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS

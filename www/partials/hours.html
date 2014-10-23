@@ -14,9 +14,13 @@
         <label class="item item-input item-select">
             <div class="input-label"> Task Name </div>
             <select ng-model="entry.name" required>
-                <option></option>
+                <option>Other</option>
                 <option ng-repeat="task in joinTasks">{{task.name}}</option>
             </select>
+        </label>
+        <label ng-show="entry.name == 'Other'" class="item item-input">
+            <span class="input-label">Task Name</span>
+            <input type="text" ng-model="entry.customName" placeholder="Enter task"/>
         </label>
         <label class="item item-input" ng-click="openDatePicker()">
                 <span class="input-label">Start Time</span>
@@ -24,7 +28,7 @@
         </label>
         <label class="item item-input">
             <span class="input-label">Duration</span>
-            <input id="duration" type="number" step="any" ng-model="entry.duration" required/>
+            <input id="duration" type="number" step="any" ng-model="entry.duration" placeholder="Minutes" required/>
         </label>
         <button ng-click="ok()" class="button button-full button-dark">Submit</button>
     </div>

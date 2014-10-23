@@ -20,6 +20,12 @@
         <label class="item item-input">
             <input id="location" type="text" ng-model="$parent.newTask.location" placeholder="Location"/>
         </label>
+        <label class="item item-input item-select">
+            <div class="input-label"> Badge Type </div>
+            <select ng-model="$parent.chosenBadge.name">
+                <option ng-repeat="option in badgeOptions">{{option}}</option>
+            </select>
+        </label>
         <button class="button button-full button-dark" ng-click="ok()">Submit</button>
     </div>
     </ion-content>
