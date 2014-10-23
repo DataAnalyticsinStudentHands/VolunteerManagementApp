@@ -8,6 +8,7 @@
     <div class="item item-text-wrap">
         <h2> {{group.description}} </h2>
     </div>
+    <div class="item item-divider">Tasks</div>
     <div class="list">
         <div class="item item-button-right" ng-repeat="task in tasks">
             <div> <a ng-click="viewTask(task.id)">{{task.name}}</a> </div>

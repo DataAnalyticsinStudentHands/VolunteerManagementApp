@@ -783,7 +783,6 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     //PERMISSIONS
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.tasks, id);
-        console.log(actionObj);
         var ionicActionArray = [];
         if(actionObj.isManager || actionObj.isMember) {
             ionicActionArray.push(
@@ -817,7 +816,6 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
 
     //ACTION POPUP
     $scope.showActions = function(id, event0) {
-        console.log(event0);
         var ionicActions = $scope.ionicActions = $scope.generateActions(id);
         $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
         $scope.popover.show(event0);
@@ -986,7 +984,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
         //ACTION POPUP
         $scope.showActions = function(id, event0) {
-            console.log(event0);
             var ionicActions = $scope.ionicActions = $scope.generateActions(id);
             $scope.popOverStyle = {width:'150px', height: $scope.ionicActions.length*55 + "px"};
             $scope.popover.show(event0);
@@ -1178,8 +1175,8 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
 vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', '$filter', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup, $filter) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getMyHours(100000).then(function(success) { $scope.entries = success; console.log(success);});
-    }
+        vmaHourService.getMyHours(100000).then(function(success) { $scope.entries = success;});
+    };
     $scope.update();
 
     $scope.entry = [];

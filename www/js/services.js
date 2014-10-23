@@ -775,7 +775,6 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
                 return Restangular.all("hours").all("myHours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending}).then(function(success) {
                     var badgesObj = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0};
                     var promiseArray = [];
-                    console.log(Restangular.stripRestangular(success));
                     success.forEach(function(hour) {
                         var id = hour.task_id;
 //                        console.log(id);
@@ -787,7 +786,7 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
                                 badgesObj[success.badge_id] = badgesObj[success.badge_id] + 1;
                             }));
                     });
-                    console.log(promiseArray);
+//                    console.log(promiseArray);
                     var deferred = $q.all(promiseArray);
                     return deferred.then(function(success){
                         return badgesObj;
