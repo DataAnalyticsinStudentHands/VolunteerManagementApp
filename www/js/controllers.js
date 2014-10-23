@@ -610,8 +610,10 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             "Badge 3",
             "Badge 4"
         ];
-        $scope.badge = $scope.badgeOptions[0];
-        // callback for ng-click 'modal'- open Modal dialog to add a new course
+        console.log($scope.badgeOptions);
+        $scope.chosenBadge = {};
+        $scope.chosenBadge.name = $scope.badgeOptions[0];
+
         $ionicModal.fromTemplateUrl('partials/addTask.html', {
             scope : $scope
         }).then(function (modal) {
@@ -625,14 +627,13 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.closeModal = function() {
             $scope.modalAdd.hide();
         };
-        //Cleanup the modal when we're done with it!
+
         $scope.$on('$destroy', function() {
             $scope.modalAdd.remove();
         });
         $scope.ok = function () {           
             $scope.newTask.group_id = $scope.id;
-//            $scope.newTask.time = $scope.mytime;
-            console.log($scope.badge);
+            $scope.newTask.badge_id = $scope.badgeOptions.indexOf($scope.chosenBadge.name);
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function(success) {
                 $scope.message = "ADD SUCCESS!";

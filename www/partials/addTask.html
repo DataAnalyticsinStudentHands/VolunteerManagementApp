@@ -22,7 +22,7 @@
         </label>
         <label class="item item-input item-select">
             <div class="input-label"> Badge Type </div>
-            <select ng-model="badge">
+            <select ng-model="$parent.chosenBadge.name">
                 <option ng-repeat="option in badgeOptions">{{option}}</option>
             </select>
         </label>
