@@ -1,7 +1,7 @@
 <ion-view title="{{task.name}}">
 <ion-content>
     <div class="list">
-        <div class="item"> {{task.description}} </div>
+        <div class="item"> {{task.description}} <span class="item-note">{{badges[task.badge_id]}}</span></div>
         <div class="item"> Time: {{task.time}} </div>
         <div class="item"> {{task.location}} </div>
     </div>

@@ -604,10 +604,10 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.openAdd = function () {
         $scope.newTask = {};
         $scope.badgeOptions = [
-            "Badge 1",
-            "Badge 2",
-            "Badge 3",
-            "Badge 4",
+            "Creativity",
+            "Leadership",
+            "Organization",
+            "Grunt",
             "General"
         ];
         console.log($scope.badgeOptions);
@@ -1131,6 +1131,13 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
 }]);
 
 vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+    $scope.badges = [
+        "Creativity",
+        "Leadership",
+        "Organization",
+        "Grunt",
+        "General"
+    ];
     console.log(JSON.parse($stateParams.task));
     $scope.task = JSON.parse($stateParams.task);
     $scope.map = {
@@ -1307,10 +1314,10 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
 vmaControllerModule.controller('awards', ['$scope', 'tasks', '$stateParams', function ($scope, tasks, $stateParams) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Badge 1", tasks[0]],
-        ["Badge 2", tasks[1]],
-        ["Badge 3", tasks[2]],
-        ["Badge 4", tasks[3]],
+        ["Creativity", tasks[0]],
+        ["Leadership", tasks[1]],
+        ["Organization", tasks[2]],
+        ["Grunt", tasks[3]],
         ["General", tasks[4]]
     ];
 //    console.log(tasks);
