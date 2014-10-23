@@ -1180,10 +1180,14 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     $scope.update();
 
     $scope.entry = [];
-    
+    $scope.entry.name = "Other";
     $scope.ok = function() {
-        var taskSelected = $filter('getByName')($scope.joinTasks, $scope.entry.name);
-        $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration), task_id: taskSelected.id};
+        if($scope.entry.name != "Other") {
+            var taskSelected = $filter('getByName')($scope.joinTasks, $scope.entry.name);
+            $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration), task_id: taskSelected.id};
+        } else {
+            $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.customName, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
+        }
         console.log($scope.hourEntry);
         vmaHourService.addHours($scope.hourEntry).then(function(success) {
             $scope.update();
@@ -1192,14 +1196,14 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
             ngNotify.set("Error :(", "error");
         });
         $scope.entry = [];
-    }
+    };
     
     $scope.checkIn = function() {
         $scope.entry.inTime = new Date();
         $scope.checkInTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         console.log($scope.entry.inTime);
         ngNotify.set("Successfully checked in!", "success");
-    }
+    };
     
     $scope.checkOut = function() {
 //        if(!$scope.entry) $scope.entry = [];
@@ -1211,12 +1215,12 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
         console.log($scope.checkOutTime);
         console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
-    }
+    };
     
     //OPENING THE MODAL TO DELETE A MESSAGE
     $scope.delete = function(h_id) {
         $scope.openDelete(h_id);
-    }
+    };
     $scope.openDelete = function (id) {
         console.log(id);
         var modalInstance = $modal.open({
