@@ -782,6 +782,8 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
                         if(id != undefined)
                             promiseArray.push(vmaTasksService.getTask(id).then(function(success) {
     //                            console.log(success);
+//                                console.log(success.badge_id);
+                                if(success.badge_id === undefined) success.badge_id = 4;
                                 badgesObj[success.badge_id] = badgesObj[success.badge_id] + 1;
                             }));
                     });
