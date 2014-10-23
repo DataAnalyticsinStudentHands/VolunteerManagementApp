@@ -604,11 +604,11 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.openAdd = function () {
         $scope.newTask = {};
         $scope.badgeOptions = [
-            "General",
             "Badge 1",
             "Badge 2",
             "Badge 3",
-            "Badge 4"
+            "Badge 4",
+            "General"
         ];
         console.log($scope.badgeOptions);
         $scope.chosenBadge = {};
@@ -1291,15 +1291,15 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
 vmaControllerModule.controller('awards', ['$scope', 'tasks', '$stateParams', function ($scope, tasks, $stateParams) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Badge 1", tasks[1]],
-        ["Badge 2", tasks[2]],
-        ["Badge 3", tasks[3]],
-        ["Badge 4", tasks[4]],
-        ["General", tasks[5]]
+        ["Badge 1", tasks[0]],
+        ["Badge 2", tasks[1]],
+        ["Badge 3", tasks[2]],
+        ["Badge 4", tasks[3]],
+        ["General", tasks[4]]
     ];
 //    console.log(tasks);
 
-    $scope.total_hours = tasks[1] + tasks[2] + tasks[3] + tasks[4] + tasks[5];
+    $scope.total_hours = tasks[0] + tasks[1] + tasks[2] + tasks[3] + tasks[4];
     $scope.badge1_percent = Math.round($scope.badges[0][1]/$scope.total_hours * 100);
     $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
     $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);

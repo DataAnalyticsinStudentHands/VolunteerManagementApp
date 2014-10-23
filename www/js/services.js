@@ -773,7 +773,7 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
         getMyHoursWithTasks:
             function(numHours, startindex, gid, pending) {
                 return Restangular.all("hours").all("myHours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending}).then(function(success) {
-                    var badgesObj = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+                    var badgesObj = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0};
                     var promiseArray = [];
                     console.log(Restangular.stripRestangular(success));
                     success.forEach(function(hour) {
