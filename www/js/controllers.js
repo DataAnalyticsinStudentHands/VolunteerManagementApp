@@ -503,6 +503,11 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     }
 
+    //VIEW GROUP
+    $scope.viewGroup = function(gid) {
+        $state.go("home.group", {"id" : gid});
+    }
+
     //PERMISSIONS
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.metaJoinedGroups, id);
