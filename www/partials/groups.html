@@ -1,6 +1,17 @@
 <ion-view title="Find Groups">
+<ion-header-bar align-title="left" class="bar-dark bar-subheader">
+    <label class="item-input-wrapper">
+        <i class="icon ion-ios7-search placeholder-icon"></i>
+        <input ng-model="query" type="search" placeholder="Search">
+    </label>
+</ion-header-bar>
 <ion-content>
-    <input ng-model="query" placeholder="Search">
+    <!--<div class="bar bar-subheader item-input-inset">-->
+        <!--<label class="item-input-wrapper">-->
+            <!--<i class="icon ion-ios7-search placeholder-icon"></i>-->
+            <!--<input ng-model="query" type="search" placeholder="Search">-->
+        <!--</label>-->
+    <!--</div>-->
     <ion-list class="list">
         <div  ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" class="item item-button-right"> 
             <h2 ui-sref="home.group({id:group.id})"> {{group.name}} </h2>
