@@ -519,7 +519,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.metaJoinedGroups, id);
         var ionicActionArray = [];
-        if(actionObj.isManager) {
+        if(actionObj.isManager || $scope.isAdm || $scope.isMod) {
             ionicActionArray.push(
                 { text: 'Edit' },
                 { text: 'Delete' }
@@ -573,8 +573,10 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
 
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+//        console.log("HERE");
         if($scope.modal && $scope.modal.isShown()) {
-            $scope.modal.remove();
+            console.log("HERE");
+//            $scope.modal.remove();
             event.preventDefault();
         }
     });
@@ -809,7 +811,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                 { text: 'Leave' }
             );
         } 
-        if(actionObj.isManager || actionObj.isGroupManager) {
+        if(actionObj.isManager || actionObj.isGroupManager || $scope.isAdm || $scope.isMod) {
             ionicActionArray.push(
                 { text: 'Edit' },
                 { text: 'Delete' }
@@ -821,7 +823,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             );
         }
         return ionicActionArray;
-    }
+    };
 
     //PERMISSION SHOW CHECK
     $scope.actionCount = function(id) {

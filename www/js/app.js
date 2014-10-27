@@ -15,7 +15,7 @@ angular.module('volunteerManagementApp', [
     'ui.bootstrap.datetimepicker'
 ]).
 
-config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -184,7 +184,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
     //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
         return Restangular;
-    }
+    };
 
     //CHECKING IF AUTHENTICATED ON STATE CHANGE - Called in $stateChangeStart
     $rootScope.isAuthenticated = function(authenticate) {
@@ -215,10 +215,12 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
         });
         vmaUserService.getMyRole().then(function(success){
                 $rootScope.role = success;
+//                console.log(success);
                 $rootScope.isMod = (success == "ROLE_MODERATOR");
+                $rootScope.isAdm = (success == "ROLE_ADMIN");
         });
         return Auth.hasCredentials();
-    }
+    };
 
     //AUTHENTICATE ON CHANGE STATE
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
