@@ -784,7 +784,7 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
                     var promiseArray = [];
                     success.forEach(function(hour) {
                         var id = hour.task_id;
-                        console.log(id);
+//                        console.log(id);
                         if(id != undefined)
                             promiseArray.push(vmaTasksService.getTask(id).then(function(success) {
                                 if(success != undefined) {
