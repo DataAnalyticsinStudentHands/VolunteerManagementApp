@@ -9,6 +9,12 @@
 <ion-nav-buttons side='right'>
     <button class="button button-dark" ng-click="addTask()"> <i class="icon ion-plus-round"> </i> </button>
 </ion-nav-buttons>
+<div class="item" ng-show="tasks.length == 0 || tasks === undefined">
+    <center>
+        This group doesn't seem to have any tasks... <br/>
+        Create one?
+    </center>
+</div>
 <div class="list">
     <div class="item item-avatar item-button-right" ng-repeat="task in tasks  | filter:{name: query} | orderBy:orderProp">
         <img src="img/avatar.icon.png" width="60" height="50"/>

@@ -342,7 +342,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     switch(state) {
         case "home.myGroups":
             $scope.update = function(update) {
-                vmaGroupService.getMetaJoinedGroups(update).then(function(success) { $scope.metaJoinedGroups = success; });
+                vmaGroupService.getMetaJoinedGroups(update).then(function(success) { $scope.metaJoinedGroups = success; console.log($scope.metaJoinedGroups.length) });
             }
             break;
         case "home.joinGroups":
@@ -714,10 +714,10 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     }
     $scope.openDelete = function (task_id) {
         var confirmPopup = $ionicPopup.confirm({
-                title: 'Delete Message',
-                template: 'Are you sure you want delete this message?'
+                title: 'Delete Task',
+                template: 'Are you sure you want delete this task?'
             });
-                confirmPopup.then(function(res) {
+        confirmPopup.then(function(res) {
             if(res) {
                  $scope.ok();
             } else {
@@ -729,8 +729,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
                     console.log(success);
-                    window_scope.updateTasks(true);
-                    $modalInstance.close();
+                    $scope.updateTasks(true);
                     ngNotify.set("Task deleted successfully", "success");
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -872,7 +871,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter) {
     $scope.id = $stateParams.id;
     vmaTaskService.getTask($scope.id).then(function(success) {
             $scope.task = success;
@@ -886,7 +885,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         }, function(fail) {
 
         });
-    }
+    };
     $scope.updateMessages();
 
     $scope.addMsg = function() {
@@ -894,12 +893,12 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             $scope.updateMessages()
         });
         $scope.msg = "";
-    }
+    };
 
     //OPENING THE MODAL TO DELETE A MESSAGE
     $scope.deleteMessage = function(id) {
         $scope.openDelete(id);
-    }
+    };
     $scope.openDelete = function (id) {
         var confirmPopup = $ionicPopup.confirm({
                 title: 'Delete Message',
@@ -927,7 +926,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     //OPENING THE MODAL TO EDIT A MESSAGE
     $scope.editMessage = function(id) {
         $scope.openEdit(id);
-    }
+    };
     $scope.openEdit = function (id) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/editMessage.html', {
@@ -997,12 +996,17 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
-        var ionicActionArray = [
-            { text: 'Edit' },
-            { text: 'Delete' }
-        ];
+        var actionObj = $filter('getById')($scope.groupMSGs, id);
+        var ionicActionArray = [];
+        console.log(actionObj)
+        if(actionObj.sender_id == $scope.uid || $scope.isMod || $scope.isAdm){
+            ionicActionArray = [
+                { text: 'Edit' },
+                { text: 'Delete' }
+            ];
+        }
         return ionicActionArray;
-    }
+    };
 
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
         scope: $scope
@@ -1198,7 +1202,7 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
         vmaHourService.getHours(10).then(function(success) { $scope.entries = success;});
-    }
+    };
     $scope.update();
 
     $scope.entry = [];
@@ -1206,7 +1210,7 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
     $scope.approve = function(h_id) {
 //        console.log("attempt approve");
         vmaHourService.approveHour(h_id);
-    }
+    };
 
     $scope.deny = function(h_id) {
 //        console.log("attempt deny");
