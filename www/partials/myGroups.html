@@ -6,6 +6,12 @@
 <ion-nav-buttons side='right'>
     <button class="button button-dark" ui-sref="home.joinGroups"> <i class="icon ion-search"> </i> </button>
 </ion-nav-buttons>
+<div class="item" ng-show="metaJoinedGroups.length == 0 || metaJoinedGroups === undefined">
+    <center>
+        You don't seem to have joined any groups! <br/>
+        Join groups to view them here.
+    </center>
+</div>
 <div class="list card" ng-repeat="group in metaJoinedGroups">
     <div class="item item-avatar" ng-click="viewGroup(group.id)">
         <img id="groupfeed" src="img/group_feed.icon.png"/>

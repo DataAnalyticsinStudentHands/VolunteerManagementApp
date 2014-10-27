@@ -787,8 +787,10 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
 //                        console.log(id);
                         if(id != undefined)
                             promiseArray.push(vmaTasksService.getTask(id).then(function(success) {
-                                if(success.badge_id === undefined) success.badge_id = 4;
-                                badgesObj[success.badge_id]++;
+                                if(success != undefined) {
+                                    if (success.badge_id === undefined) success.badge_id = 4;
+                                    badgesObj[success.badge_id]++;
+                                }
                             }));
                         else {
                             badgesObj[4]++;

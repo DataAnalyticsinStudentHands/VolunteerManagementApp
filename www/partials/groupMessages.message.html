@@ -1,6 +1,11 @@
 <ion-view title="{{task.name}}">
 <ion-content>
     <div class="list">
+        <div class="item" ng-show="groupMSGs.length == 0 || groupMSGs === undefined">
+            <center>
+                No messages here...
+            </center>
+        </div>
         <div class="item item-avatar item-icon-right item-text-wrap" ng-repeat="groupMSG in groupMSGs">
             <img ng-src="{{groupMSG.img}}" width="40" height="40"/>
             <h2 id="vma_groupMSGuser">{{groupMSG.user.username}}</h2>

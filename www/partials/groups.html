@@ -2,21 +2,21 @@
 <ion-header-bar align-title="left" class="bar-dark bar-subheader">
     <label class="item-input-wrapper">
         <i class="icon ion-ios7-search placeholder-icon"></i>
-        <input ng-model="query" type="search" placeholder="Search">
+        <input ng-model="query" type="search" placeholder="   Search">
     </label>
 </ion-header-bar>
 <ion-content>
-    <!--<div class="bar bar-subheader item-input-inset">-->
-        <!--<label class="item-input-wrapper">-->
-            <!--<i class="icon ion-ios7-search placeholder-icon"></i>-->
-            <!--<input ng-model="query" type="search" placeholder="Search">-->
-        <!--</label>-->
-    <!--</div>-->
-    <ion-list class="list">
-        <div  ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" class="item item-button-right"> 
-            <h2 ui-sref="home.group({id:group.id})"> {{group.name}} </h2>
-            <button class="button button-dark" ng-click="joinGroup(group.id)"> Join </button>
-        </div>
-    </ion-list>
+<ion-list class="list">
+    <div class="item" ng-show="metaGroups.length == 0 || metaGroups === undefined">
+        <center>
+            No groups in organization... <br/>
+            Create a group?
+        </center>
+    </div>
+    <div  ng-repeat="group in metaGroups | filter:{name: query} | orderBy:orderProp" class="item item-button-right">
+        <h2 ui-sref="home.group({id:group.id})"> {{group.name}} </h2>
+        <button class="button button-dark" ng-click="joinGroup(group.id)"> Join </button>
+    </div>
+</ion-list>
 </ion-content>
 </ion-view>

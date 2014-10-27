@@ -1,7 +1,7 @@
 <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-dark">
         <h1 class="title">Add Task</h1>
-        <button class="button button-clear button-primary" ng-click="modalAdd.hide()">Cancel</button>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content>
     <div class="list">
@@ -9,7 +9,7 @@
             <input id="name" type="text" ng-model="$parent.newTask.name" placeholder="Name" required/>
         </label>
         <label class="item item-input" ng-click="openDatePicker()">
-                <input type="text" ng-model="$parent.newTask.time" placeholder="Select Date & Time">
+            <input type="text" ng-model="$parent.newTask.time" placeholder="Select Date & Time">
         </label>
         <label class="item item-input">
             <input id="duration" type="number" ng-model="$parent.newTask.duration" step="any" placeholder="Duration"/>
