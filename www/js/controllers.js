@@ -1410,10 +1410,20 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
         }, function(fail) {
             //console.log(fail);
         });
-    }
+    };
+
     
     $scope.updateTasksAndDisplayCalendar();
-    
+
+    $scope.$watch(function() {
+//        console.log($('#calendar'));
+        return $('#calendar').length;
+    }, function() {
+        console.log("compiling");
+        $compile($('#calendar'))($scope);
+        //element.html($parse(attr.content)(scope));
+        //$compile(element.contents())(scope);
+    }, true);
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
         $scope.task = vmaTaskService.getTaskView(click_id);

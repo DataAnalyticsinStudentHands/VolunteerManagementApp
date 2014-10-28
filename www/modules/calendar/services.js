@@ -1,7 +1,7 @@
 //loads the generic full calendar
 function displayFullCalendar(eventsFromScope) {
-//    console.log(eventsFromScope);
-	   var dateToday = new Date(); //TODAY
+        //console.log(eventsFromScope);
+	    var dateToday = new Date(); //TODAY
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -13,6 +13,7 @@ function displayFullCalendar(eventsFromScope) {
 		    selectable: false,
 			selectHelper: true,
 			select: function(start, end) {
+                console.log("select");
 				var title = prompt('Event Title:');
 				var eventData;
 				if (title) {
@@ -31,9 +32,9 @@ $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
 			events: eventsFromScope
 		
 	       });
-    
-//This is to add an event by clicking, doesn't work yet....
-    $('#calendar').fullCalendar({
+
+        //This is to add an event by clicking, doesn't work yet....
+        $('#calendar').fullCalendar({
         eventClick: function(calEvent, jsEvent, view) {
 
             alert('Event: ' + calEvent.title);
