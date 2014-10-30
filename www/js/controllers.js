@@ -172,7 +172,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     }
 
     $scope.updatePosts();
-    
+
     //VIEW POST
     $scope.viewPost = function(pid) {
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
@@ -188,7 +188,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
             scope : $scope
         }).then(function (modal) {
             $scope.modal = modal;
-            
+
             $scope.modal.show();
         });
         $scope.openModal = function() {
@@ -201,7 +201,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
         });
-        
+
         $scope.ok = function () {
             var prom = vmaPostService.editPost(pid, $scope.post);
             prom.then(function(success) {
@@ -241,7 +241,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
         });
-        
+
         $scope.ok = function () {
             $scope.post["group_id"] = $scope.id;
             var prom = vmaPostService.addPost($scope.post, $scope.uid);
@@ -271,7 +271,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
 
          }
        });
-        
+
         $scope.ok = function () {
             var prom = vmaPostService.deletePost(pid);
             prom.then(function(success) {
@@ -390,7 +390,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
         });
-        
+
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
             console.log($scope.newGroup);
@@ -464,7 +464,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             });
         };
     };
-    
+
     //OPENING THE MODAL TO LEAVE A GROUP
     $scope.leaveGroup = function(id) {
         $scope.openLeave(id);
@@ -535,7 +535,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         }
         return ionicActionArray;
     }
-    
+
     //PERMISSION SHOW CHECK
     $scope.actionCount = function(id) {
         if($scope.generateActions(id).length > 0) return true; else return false;
@@ -607,13 +607,13 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             break;
     }
     $scope.updateTasks();
-    
+
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
         $scope.task = vmaTaskService.getTaskView(click_id);
         $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
     }
-    
+
     //VIEW MESSAGES
     $scope.displayMessages = function(click_id) {
         $state.go('home.message', {id:click_id}, {reload: false});
@@ -653,7 +653,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
         });
-        $scope.ok = function () {           
+        $scope.ok = function () {
             $scope.newTask.group_id = $scope.id;
             $scope.newTask.badge_id = $scope.badgeOptions.indexOf($scope.chosenBadge.name);
             var promise = vmaTaskService.addTask($scope.newTask);
@@ -809,13 +809,13 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             ionicActionArray.push(
                 { text: 'Leave' }
             );
-        } 
+        }
         if(actionObj.isManager || actionObj.isGroupManager || $scope.isAdm || $scope.isMod) {
             ionicActionArray.push(
                 { text: 'Edit' },
                 { text: 'Delete' }
             );
-        } 
+        }
         if(!actionObj.isManager && !actionObj.isMember) {
             ionicActionArray.push(
                 { text: 'Join' }
@@ -1056,7 +1056,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         );
     };
     $scope.updateComments();
-    
+
     $scope.addComment = function() {
         vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
             $scope.updateComments();
@@ -1176,7 +1176,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     });
 }]);
 
-vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaTaskService', function($scope, $state, $stateParams, $modal, vmaTaskService) {
+vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
     console.log(JSON.parse($stateParams.task));
     $scope.task = JSON.parse($stateParams.task);
     $scope.map = {
@@ -1189,7 +1189,7 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', '$io
     };
 }]);
 
-vmaControllerModule.controller('efforts', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaTaskService', 'ngNotify', function($scope, $state, $stateParams, $modal, vmaTaskService, ngNotify) {
+vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope, ngNotify) {
     $scope.invites = [
         {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
         {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
@@ -1264,7 +1264,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
         console.log($scope.entry.inTime);
         ngNotify.set("Successfully checked in!", "success");
     };
-    
+
     $scope.checkOut = function() {
 //        if(!$scope.entry) $scope.entry = [];
         console.log($scope.entry.inTime);
@@ -1276,7 +1276,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
         console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
     };
-    
+
     //OPENING THE MODAL TO DELETE A MESSAGE
     $scope.delete = function(h_id) {
         $scope.openDelete(h_id);
@@ -1327,7 +1327,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
             event.preventDefault();
         });
     };
-    
+
     $scope.openDatePicker = function () {
         if(!$scope.tmp)
             $scope.tmp = {};
@@ -1350,7 +1350,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     };
 }]);
 
-vmaControllerModule.controller('awards', ['$scope', 'tasks', '$stateParams', function ($scope, tasks, $stateParams) {
+vmaControllerModule.controller('awards', ['$scope', 'tasks', function ($scope, tasks) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
         ["Badge 1", tasks[0]],
@@ -1412,7 +1412,7 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
         });
     };
 
-    
+
     $scope.updateTasksAndDisplayCalendar();
 
     $scope.$watch(function() {
