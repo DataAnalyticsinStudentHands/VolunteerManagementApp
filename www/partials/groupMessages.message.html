@@ -1,6 +1,7 @@
 <ion-view title="{{task.name}}">
 <ion-nav-buttons side='right'>
-    <button class="button button-dark" ng-click="updateMessages(groupMSGs[groupMSGs.length].id)"> <i class="icon ion-refresh"> </i> </button>
+    <button class="button button-dark" ng-click="refreshMessages()"> <i class="icon ion-refresh"> </i> </button>
+    <!--<button class="button button-dark" ng-click="refreshMessages(groupMSGs[groupMSGs.length-1].id)"> <i class="icon ion-refresh"> </i> </button>-->
 </ion-nav-buttons>
 <ion-pane class="messaging-view">
     <ion-content class="content-stable" ng-style="{ bottom: data.keyboardHeight + 'px' }">

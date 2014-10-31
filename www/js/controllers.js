@@ -871,7 +871,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', '$ionicScrollDelegate', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter, $ionicScrollDelegate) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', '$ionicScrollDelegate', '$interval', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter, $ionicScrollDelegate, $interval) {
     $scope.id = $stateParams.id;
 
     vmaTaskService.getTask($scope.id).then(function(success) {
@@ -890,7 +890,31 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     };
     $scope.updateMessages();
 
+    $scope.refreshMessages = function(startId) {
+        var prom = vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
+        prom.then(function(success) {
+            //$scope.groupMSGs.concat(success);
+            //if(success.length>0)
+            //    $ionicScrollDelegate.scrollBottom(true);
+            if(success.length != $scope.groupMSGs.length){
+                $scope.groupMSGs = success;
+                $ionicScrollDelegate.scrollBottom(true);
+            }
+        }, function(fail) {
+
+        });
+    };
+
+    $interval(function() {
+        if($scope.groupMSGs && $scope.groupMSGs.length>0)
+            //console.log($scope.groupMSGs[$scope.groupMSGs.length-1]);
+            //$scope.refreshMessages($scope.groupMSGs[$scope.groupMSGs.length-1].id);
+            $scope.refreshMessages();
+    }, 5000);
+
     $scope.addMsg = function() {
+        console.log($scope.msg);
+        if($scope.msg != undefined)
         vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) {
             $scope.updateMessages()
         });
