@@ -18,7 +18,7 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
                         success = Restangular.stripRestangular(success);
                         allUsers = success;
                     }, function(fail) {
-                        
+
                     });
                     return promAllUsers;
                 } else if(updating) {
@@ -29,7 +29,7 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
                     return defer.promise;
                 }
             },
-        getAllUsers: 
+        getAllUsers:
             function() {
                 return this.updateUsers().then(function(success) {
                     return allUsers;
@@ -107,13 +107,13 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var defer = $q.defer();
                     defer.resolve("DONE");
                     return defer.promise;
-                }                    
+                }
             },
-        getAllGroups: 
+        getAllGroups:
             function() {
                 return this.updateGroups().then(function(success) { return allGroups; });
             },
-        getManGroups: 
+        getManGroups:
             function() {
                 return this.updateGroups().then(function(success) { return manGroups; });
             },
@@ -257,23 +257,23 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     updating = true;
                     console.log("TASKS UPDATED");
                     var gProm = Restangular.all("tasks").one("byMembership").getList();
-                    
+
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
                         memTasks = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
-                    
+
                     var gPromByMan = Restangular.all("tasks").one("byManager").getList();
-                    
+
                     gPromByMan.then(function(success) {
                         success = Restangular.stripRestangular(success);
                         manTasks = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
-                    
+
                     var gPromMaster = Restangular.all("tasks").getList();
                     gPromMaster.then(function(success) {
                         success = Restangular.stripRestangular(success);
@@ -281,7 +281,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     }, function(fail) {
             //            console.log(fail);
                     });
-                    
+
                     promAllTasks = $q.all([gProm, gPromByMan, gPromMaster]).then(function() {updating = false;});
                     return promAllTasks;
                 } else if (updating){
@@ -292,11 +292,11 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return defer.promise;
                 }
             },
-        getAllTasks: 
+        getAllTasks:
             function(update) {
                 return this.updateTasks(update).then(function(success) { return allTasks; });
             },
-        getManTasks: 
+        getManTasks:
             function(update) {
                 return this.updateTasks(update).then(function(success) { return manTasks; });
             },
@@ -351,11 +351,11 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return result;
                 });
             },
-        getAllTasksGroup: 
+        getAllTasksGroup:
             function(gid, update) {
                 return this.updateTasks(update).then(function(success) {
                     var tasks = $filter('getTasksByGroupId')(allTasks, gid);
-                    
+
                     tasks.forEach(function(task) {
                         if($filter('getById')(memTasks.concat(manTasks), task.id))
                            task.joined = true;
@@ -366,11 +366,11 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                            task.isManager = true;
                         }
                     });
-                    
+
                     return tasks;
                 });
             },
-        getManTasksGroup: 
+        getManTasksGroup:
             function(gid, update) {
                 return this.updateTasks(update).then(function(success) { return $filter('getTasksByGroupId')(manTasks, gid);});
             },
@@ -421,7 +421,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         });
                         if(!isMan) {
                             return result;
-                        } else { 
+                        } else {
                             result.forEach(function(obj) {
                                 // SETTING PERMISSIONS METADATA
 //                                obj.isMember = false;
@@ -529,6 +529,14 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                 return this.leaveTaskManager(tid, uid).then(function(success) {
                     return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {});
                 });
+            },
+        markFinished:
+            function(tid) {
+                return Restangular.all("tasks").all(tid).post({"finished":1})
+            },
+        markUnFinished:
+            function(tid) {
+                return Restangular.all("tasks").all(tid).post({"finished":0})
             }
     }
 }]);
@@ -564,11 +572,11 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                 else {
                     var deferred = $q.defer();
                     deferred.resolve("DONE");
-                    return deferred.promise;                    
+                    return deferred.promise;
                 }
             },
         //NOT USED
-        getAllPosts: 
+        getAllPosts:
             function() {
                 return this.updatePosts().then(function(success) {
                     var resultPosts = [];
@@ -581,7 +589,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return resultPosts;
                 });
             },
-        getMyGroupPosts: 
+        getMyGroupPosts:
             function(numPosts, startindex) {
                 return Restangular.all("posts").all("myPosts").getList({"numberOfPosts": numPosts, "startIndex": startindex}).
                 then(function(success) {
@@ -677,7 +685,7 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
                     });
                     return resultComments;
                 }, function(fail) {
-                    
+
                 });
              },
         getPostCommentsPlain:
@@ -733,7 +741,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                     });
                     return resultMessages;
                 }, function(fail) {
-                    
+
                 });
             },
         getTaskMessagesPlain:
