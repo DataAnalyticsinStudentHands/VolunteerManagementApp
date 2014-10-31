@@ -30,6 +30,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
                     $scope.loginMsg = "Incorrect username or password.";
                     ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
                     Auth.clearCredentials();
+                    $ionicLoading.hide();
                  });
              }, 500);
          } else {
