@@ -1,5 +1,5 @@
 'use strict';
-/* VMA Controllers */
+/* VMA Controllers Module */
 var vmaControllerModule = angular.module('vmaControllerModule', []);
 
 vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', '$timeout', '$ionicLoading', function($scope, Auth, $state, ngNotify, $timeout, $ionicLoading) {
