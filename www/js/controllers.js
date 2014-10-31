@@ -852,6 +852,11 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                 { text: 'Edit' },
                 { text: 'Delete' }
             );
+
+            if(!actionObj.finished)
+                ionicActionArray.push({text: 'Complete'});
+            else
+                ionicActionArray.push({text: 'Incomplete'});
         }
         if(!actionObj.isManager && !actionObj.isMember) {
             ionicActionArray.push(
@@ -890,6 +895,12 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                     break;
                 case "Join":
                     $scope.joinTask(id);
+                    break;
+                case "Complete":
+                    vmaTaskService.markFinished(id).then(function(){$scope.updateTasks(true);});
+                    break;
+                case "Incomplete":
+                    vmaTaskService.markUnFinished(id).then(function(){$scope.updateTasks(true);});
                     break;
                 default:
                     console.log("BUG");
