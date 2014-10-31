@@ -87,6 +87,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
 
 vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', '$ionicPopover', function($scope, $state, vmaPostService, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter, $ionicPopover) {
     $scope.posts = [];
+    $scope.notReachedEnd = true;
     var state = $state.current.name;
     switch(state) {
         case "home.cfeed":
@@ -99,20 +100,27 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 var gProm = vmaPostService.getGroupPosts(loadSize, null, null);
                 gProm.then(function(success) {
                     $scope.posts = success;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }, function(fail) {
                     console.log(fail);
                 });
-            }
+            };
             $scope.loadMore = function() {
+                console.log("LOADING");
+                if($scope.posts && $scope.posts.length>0)
                 vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
                     function(success) {
                         console.log(success);
                         $scope.posts = $scope.posts.concat(success);
                         console.log($scope.posts);
+                        if(success.length > 0)
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                        else
+                            $scope.notReachedEnd = false;
                     }, function(fail) {
                     }
                 );
-            }
+            };
             break;
         case "home.group.posts":
             $scope.id = $stateParams.id;
@@ -129,17 +137,16 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 }, function(fail) {
     //                console.log(fail);
                 });
-            }
+            };
             $scope.loadMore = function() {
-        //            console.log("LOADING MORE");
-        //            console.log($scope.posts[$scope.posts.length -1].id);
                     vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
                     function(success) {
                         $scope.posts = $scope.posts.concat(success);
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
                     }, function(fail) {
                         //console.log(fail);
                     });
-                }
+                };
             break;
         case "home.groupFeed":
             $scope.updatePosts = function() {
@@ -154,19 +161,20 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 }, function(fail) {
     //                console.log(fail);
                 });
-            }
+            };
             $scope.loadMore = function() {
                 vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
                 function(success) {
                     $scope.posts = $scope.posts.concat(success);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }, function(fail) {
                     //console.log(fail);
                 });
-            }
+            };
             break;
         default:
-            $scope.updatePosts = function(){}
-            $scope.loadMore = function(){}
+            $scope.updatePosts = function(){};
+            $scope.loadMore = function(){};
             console.log("ERROR: UNCAUGHT STATE: ", state);
             return true;
     }
@@ -913,7 +921,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     }, 5000);
 
     $scope.addMsg = function() {
-        console.log($scope.msg);
         if($scope.msg != undefined)
         vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) {
             $scope.updateMessages()

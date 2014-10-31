@@ -45,6 +45,11 @@
         </a>
     </div>
 </div>
-<center> <button ng-click="loadMore()"> LOAD MORE </button> </center>
+<!--<center> <button ng-click="loadMore()"> LOAD MORE </button> </center>-->
+    <ion-infinite-scroll
+        ng-if="notReachedEnd"
+        icon="ion-loading-c"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
 </ion-content>
 </ion-view>
