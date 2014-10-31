@@ -195,6 +195,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
             result = Restangular.stripRestangular(result)[0];
             //USERNAME & ID TO BE USED IN CONTROLLERS
             $rootScope.uid = result.id.toString();
+            $rootScope.uid_int = result.id;
             $rootScope.uin = result.username.toString();
         }, function(error) {
             if(error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
@@ -231,7 +232,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
             // User isn’t authenticated
             $state.go("login");
             //Prevents the switching of the state
-            event.preventDefault(); 
+            event.preventDefault();
         }
     });
 }]);
