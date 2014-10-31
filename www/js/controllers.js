@@ -1079,7 +1079,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
         if(count <10 ) count = 10;
         vmaPostService.getPostView(count, null, post_id).then(function(success) { $scope.post = success; });
-    }
+    };
     $scope.loadMore = function() {
         vmaCommentService.getPostComments(10, $scope.post.comments[$scope.post.comments.length -1].id, post_id).then(
             function(success) { $scope.post.comments = $scope.post.comments.concat(success); }
@@ -1088,7 +1088,8 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     $scope.updateComments();
 
     $scope.addComment = function() {
-        vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
+        if($scope.comment && $scope.comment.content!= "")
+            vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
             $scope.updateComments();
             $scope.comment.content = "";
             document.activeElement.blur();
@@ -1096,11 +1097,11 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         }, function(fail) {
             ngNotify.set(fail.data.message, 'error');
         });
-    }
+    };
 
     $scope.editComment = function(cid) {
         $scope.openEdit(cid);
-    }
+    };
     $scope.openEdit = function (cid) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/editComment.html', {
@@ -1136,7 +1137,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     //OPEN DELETE
     $scope.deleteComment = function(cid) {
         $scope.openDelete(cid);
-    }
+    };
     $scope.openDelete = function (cid) {
         var confirmPopup = $ionicPopup.confirm({
                 title: 'Delete Comment',
@@ -1168,7 +1169,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
             { text: 'Delete' }
         ];
         return ionicActionArray;
-    }
+    };
 
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
         scope: $scope

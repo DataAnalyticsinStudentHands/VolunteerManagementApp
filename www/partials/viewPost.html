@@ -1,44 +1,34 @@
 <ion-view title="{{post.group.name}}">
+<ion-pane>
 <ion-content>
     <!--THE POST-->
-    <!--<div class="item item-avatar">-->
-        <div class="item item-avatar">
-            <img src="img/effort_task.icon.png" width="15%" />
-            <h2>{{post.user.username}}</h2>
-            <p id="vma_post_time">{{post.date}}</p>
-        </div>
-        <div class="item item-body">
-            <p>{{post.content}}</p>
-        </div>
-        <!--<img src="img/effort_task.icon.png" width="15%" />-->
-        <!--<h2>{{post.user.username}}</h2>-->
-        <!--<p class="item-text-wrap" id="vma_content">{{post.content}}</p>-->
-        <!--<p>{{post.date}}</p>-->
-    <!--</div>-->
-    <div class="item item-divider">
-        Comments
+    <div class="item item-avatar">
+        <img src="img/effort_task.icon.png" width="15%" />
+        <h2>{{post.user.username}}</h2>
+        <p id="vma_post_time">{{post.date}}</p>
     </div>
+    <div class="item item-body"><p>{{post.content}}</p></div>
+    <!--THE DIVIDER-->
+    <div class="item item-divider">Comments</div>
     <!--THE COMMENTS-->
     <div class="list">
         <div class="item item-icon-right item-text-wrap" ng-repeat="comment in post.comments">
-<!--        <div class="item item-icon-right item-text-wrap" ng-repeat="comment in post.comments">-->
             <h2>{{comment.user.username}}</h2>
             <p>{{comment.content}}</p>
-            <p>{{comment.time}}</p>
+            <p id="vma_post_time">{{comment.time}}</p>
             <a class="tab-item" ng-click="showActions(comment.id, $event)">
                 <i class="icon ion-ios7-more"></i>
             </a>
         </div>
     </div>
-    <form class="list" ng-action="addComment()">
-      <div class="item item-input-inset">
-        <label class="item-input-wrapper">
-          <input type="text" ng-model="$parent.comment.content" placeholder="Message">
-        </label>
-        <button class="button button-small" ng-click="addComment()">
-          Submit
-        </button>
-      </div>
-    </form>
 </ion-content>
+<ion-footer-bar keyboard-attach class="bar-dark item-input-inset" ng-click="addComment()">
+    <!--<button class="button button-clear io ion-android-camera" ng-click="takePhoto()">-->
+    <!--</button>-->
+    <label class="item-input-wrapper">
+        <input type="text" placeholder="Type your comment" ng-model="$parent.comment.content" on-return="addComment()" on-focus="inputUp()" on-blur="inputDown()" ng-required="true" />
+    </label>
+    <button class="button button-clear" ng-click="addMsg()">Send</button>
+</ion-footer-bar>
+</ion-pane>
 </ion-view>
