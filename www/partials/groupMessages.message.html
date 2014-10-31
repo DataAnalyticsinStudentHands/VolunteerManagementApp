@@ -1,91 +1,25 @@
 <ion-view title="{{task.name}}">
 <ion-nav-buttons side='right'>
-    <button class="button button-dark" ng-click="updateMessages()"> <i class="icon ion-refresh"> </i> </button>
+    <button class="button button-dark" ng-click="updateMessages(groupMSGs[groupMSGs.length].id)"> <i class="icon ion-refresh"> </i> </button>
 </ion-nav-buttons>
 <ion-pane class="messaging-view">
     <ion-content class="content-stable" ng-style="{ bottom: data.keyboardHeight + 'px' }">
         <div ng-repeat="groupMSG in groupMSGs" ng-class="{ other: groupMSG.user.id == uid_int }" class="message">
             <div class="photo icon ion-person"></div>
-            <div class="message"><span>{{ groupMSG.content }}</span></div>
+            <!--<div class="vma_message_username"><span>{{ groupMSG.user.username }}</span></div>-->
+            <div class="message"><span>
+                <div><b>{{ groupMSG.user.username }}</b></div>
+                {{ groupMSG.content }}
+            </span></div>
         </div>
     </ion-content>
     <ion-footer-bar keyboard-attach class="bar-dark item-input-inset" ng-click="addMsg()">
         <!--<button class="button button-clear io ion-android-camera" ng-click="takePhoto()">-->
         <!--</button>-->
-        <!--<form class="item-input-inset" style="width: 100%">-->
         <label class="item-input-wrapper">
             <input type="text" placeholder="Type your message" ng-model="msg.message" on-return="addMsg()" on-focus="inputUp()" on-blur="inputDown()" />
         </label>
-        <button class="button button-clear" ng-click="addMsg()">
-            Send
-        </button>
-        <!--</form>-->
+        <button class="button button-clear" ng-click="addMsg()">Send</button>
     </ion-footer-bar>
 </ion-pane>
-<!--<ion-content>-->
-    <!--<div class="list">-->
-        <!--<div class="item" ng-show="groupMSGs.length == 0 || groupMSGs === undefined">-->
-            <!--<center>-->
-                <!--No messages here...-->
-            <!--</center>-->
-        <!--</div>-->
-        <!--<div class="item item-avatar item-icon-right item-text-wrap" ng-repeat="groupMSG in groupMSGs">-->
-            <!--<img ng-src="{{groupMSG.img}}" width="40" height="40"/>-->
-            <!--<h2 id="vma_groupMSGuser">{{groupMSG.user.username}}</h2>-->
-            <!--<p id="vma_groupMSGcontent"> {{groupMSG.content}}</p>-->
-            <!--<p id="vma_groupMSG"> {{groupMSG.time}}</p>-->
-            <!--<a class="tab-item" ng-click="showActions(groupMSG.id, $event)">-->
-                <!--<i class="icon ion-ios7-more"></i>-->
-            <!--</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<ion-footer-bar keyboard-attach class="bar-stable item-input-inset">-->
-        <!--<button class="button button-clear io ion-android-camera" ng-click="takePhoto()">-->
-        <!--</button>-->
-        <!--<label class="item-input-wrapper">-->
-            <!--<input type="text" placeholder="Type your message" on-return="sendMessage()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />-->
-        <!--</label>-->
-        <!--<button class="button button-clear" ng-click="sendMessage()">-->
-            <!--Send-->
-        <!--</button>-->
-    <!--</ion-footer-bar>-->
-    <!--
-            <div ng-show="groupMSG.sender_id == uid" id="bs" class="btn-group" dropdown>
-                <button type="button" class="btn dropdown-toggle">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="editMessage(groupMSG.id)">Edit</a></li>
-                    <li><a ng-click="deleteMessage(groupMSG.id)">Delete</a></li>
-                </ul>
-            </div>
--->
-    <!--
-    <button class="btn_name" id="message_ia" data-placement="right-center" title="<div>{{groupMSG.user.username}}</div>" data-content="<div>{{groupMSG.user.username}}'s Badges Coming Soon!</div>" data-trigger="focus" bs-popover>
--->
-    <!--</button>-->
-    <!--<form class="list" ng-action="addMsg()">-->
-    <!--<div class="list">-->
-      <!--<div class="item item-input-inset">-->
-        <!--<label class="item-input-wrapper">-->
-          <!--<input type="text" ng-model="$parent.msg.message" placeholder="Message">-->
-        <!--</label>-->
-        <!--<button class="button button-small" ng-click="addMsg()">-->
-          <!--Submit-->
-        <!--</button>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
-    <!--
-    <div id="messaging_input">
-        <form ng-submit="addMsg()" class="list">
-            <input class="item item-input" id="message_input_input" type="text" ng-model="msg.message" ng-focus="scrollTo()">
-            <input id="message_input_submit" type="submit">
-        </form>
-    </div>
-    <div id="messaging_input_scrollto"></div>
--->
-<!--</ion-content>-->
 </ion-view>
-
-

@@ -879,8 +879,8 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     });
     $scope.groupMSGs = [];
 
-    $scope.updateMessages = function() {
-        var prom = vmaMessageService.getTaskMessages(1000000, null, $scope.id);
+    $scope.updateMessages = function(startId) {
+        var prom = vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
         prom.then(function(success) {
             $scope.groupMSGs = success;
             $ionicScrollDelegate.scrollBottom(true);
