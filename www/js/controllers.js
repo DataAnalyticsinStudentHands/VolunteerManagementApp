@@ -87,6 +87,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
 
 vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', '$ionicPopover', function($scope, $state, vmaPostService, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter, $ionicPopover) {
     $scope.posts = [];
+    $scope.notReachedEnd = true;
     var state = $state.current.name;
     switch(state) {
         case "home.cfeed":
@@ -99,20 +100,28 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 var gProm = vmaPostService.getGroupPosts(loadSize, null, null);
                 gProm.then(function(success) {
                     $scope.posts = success;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    if($scope.posts.length == 0)
+                        $scope.notReachedEnd = false;
                 }, function(fail) {
                     console.log(fail);
                 });
-            }
+            };
             $scope.loadMore = function() {
+                console.log("LOADING");
+                if($scope.posts && $scope.posts.length>0)
                 vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
                     function(success) {
-                        console.log(success);
                         $scope.posts = $scope.posts.concat(success);
                         console.log($scope.posts);
+                        if(success.length > 0)
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                        else
+                            $scope.notReachedEnd = false;
                     }, function(fail) {
                     }
                 );
-            }
+            };
             break;
         case "home.group.posts":
             $scope.id = $stateParams.id;
@@ -126,20 +135,28 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 var gProm = vmaPostService.getGroupPosts(loadSize, null, $scope.id);
                 gProm.then(function(success) {
                     $scope.posts = success;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }, function(fail) {
     //                console.log(fail);
                 });
-            }
+                if($scope.posts.length == 0)
+                    $scope.notReachedEnd = false;
+            };
             $scope.loadMore = function() {
-        //            console.log("LOADING MORE");
-        //            console.log($scope.posts[$scope.posts.length -1].id);
-                    vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
-                    function(success) {
-                        $scope.posts = $scope.posts.concat(success);
-                    }, function(fail) {
-                        //console.log(fail);
+                console.log("LOADING");
+                if($scope.posts && $scope.posts.length>0)
+                vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
+                function(success) {
+                    $scope.posts = $scope.posts.concat(success);
+                    console.log($scope.posts);
+                    if(success.length > 0)
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    else
+                        $scope.notReachedEnd = false;
+                }, function(fail) {
+                    //console.log(fail);
                     });
-                }
+                };
             break;
         case "home.groupFeed":
             $scope.updatePosts = function() {
@@ -151,22 +168,32 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 var gProm = vmaPostService.getMyGroupPosts(loadSize, null);
                 gProm.then(function(success) {
                     $scope.posts = success;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    if($scope.posts.length == 0)
+                        $scope.notReachedEnd = false;
                 }, function(fail) {
     //                console.log(fail);
                 });
-            }
+            };
             $scope.loadMore = function() {
+                if($scope.posts && $scope.posts.length>0)
                 vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
                 function(success) {
+                    console.log("loading");
                     $scope.posts = $scope.posts.concat(success);
+                    console.log($scope.posts);
+                    if(success.length > 0)
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    else
+                        $scope.notReachedEnd = false;
                 }, function(fail) {
                     //console.log(fail);
                 });
-            }
+            };
             break;
         default:
-            $scope.updatePosts = function(){}
-            $scope.loadMore = function(){}
+            $scope.updatePosts = function(){};
+            $scope.loadMore = function(){};
             console.log("ERROR: UNCAUGHT STATE: ", state);
             return true;
     }
@@ -871,7 +898,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', '$ionicScrollDelegate', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter, $ionicScrollDelegate) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', '$ionicScrollDelegate', '$interval', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter, $ionicScrollDelegate, $interval) {
     $scope.id = $stateParams.id;
 
     vmaTaskService.getTask($scope.id).then(function(success) {
@@ -879,8 +906,8 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     });
     $scope.groupMSGs = [];
 
-    $scope.updateMessages = function() {
-        var prom = vmaMessageService.getTaskMessages(1000000, null, $scope.id);
+    $scope.updateMessages = function(startId) {
+        var prom = vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
         prom.then(function(success) {
             $scope.groupMSGs = success;
             $ionicScrollDelegate.scrollBottom(true);
@@ -890,7 +917,30 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     };
     $scope.updateMessages();
 
+    $scope.refreshMessages = function(startId) {
+        var prom = vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
+        prom.then(function(success) {
+            //$scope.groupMSGs.concat(success);
+            //if(success.length>0)
+            //    $ionicScrollDelegate.scrollBottom(true);
+            if(success.length != $scope.groupMSGs.length){
+                $scope.groupMSGs = success;
+                $ionicScrollDelegate.scrollBottom(true);
+            }
+        }, function(fail) {
+
+        });
+    };
+
+    $interval(function() {
+        if($scope.groupMSGs && $scope.groupMSGs.length>0)
+            //console.log($scope.groupMSGs[$scope.groupMSGs.length-1]);
+            //$scope.refreshMessages($scope.groupMSGs[$scope.groupMSGs.length-1].id);
+            $scope.refreshMessages();
+    }, 5000);
+
     $scope.addMsg = function() {
+        if($scope.msg != undefined)
         vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) {
             $scope.updateMessages()
         });
@@ -1029,7 +1079,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
         if(count <10 ) count = 10;
         vmaPostService.getPostView(count, null, post_id).then(function(success) { $scope.post = success; });
-    }
+    };
     $scope.loadMore = function() {
         vmaCommentService.getPostComments(10, $scope.post.comments[$scope.post.comments.length -1].id, post_id).then(
             function(success) { $scope.post.comments = $scope.post.comments.concat(success); }
@@ -1038,7 +1088,8 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     $scope.updateComments();
 
     $scope.addComment = function() {
-        vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
+        if($scope.comment && $scope.comment.content!= "")
+            vmaCommentService.addComment($scope.comment.content, post_id, $scope.uid).then(function(success) {
             $scope.updateComments();
             $scope.comment.content = "";
             document.activeElement.blur();
@@ -1046,11 +1097,11 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         }, function(fail) {
             ngNotify.set(fail.data.message, 'error');
         });
-    }
+    };
 
     $scope.editComment = function(cid) {
         $scope.openEdit(cid);
-    }
+    };
     $scope.openEdit = function (cid) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/editComment.html', {
@@ -1086,7 +1137,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     //OPEN DELETE
     $scope.deleteComment = function(cid) {
         $scope.openDelete(cid);
-    }
+    };
     $scope.openDelete = function (cid) {
         var confirmPopup = $ionicPopup.confirm({
                 title: 'Delete Comment',
@@ -1118,7 +1169,7 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
             { text: 'Delete' }
         ];
         return ionicActionArray;
-    }
+    };
 
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
         scope: $scope
