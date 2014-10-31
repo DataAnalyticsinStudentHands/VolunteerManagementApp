@@ -175,6 +175,13 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider) {
 //    angular.extend($popoverProvider.defaults, { html: true });
 }).
 
+constant('$ionicLoadingConfig', {
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 0
+}).
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
