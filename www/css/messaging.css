@@ -2,13 +2,11 @@
 .platform-c:not(.enable-transitions) * {
     -webkit-transition: none !important;
     transition: none !important; }
-
 .content-stable {
     background: #f8f8f8; }
-
 .messaging-view .scroll {
     min-height: 100%;
-    padding: 10px 0 50px; }
+    padding: 10px 0 50px -50px; }
 .messaging-view .message {
     padding: 0 10px 10px; }
 .messaging-view .message .photo {
@@ -47,5 +45,4 @@
     width: 100%;
     height: 100%;
     background: none;
-    padding: 0 15px;
-}
+    padding: 0 15px; }
