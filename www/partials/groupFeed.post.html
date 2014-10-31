@@ -1,4 +1,4 @@
-<ion-view title="Post">
+<ion-view title="Posts">
 <ion-content>
 <ion-nav-buttons side='right'>
     <button class="button button-dark" ng-click="addPost()"> <i class="icon ion-plus-round"> </i> </button>
@@ -33,6 +33,10 @@
         </a>
     </div>
 </div>
-<center> <button ng-hide="posts.length == 0 || posts === undefined" ng-click="loadMore()"> LOAD MORE </button> </center>
+<ion-infinite-scroll
+    ng-if="notReachedEnd"
+    icon="ion-loading-c"
+    on-infinite="loadMore()">
+</ion-infinite-scroll>
 </ion-content>
 </ion-view>

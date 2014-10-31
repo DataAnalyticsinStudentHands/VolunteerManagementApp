@@ -101,6 +101,8 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 gProm.then(function(success) {
                     $scope.posts = success;
                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                    if($scope.posts.length == 0)
+                        $scope.notReachedEnd = false;
                 }, function(fail) {
                     console.log(fail);
                 });
@@ -110,7 +112,6 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 if($scope.posts && $scope.posts.length>0)
                 vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, null).then(
                     function(success) {
-                        console.log(success);
                         $scope.posts = $scope.posts.concat(success);
                         console.log($scope.posts);
                         if(success.length > 0)
@@ -134,17 +135,26 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 var gProm = vmaPostService.getGroupPosts(loadSize, null, $scope.id);
                 gProm.then(function(success) {
                     $scope.posts = success;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }, function(fail) {
     //                console.log(fail);
                 });
+                if($scope.posts.length == 0)
+                    $scope.notReachedEnd = false;
             };
             $scope.loadMore = function() {
-                    vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
-                    function(success) {
-                        $scope.posts = $scope.posts.concat(success);
+                console.log("LOADING");
+                if($scope.posts && $scope.posts.length>0)
+                vmaPostService.getGroupPosts(10, $scope.posts[$scope.posts.length -1].id, $scope.id).then(
+                function(success) {
+                    $scope.posts = $scope.posts.concat(success);
+                    console.log($scope.posts);
+                    if(success.length > 0)
                         $scope.$broadcast('scroll.infiniteScrollComplete');
-                    }, function(fail) {
-                        //console.log(fail);
+                    else
+                        $scope.notReachedEnd = false;
+                }, function(fail) {
+                    //console.log(fail);
                     });
                 };
             break;
@@ -158,15 +168,24 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 var gProm = vmaPostService.getMyGroupPosts(loadSize, null);
                 gProm.then(function(success) {
                     $scope.posts = success;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    if($scope.posts.length == 0)
+                        $scope.notReachedEnd = false;
                 }, function(fail) {
     //                console.log(fail);
                 });
             };
             $scope.loadMore = function() {
+                if($scope.posts && $scope.posts.length>0)
                 vmaPostService.getMyGroupPosts(10, $scope.posts[$scope.posts.length -1].id).then(
                 function(success) {
+                    console.log("loading");
                     $scope.posts = $scope.posts.concat(success);
-                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    console.log($scope.posts);
+                    if(success.length > 0)
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    else
+                        $scope.notReachedEnd = false;
                 }, function(fail) {
                     //console.log(fail);
                 });
