@@ -31,7 +31,7 @@
 	width: 200px;
 	height: 200px;
     top: 100px;
-  
+
     /*border: 1px solid green;*/
 
     text-align: center;
@@ -139,13 +139,13 @@
 
     -webkit-animation-fill-mode: forwards;  /* Safari and Chrome */
     animation-fill-mode: forwards;
-    
+
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mysecound {
     0% {animation-timing-function: ease-out; opacity: 1}
-    60%{animation-timing-function: ease-out; opacity: 1}    
+    60%{animation-timing-function: ease-out; opacity: 1}
     70%{animation-timing-function: ease-out; opacity: 0}
     100% {animation-timing-function: ease-out; opacity: 0}
 }
@@ -170,7 +170,7 @@
 .log{
     position:relative;
     border-radius:5px;
-    height:50px; 
+    height:50px;
     width:70%;
     top:390px;
     margin: 0% 15% 0% 15%;
@@ -183,7 +183,7 @@
 .log_r{
     position:relative;
     border-radius:5px;
-    height:50px; 
+    height:50px;
     width:80%;
     top:50px;
     margin: 05% 10% 05% 10%;
@@ -225,8 +225,8 @@
 #vma_groupMSG{
 position: relative;
 font-size: 7pt;
-color: lightblue;  
-bottom:10px;    
+color: lightblue;
+bottom:10px;
 }
 
 #vma_groupMSGuser{
@@ -240,7 +240,7 @@ color: black;
 /***********CommunityFeed*******************************/
 #vma_post_time{
 font-size: 6pt;
-color: lightgray;    
+color: lightgray;
 }
 
 /*.scroll-content{*/

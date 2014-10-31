@@ -871,17 +871,19 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     });
 }]);
 
-vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter) {
+vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', '$ionicModal', 'vmaMessageService', 'ngNotify', 'vmaTaskService', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', '$ionicScrollDelegate', function($scope, $state, $stateParams, $location, $anchorScroll, $timeout, $ionicModal, vmaMessageService, ngNotify, vmaTaskService, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter, $ionicScrollDelegate) {
     $scope.id = $stateParams.id;
+
     vmaTaskService.getTask($scope.id).then(function(success) {
-            $scope.task = success;
-        });
+        $scope.task = success;
+    });
     $scope.groupMSGs = [];
+
     $scope.updateMessages = function() {
-        var prom = vmaMessageService.getTaskMessages(10, null, $scope.id);
+        var prom = vmaMessageService.getTaskMessages(1000000, null, $scope.id);
         prom.then(function(success) {
             $scope.groupMSGs = success;
-            $scope.scrollTo();
+            $ionicScrollDelegate.scrollBottom(true);
         }, function(fail) {
 
         });
@@ -959,40 +961,18 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         };
     };
 
-    //THE SCROLLING HEADACHE FOR INPUT
-        //$timeout(function() {
-        //  $location.hash('messaging_input');
-        //  $anchorScroll();
-        //});
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
-        $scope.scrollTo = function() { }
-    }
-    else if(userAgent.match(/Android/i)) {
-        $scope.scrollTo = function() {
-            $timeout(function() {
-                $location.hash('messaging_input');
-                $anchorScroll();
-            }, 500);
+    var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
-            $timeout(function() {
-                $location.hash('messaging_input');
-                $anchorScroll();
-            }, 2000);
-        }
-    } else {
-        $scope.scrollTo = function() {
-            $timeout(function() {
-                $location.hash('messaging_input');
-                $anchorScroll();
-            }, 500);
-
-            $timeout(function() {
-                $location.hash('messaging_input');
-                $anchorScroll();
-            }, 2000);
-        }
-    }
+    $scope.inputUp = function() {
+        if (isIOS) $scope.data.keyboardHeight = 216;
+        $timeout(function() {
+            $ionicScrollDelegate.scrollBottom(true);
+        }, 1000);
+    };
+    $scope.inputDown = function() {
+        if (isIOS) $scope.data.keyboardHeight = 0;
+        $ionicScrollDelegate.resize();
+    };
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
