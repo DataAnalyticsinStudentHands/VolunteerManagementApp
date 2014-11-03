@@ -640,6 +640,8 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             break;
         default:
             $scope.update = function(){};
+            $scope.updateTasks = $scope.update;
+            $ionicLoading.hide();
             console.log("ERROR: UNCAUGHT STATE: ", state);
             break;
     }
@@ -789,6 +791,14 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         });
     }
 
+    $scope.markFinished = function(task_id) {
+        vmaTaskService.markFinished(task_id).then(function(){$scope.updateTasks(true);});
+    };
+
+    $scope.markUnFinished = function(task_id) {
+        vmaTaskService.markUnFinished(task_id).then(function(){$scope.updateTasks(true);});
+    };
+
     //OPENING DATE/TIME PICKER
     $scope.openDatePicker = function () {
         $scope.tmp = {};
@@ -890,10 +900,10 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                     $scope.joinTask(id);
                     break;
                 case "Complete":
-                    vmaTaskService.markFinished(id).then(function(){$scope.updateTasks(true);});
+                    $scope.markFinished(id);
                     break;
                 case "Incomplete":
-                    vmaTaskService.markUnFinished(id).then(function(){$scope.updateTasks(true);});
+                    $scope.markUnFinished(id);
                     break;
                 default:
                     console.log("BUG");
