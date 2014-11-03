@@ -81,6 +81,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gProm = Restangular.all("groups").one("byMembership").getList();
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        //localStorage.setObject("memGroups", success);
                         memGroups = success;
                     }, function(fail) {
             //            console.log(fail);

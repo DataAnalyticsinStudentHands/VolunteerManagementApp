@@ -10,3 +10,4 @@ node_modules
 platforms/android/local.properties
 platforms/android/CordovaLib/local.properties
 .idea/*.*
+.idea/*

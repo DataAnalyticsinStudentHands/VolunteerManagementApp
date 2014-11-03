@@ -4,6 +4,7 @@
         <div class="item"> <b>Description: </b> {{task.description}} <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
         <div class="item"> <b>Time: </b> {{task.time}} </div>
         <div class="item"> <b>Location: </b>{{task.location}} </div>
+        <!--<div class="item"> <b>Finished: </b>{{task.finished}} </div>-->
     </div>
     <googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps>
 </ion-content>
