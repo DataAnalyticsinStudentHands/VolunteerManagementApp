@@ -230,6 +230,14 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
         return Auth.hasCredentials();
     };
 
+    $rootScope.badgeConfig = [
+        "Badge 1",
+        "Badge 2",
+        "Badge 3",
+        "Badge 4",
+        "General"
+    ];
+
     //AUTHENTICATE ON CHANGE STATE
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
         console.log("$stateChangeStart");

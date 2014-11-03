@@ -662,16 +662,9 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     }
     $scope.openAdd = function () {
         $scope.newTask = {};
-        $scope.badgeOptions = [
-            "Badge 1",
-            "Badge 2",
-            "Badge 3",
-            "Badge 4",
-            "General"
-        ];
-        console.log($scope.badgeOptions);
+        $scope.badgeOptions = $scope.badgeConfig;
         $scope.chosenBadge = {};
-        $scope.chosenBadge.name = $scope.badgeOptions[0];
+        $scope.chosenBadge.name = $scope.badgeOptions[4];
 
         $ionicModal.fromTemplateUrl('partials/addTask.html', {
             scope : $scope
@@ -1405,11 +1398,11 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
 vmaControllerModule.controller('awards', ['$scope', 'tasks', function ($scope, tasks) {
 //    PULL THIS IN FROM USER_DATA
     $scope.badges = [
-        ["Badge 1", tasks[0]],
-        ["Badge 2", tasks[1]],
-        ["Badge 3", tasks[2]],
-        ["Badge 4", tasks[3]],
-        ["General", tasks[4]]
+        [$scope.badgeConfig[0], tasks[0]],
+        [$scope.badgeConfig[1], tasks[1]],
+        [$scope.badgeConfig[2], tasks[2]],
+        [$scope.badgeConfig[3], tasks[3]],
+        [$scope.badgeConfig[4], tasks[4]]
     ];
 //    console.log(tasks);
 
