@@ -1290,7 +1290,14 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
 
 vmaControllerModule.controller('hoursController', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicPopup', '$filter', function($scope, $state, $stateParams, $ionicModal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicPopup, $filter) {
     $scope.update = function() {
-        vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
+        vmaTaskService.getJoinTasks().then(function(success) {
+            //$scope.joinTasks = success;
+            var tasks_temp = success;
+            $scope.joinTasks = [];
+            tasks_temp.forEach(function(task) {
+                if(task.finished != 1) $scope.joinTasks.push(task);
+            });
+        });
         vmaHourService.getMyHours(100000).then(function(success) { $scope.entries = success;});
     };
     $scope.update();
