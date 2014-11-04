@@ -624,23 +624,38 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     switch(state) {
         case "home.myTasks":
             $scope.updateTasks = function(refresh) {
-                vmaTaskService.getJoinTasks(refresh).then(function(success) { $scope.tasks = success; $ionicLoading.hide(); });
-            }
+                vmaTaskService.getJoinTasks(refresh).then(function(success) {
+                    $scope.tasks = success; $ionicLoading.hide();
+                });
+            };
             break;
         case "home.group":
             $scope.updateTasks = function(update){
-                vmaTaskService.getAllTasksGroup($scope.id, update).then(function(success) { $scope.tasks = success; $ionicLoading.hide(); });
-            }
+                vmaTaskService.getAllTasksGroup($scope.id, update).then(function(success) {
+                    $scope.tasks = success; $ionicLoading.hide();
+                    var tasks_temp = $scope.tasks;
+                    $scope.tasks = [];
+                    tasks_temp.forEach(function(task) {
+                        if(!task.finished || task.finished != 1) $scope.tasks.push(task);
+                    });
+                });
+            };
             break;
         case "home.group.tasks":
             $scope.id = $stateParams.id;
             $scope.updateTasks = function(update) {
-                vmaTaskService.getMetaTasksGroup($scope.id, update).then(function(success) { $scope.tasks = success; $ionicLoading.hide(); });
-            }
+                vmaTaskService.getMetaTasksGroup($scope.id, update).then(function(success) {
+                    $scope.tasks = success; $ionicLoading.hide();
+                    var tasks_temp = $scope.tasks;
+                    $scope.tasks = [];
+                    tasks_temp.forEach(function(task) {
+                        if(!task.finished || task.finished != 1) $scope.tasks.push(task);
+                    });
+                });
+            };
             break;
         default:
             $scope.update = function(){};
-            $scope.updateTasks = $scope.update;
             $ionicLoading.hide();
             console.log("ERROR: UNCAUGHT STATE: ", state);
             break;
