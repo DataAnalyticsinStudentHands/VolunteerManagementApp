@@ -321,19 +321,20 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     $scope.generateActions = function(post_id) {
         var postActionObj = $filter('getById')($scope.posts, post_id);
         var ionicActionArray = [];
-        if(postActionObj.user_id == $scope.uid) {
-            var ionicActionArray = [
+        if(postActionObj.user_id == $scope.uid ||$scope.isMod || $scope.isAdm) {
+            ionicActionArray = [
                 { text: 'Edit' },
                 { text: 'Delete' }
             ];
         }
+
         return ionicActionArray;
-    }
+    };
 
     //PERMISSION SHOW CHECK
     $scope.actionCount = function(post_id) {
-        if($scope.generateActions(post_id).length > 0) return true; else return false;
-    }
+        return ($scope.generateActions(post_id).length > 0);
+    };
 
 
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
@@ -558,7 +559,8 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         if(actionObj.isManager || $scope.isAdm || $scope.isMod) {
             ionicActionArray.push(
                 { text: 'Edit' },
-                { text: 'Delete' }
+                { text: 'Delete' },
+                { text: 'Leave' }
             );
         } else if(actionObj.isMember){
             ionicActionArray.push(
@@ -570,7 +572,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             );
         }
         return ionicActionArray;
-    }
+    };
 
     //PERMISSION SHOW CHECK
     $scope.actionCount = function(id) {
@@ -605,7 +607,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             $scope.popover.hide();
             return true;
         }
-    }
+    };
 
 
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
