@@ -502,11 +502,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                 } else {
                     viewTask.time = "No Time Specified";
                 }
-                if(!viewTask.location) {
-                    viewTask.show_map = false;
-                } else {
-                    viewTask.show_map = true;
-                }
+                viewTask.show_map = !viewTask.location;
                 return viewTask;
             },
         addTask:

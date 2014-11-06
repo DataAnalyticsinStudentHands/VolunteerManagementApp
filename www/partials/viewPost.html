@@ -16,7 +16,7 @@
             <h2>{{comment.user.username}}</h2>
             <p>{{comment.content}}</p>
             <p id="vma_post_time">{{comment.time}}</p>
-            <a class="tab-item" ng-click="showActions(comment.id, $event)">
+            <a class="tab-item" ng-show="actionCount(comment.id)" ng-click="showActions(comment.id, $event)">
                 <i class="icon ion-ios7-more"></i>
             </a>
         </div>
@@ -28,7 +28,7 @@
     <label class="item-input-wrapper">
         <input type="text" placeholder="Type your comment" ng-model="$parent.comment.content" on-return="addComment()" on-focus="inputUp()" on-blur="inputDown()" ng-required="true" />
     </label>
-    <button class="button button-clear" ng-click="addMsg()">Send</button>
+    <button class="button button-clear" ng-click="addComment()">Send</button>
 </ion-footer-bar>
 </ion-pane>
 </ion-view>

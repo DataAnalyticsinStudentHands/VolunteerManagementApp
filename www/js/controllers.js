@@ -1069,7 +1069,6 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.groupMSGs, id);
         var ionicActionArray = [];
-        console.log(actionObj)
         if(actionObj.sender_id == $scope.uid || $scope.isMod || $scope.isAdm){
             ionicActionArray = [
                 { text: 'Edit' },
@@ -1077,6 +1076,10 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             ];
         }
         return ionicActionArray;
+    };
+
+    $scope.actionCount = function(post_id) {
+        return ($scope.generateActions(post_id).length > 0);
     };
 
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
@@ -1114,7 +1117,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     });
 }]);
 
-vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', function($scope, $state, $stateParams, $ionicModal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet, $ionicPopup, $ionicPopover) {
+vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', '$ionicModal', 'vmaPostService', 'vmaCommentService', 'ngNotify', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$filter', function($scope, $state, $stateParams, $ionicModal, vmaPostService, vmaCommentService, ngNotify, $ionicActionSheet, $ionicPopup, $ionicPopover, $filter) {
     var post_id = $stateParams.post_id;
     $scope.updateComments = function() {
         if($scope.post) { var count = $scope.post.comments.length; } else { var count = 10; }
@@ -1205,10 +1208,15 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
-        var ionicActionArray = [
-            { text: 'Edit' },
-            { text: 'Delete' }
-        ];
+        var actionObj = $filter('getById')($scope.post.comments, id);
+        var ionicActionArray = [];
+        console.log(actionObj);
+        if(actionObj.user_id == $scope.uid || $scope.isMod || $scope.isAdm){
+            ionicActionArray = [
+                { text: 'Edit' },
+                { text: 'Delete' }
+            ];
+        }
         return ionicActionArray;
     };
 
@@ -1218,6 +1226,9 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
         $scope.popover = popover;
     });
 
+    $scope.actionCount = function(post_id) {
+        return ($scope.generateActions(post_id).length > 0);
+    };
     //ACTION POPUP
     $scope.showActions = function(id, event0) {
         var ionicActions = $scope.ionicActions = $scope.generateActions(id);
