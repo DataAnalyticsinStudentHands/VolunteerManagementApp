@@ -1210,7 +1210,6 @@ vmaControllerModule.controller('comments', ['$scope', '$state', '$stateParams', 
     $scope.generateActions = function(id) {
         var actionObj = $filter('getById')($scope.post.comments, id);
         var ionicActionArray = [];
-        console.log(actionObj);
         if(actionObj.user_id == $scope.uid || $scope.isMod || $scope.isAdm){
             ionicActionArray = [
                 { text: 'Edit' },

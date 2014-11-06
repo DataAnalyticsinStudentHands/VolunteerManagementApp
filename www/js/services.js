@@ -433,7 +433,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                             return result;
                         }
                     }, function(error) {
-                        console.log(error);
+                        //console.log(error);
                     });
                 });
             },
@@ -460,7 +460,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
         getCalTasks:
             function() {
                 return this.getJoinTasks().then(function(success) {
-                    console.log(success);
+                    //console.log(success);
                     var result = [];
                     success.forEach(function(entry) {
 //                        console.log(new Date(entry.time));
@@ -638,7 +638,6 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     vmaGroupService.getGroup(post.group_id).then(function(success) { post.group = success });
                     vmaUserService.getUser(post.user_id).then(function(success) { post.user = success });
                     vmaCommentService.getPostComments(count, start, post.id).then(function(success) { post.comments =success; });
-                    console.log(post);
                     return post;
                 });
             },
@@ -706,7 +705,7 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
         addComment:
             function(content, pid, uid) {
                 var cmt = {"content" : content, "user_id": uid, "post_id": pid};
-                console.log(cmt);
+                //console.log(cmt);
                 return Restangular.all("comments").post(cmt);
             },
         editComment:
