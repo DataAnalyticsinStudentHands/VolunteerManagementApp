@@ -718,16 +718,16 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     };
 
     //OPENING THE MODAL TO EDIT A TASK
-    $scope.editTask = function (task_id) {
+    $scope.editTaskFunction = function (task_id) {
         $scope.openEdit(task_id);
-    }
+    };
     $scope.openEdit = function (task_id) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/editTask.html', {
             scope : $scope
         }).then(function (modal) {
             $scope.modal = modal;
-            vmaTaskService.getTask(task_id).then(function(success) {
+            vmaTaskService.getTaskPure(task_id).then(function(success) {
                 $scope.editTask = success;
                 if($scope.editTask.time)
                     $scope.editTask.time = new Date($scope.editTask.time);
@@ -905,7 +905,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.popOverClick =  function(action) {
             switch(action) {
                 case "Edit":
-                    $scope.editTask(id);
+                    $scope.editTaskFunction(id);
                     break;
                 case "Delete":
                     $scope.deleteTask(id);

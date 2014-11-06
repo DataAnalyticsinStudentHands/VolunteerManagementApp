@@ -483,6 +483,10 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return task;
                 });
             },
+        getTaskPure:
+            function(task_id, update) {
+                return Restangular.all("tasks").get(task_id);
+            },
         getTaskByName:
             function(task_name, update) {
                 return this.updateTasks(update).then(function(success) {
