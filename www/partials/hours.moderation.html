@@ -1,16 +1,17 @@
 <ion-view title="Hours Moderation">
 <ion-content>
-    <div class="list">
-        <div class="item item-icon-right" id="entry" ng-repeat="entry in entries">
-            <div> {{entry.title}} </div>
-            <div ng-show={{entry.duration}}> {{entry.duration}} Minutes </div>
-            <div id="approve" ng-show={{entry.approved}}><img src="img/check.png" width="80%" height="80%"></div>
-            <div id="pend" ng-show=!{{entry.approved}}>Pending...</div>
-            <div class="icon">
-                <button type="button" class="btn dropdown-toggle" ng-click="approve(entry.id)">   Y </button>
-                <button type="button" class="btn dropdown-toggle" ng-click="deny(entry.id)">      N </button>
-            </div>
+<div class="list">
+    <div class="item item-icon-right" id="entry" ng-repeat="entry in entries">
+        <div> <b>User:</b> {{entry.user.username}} </div>
+        <div> <b>Task:</b> {{entry.title}} </div>
+        <div ng-show="entry.duration"> {{entry.duration}} Minutes </div>
+        <!--<div id="approve" ng-show={{entry.approved}}><img src="img/check.png" width="80%" height="80%"></div>-->
+        <!--<div id="pend" ng-show=!{{entry.approved}}>Pending...</div>-->
+        <div class="icon">
+            <button class="button" ng-click="approve(entry.id)"> <i class="icon ion-checkmark-circled"></i> </button>
+            <button class="button" ng-click="deny(entry.id)"> <i class="icon ion-close-round"></i>  </button>
         </div>
     </div>
+</div>
 </ion-content>
 </ion-view>

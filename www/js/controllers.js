@@ -1285,19 +1285,19 @@ vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {
         vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
-        vmaHourService.getHours(10).then(function(success) { $scope.entries = success;});
+        vmaHourService.getHours(10, null, null, true).then(function(success) { $scope.entries = success; console.log(success);});
     };
     $scope.update();
 
     $scope.entry = [];
 
     $scope.approve = function(h_id) {
-//        console.log("attempt approve");
-        vmaHourService.approveHour(h_id);
+        console.log("attempt approve");
+        vmaHourService.approveHour(h_id).then(function(){ngNotify.set("Hour approved successfully", "success"); $scope.update();});
     };
 
     $scope.deny = function(h_id) {
-//        console.log("attempt deny");
+        console.log("attempt deny");
         vmaHourService.denyHour(h_id);
     }
 }]);

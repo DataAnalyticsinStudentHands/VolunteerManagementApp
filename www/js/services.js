@@ -341,7 +341,6 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         result.push(obj);
                     });
                     memTasks.forEach(function(obj){
-                        obj.isManager = false;
                         obj.isMember = true;
                         result.push(obj);
                     });
@@ -814,11 +813,23 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
             },
         getHours:
             function(numHours, startindex, gid, pending) {
-                return Restangular.all("hours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending});
+                return Restangular.all("hours").getList({"numberOfHours": numHours, "startIndex": startindex, "group_id": gid, "onlyPending": pending}).then(function(success) {
+                    success = Restangular.stripRestangular(success);
+                    success.forEach(function(hour) {
+                        vmaUserService.getUser(hour.user_id).then(function(success){
+                            hour.user = success;
+                        });
+                    });
+                    return success;
+                });
             },
         addHours:
             function(hour) {
                 return Restangular.all("hours").post(hour);
+            },
+        getHour:
+            function(h_id){
+                return Restangular.all("hours").get(h_id);
             },
         editHours:
             function(id, hour) {
@@ -830,11 +841,11 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
             },
         approveHour:
             function(id) {
-//                return Restangular.all("hours").all(id).remove();
+                return Restangular.all("hours").all("approve").all(id).post({"isApproved": true});
             },
         denyHour:
             function(id) {
-//                return Restangular.all("hours").all(id).remove();
+                return Restangular.all("hours").all("approve").all(id).post({"isApproved" : false});
             }
     }
 }]);
