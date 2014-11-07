@@ -495,15 +495,16 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                 });
             },
         getTaskView:
-            function(task_id) {
-                var viewTask = $filter('getById')(allTasks, task_id);
-                if(viewTask.time) {
-                    viewTask.time = new Date(viewTask.time).toDateString() + " " + new Date(viewTask.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
-                } else {
-                    viewTask.time = "No Time Specified";
-                }
-                viewTask.show_map = !viewTask.location;
-                return viewTask;
+            function(task_id, update) {
+                return this.getMetaTasks(update).then(function(success) {
+                    var task = $filter('getById')(success, task_id);
+                    if(task.time) {
+                        task.time = new Date(task.time).toDateString() + " " + new Date(task.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                    } else {
+                        task.time = "No Time Specified";
+                    }
+                    return task;
+                });
             },
         addTask:
             function(task) {

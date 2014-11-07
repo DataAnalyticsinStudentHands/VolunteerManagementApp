@@ -1,15 +1,17 @@
 <ion-view title="{{task.name}}">
 <ion-content>
-    <!--<ion-nav-buttons side='right' ng-controller="taskController">-->
-        <!--<button class="button button-dark" ng-show="task.finished == 1" ng-click="markUnFinished(task.id)"><i class="icon ion-ios7-checkmark"></i></button>-->
-        <!--<button class="button button-dark" ng-hide="task.finished == 1" ng-click="markFinished(task.id)"><i class="icon ion-ios7-checkmark-outline"></i></button>-->
-    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side='right' ng-controller="taskController">
+        <button class="button button-dark" ng-show="task.finished == 1" ng-click="markUnFinished(task.id); task.finished = 0;"><i class="icon ion-ios7-checkmark"></i></button>
+        <button class="button button-dark" ng-hide="task.finished == 1" ng-click="markFinished(task.id); task.finished = 1;"><i class="icon ion-ios7-checkmark-outline"></i></button>
+    </ion-nav-buttons>
     <div class="list">
-        <div class="item"> <b>Description: </b> {{task.description}} <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
-        <div class="item"> <b>Time: </b> {{task.time}} </div>
-        <div class="item"> <b>Location: </b>{{task.location}} </div>
-        <!--<div class="item"> <b>Finished: </b>{{task.finished}} </div>-->
+        <div class="item" ng-show="task.description"> <b>Description: </b> {{task.description}} <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
+        <div class="item" ng-hide="task.description"> <b>Description: </b> No Description Available <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
+        <div class="item" ng-show="task.time"> <b>Time: </b> {{task.time}} </div>
+        <div class="item" ng-hide="task.time"> <b>Time: </b> No time specified. </div>
+        <div class="item" ng-show="task.location"> <b>Location: </b>{{task.location}} </div>
+        <div class="item" ng-hide="task.location"> <b>Location: </b> N/A </div>
     </div>
-    <googlemaps  ng-show="task.show_map" class="google-maps" options="map"></googlemaps>
+    <googlemaps ng-show="task.location" class="google-maps" options="map"></googlemaps>
 </ion-content>
 </ion-view>

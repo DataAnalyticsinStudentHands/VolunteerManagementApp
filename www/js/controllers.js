@@ -657,7 +657,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             };
             break;
         default:
-            $scope.update = function(){};
+            $scope.update = $scope.updateTasks = function(){};
             $ionicLoading.hide();
             console.log("ERROR: UNCAUGHT STATE: ", state);
             break;
@@ -666,19 +666,20 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
 
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
-        $scope.task = vmaTaskService.getTaskView(click_id);
-        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
-    }
+        vmaTaskService.getTaskView(click_id).then(function(success){
+            $state.go("home.task", {"task" : JSON.stringify(success)}, [{reload: false}]);
+        });
+    };
 
     //VIEW MESSAGES
     $scope.displayMessages = function(click_id) {
         $state.go('home.message', {id:click_id}, {reload: false});
-    }
+    };
 
     //OPENING THE MODAL TO ADD A TASK
     $scope.addTask = function () {
         $scope.openAdd();
-    }
+    };
     $scope.openAdd = function () {
         $scope.newTask = {};
         $scope.badgeOptions = $scope.badgeConfig;
@@ -760,7 +761,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     //OPENING THE MODAL TO DELETE A TASK
     $scope.deleteTask = function (task_id) {
         $scope.openDelete(task_id);
-    }
+    };
     $scope.openDelete = function (task_id) {
         var confirmPopup = $ionicPopup.confirm({
                 title: 'Delete Task',
@@ -795,7 +796,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
         });
-    }
+    };
 
     //LEAVING A TASK
     $scope.leaveTask = function(task_id) {
@@ -806,14 +807,14 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
         });
-    }
+    };
 
     $scope.markFinished = function(task_id) {
-        vmaTaskService.markFinished(task_id).then(function(){$scope.updateTasks(true);});
+        vmaTaskService.markFinished(task_id).then(function(){ngNotify.set("Task marked complete successfully", "success");});
     };
 
     $scope.markUnFinished = function(task_id) {
-        vmaTaskService.markUnFinished(task_id).then(function(){$scope.updateTasks(true);});
+        vmaTaskService.markUnFinished(task_id).then(function(){ngNotify.set("Task marked incomplete successfully", "success");});
     };
 
     //OPENING DATE/TIME PICKER
