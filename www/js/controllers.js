@@ -1284,7 +1284,6 @@ vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope
 
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
     $scope.update = function() {
-        vmaTaskService.getJoinTasks().then(function(success) { $scope.joinTasks = success;});
         vmaHourService.getHours(10, null, null, true).then(function(success) { $scope.entries = success; console.log(success);});
     };
     $scope.update();
@@ -1298,7 +1297,7 @@ vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateP
 
     $scope.deny = function(h_id) {
         console.log("attempt deny");
-        vmaHourService.denyHour(h_id);
+        vmaHourService.denyHour(h_id).then(function(){ngNotify.set("Hour disapproved successfully", "success"); $scope.update();});
     }
 }]);
 
@@ -1312,7 +1311,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
                 if(task.finished != 1) $scope.joinTasks.push(task);
             });
         });
-        vmaHourService.getMyHours(100000).then(function(success) { $scope.entries = success;});
+        vmaHourService.getMyHours(100000, null, null, false).then(function(success) { $scope.entries = success;});
     };
     $scope.update();
 
@@ -1326,13 +1325,17 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
             $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.customName, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration)};
         }
         console.log($scope.hourEntry);
+        if($scope.hourEntry.title && $scope.hourEntry.duration)
         vmaHourService.addHours($scope.hourEntry).then(function(success) {
             $scope.update();
+            $scope.entry = [];
+            $scope.entry.name = "Other";
             ngNotify.set("Successfully submitted hour entry!", "success");
         },function(fail){
             ngNotify.set("Error :(", "error");
         });
-        $scope.entry = [];
+        else
+        ngNotify.set("Please fill required fields", "error");
     };
     $scope.$watch('entry.name', function(taskName) {
         if(taskName != "Other")
@@ -1357,14 +1360,10 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     };
 
     $scope.checkOut = function() {
-//        if(!$scope.entry) $scope.entry = [];
         console.log($scope.entry.inTime);
         $scope.checkOutTime = new Date();
         $scope.checkOutTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         $scope.entry.duration = Math.ceil(($scope.checkOutTime - $scope.entry.inTime)/1000/60);
-        console.log($scope.entry.inTime);
-        console.log($scope.checkOutTime);
-        console.log($scope.checkOutTime - $scope.inTime);
         ngNotify.set("Successfully checked out!", "success");
     };
 
