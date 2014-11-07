@@ -341,6 +341,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         result.push(obj);
                     });
                     memTasks.forEach(function(obj){
+                        obj.isManager = false;
                         obj.isMember = true;
                         result.push(obj);
                     });

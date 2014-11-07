@@ -1270,6 +1270,7 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
         markers: [$scope.task.location], //marker locations
         mapevents: {redirect: true, loadmap: false}
     };
+    console.log($scope.task.isManager, $scope.isAdm, $scope.isMod);
 }]);
 
 vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope, ngNotify) {

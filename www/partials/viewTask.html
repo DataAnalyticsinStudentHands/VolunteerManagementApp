@@ -1,8 +1,12 @@
 <ion-view title="{{task.name}}">
 <ion-content>
     <ion-nav-buttons side='right' ng-controller="taskController">
-        <button class="button button-dark" ng-show="task.finished == 1" ng-click="markUnFinished(task.id); task.finished = 0;"><i class="icon ion-ios7-checkmark"></i></button>
-        <button class="button button-dark" ng-hide="task.finished == 1" ng-click="markFinished(task.id); task.finished = 1;"><i class="icon ion-ios7-checkmark-outline"></i></button>
+        <button class="button button-dark" ng-show="task.finished == 1 && (task.isManager || isAdm || isMod)" ng-click="markUnFinished(task.id); task.finished = 0;">
+            <i class="icon ion-ios7-checkmark"></i>
+        </button>
+        <button class="button button-dark" ng-show="task.finished == 0 && (task.isManager || isAdm || isMod)" ng-click="markFinished(task.id); task.finished = 1;">
+            <i class="icon ion-ios7-checkmark-outline"></i>
+        </button>
     </ion-nav-buttons>
     <div class="list">
         <div class="item" ng-show="task.description"> <b>Description: </b> {{task.description}} <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
