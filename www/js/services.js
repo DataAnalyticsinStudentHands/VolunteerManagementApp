@@ -841,11 +841,21 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
             },
         approveHour:
             function(id) {
-                return Restangular.all("hours").all("approve").all(id).post({"isApproved": true});
+                //return Restangular.all("hours").all("approve").all(id).post(null, {"isApproved": true});
+                return this.getHour(id).then(function(s) {
+                    s.approved = true;
+                    s.pending = false;
+                    s.save();
+                });
             },
         denyHour:
             function(id) {
-                return Restangular.all("hours").all("approve").all(id).post({"isApproved" : false});
+                //return Restangular.all("hours").all("approve").all(id).post(null, {"isApproved" : false});
+                return this.getHour(id).then(function(s) {
+                    s.approved = false;
+                    s.pending = false;
+                    s.save();
+                });
             }
     }
 }]);

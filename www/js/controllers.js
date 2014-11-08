@@ -1351,7 +1351,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
                     $scope.entry.duration = success.duration;
             }
         })
-    })
+    });
     $scope.checkIn = function() {
         $scope.entry.inTime = new Date();
         $scope.checkInTimeDisplay = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
