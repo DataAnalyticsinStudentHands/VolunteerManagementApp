@@ -1284,14 +1284,19 @@ vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope
 
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicLoading', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicLoading) {
     //$scope.notReachedEnd = true;
-    $ionicLoading.show();
     $scope.pending = true;
     $scope.update = function() {
+        console.log($scope.pending);
+        $ionicLoading.show();
         vmaHourService.getHours(1000000000, null, $stateParams.group_id, $scope.pending).then(function(success) {
             $scope.entries = success;
             $ionicLoading.hide();
             //$scope.$broadcast('scroll.infiniteScrollComplete');
         });
+    };
+    $scope.switchAndUpdate = function() {
+        $scope.pending = !$scope.pending;
+        $scope.update();
     };
     //$scope.loadMore = function() {
     //    if ($scope.entries && $scope.entries.length > 0) {

@@ -1,5 +1,9 @@
 <ion-view title="Hours Moderation">
 <ion-content>
+<ion-nav-buttons side='right'>
+    <button class="button button-dark" ng-click="switchAndUpdate();"><i class="icon ion-checkmark-round"></i></button>
+    <!--<button class="button button-dark" ng-click="updatePosts()"><i class="icon ion-refresh"></i></button>-->
+</ion-nav-buttons>
 <div class="list">
     <div class="item item-icon-right" id="entry" ng-repeat="entry in entries">
         <div> <b>User:</b> {{entry.user.username}} </div>
