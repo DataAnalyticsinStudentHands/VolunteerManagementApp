@@ -393,7 +393,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         case "home.group":
             $scope.id = $stateParams.id;
             $scope.update = function(update){
-                vmaGroupService.getGroupMeta($scope.id, update).then(function(success) { $scope.group = success; $ionicLoading.hide(); });
+                vmaGroupService.getGroupMeta($scope.id, update).then(function(success) { $scope.group = success; $ionicLoading.hide(); console.log(success);});
             };
             break;
         default:
@@ -1283,20 +1283,21 @@ vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope
 }]);
 
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
+    //console.log($stateParams);
+    //if($stateParams.group_id)
+    //    $scope.group_id = $stateParams.group_id;
     $scope.update = function() {
-        vmaHourService.getHours(10, null, null, true).then(function(success) { $scope.entries = success; console.log(success);});
+        vmaHourService.getHours(10, null, $stateParams.group_id, true).then(function(success) { $scope.entries = success; console.log(success);});
     };
     $scope.update();
 
     $scope.entry = [];
 
     $scope.approve = function(h_id) {
-        console.log("attempt approve");
         vmaHourService.approveHour(h_id).then(function(){ngNotify.set("Hour approved successfully", "success"); $scope.update();});
     };
 
     $scope.deny = function(h_id) {
-        console.log("attempt deny");
         vmaHourService.denyHour(h_id).then(function(){ngNotify.set("Hour disapproved successfully", "success"); $scope.update();});
     }
 }]);

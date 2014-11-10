@@ -157,14 +157,14 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                         obj.isGroup = true;
                         result.push(obj);
                     });
-//                    memGroups.forEach(function(obj){
-//                        obj.isMember = true;
-//                        result.push(obj);
-//                    });
-//                    manGroups.forEach(function(obj){
-//                        obj.isManager = true;
-//                        result.push(obj);
-//                    });
+                    memGroups.forEach(function(obj){
+                        obj.isMember = true;
+                        result.push(obj);
+                    });
+                    manGroups.forEach(function(obj){
+                        obj.isManager = true;
+                        result.push(obj);
+                    });
                     metaGroups = result;
                     return result;
                 });
@@ -194,8 +194,8 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         getGroupMeta:
             function(group_id, update) {
-                return this.updateGroups(update).then(function(success) {
-                    var group = $filter('getById')(allGroups, group_id);
+                return this.getMetaGroups(update).then(function(success) {
+                    var group = $filter('getById')(success, group_id);
                     if($filter('getById')(memGroups.concat(manGroups), group_id)) {
                         group.joined = true;
                     } else {
@@ -841,21 +841,21 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
             },
         approveHour:
             function(id) {
-                //return Restangular.all("hours").all("approve").all(id).post(null, {"isApproved": true});
-                return this.getHour(id).then(function(s) {
-                    s.approved = true;
-                    s.pending = false;
-                    s.save();
-                });
+                return Restangular.all("hours").all("approve").all(id).post(null, {"isApproved": true});
+                //return this.getHour(id).then(function(s) {
+                //    s.approved = true;
+                //    s.pending = false;
+                //    s.save();
+                //});
             },
         denyHour:
             function(id) {
-                //return Restangular.all("hours").all("approve").all(id).post(null, {"isApproved" : false});
-                return this.getHour(id).then(function(s) {
-                    s.approved = false;
-                    s.pending = false;
-                    s.save();
-                });
+                return Restangular.all("hours").all("approve").all(id).post(null, {"isApproved" : false});
+                //return this.getHour(id).then(function(s) {
+                //    s.approved = false;
+                //    s.pending = false;
+                //    s.save();
+                //});
             }
     }
 }]);

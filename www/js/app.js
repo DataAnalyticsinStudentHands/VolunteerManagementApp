@@ -137,7 +137,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider) {
           authenticate: true
       }).
       state('home.hours_mod', {
-          url: "/hours_mod",
+          url: "/hours_mod:group_id",
           views: {
             "app": { templateUrl: "partials/hours.moderation.html", controller: "hours.moderation"}
           },

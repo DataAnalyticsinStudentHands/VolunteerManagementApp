@@ -3,9 +3,10 @@
     <div class="list">
         <div class="item item-icon-right" ng-repeat="entry in entries">
             <h2> {{entry.title}} </h2>
-            <p ng-show={{entry.duration}}> {{entry.duration}} Minutes </p>
-            <i class="icon ion-checkmark" ng-show={{entry.approved}}></i>
-            <i class="icon ion-close-round" ng-show=!{{entry.approved}}></i>
+            <p ng-show="entry.duration"> {{entry.duration}} Minutes </p>
+            <i class="icon ion-more" ng-show="entry.pending"></i>
+            <i class="icon ion-checkmark" ng-show="entry.approved && !entry.pending"></i>
+            <i class="icon ion-close-round" ng-show="!entry.approved && !entry.pending"></i>
         </div>
     </div>
 </ion-content>
