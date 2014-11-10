@@ -1282,13 +1282,33 @@ vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope
     ];
 }]);
 
-vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService) {
-    //console.log($stateParams);
-    //if($stateParams.group_id)
-    //    $scope.group_id = $stateParams.group_id;
+vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicLoading', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicLoading) {
+    //$scope.notReachedEnd = true;
+    $ionicLoading.show();
+    $scope.pending = true;
     $scope.update = function() {
-        vmaHourService.getHours(10, null, $stateParams.group_id, true).then(function(success) { $scope.entries = success; console.log(success);});
+        vmaHourService.getHours(1000000000, null, $stateParams.group_id, $scope.pending).then(function(success) {
+            $scope.entries = success;
+            $ionicLoading.hide();
+            //$scope.$broadcast('scroll.infiniteScrollComplete');
+        });
     };
+    //$scope.loadMore = function() {
+    //    if ($scope.entries && $scope.entries.length > 0) {
+    //    console.log($scope.entries[$scope.entries.length - 1].id);
+    //    vmaHourService.getHours(10, $scope.entries[$scope.entries.length - 1].id, $stateParams.group_id, true).then(
+    //        function (success) {
+    //            console.log("HERE");
+    //            $scope.entries = $scope.entries.concat(success);
+    //            if (success.length > 0)
+    //                $scope.$broadcast('scroll.infiniteScrollComplete');
+    //            else
+    //                $scope.notReachedEnd = false;
+    //        }, function (fail) {
+    //            console.log(fail);
+            //});
+        //}
+    //};
     $scope.update();
 
     $scope.entry = [];
