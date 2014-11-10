@@ -1285,6 +1285,7 @@ vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope
 vmaControllerModule.controller('hours.moderation', ['$scope', '$state', '$stateParams', '$ionicModal', '$rootScope', 'ngNotify', 'vmaTaskService', 'vmaHourService', '$ionicLoading', function($scope, $state, $stateParams, $modal, $rootScope, ngNotify, vmaTaskService, vmaHourService, $ionicLoading) {
     //$scope.notReachedEnd = true;
     $scope.pending = true;
+    $scope.query = "";
     $scope.update = function() {
         console.log($scope.pending);
         $ionicLoading.show();

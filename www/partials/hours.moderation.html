@@ -1,11 +1,18 @@
 <ion-view title="Hours Moderation">
+<ion-header-bar align-title="left" class="bar-dark bar-subheader">
+    <label class="item-input-wrapper">
+        <i class="icon ion-ios7-search placeholder-icon"></i>
+        <input ng-model="query" type="search" placeholder="Search by Username">
+    </label>
+</ion-header-bar>
 <ion-content>
 <ion-nav-buttons side='right'>
     <button class="button button-dark" ng-click="switchAndUpdate();"><i class="icon ion-checkmark-round"></i></button>
     <!--<button class="button button-dark" ng-click="updatePosts()"><i class="icon ion-refresh"></i></button>-->
 </ion-nav-buttons>
+
 <div class="list">
-    <div class="item item-icon-right" id="entry" ng-repeat="entry in entries">
+    <div class="item item-icon-right" id="entry" ng-repeat="entry in entries | filter:{user:{username: query}} | orderBy:orderProp">
         <div> <b>User:</b> {{entry.user.username}} </div>
         <div> <b>Task:</b> {{entry.title}} </div>
         <div ng-show="entry.duration"> {{entry.duration}} Minutes </div>
