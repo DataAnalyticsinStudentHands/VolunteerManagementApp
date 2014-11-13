@@ -131,7 +131,7 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider) {
           },
           resolve: {
               tasks: function(vmaHourService) {
-                  return vmaHourService.getMyHoursWithTasks(100000);
+                  return vmaHourService.getMyHoursWithTasks(100000, null, null, false);
               }
           },
           authenticate: true
