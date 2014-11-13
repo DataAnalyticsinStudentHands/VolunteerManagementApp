@@ -12,7 +12,8 @@
 </ion-nav-buttons>
 
 <div class="list">
-    <div class="item item-icon-right" id="entry" ng-repeat="entry in entries | filter:{user:{username: query}} | orderBy:orderProp">
+    <!--<div class="item item-icon-right" id="entry" ng-repeat="entry in entries | filter:{user:{username: query}} | orderBy:orderProp">-->
+    <div class="item item-icon-right" id="entry" ng-repeat="entry in entries | filter:query | orderBy:orderProp">
         <div> <b>User:</b> {{entry.user.username}} </div>
         <div> <b>Task:</b> {{entry.title}} </div>
         <div ng-show="entry.duration"> {{entry.duration}} Minutes </div>
