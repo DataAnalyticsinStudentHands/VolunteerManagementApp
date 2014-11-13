@@ -794,15 +794,17 @@ vmaServices.factory('vmaHourService', ['Restangular', 'vmaTaskService', 'vmaUser
                     success.forEach(function(hour) {
                         var id = hour.task_id;
 //                        console.log(id);
-                        if(id != undefined && hour.approved)
-                            promiseArray.push(vmaTasksService.getTask(id).then(function(success) {
-                                if(success != undefined) {
-                                    if (success.badge_id === undefined) success.badge_id = 4;
-                                    badgesObj[success.badge_id]++;
-                                }
-                            }));
-                        else {
-                            badgesObj[4]++;
+                        if (hour.approved) {
+                            if (id != undefined)
+                                promiseArray.push(vmaTasksService.getTask(id).then(function (success) {
+                                    if (success != undefined) {
+                                        if (success.badge_id === undefined) success.badge_id = 4;
+                                        badgesObj[success.badge_id]++;
+                                    }
+                                }));
+                            else {
+                                badgesObj[4]++;
+                            }
                         }
                     });
                     var deferred = $q.all(promiseArray);
