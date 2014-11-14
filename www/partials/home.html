@@ -6,7 +6,7 @@
         </ion-side-menu>
         <ion-side-menu-content>
             <ion-nav-bar class="bar-dark">
-                <button id="disappear_on_desktop" class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+                <button ng-hide="$exposeAside.active" class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
                 <ion-nav-back-button class="button-icon ion-ios7-arrow-back"></ion-nav-back-button>
             </ion-nav-bar>
             <ion-nav-view animation="slide-left-right" name="app"></ion-nav-view>
