@@ -810,11 +810,25 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     };
 
     $scope.markFinished = function(task_id) {
-        vmaTaskService.markFinished(task_id).then(function(){ngNotify.set("Task marked complete successfully", "success");});
+        $ionicLoading.show();
+        vmaTaskService.markFinished(task_id).then(function(){
+            $timeout(function(){
+                $scope.updateTasks(true);
+            }, 500);
+            ngNotify.set("Task marked complete successfully", "success");
+            $ionicLoading.hide();
+        });
     };
 
     $scope.markUnFinished = function(task_id) {
-        vmaTaskService.markUnFinished(task_id).then(function(){ngNotify.set("Task marked incomplete successfully", "success");});
+        $ionicLoading.show();
+        vmaTaskService.markUnFinished(task_id).then(function(){
+            $timeout(function(){
+                $scope.updateTasks(true);
+            }, 500);
+            ngNotify.set("Task marked incomplete successfully", "success");
+            $ionicLoading.hide();
+        });
     };
 
     //OPENING DATE/TIME PICKER

@@ -534,11 +534,17 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         markFinished:
             function(tid) {
-                return Restangular.all("tasks").all(tid).post({"finished":1})
+                return Restangular.all("tasks").all(tid).doGET().then(function(success){
+                    success.finished = 1;
+                    Restangular.all("tasks").all(tid).post(success);
+                });
             },
         markUnFinished:
             function(tid) {
-                return Restangular.all("tasks").all(tid).post({"finished":0})
+                return Restangular.all("tasks").all(tid).doGET().then(function(success){
+                    success.finished = 0;
+                    Restangular.all("tasks").all(tid).post(success);
+                });
             }
     }
 }]);
