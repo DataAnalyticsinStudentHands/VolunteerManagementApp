@@ -65,9 +65,9 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
 }]);
 
 vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
-    var allGroups;
-    var manGroups;
-    var memGroups;
+    var allGroups = localStorage.getObject("allGroups");
+    var manGroups = localStorage.getObject("manGroups");
+    var memGroups = localStorage.getObject("memGroups");
     var subGroups;
     var metaGroups;
     var promAllGroups;
@@ -81,7 +81,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gProm = Restangular.all("groups").one("byMembership").getList();
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
-                        //localStorage.setObject("memGroups", success);
+                        localStorage.setObject("memGroups", success);
                         memGroups = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -89,6 +89,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gPromByMan = Restangular.all("groups").one("byManager").getList();
                     gPromByMan.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("manGroups", success);
                         manGroups = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -96,6 +97,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gPromMaster = Restangular.all("groups").getList();
                     gPromMaster.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("allGroups", success);
                         allGroups = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -258,18 +260,18 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     updating = true;
                     console.log("TASKS UPDATED");
                     var gProm = Restangular.all("tasks").one("byMembership").getList();
-
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("memTasks", success);
                         memTasks = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
 
                     var gPromByMan = Restangular.all("tasks").one("byManager").getList();
-
                     gPromByMan.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("manTasks", success);
                         manTasks = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -278,6 +280,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     var gPromMaster = Restangular.all("tasks").getList();
                     gPromMaster.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("allTasks", success);
                         allTasks = success;
                     }, function(fail) {
             //            console.log(fail);

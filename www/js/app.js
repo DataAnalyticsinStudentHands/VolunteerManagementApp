@@ -182,6 +182,7 @@ constant('$ionicLoadingConfig', {
         maxWidth: 200,
         showDelay: 0
 }).
+
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
 //    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
@@ -195,37 +196,29 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 
     //CHECKING IF AUTHENTICATED ON STATE CHANGE - Called in $stateChangeStart
     $rootScope.isAuthenticated = function(authenticate) {
-        //BELOW - Trying to get promises to work to verify auth
-        vmaUserService.getMyUser().then(function(result) {
-            console.log("authed");
-            result = Restangular.stripRestangular(result)[0];
-            //USERNAME & ID TO BE USED IN CONTROLLERS
-            $rootScope.uid = result.id.toString();
-            $rootScope.uid_int = result.id;
-            $rootScope.uin = result.username.toString();
-        }, function(error) {
-            if(error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
-//                console.log("error-0");
-//                Restangular.allUrl('CHECKSITE', 'http://google.com').getList().then(
-//                    function(success) {
-//                        ngNotify.set("SERVER IS DOWN", {type : "error", sticky : true});
-//                    },
-//                    function(fail) {
-//                        ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
-//                    }
-//                );
-                ngNotify.set("Internet or Server Unavailable", {type : "error", sticky : true});
+        if(!$rootScope.uid) {
+            vmaUserService.getMyUser().then(function (result) {
+                console.log("authed");
+                result = Restangular.stripRestangular(result)[0];
+                //USERNAME & ID TO BE USED IN CONTROLLERS
+                $rootScope.uid = result.id.toString();
+                $rootScope.uid_int = result.id;
+                $rootScope.uin = result.username.toString();
+            });
+        }
+        //if(!$rootScope.role)
+        vmaUserService.getMyRole().then(function(success){
+                $rootScope.role = success;
+                $rootScope.isMod = (success == "ROLE_MODERATOR");
+                $rootScope.isAdm = (success == "ROLE_ADMIN");
+        }, function (error) {
+            if (error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
+                ngNotify.set("Internet or Server Unavailable", {type: "error", sticky: true});
             } else { // LOG THEM OUT
                 Auth.clearCredentials();
                 console.log("not-authed");
-                if(authenticate) $state.go("login");
+                if (authenticate) $state.go("login");
             }
-        });
-        vmaUserService.getMyRole().then(function(success){
-                $rootScope.role = success;
-//                console.log(success);
-                $rootScope.isMod = (success == "ROLE_MODERATOR");
-                $rootScope.isAdm = (success == "ROLE_ADMIN");
         });
         return Auth.hasCredentials();
     };
