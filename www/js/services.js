@@ -224,11 +224,38 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         deleteGroup:
             function(gid) {
-                return Restangular.all("groups").all(gid).remove();
+                return Restangular.all("groups").all(gid).remove().then(function(success){
+                    for(var i = 0; i < allGroups.length; i++) {
+                        if(allGroups[i].id == gid) {
+                            allGroups.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < manGroups.length; i++) {
+                        if(manGroups[i].id == gid) {
+                            manGroups.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < memGroups.length; i++) {
+                        if(memGroups[i].id == gid) {
+                            memGroups.splice(i, 1);
+                            break;
+                        }
+                    }
+                    return success;
+                });
             },
         joinGroup:
             function(gid, uid) {
-                return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post();
+                return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post().then(function(s){
+                    for(var i = 0; i < allGroups.length; i++) {
+                        if(allGroups[i].id == gid) {
+                            memGroups.push(allGroups[i]);
+                            break;
+                        }
+                    }
+                });
             },
         isManager:
             function(gid) {

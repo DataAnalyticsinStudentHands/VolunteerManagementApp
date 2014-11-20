@@ -459,7 +459,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
        $scope.ok = function () {
             var promise = vmaGroupService.deleteGroup(id);
             promise.then(function(success) {
-                $scope.updateGroups(true);
+                $scope.updateGroups();
                 ngNotify.set("Group deleted successfully!", 'success');
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -534,7 +534,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     $scope.joinGroup = function(id) {
         var jProm = vmaGroupService.joinGroup(id, $scope.uid);
         jProm.then(function(success) {
-            $scope.updateGroups(true);
+            $scope.updateGroups();
             ngNotify.set("Group joined successfully!", 'success');
         }, function(fail) {
             console.log(fail);
