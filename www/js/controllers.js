@@ -477,7 +477,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             scope : $scope
         }).then(function (modal) {
             $scope.modal = modal;
-            vmaGroupService.getGroup(id).then(function(success) { $scope.group = success });
+            vmaGroupService.getGroup(id).then(function(success) { $scope.editGroupNew = success; console.log(success)});
             $scope.modal.show();
         });
         $scope.openModal = function() {
@@ -490,7 +490,8 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             $scope.modal.remove();
         });
         $scope.ok = function () {
-            var promise = vmaGroupService.editGroup(id, $scope.group);
+            console.log($scope.editGroupNew);
+            var promise = vmaGroupService.editGroup(id, $scope.editGroupNew);
             promise.then(function(success) {
                 ngNotify.set("Group edited successfully!", 'success');
                 $scope.updateGroups(true);

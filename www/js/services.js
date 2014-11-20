@@ -60,7 +60,7 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
         deleteUser:
             function(uid) {
                 return Restangular.all("users").all(uid).remove();
-            },
+            }
     }
 }]);
 
@@ -208,16 +208,19 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         addGroup:
             function(group) {
-                group.id = 999;
-                allGroups.unshift(group);
-                manGroups.unshift(group);
-                group.id = null;
-                return Restangular.all("groups").post(group);
+                console.log(group);
+                return Restangular.all("groups").post(group).then(function(success){
+                    var newGroup = {};
+                    newGroup.id = eval(success);
+                    newGroup.name = group.name;
+                    newGroup.description = group.description;
+                    allGroups.unshift(newGroup);
+                    manGroups.unshift(newGroup);
+                });
             },
         editGroup:
             function(id, group) {
-                
-                return Restangular.all("groups").all(id).post(group);
+                return Restangular.all("groups").all(id).post({name: group.name, description:group.description});
             },
         deleteGroup:
             function(gid) {
