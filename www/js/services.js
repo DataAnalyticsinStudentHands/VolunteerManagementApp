@@ -295,7 +295,20 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
         leaveGroupMember:
             function(gid, uid) {
                 return this.leaveGroupManager(gid, uid).then(function(success) {
-                    return Restangular.all("groups").all(gid).all("MEMBER").all(uid).remove().then(function(success) {});
+                    return Restangular.all("groups").all(gid).all("MEMBER").all(uid).remove().then(function(success) {}).then(function(s){
+                        for(var i = 0; i < memGroups.length; i++) {
+                            if(memGroups[i].id == gid) {
+                                memGroups.splice(i, 1);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manGroups.length; i++) {
+                            if(manGroups[i].id == gid) {
+                                manGroups.splice(i, 1);
+                                break;
+                            }
+                        }
+                    });
                 });
             }
     }

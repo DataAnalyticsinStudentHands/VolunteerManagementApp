@@ -521,7 +521,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
        $scope.ok = function () {
             var promise = vmaGroupService.leaveGroupMember(id, $scope.uid);
             promise.then(function(success) {
-                $scope.updateGroups(true);
+                $scope.updateGroups();
                 ngNotify.set("Group left successfully!", 'success');
                 console.log(success);
             }, function(fail) {
