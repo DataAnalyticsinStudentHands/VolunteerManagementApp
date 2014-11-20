@@ -430,9 +430,8 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
-            console.log($scope.newGroup);
             promise.then(function(success) {
-                $scope.updateGroups(true);
+                $scope.updateGroups(false);
                 $scope.closeModal();
                 ngNotify.set("Group created successfully!", 'success');
             }, function(fail) {

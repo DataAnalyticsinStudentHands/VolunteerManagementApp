@@ -208,11 +208,16 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         addGroup:
             function(group) {
+                group.id = 999;
+                allGroups.unshift(group);
+                manGroups.unshift(group);
+                group.id = null;
                 return Restangular.all("groups").post(group);
             },
         editGroup:
             function(id, group) {
-                 return Restangular.all("groups").all(id).post(group);
+                
+                return Restangular.all("groups").all(id).post(group);
             },
         deleteGroup:
             function(gid) {
