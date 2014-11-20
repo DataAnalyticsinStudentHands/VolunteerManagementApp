@@ -378,14 +378,14 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     switch(state) {
         case "home.myGroups":
             $scope.update = function(update) {
-                vmaGroupService.getMetaJoinedGroups(update).then(function(success) { $scope.metaJoinedGroups = success; $ionicLoading.hide(); });
+                vmaGroupService.getMetaJoinedGroups(update).then(function(success) { $scope.groups = success; $ionicLoading.hide(); });
             };
             break;
         case "home.joinGroups":
             $scope.update = function(update) {
                 vmaGroupService.getMetaGroups(update).then(function(success) {
-                    $scope.metaGroups = success;
-                    $filter('removeJoined')($scope.metaGroups);
+                    $scope.groups = success;
+                    $filter('removeJoined')($scope.groups);
                     $ionicLoading.hide();
                 });
             };
@@ -407,7 +407,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     //OPENING MODAL TO ADD A GROUP
     $scope.addGroup = function() {
         $scope.openAdd();
-    }
+    };
     $scope.openAdd = function () {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/addGroup.html', {
@@ -554,7 +554,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
-        var actionObj = $filter('getById')($scope.metaJoinedGroups, id);
+        var actionObj = $filter('getById')($scope.groups, id);
         var ionicActionArray = [];
         if(actionObj.isManager || $scope.isAdm || $scope.isMod) {
             ionicActionArray.push(
