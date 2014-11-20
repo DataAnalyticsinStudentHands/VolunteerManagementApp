@@ -494,7 +494,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             var promise = vmaGroupService.editGroup(id, $scope.editGroupNew);
             promise.then(function(success) {
                 ngNotify.set("Group edited successfully!", 'success');
-                $scope.updateGroups(true);
+                $scope.updateGroups();
                 $scope.closeModal();
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');

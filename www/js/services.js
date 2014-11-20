@@ -220,7 +220,29 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         editGroup:
             function(id, group) {
-                return Restangular.all("groups").all(id).post({name: group.name, description:group.description});
+                return Restangular.all("groups").all(id).post({name: group.name, description:group.description}).then(function(s){
+                    for(var i = 0; i < allGroups.length; i++) {
+                        if(allGroups[i].id == id) {
+                            console.log(id);
+                            allGroups[i] = {id: group.id, name: group.name, description:group.description};
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < manGroups.length; i++) {
+                        if(manGroups[i].id == id) {
+                            console.log(id);
+                            manGroups[i] = {id: group.id, name: group.name, description:group.description};
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < memGroups.length; i++) {
+                        if(memGroups[i].id == id) {
+                            console.log(id);
+                            memGroups[i] = {id: group.id, name: group.name, description:group.description};
+                            break;
+                        }
+                    }
+                });
             },
         deleteGroup:
             function(gid) {
