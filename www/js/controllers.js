@@ -416,7 +416,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
             promise.then(function(success) {
-                $scope.updateGroups(false);
+                $scope.updateGroups();
                 $scope.closeModal();
                 ngNotify.set("Group created successfully!", 'success');
             }, function(fail) {
@@ -687,7 +687,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             $scope.newTask.badge_id = $scope.badgeOptions.indexOf($scope.chosenBadge.name);
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function(success) {
-                    $scope.updateTasks(false);
+                    $scope.updateTasks();
                     $scope.closeModal();
                     ngNotify.set("Task added successfully", "success");
                 }, function(fail) {
@@ -728,7 +728,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
             promise.then(function(success) {
                     ngNotify.set("Task edited successfully", "success");
-                    $scope.updateTasks(false);
+                    $scope.updateTasks();
                     $scope.closeModal();
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -756,7 +756,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $scope.ok = function () {
             var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
-                    $scope.updateTasks(false);
+                    $scope.updateTasks();
                     ngNotify.set("Task deleted successfully", "success");
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -768,7 +768,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.joinTask = function(task_id) {
         var promise = vmaTaskService.joinTask(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks(false);
+                $scope.updateTasks();
                 ngNotify.set("Task joined successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -1258,7 +1258,7 @@ vmaControllerModule.controller('task', ['$scope', '$state', '$stateParams', func
     };
 }]);
 
-vmaControllerModule.controller('efforts', ['$scope', 'ngNotify', function($scope, ngNotify) {
+vmaControllerModule.controller('efforts', ['$scope', function($scope) {
     $scope.invites = [
         {id:'3', group_name: "GROUP 3", icon: "img/temp_icon.png"},
         {id:'4', group_name: "GROUP 4", icon: "img/temp_icon.png"},
@@ -1478,7 +1478,7 @@ vmaControllerModule.controller('awards', ['$scope', 'tasks', function ($scope, t
 
 }]);
 
-vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', '$ionicModal', function($scope, $state, vmaTaskService, $compile, $modal) {
+vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', function($scope, $state, vmaTaskService, $compile) {
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasksAndDisplayCalendar = function() {
         var gPromMemb = vmaTaskService.getCalTasks($scope.id);
