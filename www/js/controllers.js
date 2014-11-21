@@ -43,7 +43,7 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
     $scope.registerUser = function() {
         Auth.setCredentials("Visitor", "test");
         $scope.salt = "nfp89gpe";
-        $scope.register.password = new String(CryptoJS.SHA512($scope.register.password + $scope.register.username + $scope.salt));
+        $scope.register.password = new String(CryptoJS.SHA512($scope.password.password + $scope.register.username + $scope.salt));
         $scope.$parent.Restangular().all("users").post($scope.register).then(
             function(success) {
                 Auth.clearCredentials();
@@ -53,7 +53,6 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
                 Auth.clearCredentials();
                 ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
         });
-
         Auth.clearCredentials();
     }
 }]);
@@ -62,7 +61,7 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     //OPENING THE MODAL TO LOG OUT A USER
     $scope.logOutUser = function(id) {
         $scope.openLogOut(id);
-    }
+    };
     $scope.openLogOut = function () {
         var confirmPopup = $ionicPopup.confirm({
                 title: 'Log Out',
