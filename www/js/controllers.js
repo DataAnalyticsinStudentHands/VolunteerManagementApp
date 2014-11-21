@@ -662,7 +662,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             console.log("ERROR: UNCAUGHT STATE: ", state);
             break;
     }
-    $scope.updateTasks();
+    $scope.updateTasks(true);
 
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
@@ -708,8 +708,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             $scope.newTask.badge_id = $scope.badgeOptions.indexOf($scope.chosenBadge.name);
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function(success) {
-                $scope.message = "ADD SUCCESS!";
-                    $scope.updateTasks(true);
+                    $scope.updateTasks(false);
                     $scope.closeModal();
                     ngNotify.set("Task added successfully", "success");
                 }, function(fail) {
@@ -750,7 +749,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.editTask(task_id, $scope.editTask);
             promise.then(function(success) {
                     ngNotify.set("Task edited successfully", "success");
-                    $scope.updateTasks(true);
+                    $scope.updateTasks(false);
                     $scope.closeModal();
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -779,7 +778,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             var promise = vmaTaskService.deleteTask(task_id);
             promise.then(function(success) {
                     console.log(success);
-                    $scope.updateTasks(true);
+                    $scope.updateTasks(false);
                     ngNotify.set("Task deleted successfully", "success");
                 }, function(fail) {
                     ngNotify.set(fail.data.message, 'error');
@@ -791,7 +790,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.joinTask = function(task_id) {
         var promise = vmaTaskService.joinTask(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks(true);
+                $scope.updateTasks(false);
                 ngNotify.set("Task joined successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -802,7 +801,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.leaveTask = function(task_id) {
         var promise = vmaTaskService.leaveTaskMember(task_id, $scope.uid);
         promise.then(function(success) {
-                $scope.updateTasks(true);
+                $scope.updateTasks();
                 ngNotify.set("Task left successfully", "success");
             }, function(fail) {
                 ngNotify.set(fail.data.message, 'error');
@@ -813,7 +812,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $ionicLoading.show();
         vmaTaskService.markFinished(task_id).then(function(){
             $timeout(function(){
-                $scope.updateTasks(true);
+                $scope.updateTasks();
             }, 500);
             ngNotify.set("Task marked complete successfully", "success");
             $ionicLoading.hide();
@@ -824,7 +823,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
         $ionicLoading.show();
         vmaTaskService.markUnFinished(task_id).then(function(){
             $timeout(function(){
-                $scope.updateTasks(true);
+                $scope.updateTasks();
             }, 500);
             ngNotify.set("Task marked incomplete successfully", "success");
             $ionicLoading.hide();

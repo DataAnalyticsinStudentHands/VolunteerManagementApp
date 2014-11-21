@@ -210,12 +210,13 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             function(group) {
                 console.log(group);
                 return Restangular.all("groups").post(group).then(function(success){
-                    var newGroup = {};
-                    newGroup.id = eval(success);
-                    newGroup.name = group.name;
-                    newGroup.description = group.description;
-                    allGroups.unshift(newGroup);
-                    manGroups.unshift(newGroup);
+                    //var newGroup = {};
+                    //newGroup.id = eval(success);
+                    //newGroup.name = group.name;
+                    //newGroup.description = group.description;
+                    group.id = eval(success);
+                    allGroups.unshift(angular.copy(group));
+                    manGroups.unshift(angular.copy(group));
                 });
             },
         editGroup:
@@ -224,21 +225,21 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     for(var i = 0; i < allGroups.length; i++) {
                         if(allGroups[i].id == id) {
                             console.log(id);
-                            allGroups[i] = {id: group.id, name: group.name, description:group.description};
+                            allGroups[i] = angular.copy(group);
                             break;
                         }
                     }
                     for(var i = 0; i < manGroups.length; i++) {
                         if(manGroups[i].id == id) {
                             console.log(id);
-                            manGroups[i] = {id: group.id, name: group.name, description:group.description};
+                            manGroups[i] = angular.copy(group);
                             break;
                         }
                     }
                     for(var i = 0; i < memGroups.length; i++) {
                         if(memGroups[i].id == id) {
                             console.log(id);
-                            memGroups[i] = {id: group.id, name: group.name, description:group.description};
+                            memGroups[i] = angular.copy(group);
                             break;
                         }
                     }
@@ -581,42 +582,143 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         addTask:
             function(task) {
-                return Restangular.all("tasks").post(task);
+                return Restangular.all("tasks").post(task).then(function(s){
+                    task.id = eval(s);
+                    allTasks.unshift(angular.copy(task));
+                    manTasks.unshift(angular.copy(task));
+                });
             },
         editTask:
             function(id, task) {
-                 return Restangular.all("tasks").all(id).doPUT(task);
+                 return Restangular.all("tasks").all(id).doPUT(task).then(function(s){
+                     for(var i = 0; i < allTasks.length; i++) {
+                         if(allTasks[i].id == id) {
+                             allTasks[i] = angular.copy(task);
+                             break;
+                         }
+                     }
+                     for(var i = 0; i < manTasks.length; i++) {
+                         if(manTasks[i].id == id) {
+                             manTasks[i] = angular.copy(task);
+                             break;
+                         }
+                     }
+                     for(var i = 0; i < memTasks.length; i++) {
+                         if(memTasks[i].id == id) {
+                             memTasks[i] = angular.copy(task);
+                             break;
+                         }
+                     }
+                 });
             },
         deleteTask:
             function(tid) {
-                return Restangular.all("tasks").all(tid).remove();
+                return Restangular.all("tasks").all(tid).remove().then(function(success){
+                    for(var i = 0; i < allTasks.length; i++) {
+                        if(allTasks[i].id == tid) {
+                            allTasks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < manTasks.length; i++) {
+                        if(manTasks[i].id == tid) {
+                            manTasks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < memTasks.length; i++) {
+                        if(memTasks[i].id == tid) {
+                            memTasks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    return success;
+                });
             },
         joinTask:
             function(tid, uid) {
-                return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).post();
+                return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).post().then(function(s){
+                    for(var i = 0; i < allTasks.length; i++) {
+                        if(allTasks[i].id == tid) {
+                            memTasks.push(allTasks[i]);
+                            break;
+                        }
+                    }
+                });
             },
         leaveTaskManager:
             function(tid, uid) {
-                 return Restangular.all("tasks").all(tid).all("MANAGER").all(uid).remove().then(function(success) {});
+                 return Restangular.all("tasks").all(tid).all("MANAGER").all(uid).remove();
             },
         leaveTaskMember:
             function(tid, uid) {
                 return this.leaveTaskManager(tid, uid).then(function(success) {
-                    return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {});
+                    return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {
+                        for(var i = 0; i < memTasks.length; i++) {
+                            if(memTasks[i].id == tid) {
+                                memTasks.splice(i, 1);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manTasks.length; i++) {
+                            if(manTasks[i].id == tid) {
+                                manTasks.splice(i, 1);
+                                break;
+                            }
+                        }
+                    });
                 });
             },
         markFinished:
             function(tid) {
                 return Restangular.all("tasks").all(tid).doGET().then(function(success){
                     success.finished = 1;
-                    Restangular.all("tasks").all(tid).post(success);
+                    Restangular.all("tasks").all(tid).post(success).then(function(){
+                        for(var i = 0; i < allTasks.length; i++) {
+                            if(allTasks[i].id == tid) {
+                                allTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manTasks.length; i++) {
+                            if(manTasks[i].id == tid) {
+                                manTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < memTasks.length; i++) {
+                            if(memTasks[i].id == tid) {
+                                memTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                    });;
                 });
             },
         markUnFinished:
             function(tid) {
                 return Restangular.all("tasks").all(tid).doGET().then(function(success){
                     success.finished = 0;
-                    Restangular.all("tasks").all(tid).post(success);
+                    Restangular.all("tasks").all(tid).post(success).then(function(){
+                        for(var i = 0; i < allTasks.length; i++) {
+                            if(allTasks[i].id == tid) {
+                                allTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manTasks.length; i++) {
+                            if(manTasks[i].id == tid) {
+                                manTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < memTasks.length; i++) {
+                            if(memTasks[i].id == tid) {
+                                memTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                    });
                 });
             }
     }
