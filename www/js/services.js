@@ -542,9 +542,10 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                             var localoffset = (new Date(entry.time)).getTimezoneOffset();
                             // "unadjust" date
                             entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
-    //                        console.log(new Date(entry.time));
-    //                        console.log(entry.id);
-                            result.push({"title" : entry.name, "start": entry.time, "url": "viewTask(" + entry.id + ")"});
+                            var URL = "/#/task" + JSON.stringify(entry);
+                            URL = encodeURI(URL);
+                            console.log(URL);
+                            result.push({"title" : entry.name, "start": entry.time, "url": URL});
                         }
                     });
                     return result;

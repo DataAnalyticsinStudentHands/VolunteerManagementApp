@@ -1483,21 +1483,22 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
         gPromMemb.then(function(success) {
             $scope.calTasks = success;
             displayFullCalendar($scope.calTasks);
-            $compile($('#calendar'))($scope);
-        }, function(fail) {
+            //$compile($('#calendar'))($scope);
         });
     };
 
-
     $scope.updateTasksAndDisplayCalendar();
-
-    $scope.$watch(function() {
-        return $('#calendar').length;
-    }, function() {
-        $compile($('#calendar'))($scope);
-        //element.html($parse(attr.content)(scope));
-        //$compile(element.contents())(scope);
-    }, true);
+    //var watchCalendar = function() {
+    //    $scope.$watch(function() {
+    //        return $('#calendar').length;
+    //    }, function() {
+    //        console.log("FOUND CHANGE");
+    //        $compile($('#calendar'))($scope);
+    //        element.html($parse(attr.content)(scope));
+    //        $compile(element.contents())(scope);
+        //}, true);
+    //};
+    //watchCalendar();
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
         $scope.task = vmaTaskService.getTaskView(click_id);
