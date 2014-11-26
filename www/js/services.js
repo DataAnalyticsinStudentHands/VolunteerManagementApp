@@ -903,21 +903,17 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
         getTaskMessages:
             function(num, ind, tid) {
                 return this.getTaskMessagesPromise(num, ind, tid).then(function(success) {
+                    var localMsgObj;
                     if(success.length > 0) {
-                        var localMsgObj;
                         localMsgObj = localStorage.getObject("Task" + tid);
-                        console.log("FROM LS", localMsgObj);
                         if(localMsgObj == null){
                             localMsgObj = success;
-                            console.log("We're making it null");
                         } else {
-                            console.log(success);
                             localMsgObj = localMsgObj.concat(success);
-                            console.log(localMsgObj);
                         }
                         localStorage.setObject("Task" + tid, localMsgObj);
                     }
-                    return success;
+                    return localMsgObj;
                 });
             },
         getTaskMessagesFromLocalStorage:
@@ -946,8 +942,10 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
             },
         addMessage:
             function(message, uid, tid) {
-                var msg = {"content" : message.message, "sender_id": uid, "task_id": tid};
-                return Restangular.all("messages").post(msg);
+                if(message.message != ""){
+                    var msg = {"content" : message.message, "sender_id": uid, "task_id": tid};
+                    return Restangular.all("messages").post(msg);
+                }
             },
         editMessage:
             function(id, message) {

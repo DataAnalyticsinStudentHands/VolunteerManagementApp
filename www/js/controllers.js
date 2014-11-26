@@ -942,7 +942,11 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
         if($scope.groupMSGs && $scope.groupMSGs.length > 0) {
             startId = $scope.groupMSGs[$scope.groupMSGs.length-1].id;
         }
-        vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
+        vmaMessageService.getTaskMessages(1000000, startId, $scope.id).then(function(s) {
+            //$scope.groupMSGs = s;
+            $scope.groupMSGs = vmaMessageService.getTaskMessagesFromLocalStorage($scope.id);
+            //console.log(s);
+        });
         $ionicScrollDelegate.scrollBottom(true);
     };
     $scope.updateMessages();
