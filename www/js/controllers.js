@@ -950,7 +950,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     };
     $scope.updateMessages();
 
-    $interval(function() {
+    var stopRefresh = $interval(function() {
         $scope.updateMessages();
     }, 5000);
 
@@ -1090,6 +1090,8 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
             $scope.modal.remove();
             event.preventDefault();
         }
+        $interval.cancel(stopRefresh);
+        stopRefresh = undefined;
     });
 }]);
 
