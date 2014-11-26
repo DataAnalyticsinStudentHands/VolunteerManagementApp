@@ -83,6 +83,8 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     };
     $scope.out = function() {
         Auth.clearCredentials();
+        localStorage.clear();
+        location.reload();
         $state.go("home", {}, {reload: true});
     }
 }]);
