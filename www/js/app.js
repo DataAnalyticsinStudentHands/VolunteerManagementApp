@@ -172,7 +172,6 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider) {
           authenticate: true
       });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
-//    angular.extend($popoverProvider.defaults, { html: true });
 }).
 
 constant('$ionicLoadingConfig', {

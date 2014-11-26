@@ -428,7 +428,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     //OPENING THE MODAL TO DELETE A GROUP
     $scope.deleteGroup = function(id) {
         $scope.openDelete(id);
-    }
+    };
     $scope.openDelete = function (id) {
        var confirmPopup = $ionicPopup.confirm({
          title: 'Delete Group',
@@ -455,7 +455,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     //OPENING THE MODAL TO EDIT A GROUP
     $scope.editGroup = function(id) {
         $scope.openEdit(id);
-    }
+    };
     $scope.openEdit = function (id) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/editGroup.html', {
@@ -489,7 +489,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     //OPENING THE MODAL TO LEAVE A GROUP
     $scope.leaveGroup = function(id) {
         $scope.openLeave(id);
-    }
+    };
     $scope.openLeave = function (id) {
        var confirmPopup = $ionicPopup.confirm({
          title: 'Leave Group',
@@ -522,17 +522,17 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
         }, function(fail) {
             ngNotify.set(fail.data.message, 'error');
         });
-    }
+    };
 
     //VIEW POSTS
     $scope.viewPost = function(pid) {
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
-    }
+    };
 
     //VIEW GROUP
     $scope.viewGroup = function(gid) {
         $state.go("home.group", {"id" : gid});
-    }
+    };
 
     //PERMISSIONS
     $scope.generateActions = function(id) {
