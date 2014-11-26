@@ -931,15 +931,6 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                 } else
                     return null;
             },
-        getMessage:
-            function(message_id, task_id) {
-                return Restangular.all("messages").get(message_id).then(function(success) {
-//                    success = success.stripRestangular(success);
-                    var message = success;
-//                    console.log(message);
-                    return Restangular.stripRestangular(message);
-                });
-            },
         addMessage:
             function(message, uid, tid) {
                 if(message.message != ""){
