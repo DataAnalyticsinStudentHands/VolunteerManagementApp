@@ -902,18 +902,12 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
 }]);
 
 vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService', 'vmaUserService', function(Restangular, $q, vmaTaskService, vmaUserService) {
-    var allMessages = [];
-    var allMessagesPlain = [];
-    var myTaskMessages = [];
-    var metaMessages = [];
-    var refresh = true;
     return {
         getTaskMessagesPromise:
             function(numMessages, startindex, tid) {
                 var promAll = Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
                 return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
-                    allMessagesPlain = success;
                     var resultMessages = [];
                     success.forEach(function(message) {
                         message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
@@ -957,7 +951,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
         deleteMessage:
             function(mid) {
                 return Restangular.all("messages").all(mid).remove();
-            },
+            }
     }
 }]);
 

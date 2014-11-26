@@ -5,7 +5,7 @@
 </ion-nav-buttons>
 <ion-pane class="messaging-view">
     <ion-content class="content-stable" ng-style="{ bottom: data.keyboardHeight + 'px' }">
-        <div ng-repeat="groupMSG in groupMSGs" ng-class="{ other: groupMSG.user.id == uid_int }" class="message">
+        <div ng-repeat="groupMSG in groupMSGs" ng-class="{ other: groupMSG.user.id == uid }" class="message">
             <div class="photo icon ion-person"></div>
             <!--<div class="vma_message_username"><span>{{ groupMSG.user.username }}</span></div>-->
             <div class="message"><span>
