@@ -839,7 +839,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
         deletePost:
             function(pid) {
                 return Restangular.all("posts").all(pid).remove();
-            },
+            }
     }
 }]);
 
@@ -897,7 +897,7 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
         deleteComment:
             function(cid) {
                 return Restangular.all("comments").all(cid).remove();
-            },
+            }
     }
 }]);
 
@@ -919,10 +919,6 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                 }, function(fail) {
 
                 });
-            },
-        getTaskMessagesPlain:
-            function(numMessages, startindex, tid) {
-                return Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
             },
         getTaskMessages:
             function(num, ind, tid) {
