@@ -195,12 +195,12 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     //VIEW POST
     $scope.viewPost = function(pid) {
         $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
-    }
+    };
 
     //OPEN EDIT FUNCTION AND OPEN MODAL
     $scope.editPost = function(pid) {
         $scope.openEdit(pid);
-    }
+    };
     $scope.openEdit = function(pid) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/addPost.html', {
@@ -240,7 +240,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     //OPEN ADD FUNCTION AND DELETE
     $scope.addPost = function() {
         $scope.openAdd();
-    }
+    };
     $scope.openAdd = function() {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
         $ionicModal.fromTemplateUrl('partials/addPost.html', {
@@ -321,7 +321,6 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
         return ($scope.generateActions(post_id).length > 0);
     };
 
-
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
         scope: $scope
     }).then(function(popover) {
@@ -347,7 +346,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
             $scope.popover.hide();
             return true;
         };
-    }
+    };
 
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if($scope.modal && $scope.modal.isShown()) {
@@ -387,7 +386,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             return true;
     }
     $scope.updateGroups = $scope.update;
-    $scope.update(true);
+    $scope.update();
 
     //OPENING MODAL TO ADD A GROUP
     $scope.addGroup = function() {
@@ -559,7 +558,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     //PERMISSION SHOW CHECK
     $scope.actionCount = function(id) {
         if($scope.generateActions(id).length > 0) return true; else return false;
-    }
+    };
 
     $ionicPopover.fromTemplateUrl('partials/popoverOptsArray.html', {
         scope: $scope
@@ -590,7 +589,6 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             return true;
         }
     };
-
 
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if($scope.modal && $scope.modal.isShown()) {
@@ -641,7 +639,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             console.log("ERROR: UNCAUGHT STATE: ", state);
             break;
     }
-    $scope.updateTasks(true);
+    $scope.updateTasks();
 
     //VIEW A TASK
     $scope.viewTask = function(click_id) {

@@ -726,12 +726,10 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
 
 vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', 'vmaUserService', 'vmaCommentService', function(Restangular, $q, vmaGroupService, vmaUserService, vmaCommentService) {
     var allPosts = [];
-    var allPostsPlain = [];
     var myGroupPosts = [];
     var metaPosts = [];
-    var refresh = true;
     return {
-        //NOT USED
+        //NOT USED OUTSIDE OF SERVICE
         updatePosts:
             function() {
                 if(refresh) {
@@ -758,7 +756,6 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return deferred.promise;
                 }
             },
-        //NOT USED
         getAllPosts:
             function() {
                 return this.updatePosts().then(function(success) {
@@ -844,19 +841,12 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
 }]);
 
 vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService', function(Restangular, $q, vmaUserService) {
-    var allComments = [];
-    var allCommentsPlain = [];
-    var myPostComments = [];
-    var metaComments = [];
-    var refresh = true;
     return {
         getPostCommentsPromise:
             function(numComments, startindex, pid) {
                 var promAll = Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
                 return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
-                    allCommentsPlain = success;
-//                    console.log(allCommentsPlain);
                     var resultComments = [];
                     success.forEach(function(comment) {
                         comment.time =   new Date(comment.creation_timestamp).toDateString() + " " + new Date(comment.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
@@ -870,10 +860,6 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
 
                 });
              },
-        getPostCommentsPlain:
-            function(numComments, startindex, pid) {
-                return Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
-            },
         getPostComments:
             function(num, ind, pid) {
                 return this.getPostCommentsPromise(num, ind, pid).then(function(success) {
