@@ -1,12 +1,6 @@
-
 .platform-c:not(.enable-transitions) * {
     -webkit-transition: none !important;
-    transition: none !important;
-}
-
-.content-stable {
-    background: #f8f8f8;
-}
+    transition: none !important; }
 
 .messaging-view .scroll {
     min-height: 100%;
@@ -26,11 +20,10 @@
     font-size: 50px;
     text-align: center;
     border-radius: 50%;
-    /*margin-top: 10px; *//*I ADDED THIS TO MAKE EVERYTHING SEEM MOER IN LINE*/
     overflow: hidden;
 }
 
-.messaging-view .message .message {
+.messaging-vief .message .message {
     overflow: hidden;
     padding: 5px 5px 0;
     text-align: left;

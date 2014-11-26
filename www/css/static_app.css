@@ -67,22 +67,6 @@
     bottom: 30px;
 }
 
-/***************group.MSG*******************************/
-#vma_groupMSG{
-    position: relative;
-    font-size: 7pt;
-    color: lightblue;
-    bottom:10px;
-}
-
-#vma_groupMSGuser{
-    color:gray;
-}
-
-#vma_groupMSGcontent{
-    color: black;
-}
-
 /***********CommunityFeed*******************************/
 #vma_post_time{
     font-size: 6pt;
