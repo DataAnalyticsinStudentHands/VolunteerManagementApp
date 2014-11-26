@@ -544,7 +544,6 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                             entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
                             var URL = "/#/task" + JSON.stringify(entry);
                             URL = encodeURI(URL);
-                            console.log(URL);
                             result.push({"title" : entry.name, "start": entry.time, "url": URL});
                         }
                     });
