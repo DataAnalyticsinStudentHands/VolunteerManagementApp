@@ -183,9 +183,9 @@ constant('$ionicLoadingConfig', {
 }).
 
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-    //Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
+    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
-    Restangular.setBaseUrl("https://www.housuggest.org:8443/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
+//    Restangular.setBaseUrl("https://www.housuggest.org:8443/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
 
     //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
@@ -211,8 +211,9 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
         }, function (error) {
             if (error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
                 ngNotify.set("Internet or Server Unavailable", {type: "error", sticky: true});
-            } else { // LOG THEM OUT
+            } else { //Most Likely a 403 - LOG THEM OUT
                 Auth.clearCredentials();
+                localStorage.clear();
                 console.log("not-authed");
                 if (authenticate) $state.go("login");
             }

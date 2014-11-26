@@ -898,15 +898,42 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                         resultMessages.push(message);
                     });
                     return resultMessages;
-                }, function(fail) {
-
                 });
             },
         getTaskMessages:
             function(num, ind, tid) {
                 return this.getTaskMessagesPromise(num, ind, tid).then(function(success) {
+                    if(success.length > 0) {
+                        var localMsgObj;
+                        localMsgObj = localStorage.getObject("Task" + tid);
+                        console.log("FROM LS", localMsgObj);
+                        if(localMsgObj == null){
+                            localMsgObj = success;
+                            console.log("We're making it null");
+                        } else {
+                            console.log(success);
+                            localMsgObj = localMsgObj.concat(success);
+                            console.log(localMsgObj);
+                        }
+                        localStorage.setObject("Task" + tid, localMsgObj);
+                    }
                     return success;
                 });
+            },
+        getTaskMessagesFromLocalStorage:
+            function(tid){
+                var success = localStorage.getObject("Task" + tid);
+                var resultMessages = [];
+                if(success) {
+                    success.forEach(function(message) {
+                        message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                        vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
+                        message.img = "img/avatar.icon.png";
+                        resultMessages.push(message);
+                    });
+                    return resultMessages;
+                } else
+                    return null;
             },
         getMessage:
             function(message_id, task_id) {

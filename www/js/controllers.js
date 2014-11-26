@@ -936,43 +936,26 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
     });
     $scope.groupMSGs = [];
 
-    $scope.updateMessages = function(startId) {
-        var prom = vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
-        prom.then(function(success) {
-            $scope.groupMSGs = success;
-            $ionicScrollDelegate.scrollBottom(true);
-        }, function(fail) {
-
-        });
+    $scope.updateMessages = function() {
+        $scope.groupMSGs = vmaMessageService.getTaskMessagesFromLocalStorage($scope.id);
+        var startId = null;
+        if($scope.groupMSGs && $scope.groupMSGs.length > 0) {
+            startId = $scope.groupMSGs[$scope.groupMSGs.length-1].id;
+        }
+        vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
+        $ionicScrollDelegate.scrollBottom(true);
     };
     $scope.updateMessages();
 
-    $scope.refreshMessages = function(startId) {
-        var prom = vmaMessageService.getTaskMessages(1000000, startId, $scope.id);
-        prom.then(function(success) {
-            //$scope.groupMSGs.concat(success);
-            //if(success.length>0)
-            //    $ionicScrollDelegate.scrollBottom(true);
-            if(success.length != $scope.groupMSGs.length){
-                $scope.groupMSGs = success;
-                $ionicScrollDelegate.scrollBottom(true);
-            }
-        }, function(fail) {
-
-        });
-    };
-
     $interval(function() {
-        if($scope.groupMSGs && $scope.groupMSGs.length>0)
-            //$scope.refreshMessages($scope.groupMSGs[$scope.groupMSGs.length-1].id);
-            $scope.refreshMessages();
+        $scope.updateMessages();
     }, 5000);
 
     $scope.addMsg = function() {
         if($scope.msg != undefined)
-        vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) {
-            $scope.updateMessages()
-        });
+            vmaMessageService.addMessage($scope.msg, $scope.uid, $scope.id).then(function(success) {
+                $scope.updateMessages()
+            });
         $scope.msg = "";
     };
 
