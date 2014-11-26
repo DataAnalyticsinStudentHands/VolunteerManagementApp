@@ -91,5 +91,5 @@
 
 #calendar{
     background-color: white;
-    overflow: hidden;
+    overflow-y: scroll;
 }

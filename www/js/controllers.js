@@ -1482,13 +1482,13 @@ vmaControllerModule.controller('awards', ['$scope', 'tasks', function ($scope, t
 
 }]);
 
-vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$compile', function($scope, $state, vmaTaskService, $compile) {
+vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService', '$ionicScrollDelegate', function($scope, $state, vmaTaskService, $ionicScrollDelegate) {
     //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
     $scope.updateTasksAndDisplayCalendar = function() {
-        var gPromMemb = vmaTaskService.getCalTasks($scope.id);
-        gPromMemb.then(function(success) {
+        vmaTaskService.getCalTasks($scope.id).then(function(success) {
             $scope.calTasks = success;
             displayFullCalendar($scope.calTasks);
+            $ionicScrollDelegate.resize();
         });
     };
 
