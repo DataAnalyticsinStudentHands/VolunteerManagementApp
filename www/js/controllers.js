@@ -1409,7 +1409,6 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     $scope.openDatePicker = function () {
         if(!$scope.tmp)
             $scope.tmp = {};
-//        $scope.tmp.newDate = $scope.newTask.time;
         $ionicPopup.show({
             template: '<datetimepicker data-ng-model="tmp.newDate"></datetimepicker>',
             title: "Task Date & Time",
@@ -1494,11 +1493,6 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
     };
 
     $scope.updateTasksAndDisplayCalendar();
-
-    $scope.viewTask = function(click_id) {
-        $scope.task = vmaTaskService.getTaskView(click_id);
-        $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
-    }
 }]);
 
 vmaControllerModule.controller('menuCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', function($scope, $state, $ionicSideMenuDelegate) {
