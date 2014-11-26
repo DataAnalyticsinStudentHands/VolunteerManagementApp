@@ -523,11 +523,6 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         obj.isMember = true;
                         result.push(obj);
                     });
-//                    subTasks.forEach(function(obj){
-//                        obj.isTask = true;
-//                        result.push(obj);
-//                    });
-//                    metaTasks = result;
                     return result;
                 });
             },
@@ -541,6 +536,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         if(entry.time) {
                             var localoffset = (new Date(entry.time)).getTimezoneOffset();
                             // "unadjust" date
+                            entry.datetime = new Date(entry.time).toDateString() + " " + new Date(entry.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                             entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
                             var URL = "/#/task" + JSON.stringify(entry);
                             URL = encodeURI(URL);
