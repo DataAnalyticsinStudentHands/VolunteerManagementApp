@@ -1439,12 +1439,19 @@ vmaControllerModule.controller('awards', ['$scope', 'tasks', function ($scope, t
     ];
 
     $scope.total_hours = tasks[0] + tasks[1] + tasks[2] + tasks[3] + tasks[4];
-    $scope.badge1_percent = Math.round($scope.badges[0][1]/$scope.total_hours * 100);
-    $scope.badge2_percent = Math.round($scope.badges[1][1]/$scope.total_hours * 100);
-    $scope.badge3_percent = Math.round($scope.badges[2][1]/$scope.total_hours * 100);
-    $scope.badge4_percent = Math.round($scope.badges[3][1]/$scope.total_hours * 100);
-    $scope.badge5_percent = Math.round($scope.badges[4][1]/$scope.total_hours * 100);
-
+    if($scope.total_hours != 0) {
+        $scope.badge1_percent = Math.round($scope.badges[0][1] / $scope.total_hours * 100);
+        $scope.badge2_percent = Math.round($scope.badges[1][1] / $scope.total_hours * 100);
+        $scope.badge3_percent = Math.round($scope.badges[2][1] / $scope.total_hours * 100);
+        $scope.badge4_percent = Math.round($scope.badges[3][1] / $scope.total_hours * 100);
+        $scope.badge5_percent = Math.round($scope.badges[4][1] / $scope.total_hours * 100);
+    } else {
+        $scope.badge1_percent = 0;
+        $scope.badge2_percent = 0;
+        $scope.badge3_percent = 0;
+        $scope.badge4_percent = 0;
+        $scope.badge5_percent = 0;
+    }
     $scope.chartConfig = {
         options: {
             chart: {
@@ -1483,23 +1490,11 @@ vmaControllerModule.controller('calendar', ['$scope', '$state', 'vmaTaskService'
         gPromMemb.then(function(success) {
             $scope.calTasks = success;
             displayFullCalendar($scope.calTasks);
-            //$compile($('#calendar'))($scope);
         });
     };
 
     $scope.updateTasksAndDisplayCalendar();
-    //var watchCalendar = function() {
-    //    $scope.$watch(function() {
-    //        return $('#calendar').length;
-    //    }, function() {
-    //        console.log("FOUND CHANGE");
-    //        $compile($('#calendar'))($scope);
-    //        element.html($parse(attr.content)(scope));
-    //        $compile(element.contents())(scope);
-        //}, true);
-    //};
-    //watchCalendar();
-    //VIEW A TASK
+
     $scope.viewTask = function(click_id) {
         $scope.task = vmaTaskService.getTaskView(click_id);
         $state.go("home.task", {"task" : JSON.stringify($scope.task)}, [{reload: false}]);
