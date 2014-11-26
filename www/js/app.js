@@ -212,9 +212,11 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
                 ngNotify.set("Internet or Server Unavailable", {type: "error", sticky: true});
             } else { //Most Likely a 403 - LOG THEM OUT
                 Auth.clearCredentials();
-                localStorage.clear();
                 console.log("not-authed");
-                if (authenticate) $state.go("login");
+                if (authenticate) {
+                    $state.go("login");
+                    location.reload();
+                }
             }
         });
         return Auth.hasCredentials();
