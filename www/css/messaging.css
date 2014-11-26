@@ -23,7 +23,7 @@
     overflow: hidden;
 }
 
-.messaging-vief .message .message {
+.messaging-view .message .message {
     overflow: hidden;
     padding: 5px 5px 0;
     text-align: left;
