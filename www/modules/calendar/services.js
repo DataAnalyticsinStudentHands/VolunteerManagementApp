@@ -3,6 +3,7 @@ function displayFullCalendar(eventsFromScope) {
         //console.log(eventsFromScope);
 	    var dateToday = new Date(); //TODAY
 		$('#calendar').fullCalendar({
+            height: 1000,
 			header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -25,12 +26,12 @@ function displayFullCalendar(eventsFromScope) {
 $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
 				}
 				$('#calendar').fullCalendar('unselect');
-        	},    
-            
-    //allows the events to be draggable or not. 
+        	},
+
+    //allows the events to be draggable or not.
             editable: false,
 			events: eventsFromScope
-		
+
 	       });
 
         //This is to add an event by clicking, doesn't work yet....
@@ -42,7 +43,7 @@ $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
             alert('View: ' + view.name);
         }});
 }
-    
+
 
 
 
