@@ -63,8 +63,11 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
             },
         getAvatarPath:
             function(id) {
-                return this.getUser(id).then(function(s){
-                    return "http://housuggest.org/CoreVMA/users/" + s.picture  + s.profile_picture_filename;
+                return this.getMyUser(id).then(function(s){
+                    console.log(Restangular.stripRestangular(s));
+                    s = s[0];
+                    console.log(s);
+                    return "http://housuggest.org/CoreVMA/users/" + s.picturePath  + "/" + s.profile_picture_filename;
                 });
             }
     }

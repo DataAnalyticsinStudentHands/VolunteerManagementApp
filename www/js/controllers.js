@@ -88,8 +88,10 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     }
 }]);
 
-vmaControllerModule.controller('userPicture', ['$scope', '$state', 'Auth', '$ionicModal', '$ionicPopup', function($scope, $state, Auth, $ionicModal, $ionicPopup) {
-
+vmaControllerModule.controller('userPicture', ['$scope', '$state', 'Auth', '$ionicModal', '$ionicPopup', 'vmaUserService', function($scope, $state, Auth, $ionicModal, $ionicPopup, vmaUserService) {
+    vmaUserService.getAvatarPath($scope.uid).then(function(s){
+        $scope.avatarPath = s;
+    });
 }]);
 
 vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', '$ionicPopover', '$ionicLoading', function($scope, $state, vmaPostService, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter, $ionicPopover, $ionicLoading) {
