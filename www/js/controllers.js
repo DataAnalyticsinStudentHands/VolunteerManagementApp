@@ -88,6 +88,10 @@ vmaControllerModule.controller('settings', ['$scope', '$state', 'Auth', '$ionicM
     }
 }]);
 
+vmaControllerModule.controller('userPicture', ['$scope', '$state', 'Auth', '$ionicModal', '$ionicPopup', function($scope, $state, Auth, $ionicModal, $ionicPopup) {
+
+}]);
+
 vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostService', 'ngNotify', '$ionicModal', '$stateParams', '$ionicPopup', '$filter', '$ionicPopover', '$ionicLoading', function($scope, $state, vmaPostService, ngNotify, $ionicModal, $stateParams, $ionicPopup, $filter, $ionicPopover, $ionicLoading) {
     $scope.posts = [];
     $scope.notReachedEnd = true;

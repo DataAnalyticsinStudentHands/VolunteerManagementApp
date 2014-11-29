@@ -60,6 +60,12 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
         deleteUser:
             function(uid) {
                 return Restangular.all("users").all(uid).remove();
+            },
+        getAvatarPath:
+            function(id) {
+                return this.getUser(id).then(function(s){
+                    return "http://housuggest.org/CoreVMA/users/" + s.picture  + s.profile_picture_filename;
+                });
             }
     }
 }]);
