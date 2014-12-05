@@ -40,8 +40,8 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
                      Auth.clearCredentials();
                      $ionicLoading.hide();
                  } else {
-                     $scope.loginMsg = "Not doing it.";
-                     ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
+                     //$scope.loginMsg = "Not doing it.";
+                     //ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
                  }
              }, 10000)
          } else {
