@@ -181,8 +181,22 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
 
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-        console.log(response);
+        console.log(data, operation, what, url, response, deferred);
         return data;
+    });
+
+    RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
+        //if(response.status === 403) {
+        //    refreshAccesstoken().then(function() {
+        //        // Repeat the request and then call the handlers the usual way.
+        //        $http(response.config).then(responseHandler, deferred.reject);
+        //        // Be aware that no request interceptors are called this way.
+        //    });
+        //
+        //    return false; // error handled
+        //}
+        console.log(response);
+        return true; // error not handled
     });
 }).
 
@@ -195,9 +209,9 @@ constant('$ionicLoadingConfig', {
 }).
 
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-    //Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
+    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
-    Restangular.setBaseUrl("https://www.housuggest.org:8443/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
+//    Restangular.setBaseUrl("https://www.housuggest.org:8443/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
 
     //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
