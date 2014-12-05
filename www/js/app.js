@@ -15,7 +15,7 @@ angular.module('volunteerManagementApp', [
     'ui.bootstrap.datetimepicker'
 ]).
 
-config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -179,6 +179,11 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider) {
           authenticate: true
       });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
+
+    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+        console.log(response);
+        return data;
+    });
 }).
 
 constant('$ionicLoadingConfig', {
