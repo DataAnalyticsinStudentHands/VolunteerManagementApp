@@ -53,24 +53,34 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
 
 vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngNotify', '$ionicLoading', function($scope, $state, Auth, ngNotify, $ionicLoading) {
     $scope.registerUser = function() {
-        Auth.setCredentials("Visitor", "test");
-        $scope.salt = "nfp89gpe";
-        $scope.register.password = new String(CryptoJS.SHA512($scope.password.password + $scope.register.username + $scope.salt));
-        $ionicLoading.show();
-        $scope.$parent.Restangular().all("users").post($scope.register).then(
-            function(success) {
-                $ionicLoading.hide();
-                Auth.clearCredentials();
-                Auth.setCredentials($scope.register.username, $scope.register.password);
-                Auth.confirmCredentials();
-                ngNotify.set("User account created!", {position: 'top', type: 'success'});
-                $state.go("home.cfeed", {}, {reload: true});
-            },function(fail) {
-                $ionicLoading.hide();
-                Auth.clearCredentials();
-                ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
-        });
-        Auth.clearCredentials();
+        if($scope.password.password === $scope.confirm.password) {
+            Auth.setCredentials("Visitor", "test");
+            $scope.salt = "nfp89gpe";
+            $scope.register.password = new String(CryptoJS.SHA512($scope.password.password + $scope.register.username + $scope.salt));
+            $ionicLoading.show();
+            $scope.$parent.Restangular().all("users").post($scope.register).then(
+                function (success) {
+                    $ionicLoading.hide();
+                    Auth.clearCredentials();
+                    Auth.setCredentials($scope.register.username, $scope.register.password);
+                    Auth.confirmCredentials();
+                    ngNotify.set("User account created!", {position: 'top', type: 'success'});
+                    $state.go("home.cfeed", {}, {reload: true});
+                }, function (fail) {
+                    $ionicLoading.hide();
+                    Auth.clearCredentials();
+                    ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
+                });
+            Auth.clearCredentials();
+        } else {
+            if($scope.confirm.password === "") {
+                $scope.password.password = "";
+                $scope.confirm.password = "";
+                ngNotify.set("Passwords must match!", {position: 'top', type: 'error'});
+            } else {
+                ngNotify.set("Password must not be empty!", {position: 'top', type: 'error'});
+            }
+        }
     }
 }]);
 
