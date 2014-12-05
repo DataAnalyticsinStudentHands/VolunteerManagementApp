@@ -393,7 +393,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
             return true;
     }
     $scope.updateGroups = $scope.update;
-    $scope.update();
+    $scope.update(true);
 
     //OPENING MODAL TO ADD A GROUP
     $scope.addGroup = function() {
@@ -646,7 +646,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
             console.log("ERROR: UNCAUGHT STATE: ", state);
             break;
     }
-    $scope.updateTasks();
+    $scope.updateTasks(true);
 
     //VIEW A TASK
     $scope.viewTask = function(click_id) {

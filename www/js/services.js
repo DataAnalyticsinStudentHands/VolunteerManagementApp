@@ -283,7 +283,11 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                 return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post().then(function(s){
                     for(var i = 0; i < allGroups.length; i++) {
                         if(allGroups[i].id == gid) {
-                            memGroups.push(allGroups[i]);
+                            var group = $filter('getById')(memGroups, allGroups[i].gid);
+                            if(!group) {
+                                console.log("PUSH");
+                                memGroups.push(allGroups[i]);
+                            }
                             break;
                         }
                     }
