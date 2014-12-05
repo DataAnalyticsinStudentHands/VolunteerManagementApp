@@ -8,30 +8,42 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
          $state.go('home');
      }
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
-     $scope.submit = function() {
+     $scope.$parent.submit = function() {
          if ($scope.userName && $scope.passWord) {
              document.activeElement.blur();
+             $ionicLoading.show();
+             $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
+             Auth.setCredentials($scope.userName, $scope.passWordHashed);
+             $scope.userName = '';
+             $scope.passWord = '';
+             $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
+             $scope.success = false;
+             $scope.loginResultPromise.then(function(result) {
+                 $scope.loginResult = result;
+                 $scope.loginMsg = "You have logged in successfully!";
+                 Auth.confirmCredentials();
+                 $state.go("home.cfeed", {}, {reload: true});
+                 ngNotify.set($scope.loginMsg, 'success');
+                 $scope.success = true;
+                 $ionicLoading.hide();
+             }, function(error) {
+                 $scope.loginMsg = "Incorrect username or password.";
+                 ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
+                 Auth.clearCredentials();
+                 $scope.success = true;
+                 $ionicLoading.hide();
+             });
              $timeout(function() {
-                 $ionicLoading.show();
-                 $scope.passWordHashed = new String(CryptoJS.SHA512($scope.passWord + $scope.userName + $scope.salt));
-                 Auth.setCredentials($scope.userName, $scope.passWordHashed);
-                 $scope.userName = '';
-                 $scope.passWord = '';
-                 $scope.loginResultPromise = $scope.Restangular().all("users").all("myUser").getList();
-                 $scope.loginResultPromise.then(function(result) {
-                    $scope.loginResult = result;
-                    $scope.loginMsg = "You have logged in successfully!";
-                    Auth.confirmCredentials();
-                    $state.go("home.cfeed", {}, {reload: true});
-                    ngNotify.set($scope.loginMsg, 'success');
-                    $ionicLoading.hide();
-                 }, function(error) {
-                    $scope.loginMsg = "Incorrect username or password.";
-                    ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
-                    Auth.clearCredentials();
-                    $ionicLoading.hide();
-                 });
-             }, 500);
+                 if(!$scope.success) {
+                     $scope.loginMsg = "Incorrect username or password.";
+                     ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
+                     Auth.clearCredentials();
+                     $ionicLoading.hide();
+                 } else {
+                     $scope.loginMsg = "Not doing it.";
+                     ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
+                 }
+             }, 10000)
          } else {
              $scope.loginMsg = "Please enter a username and password.";
              ngNotify.set($scope.loginMsg, {position: 'top', type: 'error'});
@@ -49,8 +61,10 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
             function(success) {
                 $ionicLoading.hide();
                 Auth.clearCredentials();
-                ngNotify.set("User account created. Please login!", {position: 'top', type: 'success'});
-                $state.go("home", {}, {reload: true});
+                Auth.setCredentials($scope.register.username, $scope.register.password);
+                Auth.confirmCredentials();
+                ngNotify.set("User account created!", {position: 'top', type: 'success'});
+                $state.go("home.cfeed", {}, {reload: true});
             },function(fail) {
                 $ionicLoading.hide();
                 Auth.clearCredentials();
