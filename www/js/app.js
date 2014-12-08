@@ -180,24 +180,24 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
 
-    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-        console.log(data, operation, what, url, response, deferred);
-        return data;
-    });
-
-    RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
-        //if(response.status === 403) {
-        //    refreshAccesstoken().then(function() {
-        //        // Repeat the request and then call the handlers the usual way.
-        //        $http(response.config).then(responseHandler, deferred.reject);
-        //        // Be aware that no request interceptors are called this way.
-        //    });
-        //
-        //    return false; // error handled
-        //}
-        console.log(response);
-        return true; // error not handled
-    });
+    //RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+    //    console.log(data, operation, what, url, response, deferred);
+    //    return data;
+    //});
+    //
+    //RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
+    //    //if(response.status === 403) {
+    //    //    refreshAccesstoken().then(function() {
+    //    //        // Repeat the request and then call the handlers the usual way.
+    //    //        $http(response.config).then(responseHandler, deferred.reject);
+    //    //        // Be aware that no request interceptors are called this way.
+    //    //    });
+    //    //
+    //    //    return false; // error handled
+    //    //}
+    //    console.log(response);
+    //    return true; // error not handled
+    //});
 }).
 
 constant('$ionicLoadingConfig', {
