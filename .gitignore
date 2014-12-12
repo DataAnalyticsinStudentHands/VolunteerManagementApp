@@ -8,13 +8,17 @@
 *.xib
 
 platforms/android/*
+!platforms/android/res
+platforms/android/res/*
 !platforms/android/res/drawable
 
-platforms/ios/www
-platforms/ios/platform_www
-platforms/ios/cordova
-platforms/ios/CordovaLib
-platforms/ios/build
+platforms/ios/*
+!platforms/ios/VMA
+platforms/ios/VMA/*
+!platforms/ios/VMA/Resources
+platforms/ios/VMA/Resources/*
+!platforms/ios/VMA/Resources/splash
+!platforms/ios/VMA/Resources/icons
 
 www/vendor
 www/bower_components
