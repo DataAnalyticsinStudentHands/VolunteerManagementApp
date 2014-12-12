@@ -15,7 +15,7 @@ angular.module('volunteerManagementApp', [
     'ui.bootstrap.datetimepicker'
 ]).
 
-config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
       state('home', {
@@ -170,9 +170,34 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider) {
             "app@home": { templateUrl: "partials/hours.myHours.html", controller: "hoursController"}
           },
           authenticate: true
+      }).
+      state('home.userPicture', {
+          url: "/userPicture",
+          views: {
+            "app@home": { templateUrl: "partials/userPicture.html", controller: "userPicture"}
+          },
+          authenticate: true
       });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
-//    angular.extend($popoverProvider.defaults, { html: true });
+
+    //RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+    //    console.log(data, operation, what, url, response, deferred);
+    //    return data;
+    //});
+    //
+    //RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
+    //    //if(response.status === 403) {
+    //    //    refreshAccesstoken().then(function() {
+    //    //        // Repeat the request and then call the handlers the usual way.
+    //    //        $http(response.config).then(responseHandler, deferred.reject);
+    //    //        // Be aware that no request interceptors are called this way.
+    //    //    });
+    //    //
+    //    //    return false; // error handled
+    //    //}
+    //    console.log(response);
+    //    return true; // error not handled
+    //});
 }).
 
 constant('$ionicLoadingConfig', {
@@ -182,11 +207,11 @@ constant('$ionicLoadingConfig', {
         maxWidth: 200,
         showDelay: 0
 }).
+
 run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function(Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-//    Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
+    //Restangular.setBaseUrl("http://localhost:8080/VolunteerApp/");            //THE LOCAL HOST
 //    Restangular.setBaseUrl("http://172.27.219.120:8080/VolunteerApp/");       //THE MAC AT CARL'S DESK
-//    Restangular.setBaseUrl("http://172.27.219.241:8080/VolunteerApp/");         //CARL'S LAPTOP
-    Restangular.setBaseUrl("http://www.housuggest.org:8888/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
+    Restangular.setBaseUrl("https://www.housuggest.org:8443/VolunteerApp/");     //HOUSUGGEST FOR VMA CORE
 
     //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
     $rootScope.Restangular = function() {
@@ -195,37 +220,30 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 
     //CHECKING IF AUTHENTICATED ON STATE CHANGE - Called in $stateChangeStart
     $rootScope.isAuthenticated = function(authenticate) {
-        //BELOW - Trying to get promises to work to verify auth
-        vmaUserService.getMyUser().then(function(result) {
-            console.log("authed");
-            result = Restangular.stripRestangular(result)[0];
-            //USERNAME & ID TO BE USED IN CONTROLLERS
-            $rootScope.uid = result.id.toString();
-            $rootScope.uid_int = result.id;
-            $rootScope.uin = result.username.toString();
-        }, function(error) {
-            if(error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
-//                console.log("error-0");
-//                Restangular.allUrl('CHECKSITE', 'http://google.com').getList().then(
-//                    function(success) {
-//                        ngNotify.set("SERVER IS DOWN", {type : "error", sticky : true});
-//                    },
-//                    function(fail) {
-//                        ngNotify.set("NO INTERNET CONNECTION", {type : "error", sticky : true});
-//                    }
-//                );
-                ngNotify.set("Internet or Server Unavailable", {type : "error", sticky : true});
-            } else { // LOG THEM OUT
-                Auth.clearCredentials();
-                console.log("not-authed");
-                if(authenticate) $state.go("login");
-            }
-        });
+        if(!$rootScope.uid) {
+            vmaUserService.getMyUser().then(function (result) {
+                console.log("authed");
+                result = Restangular.stripRestangular(result)[0];
+                //USERNAME & ID TO BE USED IN CONTROLLERS
+                $rootScope.uid = result.id.toString();
+                $rootScope.uin = result.username.toString();
+            });
+        }
         vmaUserService.getMyRole().then(function(success){
                 $rootScope.role = success;
-//                console.log(success);
                 $rootScope.isMod = (success == "ROLE_MODERATOR");
                 $rootScope.isAdm = (success == "ROLE_ADMIN");
+        }, function (error) {
+            if (error.status === 0) { // NO NETWORK CONNECTION OR SERVER DOWN, WE WILL NOT LOG THEM OUT
+                ngNotify.set("Internet or Server Unavailable", {type: "error", sticky: true});
+            } else { //Most Likely a 403 - LOG THEM OUT
+                Auth.clearCredentials();
+                console.log("not-authed");
+                if (authenticate) {
+                    $state.go("login");
+                    location.reload();
+                }
+            }
         });
         return Auth.hasCredentials();
     };

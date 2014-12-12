@@ -13,4 +13,9 @@
         /*position: fixed;*/
         /*background: url("../img/dashlogo.svg");*/
     }
+    #vma_login_padding {
+        padding-top: 2%;
+        padding-right: 25%;
+        padding-left: 25%;
+    }
 }

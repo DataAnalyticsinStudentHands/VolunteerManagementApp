@@ -61,13 +61,22 @@ vmaServices.factory('vmaUserService', ['Restangular', '$q', '$filter', function(
             function(uid) {
                 return Restangular.all("users").all(uid).remove();
             },
+        getAvatarPath:
+            function(id) {
+                return this.getMyUser(id).then(function(s){
+                    console.log(Restangular.stripRestangular(s));
+                    s = s[0];
+                    console.log(s);
+                    return "http://housuggest.org/CoreVMA/users/" + s.picturePath  + "/" + s.profile_picture_filename;
+                });
+            }
     }
 }]);
 
 vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function(Restangular, $q, $filter) {
-    var allGroups;
-    var manGroups;
-    var memGroups;
+    var allGroups = localStorage.getObject("allGroups");
+    var manGroups = localStorage.getObject("manGroups");
+    var memGroups = localStorage.getObject("memGroups");
     var subGroups;
     var metaGroups;
     var promAllGroups;
@@ -81,7 +90,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gProm = Restangular.all("groups").one("byMembership").getList();
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
-                        //localStorage.setObject("memGroups", success);
+                        localStorage.setObject("memGroups", success);
                         memGroups = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -89,6 +98,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gPromByMan = Restangular.all("groups").one("byManager").getList();
                     gPromByMan.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("manGroups", success);
                         manGroups = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -96,6 +106,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     var gPromMaster = Restangular.all("groups").getList();
                     gPromMaster.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("allGroups", success);
                         allGroups = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -206,19 +217,81 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
             },
         addGroup:
             function(group) {
-                return Restangular.all("groups").post(group);
+                console.log(group);
+                return Restangular.all("groups").post(group).then(function(success){
+                    //var newGroup = {};
+                    //newGroup.id = eval(success);
+                    //newGroup.name = group.name;
+                    //newGroup.description = group.description;
+                    group.id = eval(success);
+                    allGroups.unshift(angular.copy(group));
+                    manGroups.unshift(angular.copy(group));
+                });
             },
         editGroup:
             function(id, group) {
-                 return Restangular.all("groups").all(id).post(group);
+                return Restangular.all("groups").all(id).post({name: group.name, description:group.description}).then(function(s){
+                    for(var i = 0; i < allGroups.length; i++) {
+                        if(allGroups[i].id == id) {
+                            console.log(id);
+                            allGroups[i] = angular.copy(group);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < manGroups.length; i++) {
+                        if(manGroups[i].id == id) {
+                            console.log(id);
+                            manGroups[i] = angular.copy(group);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < memGroups.length; i++) {
+                        if(memGroups[i].id == id) {
+                            console.log(id);
+                            memGroups[i] = angular.copy(group);
+                            break;
+                        }
+                    }
+                });
             },
         deleteGroup:
             function(gid) {
-                return Restangular.all("groups").all(gid).remove();
+                return Restangular.all("groups").all(gid).remove().then(function(success){
+                    for(var i = 0; i < allGroups.length; i++) {
+                        if(allGroups[i].id == gid) {
+                            allGroups.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < manGroups.length; i++) {
+                        if(manGroups[i].id == gid) {
+                            manGroups.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < memGroups.length; i++) {
+                        if(memGroups[i].id == gid) {
+                            memGroups.splice(i, 1);
+                            break;
+                        }
+                    }
+                    return success;
+                });
             },
         joinGroup:
             function(gid, uid) {
-                return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post();
+                return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post().then(function(s){
+                    for(var i = 0; i < allGroups.length; i++) {
+                        if(allGroups[i].id == gid) {
+                            var group = $filter('getById')(memGroups, allGroups[i].gid);
+                            if(!group) {
+                                console.log("PUSH");
+                                memGroups.push(allGroups[i]);
+                            }
+                            break;
+                        }
+                    }
+                });
             },
         isManager:
             function(gid) {
@@ -236,7 +309,20 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
         leaveGroupMember:
             function(gid, uid) {
                 return this.leaveGroupManager(gid, uid).then(function(success) {
-                    return Restangular.all("groups").all(gid).all("MEMBER").all(uid).remove().then(function(success) {});
+                    return Restangular.all("groups").all(gid).all("MEMBER").all(uid).remove().then(function(success) {}).then(function(s){
+                        for(var i = 0; i < memGroups.length; i++) {
+                            if(memGroups[i].id == gid) {
+                                memGroups.splice(i, 1);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manGroups.length; i++) {
+                            if(manGroups[i].id == gid) {
+                                manGroups.splice(i, 1);
+                                break;
+                            }
+                        }
+                    });
                 });
             }
     }
@@ -258,18 +344,18 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     updating = true;
                     console.log("TASKS UPDATED");
                     var gProm = Restangular.all("tasks").one("byMembership").getList();
-
                     gProm.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("memTasks", success);
                         memTasks = success;
                     }, function(fail) {
             //            console.log(fail);
                     });
 
                     var gPromByMan = Restangular.all("tasks").one("byManager").getList();
-
                     gPromByMan.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("manTasks", success);
                         manTasks = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -278,6 +364,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     var gPromMaster = Restangular.all("tasks").getList();
                     gPromMaster.then(function(success) {
                         success = Restangular.stripRestangular(success);
+                        localStorage.setObject("allTasks", success);
                         allTasks = success;
                     }, function(fail) {
             //            console.log(fail);
@@ -449,11 +536,6 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         obj.isMember = true;
                         result.push(obj);
                     });
-//                    subTasks.forEach(function(obj){
-//                        obj.isTask = true;
-//                        result.push(obj);
-//                    });
-//                    metaTasks = result;
                     return result;
                 });
             },
@@ -467,10 +549,11 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                         if(entry.time) {
                             var localoffset = (new Date(entry.time)).getTimezoneOffset();
                             // "unadjust" date
+                            entry.datetime = new Date(entry.time).toDateString() + " " + new Date(entry.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
                             entry.time = new Date(entry.time.valueOf()/* - (localoffset * 60 * 1000)*/);
-    //                        console.log(new Date(entry.time));
-    //                        console.log(entry.id);
-                            result.push({"title" : entry.name, "start": entry.time, "url": "viewTask(" + entry.id + ")"});
+                            var URL = "/#/task" + JSON.stringify(entry);
+                            URL = encodeURI(URL);
+                            result.push({"title" : entry.name, "start": entry.time, "url": URL});
                         }
                     });
                     return result;
@@ -508,42 +591,143 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             },
         addTask:
             function(task) {
-                return Restangular.all("tasks").post(task);
+                return Restangular.all("tasks").post(task).then(function(s){
+                    task.id = eval(s);
+                    allTasks.unshift(angular.copy(task));
+                    manTasks.unshift(angular.copy(task));
+                });
             },
         editTask:
             function(id, task) {
-                 return Restangular.all("tasks").all(id).doPUT(task);
+                 return Restangular.all("tasks").all(id).doPUT(task).then(function(s){
+                     for(var i = 0; i < allTasks.length; i++) {
+                         if(allTasks[i].id == id) {
+                             allTasks[i] = angular.copy(task);
+                             break;
+                         }
+                     }
+                     for(var i = 0; i < manTasks.length; i++) {
+                         if(manTasks[i].id == id) {
+                             manTasks[i] = angular.copy(task);
+                             break;
+                         }
+                     }
+                     for(var i = 0; i < memTasks.length; i++) {
+                         if(memTasks[i].id == id) {
+                             memTasks[i] = angular.copy(task);
+                             break;
+                         }
+                     }
+                 });
             },
         deleteTask:
             function(tid) {
-                return Restangular.all("tasks").all(tid).remove();
+                return Restangular.all("tasks").all(tid).remove().then(function(success){
+                    for(var i = 0; i < allTasks.length; i++) {
+                        if(allTasks[i].id == tid) {
+                            allTasks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < manTasks.length; i++) {
+                        if(manTasks[i].id == tid) {
+                            manTasks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < memTasks.length; i++) {
+                        if(memTasks[i].id == tid) {
+                            memTasks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    return success;
+                });
             },
         joinTask:
             function(tid, uid) {
-                return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).post();
+                return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).post().then(function(s){
+                    for(var i = 0; i < allTasks.length; i++) {
+                        if(allTasks[i].id == tid) {
+                            memTasks.push(allTasks[i]);
+                            break;
+                        }
+                    }
+                });
             },
         leaveTaskManager:
             function(tid, uid) {
-                 return Restangular.all("tasks").all(tid).all("MANAGER").all(uid).remove().then(function(success) {});
+                 return Restangular.all("tasks").all(tid).all("MANAGER").all(uid).remove();
             },
         leaveTaskMember:
             function(tid, uid) {
                 return this.leaveTaskManager(tid, uid).then(function(success) {
-                    return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {});
+                    return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).remove().then(function(success) {
+                        for(var i = 0; i < memTasks.length; i++) {
+                            if(memTasks[i].id == tid) {
+                                memTasks.splice(i, 1);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manTasks.length; i++) {
+                            if(manTasks[i].id == tid) {
+                                manTasks.splice(i, 1);
+                                break;
+                            }
+                        }
+                    });
                 });
             },
         markFinished:
             function(tid) {
                 return Restangular.all("tasks").all(tid).doGET().then(function(success){
                     success.finished = 1;
-                    Restangular.all("tasks").all(tid).post(success);
+                    Restangular.all("tasks").all(tid).post(success).then(function(){
+                        for(var i = 0; i < allTasks.length; i++) {
+                            if(allTasks[i].id == tid) {
+                                allTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manTasks.length; i++) {
+                            if(manTasks[i].id == tid) {
+                                manTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < memTasks.length; i++) {
+                            if(memTasks[i].id == tid) {
+                                memTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                    });;
                 });
             },
         markUnFinished:
             function(tid) {
                 return Restangular.all("tasks").all(tid).doGET().then(function(success){
                     success.finished = 0;
-                    Restangular.all("tasks").all(tid).post(success);
+                    Restangular.all("tasks").all(tid).post(success).then(function(){
+                        for(var i = 0; i < allTasks.length; i++) {
+                            if(allTasks[i].id == tid) {
+                                allTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < manTasks.length; i++) {
+                            if(manTasks[i].id == tid) {
+                                manTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                        for(var i = 0; i < memTasks.length; i++) {
+                            if(memTasks[i].id == tid) {
+                                memTasks[i] = angular.copy(success);
+                                break;
+                            }
+                        }
+                    });
                 });
             }
     }
@@ -551,12 +735,10 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
 
 vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', 'vmaUserService', 'vmaCommentService', function(Restangular, $q, vmaGroupService, vmaUserService, vmaCommentService) {
     var allPosts = [];
-    var allPostsPlain = [];
     var myGroupPosts = [];
     var metaPosts = [];
-    var refresh = true;
     return {
-        //NOT USED
+        //NOT USED OUTSIDE OF SERVICE
         updatePosts:
             function() {
                 if(refresh) {
@@ -583,7 +765,6 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return deferred.promise;
                 }
             },
-        //NOT USED
         getAllPosts:
             function() {
                 return this.updatePosts().then(function(success) {
@@ -664,24 +845,17 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
         deletePost:
             function(pid) {
                 return Restangular.all("posts").all(pid).remove();
-            },
+            }
     }
 }]);
 
 vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService', function(Restangular, $q, vmaUserService) {
-    var allComments = [];
-    var allCommentsPlain = [];
-    var myPostComments = [];
-    var metaComments = [];
-    var refresh = true;
     return {
         getPostCommentsPromise:
             function(numComments, startindex, pid) {
                 var promAll = Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
                 return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
-                    allCommentsPlain = success;
-//                    console.log(allCommentsPlain);
                     var resultComments = [];
                     success.forEach(function(comment) {
                         comment.time =   new Date(comment.creation_timestamp).toDateString() + " " + new Date(comment.creation_timestamp).toLocaleTimeString().replace(/:\d{2}\s/,' ');
@@ -695,10 +869,6 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
 
                 });
              },
-        getPostCommentsPlain:
-            function(numComments, startindex, pid) {
-                return Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
-            },
         getPostComments:
             function(num, ind, pid) {
                 return this.getPostCommentsPromise(num, ind, pid).then(function(success) {
@@ -722,23 +892,17 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
         deleteComment:
             function(cid) {
                 return Restangular.all("comments").all(cid).remove();
-            },
+            }
     }
 }]);
 
 vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService', 'vmaUserService', function(Restangular, $q, vmaTaskService, vmaUserService) {
-    var allMessages = [];
-    var allMessagesPlain = [];
-    var myTaskMessages = [];
-    var metaMessages = [];
-    var refresh = true;
     return {
         getTaskMessagesPromise:
             function(numMessages, startindex, tid) {
                 var promAll = Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
                 return promAll.then(function(success) {
                     success = Restangular.stripRestangular(success);
-                    allMessagesPlain = success;
                     var resultMessages = [];
                     success.forEach(function(message) {
                         message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
@@ -747,33 +911,45 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
                         resultMessages.push(message);
                     });
                     return resultMessages;
-                }, function(fail) {
-
                 });
-            },
-        getTaskMessagesPlain:
-            function(numMessages, startindex, tid) {
-                return Restangular.all("messages").getList({"numberOfMessages": numMessages, "startIndex": startindex, "task_id": tid});
             },
         getTaskMessages:
             function(num, ind, tid) {
                 return this.getTaskMessagesPromise(num, ind, tid).then(function(success) {
-                    return success;
+                    var localMsgObj;
+                    if(success.length > 0) {
+                        localMsgObj = localStorage.getObject("Task" + tid);
+                        if(localMsgObj == null){
+                            localMsgObj = success;
+                        } else {
+                            localMsgObj = localMsgObj.concat(success);
+                        }
+                        localStorage.setObject("Task" + tid, localMsgObj);
+                    }
+                    return localMsgObj;
                 });
             },
-        getMessage:
-            function(message_id, task_id) {
-                return Restangular.all("messages").get(message_id).then(function(success) {
-//                    success = success.stripRestangular(success);
-                    var message = success;
-//                    console.log(message);
-                    return Restangular.stripRestangular(message);
-                });
+        getTaskMessagesFromLocalStorage:
+            function(tid){
+                var success = localStorage.getObject("Task" + tid);
+                var resultMessages = [];
+                if(success) {
+                    success.forEach(function(message) {
+                        message.time =  new Date(message.time).toDateString() + " " + new Date(message.time).toLocaleTimeString().replace(/:\d{2}\s/,' ');
+                        vmaUserService.getUser(message.sender_id).then(function(success) { message.user = success; message.username = success.username; });
+                        message.img = "img/avatar.icon.png";
+                        resultMessages.push(message);
+                    });
+                    return resultMessages;
+                } else
+                    return null;
             },
         addMessage:
             function(message, uid, tid) {
-                var msg = {"content" : message.message, "sender_id": uid, "task_id": tid};
-                return Restangular.all("messages").post(msg);
+                if(message.message != ""){
+                    var msg = {"content" : message.message, "sender_id": uid, "task_id": tid};
+                    return Restangular.all("messages").post(msg);
+                }
             },
         editMessage:
             function(id, message) {
@@ -782,7 +958,7 @@ vmaServices.factory('vmaMessageService', ['Restangular', '$q', 'vmaTaskService',
         deleteMessage:
             function(mid) {
                 return Restangular.all("messages").all(mid).remove();
-            },
+            }
     }
 }]);
 

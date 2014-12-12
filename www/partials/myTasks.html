@@ -1,4 +1,7 @@
 <ion-view title="My Tasks">
+<ion-nav-buttons side='right'>
+    <button class="button button-dark" ng-click="updateTasks(true)"><i class="icon ion-refresh"></i></button>
+</ion-nav-buttons>
 <ion-content>
     <div class="item" ng-show="tasks.length == 0 || tasks === undefined">
         <center>

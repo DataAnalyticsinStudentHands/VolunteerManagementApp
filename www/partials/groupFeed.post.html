@@ -1,9 +1,9 @@
 <ion-view title="Posts">
 <ion-content>
 <ion-nav-buttons side='right'>
+    <button class="button button-dark" ng-click="updatePosts()"><i class="icon ion-refresh"></i></button>
     <button class="button button-dark" ng-click="addPost()"> <i class="icon ion-plus-round"> </i> </button>
 </ion-nav-buttons>
-<!--<button class="btn_add" ng-click="addPost()">New Post</button>-->
 <div class="item" ng-show="posts.length == 0 || posts === undefined">
     <center>
         This group doesn't seem to have any posts... <br/>
