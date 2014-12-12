@@ -7,15 +7,8 @@
 *.h
 *.xib
 
-platforms/android/assets
-platforms/android/platform_www
-platforms/android/src
-platforms/android/
-platforms/android/CordovaLib
-platforms/android/cordova
-platforms/android/ant-build
-platforms/android/local.properties
-platforms/android/CordovaLib/local.properties
+platforms/android/*
+!platforms/android/res/drawable
 
 platforms/ios/www
 platforms/ios/platform_www
