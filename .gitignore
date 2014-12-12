@@ -9,8 +9,8 @@
 
 platforms/android/*
 !platforms/android/res
-platforms/android/res/*
-!platforms/android/res/drawable
+platforms/android/res/xml
+platforms/android/res/values
 
 platforms/ios/*
 !platforms/ios/VMA
