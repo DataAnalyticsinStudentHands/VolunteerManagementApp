@@ -1,7 +1,7 @@
 <ion-view title="Home" hide-back-button="true">
 <ion-content>
 <ion-nav-buttons side='right'>
-    <button class="button button-dark" ui-sref="home.groupFeed"><i class="icon ion-funnel"></i></button>
+    <button class="button button-dark" ui-sref="secure.groupFeed"><i class="icon ion-funnel"></i></button>
 </ion-nav-buttons>
 <div class="item" ng-show="posts.length == 0 || posts === undefined">
     <center>No posts in organization...</center>
@@ -20,7 +20,7 @@
             <i class="icon ion-chatbox"></i>
             Comment
         </a>
-        <a class="tab-item" ui-sref="home.group({id:{{post.group_id}}})">
+        <a class="tab-item" ui-sref="secure.group({id:{{post.group_id}}})">
             <i class="icon ion-ios7-people"></i>
             {{post.group.name}}
         </a>

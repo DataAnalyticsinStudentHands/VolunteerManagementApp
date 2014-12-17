@@ -5,7 +5,7 @@ var vmaControllerModule = angular.module('vmaControllerModule', []);
 vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNotify', '$timeout', '$ionicLoading', function($scope, Auth, $state, ngNotify, $timeout, $ionicLoading) {
      if($scope.isAuthenticated() === true) {
          //IF SUCCESSFULLY AUTH-ED USER IS TRYING TO GO TO LOGIN PAGE => SEND TO HOME PAGE OF APP
-         $state.go('home.cfeed');
+         $state.go('secure.cfeed');
      }
      $scope.salt = "nfp89gpe"; //PENDING - NEED TO GET ACTUAL SALT
      $scope.$parent.submit = function() {
@@ -22,7 +22,7 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
                  $scope.loginResult = result;
                  $scope.loginMsg = "You have logged in successfully!";
                  Auth.confirmCredentials();
-                 $state.go("home.cfeed", {}, {reload: true});
+                 $state.go("secure.cfeed", {}, {reload: true});
                  ngNotify.set($scope.loginMsg, 'success');
                  $scope.success = true;
                  $ionicLoading.hide();
@@ -65,7 +65,7 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
                     Auth.setCredentials($scope.register.username, $scope.register.password);
                     Auth.confirmCredentials();
                     ngNotify.set("User account created!", {position: 'top', type: 'success'});
-                    $state.go("home.cfeed", {}, {reload: true});
+                    $state.go("secure.cfeed", {}, {reload: true});
                 }, function (fail) {
                     $ionicLoading.hide();
                     Auth.clearCredentials();
@@ -124,7 +124,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     $ionicLoading.show();
     var state = $state.current.name;
     switch(state) {
-        case "home.cfeed":
+        case "secure.cfeed":
             $scope.updatePosts = function() {
                 var loadSize = 10;
                 if($scope.posts.length != 0){
@@ -154,7 +154,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                 );
             };
             break;
-        case "home.group.posts":
+        case "secure.group.posts":
             $scope.id = $stateParams.id;
             $scope.updatePosts = function() {
                 var loadSize = 10;
@@ -185,7 +185,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
                     });
                 };
             break;
-        case "home.groupFeed":
+        case "secure.groupFeed":
             $scope.updatePosts = function() {
                 var loadSize = 10;
                 if($scope.posts.length != 0){
@@ -225,7 +225,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
 
     //VIEW POST
     $scope.viewPost = function(pid) {
-        $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
+        $state.go("secure.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     };
 
     //OPEN EDIT FUNCTION AND OPEN MODAL
@@ -391,12 +391,12 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
     $ionicLoading.show();
     var state = $state.current.name;
     switch(state) {
-        case "home.myGroups":
+        case "secure.myGroups":
             $scope.update = function(update) {
                 vmaGroupService.getMetaJoinedGroups(update).then(function(success) { $scope.groups = success; $ionicLoading.hide(); });
             };
             break;
-        case "home.joinGroups":
+        case "secure.joinGroups":
             $scope.update = function(update) {
                 vmaGroupService.getMetaGroups(update).then(function(success) {
                     $scope.groups = success;
@@ -405,7 +405,7 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
                 });
             };
             break;
-        case "home.group":
+        case "secure.group":
             $scope.id = $stateParams.id;
             $scope.update = function(update){
                 vmaGroupService.getGroupMeta($scope.id, update).then(function(success) { $scope.group = success; $ionicLoading.hide();});
@@ -556,12 +556,12 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
     //VIEW POSTS
     $scope.viewPost = function(pid) {
-        $state.go("home.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
+        $state.go("secure.group.posts.comments", {"post_id" : pid}, [{reload: false}]);
     };
 
     //VIEW GROUP
     $scope.viewGroup = function(gid) {
-        $state.go("home.group", {"id" : gid});
+        $state.go("secure.group", {"id" : gid});
     };
 
     //PERMISSIONS
@@ -632,14 +632,14 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     var state = $state.current.name;
     $ionicLoading.show();
     switch(state) {
-        case "home.myTasks":
+        case "secure.myTasks":
             $scope.updateTasks = function(refresh) {
                 vmaTaskService.getJoinTasks(refresh).then(function(success) {
                     $scope.tasks = success; $ionicLoading.hide();
                 });
             };
             break;
-        case "home.group":
+        case "secure.group":
             $scope.updateTasks = function(update){
                 vmaTaskService.getAllTasksGroup($scope.id, update).then(function(success) {
                     $scope.tasks = success; $ionicLoading.hide();
@@ -651,7 +651,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
                 });
             };
             break;
-        case "home.group.tasks":
+        case "secure.group.tasks":
             $scope.id = $stateParams.id;
             $scope.updateTasks = function(update) {
                 vmaTaskService.getMetaTasksGroup($scope.id, update).then(function(success) {
@@ -675,13 +675,13 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     //VIEW A TASK
     $scope.viewTask = function(click_id) {
         vmaTaskService.getTaskView(click_id).then(function(success){
-            $state.go("home.task", {"task" : JSON.stringify(success)}, [{reload: false}]);
+            $state.go("secure.task", {"task" : JSON.stringify(success)}, [{reload: false}]);
         });
     };
 
     //VIEW MESSAGES
     $scope.displayMessages = function(click_id) {
-        $state.go('home.message', {id:click_id}, {reload: false});
+        $state.go('secure.message', {id:click_id}, {reload: false});
     };
 
     //OPENING THE MODAL TO ADD A TASK

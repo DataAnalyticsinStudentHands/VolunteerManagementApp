@@ -18,10 +18,11 @@ angular.module('volunteerManagementApp', [
 config(function($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("/cfeed");
     $stateProvider.
-      state('home', {
+      state('secure', {
+          abstract: true,
           views: {
-            "menuBar@home": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
-            "app": { templateUrl: "partials/home.html"},
+            "menuBar@secure": { templateUrl: "partials/menuBar.html", controller:"menuCtrl"},
+            "app_home": { templateUrl: "partials/home.html"},
             "bottomMenu":  { templateUrl: "partials/bottomMenu.html", controller:"menuCtrl"}
           },
           authenticate: true
@@ -40,91 +41,91 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: false
       }).
-      state('home.cfeed', {
+      state('secure.cfeed', {
           url: "/cfeed",
           views: {
             "app": { templateUrl: "partials/communityFeed.html", controller: 'postController'}
           },
           authenticate: true
       }).
-      state('home.message', {
+      state('secure.message', {
           url: "/messages/:id",
           views: {
-            "app@home": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
+            "app": { templateUrl: "partials/groupMessages.message.html", controller: 'message'}
           },
           authenticate: true
       }).
-      state('home.groupFeed', {
+      state('secure.groupFeed', {
           url: "/groupFeed",
           views: {
             "app": { templateUrl: "partials/groupFeed.html", controller: 'postController'}
           },
           authenticate: true
       }).
-      state('home.myGroups', {
+      state('secure.myGroups', {
           url: "/myGroups",
           views: {
             "app": { templateUrl: "partials/myGroups.html", controller: 'groupController'}
           },
           authenticate: true
       }).
-      state('home.joinGroups', {
+      state('secure.joinGroups', {
           url: "/joinGroups",
           views: {
             "app": { templateUrl: "partials/groups.html", controller: 'groupController'}
           },
           authenticate: true
       }).
-      state('home.group', {
+      state('secure.group', {
           url: "/group/:id",
           views: {
             "app": { templateUrl: "partials/efforts.group.html", controller: 'groupController'}
           },
           authenticate: true
       }).
-      state('home.group.posts', {
+      state('secure.group.posts', {
           url: "/posts",
           views: {
-            "app@home": { templateUrl: "partials/groupFeed.post.html", controller: 'postController'}
+            "app@secure": { templateUrl: "partials/groupFeed.post.html", controller: 'postController'}
           },
           authenticate: true
       }).
-      state('home.group.posts.comments', {
+      state('secure.group.posts.comments', {
           url: "/:post_id",
           views: {
-            "app@home": { templateUrl: "partials/viewPost.html", controller: 'comments'}
+            "app@secure": { templateUrl: "partials/viewPost.html", controller: 'comments'}
           },
           authenticate: true
       }).
-      state('home.group.tasks', {
+      state('secure.group.tasks', {
           url: "/tasks",
           views: {
-            "app@home": { templateUrl: "partials/groupFeed.task.html", controller: 'taskController'}
+            "app@secure": { templateUrl: "partials/groupFeed.task.html", controller: 'taskController'}
           },
           authenticate: true
       }).
-      state('home.task', {
+      state('secure.task', {
           url: "/task:task",
           views: {
             "app": { templateUrl: "partials/viewTask.html", controller: 'task'}
           },
           authenticate: true
       }).
-      state('home.myTasks', {
+      state('secure.myTasks', {
           url: "/myTasks",
           views: {
             "app": { templateUrl: "partials/myTasks.html", controller: 'taskController'}
           },
           authenticate: true
       }).
-      state('home.myInvites', {
+      state('secure.myInvites', {
           url: "/myInvites",
           views: {
             "app": { templateUrl: "partials/myInvites.html", controller: 'efforts'}
           },
           authenticate: true
       }).
-      state('home.awards', {
+      state('secure.awards', {
           url: "/awards",
           views: {
             "app": { templateUrl: "partials/awards.html", controller: 'awards'}
@@ -136,50 +137,51 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
           },
           authenticate: true
       }).
-      state('home.hours_mod', {
+      state('secure.hours_mod', {
           url: "/hours_mod:group_id",
           views: {
             "app": { templateUrl: "partials/hours.moderation.html", controller: "hours.moderation"}
           },
           authenticate: true
       }).
-      state('home.settings', {
+      state('secure.settings', {
           url: "/settings",
           views: {
             "app": { templateUrl: "partials/settings.html", controller: "settings"}
           },
           authenticate: true
       }).
-      state('home.calendar', {
+      state('secure.calendar', {
           url: "/calendar",
           views: {
             "app": { templateUrl: "partials/calendar.html", controller: "calendar"}
           },
           authenticate: true
       }).
-      state('home.hours', {
+      state('secure.hours', {
           url: "/hours",
           views: {
             "app": { templateUrl: "partials/hours.html", controller: "hoursController"}
           },
           authenticate: true
       }).
-      state('home.hours.myHours', {
+      state('secure.hours.myHours', {
           url: "/hours",
           views: {
-            "app@home": { templateUrl: "partials/hours.myHours.html", controller: "hoursController"}
+            "app@secure": { templateUrl: "partials/hours.myHours.html", controller: "hoursController"}
           },
           authenticate: true
       }).
-      state('home.userPicture', {
+      state('secure.userPicture', {
           url: "/userPicture",
           views: {
-            "app@home": { templateUrl: "partials/userPicture.html", controller: "userPicture"}
+            "app": { templateUrl: "partials/userPicture.html", controller: "userPicture"}
           },
           authenticate: true
       });
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|geo|maps):/);
 
+    //Stuff for debugging Restangular
     //RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
     //    console.log(data, operation, what, url, response, deferred);
     //    return data;

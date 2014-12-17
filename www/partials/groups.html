@@ -18,7 +18,7 @@
         </center>
     </div>
     <div  ng-repeat="group in groups | filter:{name: query} | orderBy:orderProp" class="item item-button-right">
-        <h2 ui-sref="home.group({id:group.id})"> {{group.name}} </h2>
+        <h2 ui-sref="secure.group({id:group.id})"> {{group.name}} </h2>
         <button class="button button-dark" ng-click="joinGroup(group.id)"> Join </button>
     </div>
 </ion-list>
