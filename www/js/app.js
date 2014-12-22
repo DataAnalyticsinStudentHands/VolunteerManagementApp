@@ -30,14 +30,14 @@ config(function($stateProvider, $urlRouterProvider, $compileProvider, Restangula
       state('login', {
           url: "/login",
           views: {
-            "app": {templateUrl: "partials/login.html", controller: 'loginCtrl'}
+            "app_home": {templateUrl: "partials/login.html", controller: 'loginCtrl'}
           },
           authenticate: false
       }).
       state('register', {
           url: "/register",
           views: {
-            "app": { templateUrl: "partials/register.html", controller: 'registerCtrl'}
+            "app_home": { templateUrl: "partials/register.html", controller: 'registerCtrl'}
           },
           authenticate: false
       }).
@@ -224,7 +224,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
     $rootScope.isAuthenticated = function(authenticate) {
         if(!$rootScope.uid) {
             vmaUserService.getMyUser().then(function (result) {
-                console.log("authed");
+                //console.log("authed");
                 result = Restangular.stripRestangular(result)[0];
                 //USERNAME & ID TO BE USED IN CONTROLLERS
                 $rootScope.uid = result.id.toString();
@@ -240,7 +240,7 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
                 ngNotify.set("Internet or Server Unavailable", {type: "error", sticky: true});
             } else { //Most Likely a 403 - LOG THEM OUT
                 Auth.clearCredentials();
-                console.log("not-authed");
+                //console.log("not-authed");
                 if (authenticate) {
                     $state.go("login");
                     location.reload();
@@ -260,9 +260,9 @@ run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngN
 
     //AUTHENTICATE ON CHANGE STATE
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-        console.log("$stateChangeStart");
+        //console.log("$stateChangeStart");
         if (toState.authenticate && !$rootScope.isAuthenticated(toState.authenticate)){
-            console.log("non-authed");
+            //console.log("non-authed");
             // User isn’t authenticated
             $state.go("login");
             //Prevents the switching of the state
