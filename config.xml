@@ -14,9 +14,12 @@
     <preference name="SplashScreenDelay"    value="3200" />
     
     <preference name="Orientation"          value="default" />
-    
     <preference name="permissions"          value="none"/>
-    
+    <preference name="StatusBarOverlaysWebView" value="false"/>
+
+	<preference name="StatusBarBackgroundColor" value="#000000"/>
+
+	<preference name="StatusBarStyle" value="lightcontent" />
     <content src="index.html" />
     <access origin="*" />
 </widget>

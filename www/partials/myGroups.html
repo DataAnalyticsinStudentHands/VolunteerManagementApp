@@ -5,7 +5,7 @@
     <!--<button class="button button-dark" ng-click="updatePosts()"><i class="icon ion-refresh"></i></button>-->
 </ion-nav-buttons>
 <ion-nav-buttons side='right'>
-    <button class="button button-dark" ui-sref="home.joinGroups"> <i class="icon ion-search"> </i> </button>
+    <button class="button button-dark" ui-sref="secure.joinGroups"> <i class="icon ion-search"> </i> </button>
 </ion-nav-buttons>
 <div class="item" ng-show="groups.length == 0 || groups === undefined">
     <center>
@@ -19,11 +19,11 @@
         <h2> {{group.name}} </h2>
     </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" ui-sref="home.group.posts({id: group.id})">
+        <a class="tab-item" ui-sref="secure.group.posts({id: group.id})">
             <i class="icon ion-chatbox"></i>
             View Posts
         </a>
-        <a class="tab-item" ui-sref="home.group.tasks({id: group.id})">
+        <a class="tab-item" ui-sref="secure.group.tasks({id: group.id})">
             <i class="icon ion-ios7-people"></i>
             View Tasks
         </a>

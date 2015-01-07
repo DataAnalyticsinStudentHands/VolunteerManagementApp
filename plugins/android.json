@@ -1,7 +1,19 @@
 {
     "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+        "installed": [
+            {
+                "plugin": "org.apache.cordova.statusbar",
+                "vars": {},
+                "topLevel": true
+            }
+        ],
+        "uninstalled": [
+            {
+                "plugin": "org.apache.cordova.statusbar",
+                "id": "org.apache.cordova.statusbar",
+                "topLevel": true
+            }
+        ]
     },
     "config_munge": {
         "files": {
