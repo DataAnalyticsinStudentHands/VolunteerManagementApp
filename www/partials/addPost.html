@@ -3,14 +3,12 @@
         <h1 class="title">Add Post</h1>
         <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
-    <ion-content>
         <div class="list">
-          <label class="item item-input">
+          <label class=" item-input">
             <textarea ng-model="$parent.post.content" placeholder="Post Content" rows="5" required></textarea>
           </label>
         </div>
         <div class="list">
-          <button class="button button-full button-dark" ng-click="ok()">Submit</button>
+          <button class="button button-full button-dark submit" ng-click="ok()">Submit</button>
         </div>
-    </ion-content>
 </ion-modal-view>

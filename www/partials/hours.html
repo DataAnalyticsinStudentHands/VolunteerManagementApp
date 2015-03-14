@@ -4,8 +4,12 @@
         <button class="button button-dark" ui-sref="secure.hours.myHours"><i class="icon ion-ios7-bookmarks"></i></button>
     </ion-nav-buttons>
     <div class="row" ng-hide="entry.name == 'Choose a task'">
-        <button ng-click="checkIn()" class="col button  button-dark">Check in!</button>
-        <button ng-click="checkOut()" class="col button button-dark">Check out!</button>
+        <div class="col">
+            <button ng-click="checkIn()" class="button button-block button-dark checkin">Check in!</button>
+        </div>
+        <div class="col">
+            <button ng-click="checkOut()" class="button button-block button-dark checkout">Check out!</button>
+        </div>
     </div>
     <div class="list">
         <div class="item" ng-show="checkInTimeDisplay"> Checked in at: {{checkInTimeDisplay}}</div>
@@ -30,7 +34,7 @@
                 <span class="input-label">Duration</span>
                 <input id="duration" type="number" step="any" ng-model="entry.duration" placeholder="Minutes" required/>
             </label>
-            <button ng-click="ok()" class="button button-full button-dark">Submit</button>
+            <button ng-click="ok()" class="button button-full button-dark submit">Submit</button>
         </label>
     </div>
 
