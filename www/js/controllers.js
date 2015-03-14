@@ -634,7 +634,7 @@ vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicMod
     $scope.toTimeString = function(task){
         return new Date(task.time).toLocaleString();
     }
-    vmaGroupService.getMemGroups().then(function(resp){
+    vmaGroupService.getManGroups().then(function(resp){
         $scope.groups = resp;
     });
     $ionicLoading.show();

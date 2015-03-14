@@ -9,40 +9,6 @@
             Join tasks to view them here.
         </center>
     </div>
-    <div class="list card" ng-repeat="task in tasks">
-        <div class="item item-avatar item-icon-right" ng-click="viewTask(task.id)">
-            <img src="img/effort_group.icon.png"/>
-            <h2>{{task.name}}</h2>
-            <i ng-show="task.finished == 1" class="icon ion-ios7-checkmark-outline"></i>
-        </div>
-        <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" ng-click="displayMessages(task.id)">
-                <i class="icon ion-chatbox"></i>
-                Messages
-            </a>
-            <a class="tab-item" ng-click="viewTask(task.id)">
-                <i class="icon ion-ios7-people"></i>
-                View Details
-            </a>
-            <a class="tab-item" ng-click="showActions(task.id, $event)">
-                <i class="icon ion-ios7-more"></i>
-            </a>
-        </div>
-    </div>
-</ion-content>
-</ion-view>
-<!-- Testing*************************** -->
-<!-- <ion-view title="My Tasks">
-<ion-nav-buttons side='right'>
-    <button class="button button-dark" ng-click="updateTasks(true)"><i class="icon ion-refresh"></i></button>
-</ion-nav-buttons>
-<ion-content>
-    <div class="item" ng-show="tasks.length == 0 || tasks === undefined">
-        <center>
-            You don't seem to have joined any tasks! <br/>
-            Join tasks to view them here.
-        </center>
-    </div>
     <div class="item" ng-show="tasks.length > 0">
         <center>
             You have {{tasks.length}} task<span ng-hide="tasks.length <2">s</span><br>with {{groups.length}} group<span ng-hide="groups.length <2">s</span>
@@ -77,4 +43,3 @@
     </div>
 </ion-content>
 </ion-view>
- -->

@@ -97,6 +97,10 @@ ion-side-menu>ion-nav-view>ion-view>ion-content {
 .card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
 	// border-bottom-left-radius: 8px;
 	// border-bottom-right-radius: 8px;
+	background-color: white;
+	// background-color: rgb(246,247,248);
+}
+div.item.tabs.tabs-secondary.tabs-icon-left {
 	background-color: rgb(246,247,248);
 }
 

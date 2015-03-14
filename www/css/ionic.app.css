@@ -7875,6 +7875,9 @@ ion-side-menu > ion-nav-view > ion-view > ion-content {
   background-color: #4a596d; }
 
 .card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
+  background-color: white; }
+
+div.item.tabs.tabs-secondary.tabs-icon-left {
   background-color: #f6f7f8; }
 
 ion-header-bar.bar-dark.bar-subheader.bar.bar-header.disable-user-behavior {
