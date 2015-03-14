@@ -3,7 +3,7 @@
     <ion-nav-buttons side='right'>
         <button class="button button-dark" ui-sref="secure.hours.myHours"><i class="icon ion-ios7-bookmarks"></i></button>
     </ion-nav-buttons>
-    <div class="row">
+    <div class="row" ng-hide="entry.name == 'Choose a task'">
         <button ng-click="checkIn()" class="col button  button-dark">Check in!</button>
         <button ng-click="checkOut()" class="col button button-dark">Check out!</button>
     </div>
@@ -12,23 +12,27 @@
         <label class="item item-input item-select">
             <div class="input-label"> Task Name </div>
             <select ng-model="entry.name" required>
-                <option>Other</option>
+                <option>Choose a task</option>
                 <option ng-repeat="task in joinTasks">{{task.name}}</option>
+                <option>Other</option>
             </select>
         </label>
-        <label ng-show="entry.name == 'Other'" class="item item-input">
-            <span class="input-label">Task Name</span>
-            <input type="text" ng-model="entry.customName" placeholder="Enter task"/>
+        <label ng-hide="entry.name == 'Choose a task'">
+            <label ng-show="entry.name == 'Other'" class="item item-input">
+                <span class="input-label">Task Name</span>
+                <input type="text" ng-model="entry.customName" placeholder="Enter task"/>
+            </label>
+            <label class="item item-input" ng-click="openDatePicker()">
+                    <span class="input-label">Start Time</span>
+                    <input type="text" ng-model="entry.inTime" placeholder="Select Date & Time">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Duration</span>
+                <input id="duration" type="number" step="any" ng-model="entry.duration" placeholder="Minutes" required/>
+            </label>
+            <button ng-click="ok()" class="button button-full button-dark">Submit</button>
         </label>
-        <label class="item item-input" ng-click="openDatePicker()">
-                <span class="input-label">Start Time</span>
-                <input type="text" ng-model="entry.inTime" placeholder="Select Date & Time">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Duration</span>
-            <input id="duration" type="number" step="any" ng-model="entry.duration" placeholder="Minutes" required/>
-        </label>
-        <button ng-click="ok()" class="button button-full button-dark">Submit</button>
     </div>
+
 </ion-content>
 </ion-view>

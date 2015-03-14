@@ -7814,3 +7814,35 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 .platform-c:not(.enable-transitions) * {
   -webkit-transition: none !important;
   transition: none !important; }
+
+div.item-avatar {
+  border-bottom: none !important; }
+
+img.item {
+  border: none; }
+
+div.item-body {
+  border-top: none !important; }
+
+.item-grouped {
+  border: none !important; }
+
+.bar-dark .button {
+  color: #00b388;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+.card .item:first-child, .list-inset .item:first-child, .padding > .list .item:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px; }
+
+.card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px; }
+
+.button.button-dark {
+  border-radius: 8px;
+  border: none !important; }

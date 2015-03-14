@@ -630,6 +630,13 @@ vmaControllerModule.controller('groupController', ['$scope', '$state', '$ionicMo
 
 vmaControllerModule.controller('taskController', ['$scope', '$state', '$ionicModal', 'vmaGroupService', '$timeout', 'ngNotify', '$rootScope', 'vmaTaskService', '$stateParams', '$filter', '$ionicActionSheet', '$ionicPopup', '$ionicPopover', '$ionicLoading', function($scope, $state, $ionicModal, vmaGroupService, $timeout, ngNotify, $rootScope, vmaTaskService, $stateParams, $filter, $ionicActionSheet, $ionicPopup, $ionicPopover, $ionicLoading) {
     var state = $state.current.name;
+    $scope.groups = null;
+    $scope.toTimeString = function(task){
+        return new Date(task.time).toLocaleString();
+    }
+    vmaGroupService.getMemGroups().then(function(resp){
+        $scope.groups = resp;
+    });
     $ionicLoading.show();
     switch(state) {
         case "secure.myTasks":
@@ -1331,9 +1338,11 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
     $scope.update();
 
     $scope.entry = [];
-    $scope.entry.name = "Other";
+    $scope.entry.name = "Choose a task";
     $scope.ok = function() {
-        if($scope.entry.name != "Other") {
+        if ($scope.entry.name == "Choose a task") {ngNotify.set("Please choose a task", "error");}
+        else {
+            if($scope.entry.name != "Other") {
             var taskSelected = $filter('getByName')($scope.joinTasks, $scope.entry.name);
             $scope.hourEntry = {user_id: $rootScope.uid, title: $scope.entry.name, start_time: $scope.entry.inTime, duration: Math.ceil($scope.entry.duration), task_id: taskSelected.id};
         } else {
@@ -1349,7 +1358,9 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
             ngNotify.set("Error :(", "error");
         });
         else
-        ngNotify.set("Please fill required fields", "error");
+        ngNotify.set("Please fill required fields", "error");   
+        }
+
     };
     $scope.$watch('entry.name', function(taskName) {
         if(taskName != "Other")
