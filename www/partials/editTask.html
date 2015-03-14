@@ -2,27 +2,25 @@
     <ion-header-bar class="bar bar-header bar-dark">
         <h1 class="title">Edit Task</h1>
         <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
-    </ion-header-bar>
-    <ion-content>
-    <div class="list">
-        <label class="item item-input">
+    </ion-header-bar>    
+    <div class="">
+        <label class=" item-input">
             <input id="name" type="text" ng-model="$parent.editTask.name" placeholder="Name" required/>
         </label>
-        <label class="item item-input" ng-click="openDatePickerEdit()">
+        <label class=" item-input" ng-click="openDatePickerEdit()">
                 <input type="text" ng-model="$parent.editTask.time" placeholder="Select Date & Time">
         </label>
-        <label class="item item-input">
+        <label class=" item-input">
             <input id="duration" type="number" ng-model="$parent.editTask.duration" step="any" placeholder="Duration"/>
         </label>
-        <label class="item item-input">
+        <label class=" item-input">
             <input id="description" type="text" ng-model="$parent.editTask.description" placeholder="Description"/>
         </label>
-        <label class="item item-input">
+        <label class=" item-input">
             <input id="location" type="text" ng-model="$parent.editTask.location" placeholder="Location"/>
         </label>
-        <button class="button button-full button-dark" ng-click="ok()">Submit</button>
+        <button class="button button-full button-dark submit" ng-click="ok()">Submit</button>
     </div>
-    </ion-content>
 </ion-modal-view>
 
 <!--

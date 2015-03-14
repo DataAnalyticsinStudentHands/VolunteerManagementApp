@@ -60,7 +60,10 @@ ion-footer-bar {
 		border-left: 8px solid $uhcolor;
 		background-color: rgb(71,84,103);
 	}
-} 
+}
+.search {
+	padding-left: 10px !important;
+}
 img.item {
 	border: none;
 }
