@@ -7818,6 +7818,13 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 ion-footer-bar {
   border: none; }
 
+.item-select select {
+  position: relative !important;
+  display: block;
+  padding: initial !important;
+  direction: initial !important;
+  white-space: initial !important; }
+
 .button.button-dark:hover, .button-dark.button.active, .button-dark.button.activated {
   color: #00b388;
   background-color: white !important;
@@ -7837,7 +7844,6 @@ ion-footer-bar {
   border-radius: 18px; }
 
 .checkin, .checkout {
-  border: 1px solid #00b388 !important;
   background-color: white !important;
   color: #00b388 !important; }
 
@@ -7852,20 +7858,26 @@ ion-footer-bar {
 .search {
   padding-left: 10px !important; }
 
-img.item {
+img.item, .item {
   border: none; }
 
+.item-grouped {
+  background-color: transparent; }
+
+.item.item-avatar.item-icon-right {
+  border: 1px solid #f6f7f8; }
+
 div .item-body {
-  border-top: none !important; }
+  border-top: none; }
 div .item-avatar {
-  border-bottom: none !important; }
+  border-bottom: none; }
 div .list.card, div .list.card > div {
-  border: none !important; }
+  border: none; }
 
 .list:last-child.card {
   margin-bottom: 0px !important; }
 
-.item-grouped {
+.item-grouped, .item-divider, .bar.bar-dark {
   border: none !important; }
 
 ion-side-menu-content ion-content.scroll-content.ionic-scroll.has-header:last-child {
@@ -7875,7 +7887,7 @@ ion-side-menu > ion-nav-view > ion-view > ion-content {
   background-color: #4a596d; }
 
 .card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
-  background-color: white; }
+  background-color: transparent; }
 
 div.item.tabs.tabs-secondary.tabs-icon-left {
   background-color: #f6f7f8; }
@@ -7899,6 +7911,3 @@ ion-modal-view > div > .item-input > input {
 
 ion-content.scroll-content.ionic-scroll.has-header {
   min-height: initial !important; }
-
-.bar.bar-dark {
-  border: none; }

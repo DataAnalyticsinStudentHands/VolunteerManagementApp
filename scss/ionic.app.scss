@@ -27,6 +27,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 ion-footer-bar {
 	border: none;
 }
+.item-select {
+	select {
+		position: relative !important;	
+		display: block;
+		padding: initial !important;
+		direction: initial !important;
+		white-space: initial !important;
+	}
+}
 .button.button-dark:hover, .button-dark.button.active, .button-dark.button.activated {
 	color: $dark;
 	background-color: white !important;
@@ -46,7 +55,7 @@ ion-footer-bar {
 	border-radius: 18px;
 }
 .checkin, .checkout {
-	border: 1px solid $dark !important;
+	// border: 1px solid $dark !important;
 	background-color: white !important;
 	color: $dark !important;
 }
@@ -64,24 +73,31 @@ ion-footer-bar {
 .search {
 	padding-left: 10px !important;
 }
-img.item {
+img.item, .item {
 	border: none;
+}
+.item-grouped {
+	background-color: transparent;
+}
+.item.item-avatar.item-icon-right {
+	// background-color: #39C09F;
+	border: 1px solid #f6f7f8;
 }
 div {
 	.item-body {
-		border-top: none !important;
+		border-top: none;
 	}
 	.item-avatar {
-		border-bottom: none !important;
+		border-bottom: none;
 	}
 	.list.card, .list.card>div {
-		border: none !important;
+		border: none;
 	}
 }
 .list:last-child.card {
 	margin-bottom: 0px !important;
 }
-.item-grouped {
+.item-grouped, .item-divider,.bar.bar-dark  {
 	border: none !important;
 }
 ion-side-menu-content ion-content.scroll-content.ionic-scroll.has-header:last-child {
@@ -97,7 +113,7 @@ ion-side-menu>ion-nav-view>ion-view>ion-content {
 .card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
 	// border-bottom-left-radius: 8px;
 	// border-bottom-right-radius: 8px;
-	background-color: white;
+	background-color: transparent;
 	// background-color: rgb(246,247,248);
 }
 div.item.tabs.tabs-secondary.tabs-icon-left {
@@ -127,9 +143,6 @@ ion-modal-view>div>.item-input>input {
 }
 ion-content.scroll-content.ionic-scroll.has-header {
 	min-height: initial !important;
-}
-.bar.bar-dark {
-	border: none;
 }
 
 // bar-dark bar bar-header nav-bar nav-title-slide-ios7 disable-user-behavior  no-animation

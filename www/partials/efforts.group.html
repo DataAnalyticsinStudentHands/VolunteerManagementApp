@@ -12,7 +12,7 @@
         <h2> {{group.description}} </h2>
     </div>
     <div class="item item-divider">Tasks</div>
-    <div class="list">
+    <div class="list card">
         <div class="item item-button-right" ng-repeat="task in tasks">
             <div> <a ng-click="viewTask(task.id)">{{task.name}}</a> </div>
             <button ng-hide="task.joined" class="button button-dark" ng-click="joinTask(task.id)">Join</button>

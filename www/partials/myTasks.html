@@ -23,7 +23,8 @@
             <div class="item item-avatar item-icon-right" ng-click="viewTask(task.id)">
             <img src="img/effort_group.icon.png"/>
             <h2>{{task.name}}</h2>
-            <p>Time: {{toTimeString(task)}}</p>
+            <p ng-show="task.time && task.datetime">Time: {{toTimeString(task)}}</p>
+            <p ng-hide="task.time && task.datetime">Time: No time specified</p>
             <i ng-show="task.finished == 1" class="icon ion-ios7-checkmark-outline"></i>
         </div>
         <div class="item tabs tabs-secondary tabs-icon-left">

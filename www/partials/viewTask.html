@@ -11,9 +11,9 @@
     <div class="list">
         <div class="item" ng-show="task.description"> <b>Description: </b> {{task.description}} <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
         <div class="item" ng-hide="task.description"> <b>Description: </b> No Description Available <span class="item-note">{{badgeConfig[task.badge_id]}}</span></div>
-        <div class="item" ng-show="task.time && !task.datetime"> <b>Time: </b> {{task.time}} </div>
+        <div class="item" ng-show="task.time && !task.datetime"> <b>Time: </b> {{task.time}}</div>
         <div class="item" ng-show="task.datetime"> <b>Time: </b> {{task.datetime}} </div>
-        <div class="item" ng-hide="task.time || task.datetime"> <b>Time: </b> No time specified. </div>
+        <div class="item" ng-hide="task.time || task.datetime"> <b>Time: </b> No time specified</div>
         <div class="item" ng-show="task.location"> <b>Location: </b>{{task.location}} </div>
         <div class="item" ng-hide="task.location"> <b>Location: </b> N/A </div>
     </div>
