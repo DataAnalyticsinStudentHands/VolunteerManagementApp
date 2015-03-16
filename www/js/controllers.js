@@ -236,7 +236,7 @@ vmaControllerModule.controller('postController', ['$scope', '$state', 'vmaPostSe
     };
     $scope.openEdit = function(pid) {
         // callback for ng-click 'modal'- open Modal dialog to add a new course
-        $ionicModal.fromTemplateUrl('partials/addPost.html', {
+        $ionicModal.fromTemplateUrl('partials/editPost.html', {
             scope : $scope
         }).then(function (modal) {
             $scope.modal = modal;

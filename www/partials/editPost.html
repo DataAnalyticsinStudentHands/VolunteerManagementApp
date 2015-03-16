@@ -1,0 +1,14 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Edit Post</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+        <div class="">
+          <label class=" item-input">
+            <textarea ng-model="$parent.post.content" placeholder="Post Content" rows="5" required></textarea>
+          </label>
+        </div>
+        <div class="list">
+          <button class="button button-full button-dark submit" ng-click="ok()">Submit</button>
+        </div>
+</ion-modal-view>
