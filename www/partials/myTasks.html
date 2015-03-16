@@ -5,13 +5,15 @@
 <ion-content>
     <div class="item" ng-show="tasks.length == 0 || tasks === undefined">
         <center>
-            You don't seem to have joined any tasks! <br/>
+            You don't seem to have joined any tasks!<br/>
             Join tasks to view them here.
+            <p ng-show="groups.length == 0 || groups === undefined">You also need to join a group.</p>
+            <p ng-show="groups.length > 0">You are currently in {{groups.length}} group<span ng-hide="groups.length <2">s</span></p>
         </center>
     </div>
     <div class="item" ng-show="tasks.length > 0">
         <center>
-            You have {{tasks.length}} task<span ng-hide="tasks.length <2">s</span><br>with {{groups.length}} group<span ng-hide="groups.length <2">s</span>
+            You have {{tasks.length}} task<span ng-hide="tasks.length <2">s</span><br>in {{groups.length}} group<span ng-hide="groups.length <2">s</span>
         </center>
     </div>
     <div class="list card" ng-repeat="group in groups">
