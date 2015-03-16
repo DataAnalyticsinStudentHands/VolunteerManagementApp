@@ -53,10 +53,20 @@ vmaControllerModule.controller('loginCtrl', ['$scope', 'Auth', '$state', 'ngNoti
 
 vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngNotify', '$ionicLoading', function($scope, $state, Auth, ngNotify, $ionicLoading) {
     $scope.registerUser = function() {
-        if($scope.password.password === $scope.confirm.password) {
+        if(!$scope.register || !$scope.password || !$scope.confirm){
+            ngNotify.set("Please fill out all fields!", {position: 'top', type: 'error'});
+        } else if($scope.register.username === "" || $scope.register.username === undefined){
+            ngNotify.set("Username is required!", {position: 'top', type: 'error'});
+        } else if($scope.password.password === "" || $scope.password.password === undefined) {
+            ngNotify.set("Password is required!", {position: 'top', type: 'error'});
+        } else if($scope.confirm.password === "" || $scope.confirm.password === undefined) {
+            ngNotify.set("Please enter password confirmation!", {position: 'top', type: 'error'});
+        } else if($scope.password.password !== $scope.confirm.password){
+            ngNotify.set("Passwords must match!", {position: 'top', type: 'error'});
+        } else {
             Auth.setCredentials("Visitor", "test");
             $scope.salt = "nfp89gpe";
-            $scope.register.password = new String(CryptoJS.SHA512($scope.password.password + $scope.register.username + $scope.salt));
+            $scope.register.password = String(CryptoJS.SHA512($scope.password.password + $scope.register.username + $scope.salt));
             $ionicLoading.show();
             $scope.$parent.Restangular().all("users").post($scope.register).then(
                 function (success) {
@@ -72,14 +82,6 @@ vmaControllerModule.controller('registerCtrl', ['$scope', '$state', 'Auth', 'ngN
                     ngNotify.set(fail.data.message, {position: 'top', type: 'error'});
                 });
             Auth.clearCredentials();
-        } else {
-            if($scope.confirm.password === "") {
-                $scope.password.password = "";
-                $scope.confirm.password = "";
-                ngNotify.set("Passwords must match!", {position: 'top', type: 'error'});
-            } else {
-                ngNotify.set("Password must not be empty!", {position: 'top', type: 'error'});
-            }
         }
     }
 }]);
@@ -990,7 +992,7 @@ vmaControllerModule.controller('message', ['$scope', '$state', '$stateParams', '
 
     var stopRefresh = $interval(function() {
         $scope.updateMessages();
-    }, 5000);
+1    }, 5000);
 
     $scope.addMsg = function() {
         if($scope.msg != undefined)
@@ -1358,7 +1360,7 @@ vmaControllerModule.controller('hoursController', ['$scope', '$state', '$statePa
             ngNotify.set("Error :(", "error");
         });
         else
-        ngNotify.set("Please fill required fields", "error");   
+        ngNotify.set("Please fill required fields", "error");
         }
 
     };
