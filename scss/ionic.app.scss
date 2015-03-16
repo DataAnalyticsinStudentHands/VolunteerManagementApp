@@ -16,6 +16,7 @@ $dark:                            #444 !default;
 */
 $dark:                            #00b388;
 $uhcolor:                         #c8102e;
+$radius:						  18px;
 // .item.item-input {
 // 	background-color: $dark !important;
 // }
@@ -37,12 +38,11 @@ ion-footer-bar {
 	}
 }
 .button.button-dark:hover, .button-dark.button.active, .button-dark.button.activated {
-	color: $dark;
-	background-color: white !important;
-	border: 1px solid $dark !important;
+	color: white;
+	background-color: #00CAA3;
 }
 .button {
-	border-radius: 18px;
+	border-radius: $radius;
 	border: none !important;
 }
 .button-full.submit {
@@ -52,10 +52,9 @@ ion-footer-bar {
 	margin: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border-radius: 18px;
+	border-radius: $radius;
 }
 .checkin, .checkout {
-	// border: 1px solid $dark !important;
 	background-color: white !important;
 	color: $dark !important;
 }
@@ -119,7 +118,6 @@ ion-side-menu>ion-nav-view>ion-view>ion-content {
 div.item.tabs.tabs-secondary.tabs-icon-left {
 	background-color: rgb(246,247,248);
 }
-
 ion-header-bar.bar-dark.bar-subheader.bar.bar-header.disable-user-behavior {
 	padding-left: 8px;
 	padding-right: 8px;

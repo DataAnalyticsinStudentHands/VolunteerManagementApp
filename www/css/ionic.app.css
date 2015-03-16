@@ -7826,9 +7826,8 @@ ion-footer-bar {
   white-space: initial !important; }
 
 .button.button-dark:hover, .button-dark.button.active, .button-dark.button.activated {
-  color: #00b388;
-  background-color: white !important;
-  border: 1px solid #00b388 !important; }
+  color: white;
+  background-color: #00CAA3; }
 
 .button {
   border-radius: 18px;
