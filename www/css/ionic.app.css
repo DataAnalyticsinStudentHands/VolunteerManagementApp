@@ -7818,6 +7818,9 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 ion-header-bar.bar-dark.bar-subheader.bar.bar-header.disable-user-behavior > label > input {
   background-color: transparent; }
 
+label.item-input-wrapper {
+  background-color: white; }
+
 input::-webkit-input-placeholder {
   color: #8D8D8D; }
 
