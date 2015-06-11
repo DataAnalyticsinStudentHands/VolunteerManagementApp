@@ -518,6 +518,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return result;
                 });
             },
+        //Retrieves manTasks, memTasks, and subTasks and adds metadata for the three states. Returns a promise that resolves to an array of all tasks with bundled meta-data in each task object filtered down to the specific requested group.
         getMetaTasksGroup:
             function(gid, update) {
                 return this.getMetaTasks(update).then(function(success) {
@@ -549,6 +550,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     });
                 });
             },
+        //Returns a promise that resolves to an array of tasks the user is neither member nor manager of.
         getJoinTasks:
             function(update) {
                 return this.updateTasks(update).then(function() {
@@ -564,6 +566,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return result;
                 });
             },
+        //Returns a promise that resolves to an array of groups that is tailored specifically for the calendar UI.
         getCalTasks:
             function() {
                 return this.getJoinTasks().then(function(success) {
@@ -584,6 +587,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return result;
                 });
             },
+        //Returns a promise that resolves to the one task of the id that is passed in as a parameter.
         getTask:
             function(task_id, update) {
                 return this.updateTasks(update).then(function(success) {
@@ -591,10 +595,12 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return task;
                 });
             },
+        //Returns a promise that resolves to the one task of the id that is passed in as a parameter. The return is pure as-is-received from server. Ret
         getTaskPure:
             function(task_id, update) {
                 return Restangular.all("tasks").get(task_id);
             },
+        //Returns a promise that resolves to the one task of the name that is passed in as a parameter.
         getTaskByName:
             function(task_name, update) {
                 return this.updateTasks(update).then(function(success) {
@@ -602,6 +608,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return task;
                 });
             },
+        //Returns a promise that resolves to the one task of the id that is passed in as a parameter. The returned task is optimized in terms of being presented in the view.
         getTaskView:
             function(task_id, update) {
                 return this.getMetaTasks(update).then(function(success) {
@@ -614,6 +621,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return task;
                 });
             },
+        //Parameter: task. POSTs task to the server and returns a promise that resolves to the success/failure of the POST
         addTask:
             function(task) {
                 return Restangular.all("tasks").post(task).then(function(s){
@@ -622,6 +630,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     manTasks.unshift(angular.copy(task));
                 });
             },
+        //Parameter: id, task. PUTs task to the server and returns a promise that resolves to the success/failure of the PUT
         editTask:
             function(id, task) {
                  return Restangular.all("tasks").all(id).doPUT(task).then(function(s){
@@ -645,6 +654,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                      }
                  });
             },
+        //Parameter: id(task_id). DELETEs task on the server and returns a promise that resolves to the success/failure of the DELETE
         deleteTask:
             function(tid) {
                 return Restangular.all("tasks").all(tid).remove().then(function(success){
@@ -669,6 +679,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return success;
                 });
             },
+        //Parameter: id(task_id) and id(user_id). Performs a request that adds user to task as MEMBER. Returns a promise that resolves to the success/failure of the request.
         joinTask:
             function(tid, uid) {
                 return Restangular.all("tasks").all(tid).all("MEMBER").all(uid).post().then(function(s){
@@ -680,10 +691,12 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     }
                 });
             },
+        //Parameter: id(task_id) and id(user_id). Performs a request that removes user from task as MEMBER. Returns a promise that resolves to the success/failure of the request.
         leaveTaskManager:
             function(tid, uid) {
                  return Restangular.all("tasks").all(tid).all("MANAGER").all(uid).remove();
             },
+        //Parameter: id(task_id) and id(user_id). Performs a request that removes user from task as MANAGER. Returns a promise that resolves to the success/failure of the request.
         leaveTaskMember:
             function(tid, uid) {
                 return this.leaveTaskManager(tid, uid).then(function(success) {
@@ -703,6 +716,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     });
                 });
             },
+        //Parameter: id(task_id). Performs a request that marks task as "finished". Returns a promise that resolves to the success/failure of the request.
         markFinished:
             function(tid) {
                 return Restangular.all("tasks").all(tid).doGET().then(function(success){
@@ -729,6 +743,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     });;
                 });
             },
+        //Parameter: id(task_id). Performs a request that marks task as NOT "finished". Returns a promise that resolves to the success/failure of the request.
         markUnFinished:
             function(tid) {
                 return Restangular.all("tasks").all(tid).doGET().then(function(success){
@@ -763,7 +778,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
     var myGroupPosts = [];
     var metaPosts = [];
     return {
-        //NOT USED OUTSIDE OF SERVICE
+        //ACCESSES SERVER AND UPDATES THE LIST OF POSTS - Parameter `update` is used (throughout the services) to mandate whether the update is forced or will use cached data. Returns a promise, but no data.
         updatePosts:
             function() {
                 if(refresh) {
@@ -790,6 +805,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return deferred.promise;
                 }
             },
+        //Retrieves all posts and returns a promise that resolves to an array of all posts.
         getAllPosts:
             function() {
                 return this.updatePosts().then(function(success) {
@@ -803,6 +819,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return resultPosts;
                 });
             },
+        //Retrieves all posts and returns a promise that resolves to an array of all posts for specific group.
         getMyGroupPosts:
             function(numPosts, startindex) {
                 return Restangular.all("posts").all("myPosts").getList({"numberOfPosts": numPosts, "startIndex": startindex}).
@@ -820,6 +837,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
         //            console.log(fail);
                 });
             },
+        //Retrieves all posts and returns a promise that resolves to an array of all posts for specific group. Adds user and group as sub-field metadata.
         getGroupPostsPromise:
             function(numPosts, startindex, gid) {
                 var gPromAll = Restangular.all("posts").getList({"numberOfPosts": numPosts, "startIndex": startindex, "group_id": gid});
@@ -837,12 +855,14 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
         //            console.log(fail);
                 });
             },
+        //Retrieves all posts and returns a promise that resolves to an array of all posts for specific group.
         getGroupPosts:
             function(num, ind, gid) {
                 return this.getGroupPostsPromise(num, ind, gid).then(function(success) {
                     return success;
                 });
             },
+        //Retrieves a posts and returns a promise that resolves to s post (based on input param) for specific group. Includes comments.
         getPostView:
             function(count, start, post_id) {
                 return  Restangular.all("posts").get(post_id).then(function(success) {
@@ -854,19 +874,23 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
                     return post;
                 });
             },
+        //Retrieves a posts and returns a promise that resolves to s post (based on input param) for specific group.
         getPost:
             function(post_id) {
                 return Restangular.all("posts").get(post_id);
             },
+        //Parameter: post, uid (user_id). POSTs post to the server and returns a promise that resolves to the success/failure of the POST
         addPost:
             function(post, uid) {
                 post.user_id = uid;
                 return Restangular.all("posts").post(post);
             },
+        //Parameter: post_id, post. PUTs post to the server and returns a promise that resolves to the success/failure of the PUT
         editPost:
             function(id, post) {
                  return Restangular.all("posts").all(id).post(post);
             },
+        //Parameter: id(task_id). DELETEs post on the server and returns a promise that resolves to the success/failure of the DELETE
         deletePost:
             function(pid) {
                 return Restangular.all("posts").all(pid).remove();
@@ -876,6 +900,7 @@ vmaServices.factory('vmaPostService', ['Restangular', '$q', 'vmaGroupService', '
 
 vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService', function(Restangular, $q, vmaUserService) {
     return {
+        //Retrieves all comments for a particular post and returns a promise that resolves to an array of all comments for specific post.
         getPostCommentsPromise:
             function(numComments, startindex, pid) {
                 var promAll = Restangular.all("comments").getList({"numberOfComments": numComments, "startIndex": startindex, "post_id": pid});
@@ -894,26 +919,31 @@ vmaServices.factory('vmaCommentService', ['Restangular', '$q', 'vmaUserService',
 
                 });
              },
+        //Retrieves all comments for a particular post and returns a promise that resolves to an array of all comments for specific post. Does NO processing client-side in order to format data.
         getPostComments:
             function(num, ind, pid) {
                 return this.getPostCommentsPromise(num, ind, pid).then(function(success) {
                     return success;
                 });
             },
+        //Retrieves one comment from server and returns a promise that resolves to an array of all posts for specific post. Does NO processing client-side in order to format data.
         getComment:
             function(comment_id) {
                 return Restangular.all("comments").get(comment_id);
             },
+        //Parameter: String (content), post_id, uid (user_id). POSTs post to the server and returns a promise that resolves to the success/failure of the POST
         addComment:
             function(content, pid, uid) {
                 var cmt = {"content" : content, "user_id": uid, "post_id": pid};
                 //console.log(cmt);
                 return Restangular.all("comments").post(cmt);
             },
+        //Parameter: comment_id, comment. PUTs comment to the server and returns a promise that resolves to the success/failure of the PUT
         editComment:
             function(id, comment) {
                  return Restangular.all("comments").all(id).post(comment);
             },
+        //Parameter: id(comment_id). DELETEs comment on the server and returns a promise that resolves to the success/failure of the DELETE
         deleteComment:
             function(cid) {
                 return Restangular.all("comments").all(cid).remove();
