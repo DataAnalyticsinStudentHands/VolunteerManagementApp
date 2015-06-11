@@ -82,8 +82,8 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
     var promAllGroups;
     var updating;
     return {
+        //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS - Parameter `update` is used to mandate whether the update is forced or will use cached data. Returns a promise, but no data.
         updateGroups:
-            //ACCESSES SERVER AND UPDATES THE LIST OF GROUPS
             function(update) {
                 if(update || ((!allGroups || !manGroups || !memGroups) && !updating)) {
                     updating = true;
@@ -121,18 +121,22 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     return defer.promise;
                 }
             },
+        //Retrieves all groups and returns a promise that resolves an array of all groups.
         getAllGroups:
             function() {
                 return this.updateGroups().then(function(success) { return allGroups; });
             },
+        //Retrieves all groups and returns a promise that resolves an array of all groups the user is a manager of.
         getManGroups:
             function() {
                 return this.updateGroups().then(function(success) { return manGroups; });
             },
+        //Retrieves all groups and returns a promise that resolves an array of all groups the user a member of.
         getMemGroups:
             function() {
                 return this.updateGroups().then(function(success) { return memGroups; });
             },
+        //Returns a promise that resolves to an array of groups the user is neither member nor manager of.
         getSubtractedGroups:
             function(update) {
                 return this.updateGroups(update).then(function(success) {
@@ -160,6 +164,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     return result;
                 });
             },
+        //Retrieves manGrous, memGroups, and subGroups and adds meta data for the three states. Returns a promise that resolves to an array of all groups with bundled meta-data in each group object.
         getMetaGroups:
             function(update) {
                 return this.getSubtractedGroups(update).then(function(success) {
@@ -180,6 +185,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     return result;
                 });
             },
+        //Retrieves manGrous and memGroups and adds meta data for the three states. Returns a promise that resolves to an array of ONLY GROUPS THAT USER is MEMBER or MANAGER of with bundled meta-data in each group object.
         getMetaJoinedGroups:
             function(update) {
                 return this.getSubtractedGroups(update).then(function(success) {
@@ -196,6 +202,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     return result;
                 });
             },
+        //Returns a promise that resolves to the one group of the id that is passed in as a parameter.
         getGroup:
             function(group_id) {
                 return this.updateGroups().then(function(success) {
@@ -204,6 +211,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                 });
             },
         getGroupMeta:
+        //Returns a promise that resolves to the one group WITH METADATA of the id that is passed in as a parameter.
             function(group_id, update) {
                 return this.getMetaGroups(update).then(function(success) {
                     var group = $filter('getById')(success, group_id);
@@ -215,6 +223,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     return group;
                 });
             },
+        //Parameter: group. POSTs group to the server and returns a promise that resolves to the success/failure of the POST
         addGroup:
             function(group) {
                 console.log(group);
@@ -228,6 +237,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     manGroups.unshift(angular.copy(group));
                 });
             },
+        //Parameter: id, group. PUTs group to the server and returns a promise that resolves to the success/failure of the PUT
         editGroup:
             function(id, group) {
                 return Restangular.all("groups").all(id).post({name: group.name, description:group.description}).then(function(s){
@@ -254,6 +264,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     }
                 });
             },
+        //Parameter: id(group_id). DELETEs group on the server and returns a promise that resolves to the success/failure of the DELETE
         deleteGroup:
             function(gid) {
                 return Restangular.all("groups").all(gid).remove().then(function(success){
@@ -278,6 +289,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     return success;
                 });
             },
+        //Parameter: id(group_id) and id(user_id). Performs a request that adds user to group as MEMBER. Returns a promise that resolves to the success/failure of the request.
         joinGroup:
             function(gid, uid) {
                 return Restangular.all("groups").all(gid).all("MEMBER").all(uid).post().then(function(s){
@@ -293,6 +305,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     }
                 });
             },
+        //Parameter: id(group_id). Returns a promise that resolves to a boolean on whether the user is a manager of the group [id] passed in, in the parameter
         isManager:
             function(gid) {
                 return this.getManGroups().then(function(success) {
@@ -302,10 +315,12 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
                     //asdf
                 });
             },
+        //Parameter: id(group_id) and id(user_id). Performs a request that removes user from group as MEMBER. Returns a promise that resolves to the success/failure of the request.
         leaveGroupManager:
             function(gid, uid) {
                  return Restangular.all("groups").all(gid).all("MANAGER").all(uid).remove().then(function(success) {});
             },
+        //Parameter: id(group_id) and id(user_id). Performs a request that removes user from group as MANAGER. Returns a promise that resolves to the success/failure of the request.
         leaveGroupMember:
             function(gid, uid) {
                 return this.leaveGroupManager(gid, uid).then(function(success) {
@@ -328,6 +343,7 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', function
     }
 }]);
 
+//Parameter `update` is used (throughout the services) to mandate whether the update is forced or will use cached data.
 vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroupService', function(Restangular, $q, $filter, vmaGroupService) {
     var allTasks;
     var manTasks;
@@ -337,8 +353,8 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
     var updating;
     var promAllTasks;
     return {
+        //ACCESSES SERVER AND UPDATES THE LIST OF TASKS - Parameter `update` is used (throughout the services) to mandate whether the update is forced or will use cached data. Returns a promise, but no data.
         updateTasks:
-            //ACCESSES SERVER AND UPDATES THE LIST OF TASKS
             function(refresh) {
                 if(refresh || ((!allTasks || !manTasks || !memTasks) && !updating)) {
                     updating = true;
@@ -380,18 +396,22 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return defer.promise;
                 }
             },
+        //Retrieves all tasks and returns a promise that resolves to an array of all tasks.
         getAllTasks:
             function(update) {
                 return this.updateTasks(update).then(function(success) { return allTasks; });
             },
+        //Retrieves all tasks and returns a promise that resolves an array of all tasks the user is a manager of.
         getManTasks:
             function(update) {
                 return this.updateTasks(update).then(function(success) { return manTasks; });
             },
+        //Retrieves all Tasks and returns a promise that resolves an array of all tasks the user a member of.
         getMemTasks:
             function(update) {
                 return this.updateTasks(update).then(function(success) { return memTasks; });
             },
+        //Returns a promise that resolves to an array of tasks the user is neither member nor manager of.
         getSubtractedTasks:
             function(update) {
                 return this.updateTasks(update).then(function(success) {
@@ -419,6 +439,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return result;
                 });
             },
+        //Retrieves manTasks, memTasks, and subTasks and adds metadata for the three states. Returns a promise that resolves to an array of all tasks with bundled meta-data in each task object.
         getMetaTasks:
             function(update) {
                 return this.getSubtractedTasks(update).then(function(success) {
@@ -439,6 +460,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return result;
                 });
             },
+        //Returns a promise that resolves to an array of all tasks in group
         getAllTasksGroup:
             function(gid, update) {
                 return this.updateTasks(update).then(function(success) {
@@ -458,14 +480,17 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     return tasks;
                 });
             },
+        //Returns a promise that resolves to an array of all tasks in group the user is a manager of.
         getManTasksGroup:
             function(gid, update) {
                 return this.updateTasks(update).then(function(success) { return $filter('getTasksByGroupId')(manTasks, gid);});
             },
+        //Returns a promise that resolves to an array of all tasks in group the user is a member of.
         getMemTasksGroup:
             function(gid, update) {
                 return this.updateTasks(update).then(function(success) { return $filter('getTasksByGroupId')(memTasks, gid);});
             },
+        //Returns a promise that resolves to an array of all tasks in group the user is NEITHER a member or manager of.
         getSubtractedTasksGroup:
             function(gid, update) {
                 return this.updateTasks(update).then(function(success) {
