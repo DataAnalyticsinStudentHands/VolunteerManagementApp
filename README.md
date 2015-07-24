@@ -67,11 +67,12 @@ npm packages `npm install`
     Press tab to list possible options.
     > yes
 ```
+
 ####Reading material:
-   Pro AngularJS. - Freeman, Adam. - ISBN: 978-1-4302-6448-4
-   http://toddmotto.com/ultimate-guide-to-learning-angular-js-in-one-day/
-   https://docs.angularjs.org/tutorial/step_02 (Read the sections entitled 'Tests')
-   http://www.yearofmoo.com/2013/01/full-spectrum-testing-with-angularjs-and-karma.html
+   1. Pro AngularJS. - Freeman, Adam. - ISBN: 978-1-4302-6448-4
+   2. http://toddmotto.com/ultimate-guide-to-learning-angular-js-in-one-day/
+   3. https://docs.angularjs.org/tutorial/step_02 (Read the sections entitled 'Tests')
+   4. http://www.yearofmoo.com/2013/01/full-spectrum-testing-with-angularjs-and-karma.html
    
 ####Tips:
    1. Ensure that once the karma browser of choice is launched that you do not minimize said browser. This will substantially slow down testing time. 
