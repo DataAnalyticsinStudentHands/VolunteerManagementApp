@@ -1,4 +1,3 @@
-// NOTE: Change tobedefind to something else
 describe("Filter Test -> filters.js -> ", function () {
         
     // list of task objects to test with
@@ -41,6 +40,12 @@ describe("Filter Test -> filters.js -> ", function () {
 
     beforeEach(angular.mock.module("vmaFilterModule"));
 
+    
+    
+    
+    
+    
+    
 // getsById
     beforeEach(angular.mock.inject(function ($filter) {
         getsById = $filter("getById");
@@ -55,6 +60,12 @@ describe("Filter Test -> filters.js -> ", function () {
    expect(getsById(tasks, 99)).toBe(null);
     });
  
+    
+    
+    
+    
+    
+    
 // getByName
     beforeEach(angular.mock.inject(function ($filter) {
         getByName = $filter("getByName");
@@ -69,6 +80,11 @@ describe("Filter Test -> filters.js -> ", function () {
     
       });
   
+    
+    
+    
+    
+    
 // getTasksByGroupId
     beforeEach(angular.mock.inject(function ($filter) {
         getTasksByGroupId = $filter("getTasksByGroupId");
@@ -99,35 +115,42 @@ describe("Filter Test -> filters.js -> ", function () {
  expect(getTasksByGroupId(tasks, 23)).toEqual(afterTasksAreGroupedUp);
     });
     
-    ///////////////////////////////// START FIXING HERE /////////////////////////////////////////////////////    
-    
-    
      it("returns all tasks related to group id given even though only one such post exists", function () {
- expect(getTasksByGroupId(tasks, 43)).toEqual(tasks[4]);
-    });
+ expect(getTasksByGroupId(tasks, 43)).toEqual([tasks[4]]);
+    });  
+    
+    
+    
+    
+    
+    
     
 // getByGroupId
     beforeEach(angular.mock.inject(function ($filter) {
         getByGroupId = $filter("getByGroupId");
     }));
-
-    it("gets multiple posts when given correct group_id", function () {
-   expect(getByGroupId(tasks, 23)).toBeDefined(afterTasksAreGrouped);
-    });
     
-    ///////////////////////////////////////////
-    // angular.equals(
+    
      it("returns one post with given group_id because it meets specification", function () {
- //expect(getTasksByGroupId(tasks, 4)).equals(tasks[23]);
-//expect(getTasksByGroupId(tasks, 4)).toBeSimilarTo(tasks[2]);
+ expect(getByGroupId(tasks, 12)).toEqual([tasks[3]]);
     });
+    
+      it("returns null when group id is not found", function () {
+ expect(getByGroupId(tasks, 13)).toEqual(empty);
+    });
+  
+     it("gets multiple posts when given correct group_id", function () {
+ expect(getByGroupId(tasks, 23)).toEqual(afterTasksAreGroupedUp);
+    });
+    
+    
     
     
 
-  
-     it("returns null when group id is not found", function () {
- expect(getTasksByGroupId(tasks, 13)).toBeDefined(empty);
-    });
+    
+    
+    
+    
     
 // removeJoined
     beforeEach(angular.mock.inject(function ($filter) {
@@ -156,51 +179,25 @@ describe("Filter Test -> filters.js -> ", function () {
         group_id: 43
     }
 ];
+    
+    
+    var groupsNotJoined =
+        [
+        {
+        name: "Hello",
+        id: 9,
+        joined: false,
+        group_id: 4
+	},
+	{
+		name: "Wednesday",
+        id: 23,
+        joined: false,
+        group_id: 12
+    }];
     it("returns all groups where joined = true ", function () {
      // removeJoined(tasks, X) ----- can be any 'X' because it is not being used in the actual function
-  expect(removeJoined(tasks, 23)).toBeDefined(tasks);
-        console.log("external "+removeJoined(tasks, 23));
-        console.log("internal " + afterTasksAreGrouped);
- //  expect(angular.equals(removeJoined(tasks, 23), afterTasksAreGrouped)).toBe(true);
-        
+  expect(removeJoined(tasks, 23)).toEqual(groupsNotJoined);
          });
   
 });
-
-
-
-
-
-
-/*
-beforeEach(angular.mock.inject(function ($filter) {
-        getByGroupId = $filter("geupId");
-    }));
-
-    it("get post by id when given a correct id", function () {
-   expect(getByGroupId(tasks, 7)).toBe(tasks[2]);
-    });
-    
-*/
-
-
-
-
-
-
-
-
-
-
-
-//
-//		$$hashKey: "01L",
-//        content: "SUNDAY",
-//        creation_timestamp: 1434116497000,
-//        group: Object,
-//        group_id: 22,
-//        id: 7,
-//        latest_activity_timestamp: 1434136924000,
-//        like_count: 0,
-//        time: "Fri Jun 12 2015 8:41 AM",
-//        user_id: 26	
