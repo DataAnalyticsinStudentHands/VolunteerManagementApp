@@ -77,3 +77,24 @@ npm packages `npm install`
 ####Tips:
    1. Ensure that once the karma browser of choice is launched that you do not minimize said browser. This will substantially slow down testing time. 
    2. For headless browser testing try PhantomJS. 
+
+
+
+
+
+
+####CURRENTLY WORKING ON:
+----------------------------------------------------------------------
+app.js
+
+Problems: "browser is not defined" -> installed 'karma-ng-scenario'; Wouldn't install properly first couple of times. After installation, still throws message that "browser is not defined"
+
+Format example:
+
+		        it('should go to login.html', function() {
+		            browser.get('partials/login.html');
+		            browser.getLocationAbsUrl().then(function(url) {
+		            expect(url).toEqual('/login');
+		        });
+		    });
+----------------------------------------------------------------------
